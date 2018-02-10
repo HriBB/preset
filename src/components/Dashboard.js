@@ -1,15 +1,20 @@
 // @flow
 
-import React, { Component } from 'react'
+import React from 'react'
+import { CardHeader } from 'material-ui/Card'
+import Avatar from 'material-ui/Avatar'
 
-type Props = {}
-
-class Dashboard extends Component<Props> {
-  render() {
-    return (
-      <h1>Dashboard</h1>
-    )
-  }
+const Dashboard = (props: any) => {
+  return (
+    <CardHeader
+      avatar={
+        <Avatar aria-label={'Dashboard'}>
+          {'D'}
+        </Avatar>
+      }
+      title={'Dashboard'}
+    />
+  )
 }
 
 export default Dashboard

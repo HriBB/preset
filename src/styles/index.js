@@ -7,7 +7,7 @@ import { SheetsRegistry } from 'react-jss'
 import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName'
 import primary from 'material-ui/colors/blue'
-import secondary from 'material-ui/colors/purple'
+import secondary from 'material-ui/colors/pink'
 
 const theme = createMuiTheme({
   palette: {

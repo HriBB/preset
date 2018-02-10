@@ -66,12 +66,28 @@ module.exports = {
             title,
             text,
             isPublished,
-            author: {
-              connect: { id: userId },
-            },
+            author: { connect: { id: userId } },
           },
         },
         info
+      )
+    },
+    async updatePost(parent, { id, title, text, isPublished }, ctx, info) {
+      const userId = getUserId(ctx)
+      const postExists = await ctx.db.exists.Post({ id })
+      if (!postExists) {
+        throw new Error(`Post not found or you're not the author`)
+      }
+      return ctx.db.mutation.updatePost(
+        {
+          where: { id },
+          data: {
+            title,
+            text,
+            isPublished,
+          },
+        },
+        info,
       )
     },
     async deletePost(parent, { id }, ctx, info) {

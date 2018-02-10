@@ -1,16 +1,19 @@
-# import Post from "./generated/prisma.graphql"
 
 directive @field(label: String) on FIELD_DEFINITION
 
 scalar Text
 
+interface Node {
+  id: ID!
+}
+
 type Post implements Node {
   id: ID!
-  "component=Text;label=Title"
+  "component=Text;label=Title;default='Test Title'"
   title: String!
-  "component=Textarea;label=Content"
-  text: Text!
-  "component=Checkbox;label=Published"
+  "component=Textarea;label=Content;default='Test Text"
+  text: String!
+  "component=Checkbox;label=Published;default=true"
   isPublished: Boolean!
 }
 
@@ -21,6 +24,18 @@ type User implements Node {
   "component=Text;label=Email"
   email: String!
   password: String!
+}
+
+input UpdatePostInput {
+  title: String!
+  text: String!
+  isPublished: Boolean!
+}
+
+input CreatePostInput {
+  title: String!
+  text: String!
+  isPublished: Boolean!
 }
 
 type AuthPayload {
@@ -39,8 +54,9 @@ type Query {
 type Mutation {
   signup(username: String!, email: String!, password: String!): AuthPayload!
   login(username: String!, password: String!): AuthPayload!
-  createPost(data: PostCreateInput!): Post
+  createPost(title: String!, text: String!, isPublished: Boolean): Post
+  updatePost(id: ID!, title: String!, text: String!, isPublished: Boolean): Post
   deletePost(id: ID!): Post
-  createUser(data: UserCreateInput!): User
+  createUser(username: String!, email: String!, password: String!): User
   deleteUser(id: ID!): User
 }

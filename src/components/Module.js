@@ -6,6 +6,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import List from './List'
+import Create from './Create'
 import Edit from './Edit'
 
 const query = gql`
@@ -43,16 +44,17 @@ const Module = (props: any) => {
         if (loading) return (<p>Loading ...</p>)
         const { type } = data
         return (
-          <div>
-            <Switch>
-              <Route exact path={`/${type.name}`} render={matchProps =>
-                <List {...matchProps} type={type} />
-              }/>
-              <Route path={`/${type.name}/:id`} render={matchProps =>
-                <Edit {...matchProps} type={type} />
-              }/>
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path={`/${type.name}`} render={matchProps =>
+              <List {...matchProps} type={type} />
+            }/>
+            <Route path={`/${type.name}/create`} render={matchProps =>
+              <Create {...matchProps} type={type} />
+            }/>
+            <Route path={`/${type.name}/:id`} render={matchProps =>
+              <Edit {...matchProps} type={type} />
+            }/>
+          </Switch>
         )
       }}
     </Query>

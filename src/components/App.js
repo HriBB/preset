@@ -122,6 +122,7 @@ const styleSheet = (theme) => ({
   },
   content: {
     maxWidth: '920px',
+    minHeight: 'calc(100vh - 96px)',
     margin: `${theme.spacing.unit * 2}px`,
     padding: theme.spacing.unit * 2,
   },
