@@ -1,0 +1,21 @@
+[ignore]
+<PROJECT_ROOT>/.git/
+<PROJECT_ROOT>/.install/
+#.*/node_modules/.*\.json$
+
+[include]
+
+[options]
+module.system.node.resolve_dirname=src
+module.system.node.resolve_dirname=node_modules
+
+# Stub .gql and .css files
+#module.name_mapper.extension='gql' -> '<PROJECT_ROOT>/flow/stubs/gql.js.flow'
+#module.name_mapper.extension='css' -> '<PROJECT_ROOT>/flow/stubs/css.js.flow'
+
+# Support for ES7 classes
+#esproposal.class_static_fields=enable
+#esproposal.class_instance_fields=enable
+
+# Enable getters and setters
+#unsafe.enable_getters_and_setters=true

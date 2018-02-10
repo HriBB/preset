@@ -1,0 +1,46 @@
+# import Post from "./generated/prisma.graphql"
+
+directive @field(label: String) on FIELD_DEFINITION
+
+scalar Text
+
+type Post implements Node {
+  id: ID!
+  "component=Text;label=Title"
+  title: String!
+  "component=Textarea;label=Content"
+  text: Text!
+  "component=Checkbox;label=Published"
+  isPublished: Boolean!
+}
+
+type User implements Node {
+  id: ID!
+  "component=Text;label=Username"
+  username: String!
+  "component=Text;label=Email"
+  email: String!
+  password: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Query {
+  viewer: User
+  post(id: ID!): Post
+  posts: [Post!]!
+  user(id: ID!): User
+  users: [User!]!
+}
+
+type Mutation {
+  signup(username: String!, email: String!, password: String!): AuthPayload!
+  login(username: String!, password: String!): AuthPayload!
+  createPost(data: PostCreateInput!): Post
+  deletePost(id: ID!): Post
+  createUser(data: UserCreateInput!): User
+  deleteUser(id: ID!): User
+}
