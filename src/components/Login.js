@@ -50,7 +50,7 @@ const Login = (props) => {
   )
 }
 
-const styleSheet = (theme) => ({
+const styles = (theme) => ({
   form: {
     width: '100%',
     height: '100vh',
@@ -121,7 +121,7 @@ export default compose(
         })
     }
   }),
-  withStyles(styleSheet),
+  withStyles(styles),
   reduxForm({
     form: 'login',
     validate: ({ username, password }) => {

@@ -1,34 +1,42 @@
 // @flow
 
-import React from 'react'
-import { compose, withHandlers } from 'recompose'
+import React, { Fragment } from 'react'
+import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 
 import { withItemQuery, withListQuery } from 'preset/queries'
 import { withUpdateItemMutation } from 'preset/mutations'
 import { updateItem } from 'preset/handlers'
 
-import Form from './Form'
+import { Error, Spinner, Snackbar } from 'components/ux'
+import Form from 'components/Form'
 
 const Edit = (props) => {
   const { match, model, itemQuery, updateItem } = props
-  console.log(itemQuery)
+  const { id } = match.params
   return (
-    <Query query={itemQuery} variables={{ id: match.params.id }}>
+    <Query query={itemQuery} variables={{ id }}>
       {({ error, loading, data }) => {
-        if (error) return (<p>{error.message}<br />{error.stack}</p>)
-        if (loading) return (<p>Loading ...</p>)
+        if (error) return (<Error>{error.message}<br />{error.stack}</Error>)
+        if (loading) return (<Spinner />)
         const { item } = data
-        if (!item) return (<p>{`Item not found!`}</p>)
+        if (!item) return (<Error>{`Item ${id} not found!`}</Error>)
         return (
-          <Form
-            button={`Save`}
-            title={`Edit ${model.name}`}
-            form={`Edit${model.name}`}
-            initialValues={item}
-            onSubmit={updateItem}
-            model={model}
-          />
+          <Fragment>
+            <Form
+              button={`Save`}
+              title={`Edit ${model.name}`}
+              form={`Edit${model.name}`}
+              initialValues={item}
+              onSubmit={updateItem}
+              model={model}
+            />
+            <Snackbar
+              open={!!props.snackbar}
+              onClose={props.hideSnackbar}
+              message={props.snackbar || 'Saved!'}
+            />
+          </Fragment>
         )
       }}
     </Query>
@@ -40,5 +48,12 @@ export default compose(
   withItemQuery,
   withListQuery,
   withUpdateItemMutation,
-  withHandlers({ updateItem })
+  withStateHandlers(
+    ({ snackbar = false }) => ({ snackbar }),
+    {
+      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
+      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
+    },
+  ),
+  withHandlers({ updateItem }),
 )(Edit)

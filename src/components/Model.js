@@ -9,8 +9,10 @@ import List from 'components/List'
 import Create from 'components/Create'
 import Edit from 'components/Edit'
 
+import { Error, Spinner } from 'components/ux'
+
 const query = gql`
-  query ModuleQuery($name: String!) {
+  query ModelQuery($name: String!) {
     model: model(name: $name) {
       name
       label
@@ -29,14 +31,15 @@ const query = gql`
   }
 `
 
-const Module = (props: any) => {
+const Model = (props: any) => {
   const { match } = props
   return (
-    <Query query={query} variables={{ name: match.params.module }}>
+    <Query query={query} variables={{ name: match.params.model }}>
       {({ error, loading, data }) => {
-        if (error) return (<p>{error.message}</p>)
-        if (loading) return (<p>Loading ...</p>)
+        if (error) return (<Error>{error.message}</Error>)
+        if (loading) return (<Spinner />)
         const { model } = data
+        if (!model) return (<Error>{`Model ${match.params.model} not found!`}</Error>)
         return (
           <Switch>
             <Route exact path={`/${model.name}`} render={matchProps =>
@@ -55,4 +58,4 @@ const Module = (props: any) => {
   )
 }
 
-export default Module
+export default Model

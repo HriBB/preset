@@ -16,10 +16,10 @@ import { getFormField } from 'components/form'
 
 const Form = (props) => {
   const { classes, handleSubmit, model, title, button } = props
-  console.log(model)
   return (
     <Fragment>
       <CardHeader
+        className={classes.header}
         avatar={
           <Avatar aria-label={'Recipe'} className={classes.avatar}>
             {model.name.substring(0,1)}
@@ -56,7 +56,10 @@ const Form = (props) => {
   )
 }
 
-const styleSheet = (theme) => ({
+const styles = (theme) => ({
+  header: {
+    paddingRight: theme.spacing.unit * 2 + 4,
+  },
   avatar: {
     //backgroundColor: deepOrange[500],
   },
@@ -77,7 +80,7 @@ const styleSheet = (theme) => ({
 })
 
 export default compose(
-  withStyles(styleSheet),
+  withStyles(styles),
   reduxForm({
     validate: () => {
       return {}

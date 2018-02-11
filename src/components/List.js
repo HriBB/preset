@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Fragment } from 'react'
-import { compose, withHandlers } from 'recompose'
+import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
 
@@ -23,42 +23,50 @@ import { withListQuery } from 'preset/queries'
 import { withDeleteItemMutation } from 'preset/mutations'
 import { deleteItem } from 'preset/handlers'
 
+import { Error, Spinner, Snackbar } from 'components/ux'
+
 const List = (props: any) => {
   const { classes, listQuery, model } = props
   return (
     <Query query={listQuery}>
       {({ error, loading, data }) => {
-        if (error) return (<p>{error.message}</p>)
-        if (loading) return (<p>Loading ...</p>)
-        const field = getNameField(model)
-        const { deleteItem } = props
         return (
           <Fragment>
             <CardHeader
+              className={classes.header}
               avatar={
-                <Avatar aria-label={`${model.name} List`}>
-                  {model.name.substring(0,1)}
+                <Avatar aria-label={`${model && model.name} List`}>
+                  {model && model.name.substring(0,1)}
                 </Avatar>
               }
-              action={
+              action={model &&
                 <IconButton component={Link} to={`/${model.name}/create`}>
                   <AddIcon />
                 </IconButton>
               }
               title={`${model.label} List`}
             />
-            <MuiList className={classes.list} component={'ul'}>
-              {data.items.map(item => 
-                <ListItem key={item.id} button component={Link} to={`/${model.name}/${item.id}`}>
-                  <ListItemText primary={item[field]} />
-                  <ListItemSecondaryAction>
-                    <IconButton aria-label={'Delete'} data-id={item.id} onClick={deleteItem}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              )}
-            </MuiList>
+            {error && <Error>{error.message}</Error>}
+            {!error && loading && <Spinner />}
+            {!error && !loading && data &&
+              <MuiList className={classes.list} component={'ul'}>
+                {data.items.map(item => 
+                  <ListItem key={item.id} button component={Link} to={`/${model.name}/${item.id}`}>
+                    <ListItemText primary={item[getNameField(model)]} />
+                    <ListItemSecondaryAction>
+                      <IconButton aria-label={'Delete'} data-id={item.id} onClick={props.deleteItem}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                )}
+              </MuiList>
+            }
+            <Snackbar
+              open={!!props.snackbar}
+              onClose={props.hideSnackbar}
+              message={props.snackbar || 'Saved!'}
+            />
           </Fragment>
         )
       }}
@@ -66,7 +74,10 @@ const List = (props: any) => {
   )
 }
 
-const styleSheet = (theme) => ({
+const styles = (theme) => ({
+  header: {
+    paddingRight: theme.spacing.unit * 2 + 4,
+  },
   list: {
     //marginTop: theme.spacing.unit * 2,
   },
@@ -79,9 +90,16 @@ const styleSheet = (theme) => ({
 })
 
 export default compose(
-  withStyles(styleSheet),
+  withStyles(styles),
   withApollo,
   withListQuery,
   withDeleteItemMutation,
+  withStateHandlers(
+    ({ snackbar = false }) => ({ snackbar }),
+    {
+      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
+      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
+    },
+  ),
   withHandlers({ deleteItem }),
 )(List)

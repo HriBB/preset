@@ -23,6 +23,7 @@ const updateItem = (props: any) => (data: any) => {
   })
   .then(({ data }) => {
     const result = data[updateMutationName]
+    props.showSnackbar(updateMutationName)
     console.log(result)
   })
   .catch(error => {

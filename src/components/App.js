@@ -14,13 +14,10 @@ import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 
+import { Error, Spinner } from 'components/ux'
 import Dashboard from 'components/Dashboard'
 import Login from 'components/Login'
 import Model from 'components/Model'
-
-// ./containers/App.js
-
-export default (App)
 
 const query = gql`
   query AppQuery {
@@ -41,8 +38,8 @@ const App = (props) => {
     <Query query={query}>
       {({ error, loading, data }) => {
 
-        if (error) return (<p>{error.message}</p>)
-        if (loading) return (<p>Loading ...</p>)
+        if (error) return (<Error>{error.message}</Error>)
+        if (loading) return (<Spinner />)
 
         const { classes, logout, location } = props
         const { user, models } = data
@@ -77,7 +74,7 @@ const App = (props) => {
                 <Route path={'/login'} render={(matchProps) =>
                   <Login {...matchProps} user={user} />
                 } />
-                <Route path={'/:module'} render={(matchProps) =>
+                <Route path={'/:model'} render={(matchProps) =>
                   <Model {...matchProps} user={user} />
                 } />
               </Switch>
@@ -89,7 +86,7 @@ const App = (props) => {
   )
 }
 
-const styleSheet = (theme) => ({
+const styles = (theme) => ({
   '@global': {
     html: {
       boxSizing: 'border-box',
@@ -160,7 +157,7 @@ const styleSheet = (theme) => ({
 
 const EnhancedApp = compose(
   withApollo,
-  withStyles(styleSheet),
+  withStyles(styles),
   withHandlers({
     logout: ({ client }) => (e) => {
       localStorage.removeItem('token')

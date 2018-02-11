@@ -1,33 +1,43 @@
 // @flow
 
-import React from 'react'
-import { compose, withHandlers } from 'recompose'
+import React, { Fragment } from 'react'
+import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { withApollo } from 'react-apollo'
 
-import { getFormFields } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withCreateItemMutation } from 'preset/mutations'
 import { createItem } from 'preset/handlers'
 
-import Form from './Form'
+import { Snackbar } from 'components/ux'
+import Form from 'components/Form'
 
 const Create = (props) => {
   const { model, createItem } = props
-  const fields = getFormFields(model)
-  const initialValues = fields.reduce((obj, val) => {
-    if (val.default) obj[val.name] = val.default
-    return obj
+  const initialValues = model.fields.reduce((values, field) => {
+    if (field.default) {
+      values[field.name] = field.default
+    } else if (field.type === 'Checkbox') {
+      values[field.name] = false
+    }
+    return values
   }, {})
 
   return (
-    <Form
-      button={`Create`}
-      title={`Create ${model.name}`}
-      form={`Create${model.name}`}
-      initialValues={initialValues}
-      onSubmit={createItem}
-      model={model}
-    />
+    <Fragment>
+      <Form
+        button={`Create`}
+        title={`Create ${model.name}`}
+        form={`Create${model.name}`}
+        initialValues={initialValues}
+        onSubmit={createItem}
+        model={model}
+      />
+      <Snackbar
+        open={!!props.snackbar}
+        onClose={props.hideSnackbar}
+        message={props.snackbar || 'Saved!'}
+      />
+    </Fragment>
   )
 }
 
@@ -35,5 +45,12 @@ export default compose(
   withApollo,
   withListQuery,
   withCreateItemMutation,
+  withStateHandlers(
+    ({ snackbar = false }) => ({ snackbar }),
+    {
+      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
+      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
+    },
+  ),
   withHandlers({ createItem }),
 )(Create)
