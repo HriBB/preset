@@ -6,6 +6,22 @@ type Post {
   author: User!
 }
 
+type NewsPost {
+  id: ID! @unique
+  title: String!
+  text: String!
+  isPublished: Boolean!
+  author: User!
+}
+
+type ParentTestimonial {
+  id: ID! @unique
+  title: String!
+  text: String!
+  isPublished: Boolean!
+  author: User!
+}
+
 type User {
   id: ID! @unique
   username: String! @unique

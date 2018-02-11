@@ -1,0 +1,31 @@
+# import * from '../schema.graphql'
+
+directive @preset(label: String) on FIELD
+directive @field(label: String) on FIELD_DEFINITION
+
+scalar JSON
+scalar Text
+scalar Textarea
+scalar Checkbox
+
+interface Preset {
+  id: ID!
+}
+
+type Model {
+  name: String!
+  label: String!
+  itemQueryName: String!
+  listQueryName: String!
+  createMutationName: String!
+  updateMutationName: String!
+  deleteMutationName: String!
+  fields: [Field!]!
+}
+
+type Field {
+  name: String!
+  label: String!
+  type: String!
+  null: Boolean!
+}

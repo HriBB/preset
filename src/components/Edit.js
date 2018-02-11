@@ -4,17 +4,15 @@ import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 
-import {
-  withListQuery,
-  withItemQuery,
-  withUpdateItemMutation,
-  updateItem,
-} from './utils'
+import { withItemQuery, withListQuery } from 'preset/queries'
+import { withUpdateItemMutation } from 'preset/mutations'
+import { updateItem } from 'preset/handlers'
 
 import Form from './Form'
 
 const Edit = (props) => {
-  const { match, itemQuery, updateItem, type } = props
+  const { match, model, itemQuery, updateItem } = props
+  console.log(itemQuery)
   return (
     <Query query={itemQuery} variables={{ id: match.params.id }}>
       {({ error, loading, data }) => {
@@ -25,11 +23,11 @@ const Edit = (props) => {
         return (
           <Form
             button={`Save`}
-            title={`Edit ${type.name}`}
-            form={`Edit${type.name}`}
+            title={`Edit ${model.name}`}
+            form={`Edit${model.name}`}
             initialValues={item}
             onSubmit={updateItem}
-            type={type}
+            model={model}
           />
         )
       }}
@@ -39,8 +37,8 @@ const Edit = (props) => {
 
 export default compose(
   withApollo,
-  withListQuery,
   withItemQuery,
+  withListQuery,
   withUpdateItemMutation,
   withHandlers({ updateItem })
 )(Edit)

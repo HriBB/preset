@@ -4,30 +4,29 @@ import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import { withApollo } from 'react-apollo'
 
-import {
-  getTypeFormFields,
-  withListQuery,
-  withCreateItemMutation,
-  createItem,
-} from './utils'
+import { getFormFields } from 'preset/utils'
+import { withListQuery } from 'preset/queries'
+import { withCreateItemMutation } from 'preset/mutations'
+import { createItem } from 'preset/handlers'
 
 import Form from './Form'
 
 const Create = (props) => {
-  const { type, createItem } = props
-  const fields = getTypeFormFields(type)
+  const { model, createItem } = props
+  const fields = getFormFields(model)
   const initialValues = fields.reduce((obj, val) => {
     if (val.default) obj[val.name] = val.default
     return obj
   }, {})
+
   return (
     <Form
       button={`Create`}
-      title={`Create ${type.name}`}
-      form={`Create${type.name}`}
+      title={`Create ${model.name}`}
+      form={`Create${model.name}`}
       initialValues={initialValues}
       onSubmit={createItem}
-      type={type}
+      model={model}
     />
   )
 }

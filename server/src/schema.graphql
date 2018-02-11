@@ -1,62 +1,22 @@
 
-directive @field(label: String) on FIELD_DEFINITION
-
-scalar Text
-
-interface Node {
+type Post implements Preset @preset(label: "Posts") {
   id: ID!
+  title: Text! @field(label: "Title")
+  text: Textarea! @field(label: "Text")
+  isPublished: Checkbox! @field(label: "Published")
 }
 
-type Post implements Node {
+type NewsPost implements Preset @preset(label: "News") {
   id: ID!
-  "component=Text;label=Title;default='Test Title'"
-  title: String!
-  "component=Textarea;label=Content;default='Test Text"
-  text: String!
-  "component=Checkbox;label=Published;default=true"
-  isPublished: Boolean!
+  title: Text! @field(label: "Title")
+  text: Textarea! @field(label: "Text")
+  isPublished: Checkbox! @field(label: "Published")
 }
 
-type User implements Node {
+type ParentTestimonial implements Preset @preset(label: "Parent Testimonials") {
   id: ID!
-  "component=Text;label=Username"
-  username: String!
-  "component=Text;label=Email"
-  email: String!
-  password: String!
+  title: Text! @field(label: "Title")
+  text: Textarea! @field(label: "Text")
+  isPublished: Checkbox! @field(label: "Published")
 }
 
-input UpdatePostInput {
-  title: String!
-  text: String!
-  isPublished: Boolean!
-}
-
-input CreatePostInput {
-  title: String!
-  text: String!
-  isPublished: Boolean!
-}
-
-type AuthPayload {
-  token: String!
-  user: User!
-}
-
-type Query {
-  viewer: User
-  post(id: ID!): Post
-  posts: [Post!]!
-  user(id: ID!): User
-  users: [User!]!
-}
-
-type Mutation {
-  signup(username: String!, email: String!, password: String!): AuthPayload!
-  login(username: String!, password: String!): AuthPayload!
-  createPost(title: String!, text: String!, isPublished: Boolean): Post
-  updatePost(id: ID!, title: String!, text: String!, isPublished: Boolean): Post
-  deletePost(id: ID!): Post
-  createUser(username: String!, email: String!, password: String!): User
-  deleteUser(id: ID!): User
-}

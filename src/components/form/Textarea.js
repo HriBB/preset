@@ -7,7 +7,16 @@ import InputLabel from 'material-ui/Input/InputLabel'
 import FormControl from 'material-ui/Form/FormControl'
 import FormHelperText from 'material-ui/Form/FormHelperText'
 
-const renderTextField = (props: FieldProps) => {
+type Props = {
+  className?: string,
+  errorClassName?: string,
+  inputClassName?: string,
+  labelClassName?: string,
+  label?: string,
+  maxRows?: number,
+} & FieldProps
+
+const renderTextField = (props: Props) => {
   const {
     className,
     errorClassName,

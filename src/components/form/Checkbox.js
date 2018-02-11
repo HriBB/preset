@@ -7,7 +7,16 @@ import FormHelperText from 'material-ui/Form/FormHelperText'
 import FormGroup from 'material-ui/Form/FormGroup'
 import Checkbox from 'material-ui/Checkbox'
 
-const FormSwitch = (props: FieldProps) => {
+type Props = {
+  className?: string,
+  errorClassName?: string,
+  inputClassName?: string,
+  labelClassName?: string,
+  label?: string,
+  maxRows?: number,
+} & FieldProps
+
+const FormSwitch = (props: Props) => {
   const {
     className,
     errorClassName,

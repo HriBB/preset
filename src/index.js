@@ -8,10 +8,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import JssProvider from 'react-jss/lib/JssProvider'
 import { MuiThemeProvider } from 'material-ui/styles'
 
-import client from './apollo'
-import createStore from './store'
-import getContext from './styles'
-import App from './components/App'
+import client from 'apollo'
+import createStore from 'store'
+import getContext from 'styles'
+import App from 'components/App'
 
 const store = createStore()
 

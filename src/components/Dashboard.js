@@ -5,6 +5,7 @@ import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 
 const Dashboard = (props: any) => {
+  const { user } = props
   return (
     <CardHeader
       avatar={
@@ -12,7 +13,7 @@ const Dashboard = (props: any) => {
           {'D'}
         </Avatar>
       }
-      title={'Dashboard'}
+      title={`Welcome ${user.username}`}
     />
   )
 }

@@ -1,15 +1,14 @@
 // @flow weak
 
+require('app-module-path').addPath(__dirname)
+
 const { GraphQLServer } = require('graphql-yoga')
 const { Prisma } = require('prisma-binding')
 
-const resolvers = require('./resolvers')
-const { getUserId } = require('./utils')
-const { createDirectives } = require('./directives')
+const schema = require('schema')
 
 const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
-  resolvers,
+  schema,
   context: req => ({
     ...req,
     db: new Prisma({
@@ -22,5 +21,3 @@ const server = new GraphQLServer({
 })
 
 server.start(() => console.log('Server is running on http://localhost:4000'))
-
-createDirectives(server.executableSchema)

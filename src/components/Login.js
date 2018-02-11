@@ -12,11 +12,10 @@ import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 
-import { Text } from './form'
+import { Text } from 'components/form'
 
 const Login = (props) => {
   const { classes, error, handleSubmit } = props
-  console.log(props)
   return (
     <form className={classes.form} onSubmit={handleSubmit}>  
       <Card className={classes.card}>

@@ -7,7 +7,16 @@ import FormHelperText from 'material-ui/Form/FormHelperText'
 import FormGroup from 'material-ui/Form/FormGroup'
 import Switch from 'material-ui/Switch'
 
-const FormSwitch = (props: FieldProps) => {
+type Props = {
+  className?: string,
+  errorClassName?: string,
+  inputClassName?: string,
+  labelClassName?: string,
+  label?: string,
+  maxRows?: number,
+} & FieldProps
+
+const FormSwitch = (props: Props) => {
   const {
     className,
     errorClassName,
@@ -19,7 +28,6 @@ const FormSwitch = (props: FieldProps) => {
     meta: { touched, error },
     ...other
   } = props
-  console.log(props)
 
   return (
     <FormGroup className={className}>

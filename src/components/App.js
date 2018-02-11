@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Fragment } from 'react'
+import { hot } from 'react-hot-loader'
 import { compose, withHandlers } from 'recompose'
 import { Link, NavLink, Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
@@ -13,10 +14,13 @@ import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 
-import { getSchemaModules } from './utils'
-import Dashboard from './Dashboard'
-import Login from './Login'
-import Module from './Module'
+import Dashboard from 'components/Dashboard'
+import Login from 'components/Login'
+import Model from 'components/Model'
+
+// ./containers/App.js
+
+export default (App)
 
 const query = gql`
   query AppQuery {
@@ -25,15 +29,9 @@ const query = gql`
       username
       email
     }
-    schema: __schema {
-      types {
-        kind
-        name
-        interfaces {
-          name
-          description
-        }
-      }
+    models: models {
+      name
+      label
     }
   }
 `
@@ -47,11 +45,10 @@ const App = (props) => {
         if (loading) return (<p>Loading ...</p>)
 
         const { classes, logout, location } = props
-        const { user, schema } = data
+        const { user, models } = data
 
         if (!user) return (<Login />)
 
-        const modules = getSchemaModules(schema)
         const linkClass = classnames(classes.link, classes.linkUpSm)
 
         return (
@@ -61,9 +58,9 @@ const App = (props) => {
                 <Link to={'/'} className={classnames(linkClass, {active:location.pathname === '/'})}>
                   {'Dashboard'}
                 </Link>
-                {modules.map(module =>
-                  <NavLink key={module.name} to={`/${module.name}`} className={linkClass}>
-                    {module.name}
+                {models.map(model =>
+                  <NavLink key={model.name} to={`/${model.name}`} className={linkClass}>
+                    {model.label}
                   </NavLink>
                 )}
                 <div style={{flex:'1 1 100%'}} />
@@ -74,9 +71,15 @@ const App = (props) => {
             </AppBar>
             <Card className={classnames(classes.content, classes.contentSmUp)}>
               <Switch>
-                <Route exact path={'/'} component={Dashboard} />
-                <Route path={'/login'} component={Login} />
-                <Route path={'/:module'} component={Module} />
+                <Route exact path={'/'} render={(matchProps) =>
+                  <Dashboard {...matchProps} user={user} />
+                } />
+                <Route path={'/login'} render={(matchProps) =>
+                  <Login {...matchProps} user={user} />
+                } />
+                <Route path={'/:module'} render={(matchProps) =>
+                  <Model {...matchProps} user={user} />
+                } />
               </Switch>
             </Card>
           </Fragment>
@@ -129,11 +132,12 @@ const styleSheet = (theme) => ({
   link: {
     height: '56px',
     lineHeight: '56px',
-    color: 'inherit',
-    textDecoration: 'none',
-    fontSize: theme.typography.fontSize * 1.2,
     marginRight: theme.spacing.unit * 2,
+    fontSize: theme.typography.fontSize * 1.2,
     borderBottom: '4px solid transparent',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    color: 'inherit',
     '&.active': {
       borderBottom: '4px solid #fff',
     },
@@ -154,7 +158,7 @@ const styleSheet = (theme) => ({
   }
 })
 
-export default compose(
+const EnhancedApp = compose(
   withApollo,
   withStyles(styleSheet),
   withHandlers({
@@ -164,3 +168,5 @@ export default compose(
     }
   }),
 )(App)
+
+export default hot(module)(EnhancedApp)

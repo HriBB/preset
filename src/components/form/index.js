@@ -16,8 +16,8 @@ export {
   Upload,
 }
 
-export function getFormField(component: string) {
-  switch (component) {
+export function getFormField(type: string) {
+  switch (type) {
     case 'Text': return Text
     case 'Textarea': return Textarea
     case 'Select': return Select

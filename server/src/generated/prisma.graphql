@@ -5,12 +5,28 @@
 # Model Types
 #
 
+type NewsPost implements Node {
+  id: ID!
+  title: String!
+  text: String!
+  isPublished: Boolean!
+  author(where: UserWhereInput): User!
+}
+
+type ParentTestimonial implements Node {
+  id: ID!
+  title: String!
+  text: String!
+  isPublished: Boolean!
+  author(where: UserWhereInput): User!
+}
+
 type Post implements Node {
   id: ID!
   title: String!
   text: String!
   isPublished: Boolean!
-  author(where: UserWhereInput): User
+  author(where: UserWhereInput): User!
 }
 
 type User implements Node {
@@ -25,6 +41,14 @@ type User implements Node {
 #
 # Other Types
 #
+
+type AggregateNewsPost {
+  count: Int!
+}
+
+type AggregateParentTestimonial {
+  count: Int!
+}
 
 type AggregatePost {
   count: Int!
@@ -42,16 +66,28 @@ scalar Long
 
 type Mutation {
   createPost(data: PostCreateInput!): Post!
+  createNewsPost(data: NewsPostCreateInput!): NewsPost!
+  createParentTestimonial(data: ParentTestimonialCreateInput!): ParentTestimonial!
   createUser(data: UserCreateInput!): User!
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateNewsPost(data: NewsPostUpdateInput!, where: NewsPostWhereUniqueInput!): NewsPost
+  updateParentTestimonial(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   deletePost(where: PostWhereUniqueInput!): Post
+  deleteNewsPost(where: NewsPostWhereUniqueInput!): NewsPost
+  deleteParentTestimonial(where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
   deleteUser(where: UserWhereUniqueInput!): User
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  upsertNewsPost(where: NewsPostWhereUniqueInput!, create: NewsPostCreateInput!, update: NewsPostUpdateInput!): NewsPost!
+  upsertParentTestimonial(where: ParentTestimonialWhereUniqueInput!, create: ParentTestimonialCreateInput!, update: ParentTestimonialUpdateInput!): ParentTestimonial!
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput!): BatchPayload!
+  updateManyNewsPosts(data: NewsPostUpdateInput!, where: NewsPostWhereInput!): BatchPayload!
+  updateManyParentTestimonials(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereInput!): BatchPayload!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput!): BatchPayload!
   deleteManyPosts(where: PostWhereInput!): BatchPayload!
+  deleteManyNewsPosts(where: NewsPostWhereInput!): BatchPayload!
+  deleteManyParentTestimonials(where: ParentTestimonialWhereInput!): BatchPayload!
   deleteManyUsers(where: UserWhereInput!): BatchPayload!
 }
 
@@ -59,6 +95,124 @@ enum MutationType {
   CREATED
   UPDATED
   DELETED
+}
+
+type NewsPostConnection {
+  pageInfo: PageInfo!
+  edges: [NewsPostEdge]!
+  aggregate: AggregateNewsPost!
+}
+
+input NewsPostCreateInput {
+  title: String!
+  text: String!
+  isPublished: Boolean!
+  author: UserCreateOneInput!
+}
+
+type NewsPostEdge {
+  node: NewsPost!
+  cursor: String!
+}
+
+enum NewsPostOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  text_ASC
+  text_DESC
+  isPublished_ASC
+  isPublished_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type NewsPostPreviousValues {
+  id: ID!
+  title: String!
+  text: String!
+  isPublished: Boolean!
+}
+
+type NewsPostSubscriptionPayload {
+  mutation: MutationType!
+  node: NewsPost
+  updatedFields: [String!]
+  previousValues: NewsPostPreviousValues
+}
+
+input NewsPostSubscriptionWhereInput {
+  AND: [NewsPostSubscriptionWhereInput!]
+  OR: [NewsPostSubscriptionWhereInput!]
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NewsPostWhereInput
+}
+
+input NewsPostUpdateInput {
+  title: String
+  text: String
+  isPublished: Boolean
+  author: UserUpdateOneInput
+}
+
+input NewsPostWhereInput {
+  AND: [NewsPostWhereInput!]
+  OR: [NewsPostWhereInput!]
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  isPublished: Boolean
+  isPublished_not: Boolean
+  author: UserWhereInput
+}
+
+input NewsPostWhereUniqueInput {
+  id: ID
 }
 
 interface Node {
@@ -70,6 +224,124 @@ type PageInfo {
   hasPreviousPage: Boolean!
   startCursor: String
   endCursor: String
+}
+
+type ParentTestimonialConnection {
+  pageInfo: PageInfo!
+  edges: [ParentTestimonialEdge]!
+  aggregate: AggregateParentTestimonial!
+}
+
+input ParentTestimonialCreateInput {
+  title: String!
+  text: String!
+  isPublished: Boolean!
+  author: UserCreateOneInput!
+}
+
+type ParentTestimonialEdge {
+  node: ParentTestimonial!
+  cursor: String!
+}
+
+enum ParentTestimonialOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  text_ASC
+  text_DESC
+  isPublished_ASC
+  isPublished_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ParentTestimonialPreviousValues {
+  id: ID!
+  title: String!
+  text: String!
+  isPublished: Boolean!
+}
+
+type ParentTestimonialSubscriptionPayload {
+  mutation: MutationType!
+  node: ParentTestimonial
+  updatedFields: [String!]
+  previousValues: ParentTestimonialPreviousValues
+}
+
+input ParentTestimonialSubscriptionWhereInput {
+  AND: [ParentTestimonialSubscriptionWhereInput!]
+  OR: [ParentTestimonialSubscriptionWhereInput!]
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ParentTestimonialWhereInput
+}
+
+input ParentTestimonialUpdateInput {
+  title: String
+  text: String
+  isPublished: Boolean
+  author: UserUpdateOneInput
+}
+
+input ParentTestimonialWhereInput {
+  AND: [ParentTestimonialWhereInput!]
+  OR: [ParentTestimonialWhereInput!]
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  isPublished: Boolean
+  isPublished_not: Boolean
+  author: UserWhereInput
+}
+
+input ParentTestimonialWhereUniqueInput {
+  id: ID
 }
 
 type PostConnection {
@@ -229,16 +501,24 @@ input PostWhereUniqueInput {
 
 type Query {
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  newsPosts(where: NewsPostWhereInput, orderBy: NewsPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NewsPost]!
+  parentTestimonials(where: ParentTestimonialWhereInput, orderBy: ParentTestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentTestimonial]!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   post(where: PostWhereUniqueInput!): Post
+  newsPost(where: NewsPostWhereUniqueInput!): NewsPost
+  parentTestimonial(where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
   user(where: UserWhereUniqueInput!): User
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  newsPostsConnection(where: NewsPostWhereInput, orderBy: NewsPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NewsPostConnection!
+  parentTestimonialsConnection(where: ParentTestimonialWhereInput, orderBy: ParentTestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentTestimonialConnection!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
 type Subscription {
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  newsPost(where: NewsPostSubscriptionWhereInput): NewsPostSubscriptionPayload
+  parentTestimonial(where: ParentTestimonialSubscriptionWhereInput): ParentTestimonialSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
@@ -253,6 +533,11 @@ input UserCreateInput {
   email: String!
   password: String!
   posts: PostCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPostsInput {
@@ -315,6 +600,13 @@ input UserUpdateInput {
   email: String
   password: String
   posts: PostUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: UserWhereUniqueInput
+  delete: UserWhereUniqueInput
 }
 
 input UserUpdateOneWithoutPostsInput {

@@ -12,22 +12,21 @@ import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import CloseIcon from 'material-ui-icons/Close'
 
-import { getTypeFormFields } from './utils'
-import { getFormField } from './form'
+import { getFormField } from 'components/form'
 
 const Form = (props) => {
-  const { classes, handleSubmit, type, title, button } = props
-  const fields = getTypeFormFields(type)
+  const { classes, handleSubmit, model, title, button } = props
+  console.log(model)
   return (
     <Fragment>
       <CardHeader
         avatar={
           <Avatar aria-label={'Recipe'} className={classes.avatar}>
-            {type.name.substring(0,1)}
+            {model.name.substring(0,1)}
           </Avatar>
         }
         action={
-          <IconButton component={Link} to={`/${type.name}`}>
+          <IconButton component={Link} to={`/${model.name}`}>
             <CloseIcon />
           </IconButton>
         }
@@ -35,10 +34,10 @@ const Form = (props) => {
       />
       <CardContent className={classes.content}>
         <form onSubmit={handleSubmit}>  
-          {fields.map(({ component, name, label }) =>
+          {model.fields.map(({ name, label, type }) =>
             <div key={name} width={300}>
               <Field
-                component={getFormField(component)}
+                component={getFormField(type)}
                 className={classes.field}
                 inputClassName={classes.input}
                 name={name}
