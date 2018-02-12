@@ -106,6 +106,11 @@ const resolvers = {
   Text: GraphQLScalar.string('Text').description('Text').min(1).max(255).create(),
   Textarea: GraphQLScalar.string('Textarea').description('Textarea').min(1).max(5000).create(),
   Checkbox: GraphQLScalar.boolean('Checkbox').description('Checkbox').create(),
+  File: {
+    url() {
+      return 'TODO url'
+    },
+  },
 }
 
 module.exports = {

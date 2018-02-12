@@ -102,7 +102,6 @@ const loginMutation = gql`
 export default compose(
   withApollo,
   graphql(loginMutation, {
-    withClient: true,
     props: ({ ownProps, mutate }) => ({
       login: (username, password) => mutate({
         variables: { username, password },

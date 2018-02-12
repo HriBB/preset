@@ -7,6 +7,7 @@ scalar JSON
 scalar Text
 scalar Textarea
 scalar Checkbox
+scalar Upload
 
 interface Preset {
   id: ID!
@@ -28,4 +29,13 @@ type Field {
   label: String!
   type: String!
   required: Boolean!
+}
+
+type File {
+  id: ID!
+  url: String!
+  path: String!
+  filename: String!
+  mimetype: String!
+  encoding: String!
 }

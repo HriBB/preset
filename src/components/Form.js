@@ -21,7 +21,7 @@ const Form = (props) => {
       <CardHeader
         className={classes.header}
         avatar={
-          <Avatar aria-label={'Recipe'} className={classes.avatar}>
+          <Avatar aria-label={model.label} className={classes.avatar}>
             {model.name.substring(0,1)}
           </Avatar>
         }

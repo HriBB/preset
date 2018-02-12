@@ -18,6 +18,7 @@ import { Error, Spinner } from 'components/ux'
 import Dashboard from 'components/Dashboard'
 import Login from 'components/Login'
 import Model from 'components/Model'
+import User from 'components/User'
 
 const query = gql`
   query AppQuery {
@@ -55,6 +56,9 @@ const App = (props) => {
                 <Link to={'/'} className={classnames(linkClass, {active:location.pathname === '/'})}>
                   {'Dashboard'}
                 </Link>
+                <Link to={'/user'} className={classnames(linkClass, {active:location.pathname === '/user'})}>
+                  {'User'}
+                </Link>
                 {models.map(model =>
                   <NavLink key={model.name} to={`/${model.name}`} className={linkClass}>
                     {model.label}
@@ -71,8 +75,8 @@ const App = (props) => {
                 <Route exact path={'/'} render={(matchProps) =>
                   <Dashboard {...matchProps} user={user} />
                 } />
-                <Route path={'/login'} render={(matchProps) =>
-                  <Login {...matchProps} user={user} />
+                <Route path={'/user'} render={(matchProps) =>
+                  <User {...matchProps} user={user} />
                 } />
                 <Route path={'/:model'} render={(matchProps) =>
                   <Model {...matchProps} user={user} />

@@ -1,3 +1,12 @@
+
+type File {
+  id: ID! @unique
+  path: String!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
 type Post {
   id: ID! @unique
   title: String!

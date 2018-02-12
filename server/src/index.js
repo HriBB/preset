@@ -7,6 +7,12 @@ const { Prisma } = require('prisma-binding')
 
 const schema = require('schema')
 
+const options = {
+  uploads: {
+    maxFiles: 10,
+  },
+}
+
 const server = new GraphQLServer({
   schema,
   context: req => ({
@@ -20,4 +26,4 @@ const server = new GraphQLServer({
   }),
 })
 
-server.start(() => console.log('Server is running on http://localhost:4000'))
+server.start(options, () => console.log('Server is running on http://localhost:4000'))

@@ -8,6 +8,7 @@
     "prisma": "prisma"
   },
   "dependencies": {
+    "apollo-upload-server": "^4.0.2",
     "app-module-path": "^2.2.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^5.0.0",
@@ -19,9 +20,12 @@
     "graphql-yoga": "1.2.2",
     "jsonwebtoken": "^8.1.1",
     "lodash.keyby": "^4.6.0",
+    "lowdb": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "nodemon": "^1.14.12",
     "pluralize": "^7.0.0",
-    "prisma-binding": "1.5.4"
+    "prisma-binding": "1.5.4",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "graphql-cli": "2.13.1",
