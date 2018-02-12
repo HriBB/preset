@@ -1,19 +1,71 @@
 
-type Post implements Preset @preset(label: "Posts") {
+directive @model(label: String) on FIELD
+directive @field(label: String) on FIELD_DEFINITION
+
+scalar JSON
+scalar Text
+scalar Textarea
+scalar Checkbox
+scalar Upload
+
+interface Preset {
+  id: ID!
+}
+
+type Model {
+  name: String!
+  label: String!
+  itemQueryName: String!
+  listQueryName: String!
+  createMutationName: String!
+  updateMutationName: String!
+  deleteMutationName: String!
+  fields: [Field!]!
+}
+
+type Field {
+  name: String!
+  label: String!
+  type: String!
+  required: Boolean!
+}
+
+type File {
+  id: ID!
+  url: String!
+  filename: String!
+  mimetype: String!
+  author: User
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  password: String!
+  image: File
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Post implements Preset @model(label: "Posts") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
   isPublished: Checkbox! @field(label: "Published")
 }
 
-type NewsPost implements Preset @preset(label: "News") {
+type NewsPost implements Preset @model(label: "News") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
   isPublished: Checkbox! @field(label: "Published")
 }
 
-type ParentTestimonial implements Preset @preset(label: "Parent Testimonials") {
+type ParentTestimonial implements Preset @model(label: "Parent Testimonials") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")

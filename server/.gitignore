@@ -1,5 +1,6 @@
 .env*
 dist
+uploads
 package-lock.json
 node_modules
 .idea

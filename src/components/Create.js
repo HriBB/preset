@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Fragment } from 'react'
-import { compose, withHandlers, withStateHandlers } from 'recompose'
+import PropTypes from 'prop-types'
+import { compose, withHandlers, getContext } from 'recompose'
 import { withApollo } from 'react-apollo'
 import { withRouter } from 'react-router'
 
@@ -9,7 +10,6 @@ import { hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withCreateItemMutation } from 'preset/mutations'
 
-import { Snackbar } from 'components/ux'
 import Form from 'components/Form'
 
 const Create = (props) => {
@@ -33,27 +33,16 @@ const Create = (props) => {
         onSubmit={createItem}
         model={model}
       />
-      <Snackbar
-        open={!!props.snackbar}
-        onClose={props.hideSnackbar}
-        message={props.snackbar || 'Saved!'}
-      />
     </Fragment>
   )
 }
 
 export default compose(
+  getContext({ snackbar: PropTypes.object }),
   withApollo,
   withRouter,
   withListQuery,
   withCreateItemMutation,
-  withStateHandlers(
-    ({ snackbar = false }) => ({ snackbar }),
-    {
-      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
-      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
-    },
-  ),
   withHandlers({
     createItem: (props: any) => (data: any) => {
       const { client, listQuery, createMutation, createMutationName } = props
@@ -71,7 +60,7 @@ export default compose(
       })
       .then(({ data }) => {
         console.log(data[createMutationName])
-        props.showSnackbar('Created!')
+        props.snackbar.show('Created!')
       })
       .catch(error => {
         console.log(error)

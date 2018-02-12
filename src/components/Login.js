@@ -100,6 +100,7 @@ const loginMutation = gql`
 `
 
 export default compose(
+  withStyles(styles),
   withApollo,
   graphql(loginMutation, {
     props: ({ ownProps, mutate }) => ({
@@ -120,7 +121,6 @@ export default compose(
         })
     }
   }),
-  withStyles(styles),
   reduxForm({
     form: 'login',
     validate: ({ username, password }) => {

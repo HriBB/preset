@@ -12,7 +12,7 @@ import Update from 'components/Update'
 import { Error, Spinner } from 'components/ux'
 
 const query = gql`
-  query ModelQuery($name: String!) {
+  query model($name: String!) {
     model: model(name: $name) {
       name
       label

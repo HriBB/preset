@@ -7,10 +7,8 @@
 
 type File implements Node {
   id: ID!
-  path: String!
   filename: String!
   mimetype: String!
-  encoding: String!
 }
 
 type NewsPost implements Node {
@@ -43,6 +41,7 @@ type User implements Node {
   email: String!
   password: String!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  image(where: FileWhereInput): File
 }
 
 
@@ -81,10 +80,13 @@ type FileConnection {
 }
 
 input FileCreateInput {
-  path: String!
   filename: String!
   mimetype: String!
-  encoding: String!
+}
+
+input FileCreateOneInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
 }
 
 type FileEdge {
@@ -95,14 +97,10 @@ type FileEdge {
 enum FileOrderByInput {
   id_ASC
   id_DESC
-  path_ASC
-  path_DESC
   filename_ASC
   filename_DESC
   mimetype_ASC
   mimetype_DESC
-  encoding_ASC
-  encoding_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -111,10 +109,8 @@ enum FileOrderByInput {
 
 type FilePreviousValues {
   id: ID!
-  path: String!
   filename: String!
   mimetype: String!
-  encoding: String!
 }
 
 type FileSubscriptionPayload {
@@ -135,10 +131,15 @@ input FileSubscriptionWhereInput {
 }
 
 input FileUpdateInput {
-  path: String
   filename: String
   mimetype: String
-  encoding: String
+}
+
+input FileUpdateOneInput {
+  create: FileCreateInput
+  connect: FileWhereUniqueInput
+  disconnect: FileWhereUniqueInput
+  delete: FileWhereUniqueInput
 }
 
 input FileWhereInput {
@@ -158,20 +159,6 @@ input FileWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  path: String
-  path_not: String
-  path_in: [String!]
-  path_not_in: [String!]
-  path_lt: String
-  path_lte: String
-  path_gt: String
-  path_gte: String
-  path_contains: String
-  path_not_contains: String
-  path_starts_with: String
-  path_not_starts_with: String
-  path_ends_with: String
-  path_not_ends_with: String
   filename: String
   filename_not: String
   filename_in: [String!]
@@ -200,20 +187,6 @@ input FileWhereInput {
   mimetype_not_starts_with: String
   mimetype_ends_with: String
   mimetype_not_ends_with: String
-  encoding: String
-  encoding_not: String
-  encoding_in: [String!]
-  encoding_not_in: [String!]
-  encoding_lt: String
-  encoding_lte: String
-  encoding_gt: String
-  encoding_gte: String
-  encoding_contains: String
-  encoding_not_contains: String
-  encoding_starts_with: String
-  encoding_not_starts_with: String
-  encoding_ends_with: String
-  encoding_not_ends_with: String
 }
 
 input FileWhereUniqueInput {
@@ -223,36 +196,36 @@ input FileWhereUniqueInput {
 scalar Long
 
 type Mutation {
+  createUser(data: UserCreateInput!): User!
   createFile(data: FileCreateInput!): File!
   createPost(data: PostCreateInput!): Post!
   createNewsPost(data: NewsPostCreateInput!): NewsPost!
   createParentTestimonial(data: ParentTestimonialCreateInput!): ParentTestimonial!
-  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
   updateNewsPost(data: NewsPostUpdateInput!, where: NewsPostWhereUniqueInput!): NewsPost
   updateParentTestimonial(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  deleteUser(where: UserWhereUniqueInput!): User
   deleteFile(where: FileWhereUniqueInput!): File
   deletePost(where: PostWhereUniqueInput!): Post
   deleteNewsPost(where: NewsPostWhereUniqueInput!): NewsPost
   deleteParentTestimonial(where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
-  deleteUser(where: UserWhereUniqueInput!): User
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertNewsPost(where: NewsPostWhereUniqueInput!, create: NewsPostCreateInput!, update: NewsPostUpdateInput!): NewsPost!
   upsertParentTestimonial(where: ParentTestimonialWhereUniqueInput!, create: ParentTestimonialCreateInput!, update: ParentTestimonialUpdateInput!): ParentTestimonial!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput!): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput!): BatchPayload!
   updateManyPosts(data: PostUpdateInput!, where: PostWhereInput!): BatchPayload!
   updateManyNewsPosts(data: NewsPostUpdateInput!, where: NewsPostWhereInput!): BatchPayload!
   updateManyParentTestimonials(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereInput!): BatchPayload!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput!): BatchPayload!
+  deleteManyUsers(where: UserWhereInput!): BatchPayload!
   deleteManyFiles(where: FileWhereInput!): BatchPayload!
   deleteManyPosts(where: PostWhereInput!): BatchPayload!
   deleteManyNewsPosts(where: NewsPostWhereInput!): BatchPayload!
   deleteManyParentTestimonials(where: ParentTestimonialWhereInput!): BatchPayload!
-  deleteManyUsers(where: UserWhereInput!): BatchPayload!
 }
 
 enum MutationType {
@@ -664,30 +637,30 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   newsPosts(where: NewsPostWhereInput, orderBy: NewsPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NewsPost]!
   parentTestimonials(where: ParentTestimonialWhereInput, orderBy: ParentTestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentTestimonial]!
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  user(where: UserWhereUniqueInput!): User
   file(where: FileWhereUniqueInput!): File
   post(where: PostWhereUniqueInput!): Post
   newsPost(where: NewsPostWhereUniqueInput!): NewsPost
   parentTestimonial(where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
-  user(where: UserWhereUniqueInput!): User
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   newsPostsConnection(where: NewsPostWhereInput, orderBy: NewsPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NewsPostConnection!
   parentTestimonialsConnection(where: ParentTestimonialWhereInput, orderBy: ParentTestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentTestimonialConnection!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
 type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   newsPost(where: NewsPostSubscriptionWhereInput): NewsPostSubscriptionPayload
   parentTestimonial(where: ParentTestimonialSubscriptionWhereInput): ParentTestimonialSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type UserConnection {
@@ -701,6 +674,7 @@ input UserCreateInput {
   email: String!
   password: String!
   posts: PostCreateManyWithoutAuthorInput
+  image: FileCreateOneInput
 }
 
 input UserCreateOneInput {
@@ -717,6 +691,7 @@ input UserCreateWithoutPostsInput {
   username: String!
   email: String!
   password: String!
+  image: FileCreateOneInput
 }
 
 type UserEdge {
@@ -768,6 +743,7 @@ input UserUpdateInput {
   email: String
   password: String
   posts: PostUpdateManyWithoutAuthorInput
+  image: FileUpdateOneInput
 }
 
 input UserUpdateOneInput {
@@ -790,6 +766,7 @@ input UserUpdateWithoutPostsDataInput {
   username: String
   email: String
   password: String
+  image: FileUpdateOneInput
 }
 
 input UserUpdateWithoutPostsInput {
@@ -865,6 +842,7 @@ input UserWhereInput {
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput
+  image: FileWhereInput
 }
 
 input UserWhereUniqueInput {

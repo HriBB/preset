@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Fragment } from 'react'
-import { compose, withHandlers, withStateHandlers } from 'recompose'
+import PropTypes from 'prop-types'
+import { compose, withHandlers, getContext } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
 
@@ -17,7 +18,7 @@ import { getNameField, hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withDeleteItemMutation } from 'preset/mutations'
 
-import { Error, Spinner, Snackbar } from 'components/ux'
+import { Error, Spinner } from 'components/ux'
 
 const List = (props: any) => {
   const { classes, listQuery, model } = props
@@ -56,11 +57,6 @@ const List = (props: any) => {
                 )}
               </MuiList>
             }
-            <Snackbar
-              open={!!props.snackbar}
-              onClose={props.hideSnackbar}
-              message={props.snackbar || 'Saved!'}
-            />
           </Fragment>
         )
       }}
@@ -84,17 +80,11 @@ const styles = (theme) => ({
 })
 
 export default compose(
+  getContext({ snackbar: PropTypes.object }),
   withStyles(styles),
   withApollo,
   withListQuery,
   withDeleteItemMutation,
-  withStateHandlers(
-    ({ snackbar = false }) => ({ snackbar }),
-    {
-      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
-      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
-    },
-  ),
   withHandlers({
     deleteItem: (props: any) => (e: any) => {
       const { id } = e.currentTarget.dataset
@@ -115,7 +105,7 @@ export default compose(
       })
       .then(({ data }) => {
         console.log(data[deleteMutationName])
-        props.showSnackbar('Deleted!')
+        props.snackbar.show('Deleted!')
       })
       .catch(error => {
         console.log(error)

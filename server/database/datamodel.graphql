@@ -1,10 +1,17 @@
 
+type User {
+  id: ID! @unique
+  username: String! @unique
+  email: String! @unique
+  password: String!
+  posts: [Post!]!
+  image: File
+}
+
 type File {
   id: ID! @unique
-  path: String!
   filename: String!
   mimetype: String!
-  encoding: String!
 }
 
 type Post {
@@ -29,12 +36,4 @@ type ParentTestimonial {
   text: String!
   isPublished: Boolean!
   author: User!
-}
-
-type User {
-  id: ID! @unique
-  username: String! @unique
-  email: String! @unique
-  password: String!
-  posts: [Post!]!
 }

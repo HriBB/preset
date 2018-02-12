@@ -1,14 +1,15 @@
 // @flow
 
 import React, { Fragment } from 'react'
-import { compose, withHandlers, withStateHandlers } from 'recompose'
+import PropTypes from 'prop-types'
+import { compose, withHandlers, getContext } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 
 import { hasQuery } from 'preset/utils'
 import { withItemQuery, withListQuery } from 'preset/queries'
 import { withUpdateItemMutation } from 'preset/mutations'
 
-import { Error, Spinner, Snackbar } from 'components/ux'
+import { Error, Spinner } from 'components/ux'
 import Form from 'components/Form'
 
 const Update = (props) => {
@@ -31,11 +32,6 @@ const Update = (props) => {
               onSubmit={updateItem}
               model={model}
             />
-            <Snackbar
-              open={!!props.snackbar}
-              onClose={props.hideSnackbar}
-              message={props.snackbar || 'Saved!'}
-            />
           </Fragment>
         )
       }}
@@ -44,17 +40,11 @@ const Update = (props) => {
 }
 
 export default compose(
+  getContext({ snackbar: PropTypes.object }),
   withApollo,
   withItemQuery,
   withListQuery,
   withUpdateItemMutation,
-  withStateHandlers(
-    ({ snackbar = false }) => ({ snackbar }),
-    {
-      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
-      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
-    },
-  ),
   withHandlers({
     updateItem: (props: any) => (data: any) => {
       const { client, listQuery, updateMutation, updateMutationName } = props
@@ -77,7 +67,7 @@ export default compose(
       })
       .then(({ data }) => {
         console.log(data[updateMutationName])
-        props.showSnackbar('Updated!')
+        props.snackbar.show('Updated!')
       })
       .catch(error => {
         console.log(error)

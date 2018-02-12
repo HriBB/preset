@@ -2,8 +2,8 @@
 
 const { makeExecutableSchema } = require('graphql-tools')
 
-const user = require('user')
 const preset = require('preset')
+const user = require('user')
 
 const resolvers = {
   ...preset.resolvers,
@@ -14,8 +14,8 @@ const resolvers = {
   },
   Mutation: {
     ...preset.mutations,
-    ...user.mutations
-  }
+    ...user.mutations,
+  },
 }
 
 const directiveResolvers = {

@@ -1,8 +1,9 @@
 // @flow
 
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
-import { compose, withHandlers } from 'recompose'
+import { compose, withHandlers, withStateHandlers, withContext } from 'recompose'
 import { Link, NavLink, Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
 import classnames from 'classnames'
@@ -14,18 +15,24 @@ import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
 
-import { Error, Spinner } from 'components/ux'
+import { Error, Spinner, Snackbar } from 'components/ux'
+
 import Dashboard from 'components/Dashboard'
 import Login from 'components/Login'
 import Model from 'components/Model'
 import User from 'components/User'
 
-const query = gql`
-  query AppQuery {
+export const query = gql`
+  query app {
     user: viewer {
       id
       username
       email
+      image {
+        id
+        url
+        filename
+      }
     }
     models: models {
       name
@@ -83,6 +90,11 @@ const App = (props) => {
                 } />
               </Switch>
             </Card>
+            <Snackbar
+              open={!!props.snackbar}
+              onClose={props.hideSnackbar}
+              message={props.snackbar.text || 'Saved!'}
+            />
           </Fragment>
         )
       }}
@@ -168,6 +180,21 @@ const EnhancedApp = compose(
       client.resetStore()
     }
   }),
+  withStateHandlers(
+    ({ snackbar = false }) => ({ snackbar }),
+    {
+      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
+      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
+    },
+  ),
+  withContext(
+    { snackbar: PropTypes.object },
+    (props) => ({ snackbar: {
+      text: props.snackbar,
+      show: props.showSnackbar,
+      hide: props.hideSnackbar,
+    } })
+  ),
 )(App)
 
 export default hot(module)(EnhancedApp)

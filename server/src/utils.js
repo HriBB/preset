@@ -4,6 +4,10 @@ const fs = require('fs')
 const path = require('path')
 const pluralize = require('pluralize')
 const { GraphQLNonNull } = require('graphql')
+const mkdirp = require('mkdirp')
+const shortid = require('shortid')
+
+const config = require('config')
 
 const findDirective = (type, directiveName) => (
   type.astNode.directives.find(d => d.name.value === directiveName)
@@ -52,7 +56,7 @@ const getListQueryName = ({ name }) => (
 
 exports.getModels = (ast) => (
   ast._implementations.Preset
-    .filter(type => findDirective(type, 'preset'))
+    .filter(type => findDirective(type, 'model'))
     .map(type => ({
       name: type.name,
       listQueryName: getListQueryName(type),
@@ -61,6 +65,20 @@ exports.getModels = (ast) => (
       updateMutationName: `update${type.name}`,
       deleteMutationName: `delete${type.name}`,
       fields: getTypeFields(type),
-      ...getDirectiveArguments(type, 'preset'),
+      ...getDirectiveArguments(type, 'model'),
     }))
 )
+
+exports.storeUpload = async (image) => {
+  const { stream, filename: originalname, mimetype, encoding } = await image
+  const filename = `${shortid.generate()}-${originalname.replace(' ', '-')}`
+  const path = `${config.uploads.path}/${filename}`
+  return new Promise((resolve, reject) =>
+    stream
+      .pipe(fs.createWriteStream(path))
+      .on('finish', () => resolve({ filename, mimetype }))
+      .on('error', reject),
+  )
+}
+
+mkdirp.sync(config.uploads.path)
