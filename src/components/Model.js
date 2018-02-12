@@ -7,7 +7,7 @@ import gql from 'graphql-tag'
 
 import List from 'components/List'
 import Create from 'components/Create'
-import Edit from 'components/Edit'
+import Update from 'components/Update'
 
 import { Error, Spinner } from 'components/ux'
 
@@ -25,7 +25,7 @@ const query = gql`
         name
         label
         type
-        null
+        required
       }
     }
   }
@@ -49,7 +49,7 @@ const Model = (props: any) => {
               <Create {...matchProps} model={model} />
             }/>
             <Route path={`/${model.name}/:id`} render={matchProps =>
-              <Edit {...matchProps} model={model} />
+              <Update {...matchProps} model={model} />
             }/>
           </Switch>
         )

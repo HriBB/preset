@@ -3,10 +3,11 @@
 import React, { Fragment } from 'react'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
 import { withApollo } from 'react-apollo'
+import { withRouter } from 'react-router'
 
+import { hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withCreateItemMutation } from 'preset/mutations'
-import { createItem } from 'preset/handlers'
 
 import { Snackbar } from 'components/ux'
 import Form from 'components/Form'
@@ -26,7 +27,7 @@ const Create = (props) => {
     <Fragment>
       <Form
         button={`Create`}
-        title={`Create ${model.name}`}
+        title={`Create ${model.label}`}
         form={`Create${model.name}`}
         initialValues={initialValues}
         onSubmit={createItem}
@@ -43,6 +44,7 @@ const Create = (props) => {
 
 export default compose(
   withApollo,
+  withRouter,
   withListQuery,
   withCreateItemMutation,
   withStateHandlers(
@@ -52,5 +54,28 @@ export default compose(
       hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
     },
   ),
-  withHandlers({ createItem }),
+  withHandlers({
+    createItem: (props: any) => (data: any) => {
+      const { client, listQuery, createMutation, createMutationName } = props
+      return client.mutate({
+        mutation: createMutation,
+        variables: data,
+        update: (proxy, { data: result }) => {
+          const newItem = result[createMutationName]
+          if (hasQuery(client, listQuery)) {
+            const data = proxy.readQuery({ query: listQuery })
+            data.items.push(newItem)
+            proxy.writeQuery({ query: listQuery, data })
+          }
+        },
+      })
+      .then(({ data }) => {
+        console.log(data[createMutationName])
+        props.showSnackbar('Created!')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  }),
 )(Create)

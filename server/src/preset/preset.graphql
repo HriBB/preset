@@ -27,5 +27,5 @@ type Field {
   name: String!
   label: String!
   type: String!
-  null: Boolean!
+  required: Boolean!
 }

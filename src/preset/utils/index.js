@@ -9,16 +9,20 @@ exports.getNameField = ({ fields }: any) => {
 }
 
 exports.getMutationArgs = (fields: any) => (
-  fields.map(f => `$${f.name}: ${f.type}${f.null?'':'!'}`).join(', ')
+  fields.map(f => `$${f.name}: ${f.type}${f.required?'!':''}`).join(', ')
 )
 
 exports.getMutationFields = (fields: any) => (
   fields.map(f => `${f.name}: $${f.name}`).join(', ')
 )
 
-exports.hasQuery = (proxy: any, query: any) => {
-  return !!proxy.watches.find(watch => 
-    watch.query.definitions[0].name.value === query.definitions[0].name.value
-  )
+exports.hasQuery = (client: any, query: any) => {
+  if (!client) {
+    throw new Error('Missing client')
+  }
+  if (!query) {
+    throw new Error('Missing query')
+  }
+  return client.queryManager.queryIdsByName[query.definitions[0].name.value]
 }
 

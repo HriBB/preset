@@ -7,7 +7,7 @@ import { getMutationArgs, getMutationFields } from 'preset/utils'
 
 const withUpdateItemMutation = (WrappedComponent: any) => (props: any) => {
   const { model: { fields, updateMutationName } } = props
-  const mutation = gql(`
+  const updateMutation = gql(`
     mutation ${updateMutationName}($id: ID!, ${getMutationArgs(fields)}) {
       ${updateMutationName}(id: $id, ${getMutationFields(fields)}) {
         id ${fields.map(f => f.name).join(' ')}
@@ -16,7 +16,7 @@ const withUpdateItemMutation = (WrappedComponent: any) => (props: any) => {
   `)
   return (
     <WrappedComponent
-      updateMutation={mutation}
+      updateMutation={updateMutation}
       updateMutationName={updateMutationName}
       {...props}
     />

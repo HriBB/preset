@@ -37,7 +37,7 @@ const getTypeFields = (type) => (
     .map(field => ({
       name: field.name,
       type: (field.astNode.type.type || field.astNode.type).name.value,
-      null: field.astNode.type.kind !== 'NonNullType',
+      required: field.astNode.type.kind === 'NonNullType',
       ...getDirectiveArguments(field, 'field'),
     }))
 )

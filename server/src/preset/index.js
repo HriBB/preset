@@ -26,8 +26,8 @@ const queryText = `
 `
 
 const mutationText = models.map((m, i) => `
-  create${m.name}(${m.fields.map(f => `${f.name}: ${f.type}${f.null?'':'!'}`).join(', ')}): ${m.name}
-  update${m.name}(id: ID!, ${m.fields.map(f => `${f.name}: ${f.type}${f.null?'':'!'}`).join(', ')}): ${m.name}
+  create${m.name}(${m.fields.map(f => `${f.name}: ${f.type}${f.required?'!':''}`).join(', ')}): ${m.name}
+  update${m.name}(id: ID!, ${m.fields.map(f => `${f.name}: ${f.type}${f.required?'!':''}`).join(', ')}): ${m.name}
   delete${m.name}(id: ID!): ${m.name}
 `).join('')
 

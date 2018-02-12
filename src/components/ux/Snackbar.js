@@ -19,10 +19,10 @@ const SimpleSnackbar = (props) => {
     <Snackbar
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'left',
+        horizontal: 'center',
       }}
       open={open}
-      autoHideDuration={6000}
+      autoHideDuration={5000}
       onClose={onClose}
       SnackbarContentProps={{
         'aria-describedby': 'message-id',

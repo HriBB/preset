@@ -2,11 +2,11 @@
 
 import React from 'react'
 import type { FieldProps } from 'redux-form'
+import FormHelperText from 'material-ui/Form/FormHelperText'
+import FormControl from 'material-ui/Form/FormControl'
+import InputLabel from 'material-ui/Input/InputLabel'
 import Select from 'material-ui/Select'
 import Input from 'material-ui/Input'
-import InputLabel from 'material-ui/Input/InputLabel'
-import FormControl from 'material-ui/Form/FormControl'
-import FormHelperText from 'material-ui/Form/FormHelperText'
 
 type Props = {
   children: any,
@@ -33,7 +33,7 @@ const renderTextField = (props: Props) => {
   } = props
 
   return (
-    <FormControl className={className} error={!!error}>
+    <FormControl className={className} error={touched && !!error}>
       {label &&
         <InputLabel className={labelClassName} htmlFor={input.name}>
           {label}

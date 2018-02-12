@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 
 const withDeleteItemMutation = (WrappedComponent: any) => (props: any) => {
   const { model: { deleteMutationName } } = props
-  const mutation = gql(`
+  const deleteMutation = gql(`
     mutation ${deleteMutationName}($id: ID!) {
       ${deleteMutationName}(id: $id) {
         id
@@ -14,7 +14,7 @@ const withDeleteItemMutation = (WrappedComponent: any) => (props: any) => {
   `)
   return (
     <WrappedComponent
-      deleteMutation={mutation}
+      deleteMutation={deleteMutation}
       deleteMutationName={deleteMutationName}
       {...props}
     />

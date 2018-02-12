@@ -79,12 +79,34 @@ const styles = (theme) => ({
   },
 })
 
+const validate = (fields, { model }) => {
+  const errors = {}
+  model.fields.forEach(({ name, type, required }) => {
+    switch (type) {
+      case 'Text':
+        if (required && !fields[name]) {
+          return errors[name] = 'Required'
+        }
+        break
+        case 'Textarea':
+        if (required && !fields[name]) {
+          return errors[name] = 'Required'
+        }
+        break
+      case 'Checkbox':
+        if (required && !fields.hasOwnProperty(name)) {
+          return errors[name] = 'Required'
+        }
+        break
+      default:
+        break
+    }
+  })
+  return errors
+}
+
 export default compose(
   withStyles(styles),
-  reduxForm({
-    validate: () => {
-      return {}
-    }
-  }),
+  reduxForm({ validate }),
 )(Form)
 

@@ -6,22 +6,16 @@ import { Query, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
 
 import { withStyles } from 'material-ui/styles'
-import {
-  default as MuiList,
-  ListItem,
-  ListItemSecondaryAction,
-  ListItemText,
-} from 'material-ui/List'
+import { default as MuiList, ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
 import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import DeleteIcon from 'material-ui-icons/Delete'
 import AddIcon from 'material-ui-icons/Add'
 
-import { getNameField } from 'preset/utils'
+import { getNameField, hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withDeleteItemMutation } from 'preset/mutations'
-import { deleteItem } from 'preset/handlers'
 
 import { Error, Spinner, Snackbar } from 'components/ux'
 
@@ -101,5 +95,31 @@ export default compose(
       hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
     },
   ),
-  withHandlers({ deleteItem }),
+  withHandlers({
+    deleteItem: (props: any) => (e: any) => {
+      const { id } = e.currentTarget.dataset
+      const { client, listQuery, deleteMutation, deleteMutationName } = props
+      const update = (proxy, { data: result }) => {
+        const { id } = result[deleteMutationName]
+        if (hasQuery(client, listQuery)) {
+          const data = proxy.readQuery({ query: listQuery })
+          data.items = data.items.filter(i => i.id !== id)
+          proxy.writeQuery({ query: listQuery, data })
+        }
+      }
+      return client
+      .mutate({
+        mutation: deleteMutation,
+        variables: { id },
+        update,
+      })
+      .then(({ data }) => {
+        console.log(data[deleteMutationName])
+        props.showSnackbar('Deleted!')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  }),
 )(List)

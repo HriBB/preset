@@ -4,7 +4,7 @@ import React from 'react'
 import type { FieldProps } from 'redux-form'
 import FormControlLabel from 'material-ui/Form/FormControlLabel'
 import FormHelperText from 'material-ui/Form/FormHelperText'
-import FormGroup from 'material-ui/Form/FormGroup'
+import FormControl from 'material-ui/Form/FormControl'
 import Switch from 'material-ui/Switch'
 
 type Props = {
@@ -30,7 +30,7 @@ const FormSwitch = (props: Props) => {
   } = props
 
   return (
-    <FormGroup className={className}>
+    <FormControl className={className} error={touched && !!error}>
       {label
         ? <FormControlLabel
             control={
@@ -55,7 +55,7 @@ const FormSwitch = (props: Props) => {
       {touched && error &&
         <FormHelperText className={errorClassName}>{error}</FormHelperText>
       }
-    </FormGroup>
+    </FormControl>
   )
 }
 
