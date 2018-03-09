@@ -2,10 +2,19 @@
 <PROJECT_ROOT>/.git/
 <PROJECT_ROOT>/.install/
 <PROJECT_ROOT>/server/
-<PROJECT_ROOT>/node_modules/jss/.*
+<PROJECT_ROOT>/node_modules/jss/lib/types.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/renderers/DomRenderer.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/renderers/VirtualRenderer.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/rules/ConditionalRule.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/rules/FontFaceRule.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/rules/KeyframesRule.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/rules/SimpleRule.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/rules/StyleRule.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/rules/ViewportRule.js.flow
+<PROJECT_ROOT>/node_modules/jss/lib/Jss.js.flow
 
 [libs]
-<PROJECT_ROOT>/node_modules/jss/flow-typed
+#<PROJECT_ROOT>/node_modules/jss/flow-typed
 #<PROJECT_ROOT>/flow/interfaces
 
 [options]

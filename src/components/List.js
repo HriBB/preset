@@ -7,7 +7,12 @@ import { Query, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
 
 import { withStyles } from 'material-ui/styles'
-import { default as MuiList, ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
+import {
+  default as MuiList,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+} from 'material-ui/List'
 import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
@@ -31,32 +36,45 @@ const List = (props: any) => {
               className={classes.header}
               avatar={
                 <Avatar aria-label={`${model && model.name} List`}>
-                  {model && model.name.substring(0,1)}
+                  {model && model.name.substring(0, 1)}
                 </Avatar>
               }
-              action={model &&
-                <IconButton component={Link} to={`/${model.name}/create`}>
-                  <AddIcon />
-                </IconButton>
+              action={
+                model && (
+                  <IconButton component={Link} to={`/${model.name}/create`}>
+                    <AddIcon />
+                  </IconButton>
+                )
               }
               title={`${model.label} List`}
             />
             {error && <Error>{error.message}</Error>}
             {!error && loading && <Spinner />}
-            {!error && !loading && data &&
-              <MuiList className={classes.list} component={'ul'}>
-                {data.items.map(item => 
-                  <ListItem key={item.id} button component={Link} to={`/${model.name}/${item.id}`}>
-                    <ListItemText primary={item[getNameField(model)]} />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label={'Delete'} data-id={item.id} onClick={props.deleteItem}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                )}
-              </MuiList>
-            }
+            {!error &&
+              !loading &&
+              data && (
+                <MuiList className={classes.list} component={'ul'}>
+                  {data.items.map(item => (
+                    <ListItem
+                      key={item.id}
+                      button
+                      component={Link}
+                      to={`/${model.name}/${item.id}`}
+                    >
+                      <ListItemText primary={item[getNameField(model)]} />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          aria-label={'Delete'}
+                          data-id={item.id}
+                          onClick={props.deleteItem}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+                </MuiList>
+              )}
           </Fragment>
         )
       }}
@@ -64,7 +82,7 @@ const List = (props: any) => {
   )
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   header: {
     paddingRight: theme.spacing.unit * 2 + 4,
   },
@@ -98,18 +116,18 @@ export default compose(
         }
       }
       return client
-      .mutate({
-        mutation: deleteMutation,
-        variables: { id },
-        update,
-      })
-      .then(({ data }) => {
-        console.log(data[deleteMutationName])
-        props.snackbar.show('Deleted!')
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
-  }),
+        .mutate({
+          mutation: deleteMutation,
+          variables: { id },
+          update,
+        })
+        .then(({ data }) => {
+          console.log(data[deleteMutationName])
+          props.snackbar.show('Deleted!')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  })
 )(List)

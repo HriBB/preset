@@ -11,7 +11,7 @@ const Error = ({ children, classes, ...other }: any) => {
   )
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   error: {
     textAlign: 'center',
     fontSize: '1.2rem',

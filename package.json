@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "enzyme": "^3.3.0",
     "flow-bin": "0.67.1",
     "prettier-eslint-cli": "4.7.1"
   },

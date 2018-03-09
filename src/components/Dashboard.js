@@ -8,11 +8,7 @@ const Dashboard = (props: any) => {
   const { user } = props
   return (
     <CardHeader
-      avatar={
-        <Avatar aria-label={'Dashboard'}>
-          {'D'}
-        </Avatar>
-      }
+      avatar={<Avatar aria-label={'Dashboard'}>{'D'}</Avatar>}
       title={`Welcome ${user.username}`}
     />
   )

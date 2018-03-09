@@ -29,11 +29,11 @@ const renderUploadField = (props: Props) => {
   } = props
   return (
     <FormControl className={className} error={touched && !!error}>
-      {label &&
+      {label && (
         <InputLabel className={labelClassName} htmlFor={input.name} shrink>
           {label}
         </InputLabel>
-      }
+      )}
       <Input
         {...input}
         {...other}
@@ -42,10 +42,10 @@ const renderUploadField = (props: Props) => {
         id={input.name}
         type={'file'}
       />
-      {touched && error &&
-        <FormHelperText className={errorClassName}>
-          {error}</FormHelperText>
-      }
+      {touched &&
+        error && (
+          <FormHelperText className={errorClassName}>{error}</FormHelperText>
+        )}
     </FormControl>
   )
 }

@@ -28,7 +28,11 @@ if (root) {
   render(
     <ReduxProvider store={store}>
       <ApolloProvider client={client}>
-        <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+        <JssProvider
+          registry={sheetsRegistry}
+          jss={jss}
+          generateClassName={generateClassName}
+        >
           <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
             <Router>
               <Route component={App} />
@@ -37,6 +41,6 @@ if (root) {
         </JssProvider>
       </ApolloProvider>
     </ReduxProvider>,
-    root,
+    root
   )
 }

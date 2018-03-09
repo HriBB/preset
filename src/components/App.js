@@ -3,7 +3,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
-import { compose, withHandlers, withStateHandlers, withContext } from 'recompose'
+import {
+  compose,
+  withHandlers,
+  withStateHandlers,
+  withContext,
+} from 'recompose'
 import { Link, NavLink, Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
 import classnames from 'classnames'
@@ -23,37 +28,52 @@ import Login from 'components/Login'
 import Model from 'components/Model'
 import User from 'components/User'
 
-const App = (props) => {
+const App = props => {
   return (
     <Query query={appQuery}>
       {({ error, loading, data }) => {
+        if (error) return <Error>{error.message}</Error>
+        if (loading) return <Spinner />
+        if (!data.user) return <Login />
 
-        if (error) return (<Error>{error.message}</Error>)
-        if (loading) return (<Spinner />)
-
-        const { classes, logout, location } = props
         const { user, models } = data
-
-        if (!user) return (<Login />)
-
+        const { classes, logout, location } = props
         const linkClass = classnames(classes.link, classes.linkUpSm)
 
         return (
           <Fragment>
-            <AppBar className={classes.appbar} position={'static'} color={'primary'}>
+            <AppBar
+              className={classes.appbar}
+              position={'static'}
+              color={'primary'}
+            >
               <Toolbar className={classes.toolbar}>
-                <Link to={'/'} className={classnames(linkClass, {active:location.pathname === '/'})}>
+                <Link
+                  to={'/'}
+                  className={classnames(linkClass, {
+                    active: location.pathname === '/',
+                  })}
+                >
                   {'Dashboard'}
                 </Link>
-                <Link to={'/user'} className={classnames(linkClass, {active:location.pathname === '/user'})}>
+                <Link
+                  to={'/user'}
+                  className={classnames(linkClass, {
+                    active: location.pathname === '/user',
+                  })}
+                >
                   {'User'}
                 </Link>
-                {models.map(model =>
-                  <NavLink key={model.name} to={`/${model.name}`} className={linkClass}>
+                {models.map(model => (
+                  <NavLink
+                    key={model.name}
+                    to={`/${model.name}`}
+                    className={linkClass}
+                  >
                     {model.label}
                   </NavLink>
-                )}
-                <div style={{flex:'1 1 100%'}} />
+                ))}
+                <div style={{ flex: '1 1 100%' }} />
                 <Button className={classes.button} onClick={logout}>
                   {'Logout'}
                 </Button>
@@ -61,15 +81,21 @@ const App = (props) => {
             </AppBar>
             <Card className={classnames(classes.content, classes.contentSmUp)}>
               <Switch>
-                <Route exact path={'/'} render={(matchProps) =>
-                  <Dashboard {...matchProps} user={user} />
-                } />
-                <Route path={'/user'} render={(matchProps) =>
-                  <User {...matchProps} user={user} />
-                } />
-                <Route path={'/:model'} render={(matchProps) =>
-                  <Model {...matchProps} user={user} />
-                } />
+                <Route
+                  exact
+                  path={'/'}
+                  render={matchProps => (
+                    <Dashboard {...matchProps} user={user} />
+                  )}
+                />
+                <Route
+                  path={'/user'}
+                  render={matchProps => <User {...matchProps} user={user} />}
+                />
+                <Route
+                  path={'/:model'}
+                  render={matchProps => <Model {...matchProps} user={user} />}
+                />
               </Switch>
             </Card>
             <Snackbar
@@ -84,7 +110,7 @@ const App = (props) => {
   )
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   '@global': {
     html: {
       boxSizing: 'border-box',
@@ -150,33 +176,29 @@ const styles = (theme) => ({
     contentSmUp: {
       margin: `${theme.spacing.unit * 2}px auto`,
     },
-  }
+  },
 })
 
 const EnhancedApp = compose(
   withApollo,
   withStyles(styles),
   withHandlers({
-    logout: ({ client }) => (e) => {
+    logout: ({ client }) => e => {
       localStorage.removeItem('token')
       client.resetStore()
-    }
-  }),
-  withStateHandlers(
-    ({ snackbar = false }) => ({ snackbar }),
-    {
-      showSnackbar: ({ snackbar }) => (text) => ({ snackbar: text }),
-      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
     },
-  ),
-  withContext(
-    { snackbar: PropTypes.object },
-    (props) => ({ snackbar: {
+  }),
+  withStateHandlers(({ snackbar = false }) => ({ snackbar }), {
+    showSnackbar: ({ snackbar }) => text => ({ snackbar: text }),
+    hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
+  }),
+  withContext({ snackbar: PropTypes.object }, props => ({
+    snackbar: {
       text: props.snackbar,
       show: props.showSnackbar,
       hide: props.hideSnackbar,
-    } })
-  ),
+    },
+  }))
 )(App)
 
 export default hot(module)(EnhancedApp)

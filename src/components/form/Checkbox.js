@@ -31,30 +31,32 @@ const FormCheckbox = (props: Props) => {
 
   return (
     <FormControl className={className} error={touched && !!error}>
-      {label
-        ? <FormControlLabel
-            control={
-              <Checkbox
-                {...input}
-                {...other}
-                checked={value}
-                className={inputClassName}
-                id={input.name}
-              />
-            }
-            label={label}
-          />
-        : <Checkbox
-            {...input}
-            {...other}
-            checked={value}
-            className={inputClassName}
-            id={input.name}
-          />
-      }
-      {touched && error &&
-        <FormHelperText className={errorClassName}>{error}</FormHelperText>
-      }
+      {label ? (
+        <FormControlLabel
+          control={
+            <Checkbox
+              {...input}
+              {...other}
+              checked={value}
+              className={inputClassName}
+              id={input.name}
+            />
+          }
+          label={label}
+        />
+      ) : (
+        <Checkbox
+          {...input}
+          {...other}
+          checked={value}
+          className={inputClassName}
+          id={input.name}
+        />
+      )}
+      {touched &&
+        error && (
+          <FormHelperText className={errorClassName}>{error}</FormHelperText>
+        )}
     </FormControl>
   )
 }

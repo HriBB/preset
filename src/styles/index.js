@@ -25,7 +25,7 @@ const theme = createMuiTheme({
 })
 
 // Configure JSS
-const jss = create({ plugins: [ ...preset().plugins, extend() ] })
+const jss = create({ plugins: [...preset().plugins, extend()] })
 jss.options.createGenerateClassName = createGenerateClassName
 
 export default function getContext() {

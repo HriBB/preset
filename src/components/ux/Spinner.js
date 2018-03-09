@@ -5,12 +5,10 @@ import { withStyles } from 'material-ui/styles'
 import { CircularProgress } from 'material-ui/Progress'
 
 const Spinner = ({ classes, ...other }: any) => {
-  return (
-    <CircularProgress {...other} className={classes.spinner} />
-  )
+  return <CircularProgress {...other} className={classes.spinner} />
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   spinner: {
     position: 'absolute',
     top: '50%',

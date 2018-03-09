@@ -4,6 +4,13 @@
     "semi": ["error", "never"],
     "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "jsx-quotes": ["error", "prefer-single"],
-    "no-unused-vars": 2
+    "no-unused-vars": 2,
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore"
+    }]
   }
 }

@@ -28,15 +28,16 @@ const renderTextField = (props: Props) => {
   } = props
   return (
     <FormControl className={className} error={touched && !!error}>
-      {label &&
+      {label && (
         <InputLabel className={labelClassName} htmlFor={input.name} shrink>
           {label}
         </InputLabel>
-      }
+      )}
       <Input className={inputClassName} {...input} {...other} id={input.name} />
-      {touched && error &&
-        <FormHelperText className={errorClassName}>{error}</FormHelperText>
-      }
+      {touched &&
+        error && (
+          <FormHelperText className={errorClassName}>{error}</FormHelperText>
+        )}
     </FormControl>
   )
 }

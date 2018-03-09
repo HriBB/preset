@@ -31,30 +31,32 @@ const FormSwitch = (props: Props) => {
 
   return (
     <FormControl className={className} error={touched && !!error}>
-      {label
-        ? <FormControlLabel
-            control={
-              <Switch
-                {...input}
-                {...other}
-                checked={value}
-                className={inputClassName}
-                id={input.name}
-              />
-            }
-            label={label}
-          />
-        : <Switch
-            {...input}
-            {...other}
-            checked={value}
-            className={inputClassName}
-            id={input.name}
-          />
-      }
-      {touched && error &&
-        <FormHelperText className={errorClassName}>{error}</FormHelperText>
-      }
+      {label ? (
+        <FormControlLabel
+          control={
+            <Switch
+              {...input}
+              {...other}
+              checked={value}
+              className={inputClassName}
+              id={input.name}
+            />
+          }
+          label={label}
+        />
+      ) : (
+        <Switch
+          {...input}
+          {...other}
+          checked={value}
+          className={inputClassName}
+          id={input.name}
+        />
+      )}
+      {touched &&
+        error && (
+          <FormHelperText className={errorClassName}>{error}</FormHelperText>
+        )}
     </FormControl>
   )
 }

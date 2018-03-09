@@ -7,12 +7,10 @@ import rootReducer from './reducers'
 
 export default function configureStore(initialState: any) {
   const middleware = applyMiddleware(thunk)
-  
-  const devTools = (
-    window.__REDUX_DEVTOOLS_EXTENSION__ && 
-    window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-  
+
+  const devTools =
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
   const enhancer = devTools ? compose(middleware, devTools) : middleware
 
   const store = createStore(rootReducer, initialState, enhancer)
@@ -23,6 +21,6 @@ export default function configureStore(initialState: any) {
       store.replaceReducer(nextRootReducer)
     })
   }
-  
+
   return store
 }

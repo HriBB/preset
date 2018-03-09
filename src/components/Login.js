@@ -14,11 +14,15 @@ import Typography from 'material-ui/Typography'
 import { Text } from 'components/form'
 import { loginMutation } from 'preset/mutations'
 
-const Login = (props) => {
+const Login = props => {
   const { classes, error, handleSubmit } = props
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>  
-      <Typography className={classes.title} variant={'headline'} component={'h2'}>
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <Typography
+        className={classes.title}
+        variant={'headline'}
+        component={'h2'}
+      >
         Preset CMS
       </Typography>
       <Card className={classes.card}>
@@ -43,14 +47,16 @@ const Login = (props) => {
           </FormControl>
         </CardContent>
         <CardActions className={classes.actions}>
-          <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>Login</Button>
+          <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>
+            Login
+          </Button>
         </CardActions>
       </Card>
     </form>
   )
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   form: {
     width: '100%',
     height: '100vh',
@@ -62,7 +68,7 @@ const styles = (theme) => ({
   card: {
     width: '300px',
     padding: theme.spacing.unit * 4,
-    paddingTop: theme.spacing.unit * 6
+    paddingTop: theme.spacing.unit * 6,
   },
   content: {
     padding: '0',
@@ -93,9 +99,10 @@ export default compose(
   withApollo,
   graphql(loginMutation, {
     props: ({ ownProps, mutate }) => ({
-      login: (username, password) => mutate({
-        variables: { username, password },
-      }),
+      login: (username, password) =>
+        mutate({
+          variables: { username, password },
+        }),
     }),
   }),
   withHandlers({
@@ -108,7 +115,7 @@ export default compose(
         .catch(error => {
           throw new SubmissionError({ _error: error.message })
         })
-    }
+    },
   }),
   reduxForm({
     form: 'login',
@@ -125,7 +132,6 @@ export default compose(
         errors.password = 'Must be at least 6 characters long'
       }
       return errors
-    }
-  }),
+    },
+  })
 )(Login)
-

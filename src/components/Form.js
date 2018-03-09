@@ -14,7 +14,7 @@ import CloseIcon from 'material-ui-icons/Close'
 
 import { getFormField } from 'components/form'
 
-const Form = (props) => {
+const Form = props => {
   const { classes, handleSubmit, initialValues, model, title, button } = props
   return (
     <Fragment>
@@ -22,7 +22,7 @@ const Form = (props) => {
         className={classes.header}
         avatar={
           <Avatar aria-label={model.label} className={classes.avatar}>
-            {model.name.substring(0,1)}
+            {model.name.substring(0, 1)}
           </Avatar>
         }
         action={
@@ -33,8 +33,8 @@ const Form = (props) => {
         title={title}
       />
       <CardContent className={classes.content}>
-        <form onSubmit={handleSubmit}>  
-          {model.fields.map(({ name, label, type }) =>
+        <form onSubmit={handleSubmit}>
+          {model.fields.map(({ name, label, type }) => (
             <div key={name}>
               <Field
                 component={getFormField(type)}
@@ -42,15 +42,16 @@ const Form = (props) => {
                 name={name}
                 label={label}
               />
-              {name === 'image' && initialValues.image &&
-                <img
-                  className={classes.image}
-                  src={initialValues.image.url}
-                  alt={initialValues.image.filename}
-                />
-              }
+              {name === 'image' &&
+                initialValues.image && (
+                  <img
+                    className={classes.image}
+                    src={initialValues.image.url}
+                    alt={initialValues.image.filename}
+                  />
+                )}
             </div>
-          )}
+          ))}
         </form>
       </CardContent>
       <CardActions className={classes.actions}>
@@ -62,16 +63,14 @@ const Form = (props) => {
   )
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   header: {
     paddingRight: theme.spacing.unit * 2 + 4,
   },
   avatar: {
     //backgroundColor: deepOrange[500],
   },
-  content: {
-
-  },
+  content: {},
   field: {
     //border: '1px solid red',
     width: '100%',
@@ -91,17 +90,17 @@ const validate = (fields, { model }) => {
     switch (type) {
       case 'Text':
         if (required && !fields[name]) {
-          return errors[name] = 'Required'
+          return (errors[name] = 'Required')
         }
         break
-        case 'Textarea':
+      case 'Textarea':
         if (required && !fields[name]) {
-          return errors[name] = 'Required'
+          return (errors[name] = 'Required')
         }
         break
       case 'Checkbox':
         if (required && !fields.hasOwnProperty(name)) {
-          return errors[name] = 'Required'
+          return (errors[name] = 'Required')
         }
         break
       default:
@@ -111,8 +110,4 @@ const validate = (fields, { model }) => {
   return errors
 }
 
-export default compose(
-  withStyles(styles),
-  reduxForm({ validate }),
-)(Form)
-
+export default compose(withStyles(styles), reduxForm({ validate }))(Form)

@@ -13,7 +13,7 @@ const styles = theme => ({
   },
 })
 
-const SimpleSnackbar = (props) => {
+const SimpleSnackbar = props => {
   const { classes, open, onClose, message } = props
   return (
     <Snackbar
@@ -27,9 +27,7 @@ const SimpleSnackbar = (props) => {
       SnackbarContentProps={{
         'aria-describedby': 'message-id',
       }}
-      message={
-        <span id={'message-id'}>{message || 'Done!'}</span>
-      }
+      message={<span id={'message-id'}>{message || 'Done!'}</span>}
       action={
         <IconButton
           key={'close'}

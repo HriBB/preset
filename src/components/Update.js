@@ -12,16 +12,23 @@ import { withUpdateItemMutation } from 'preset/mutations'
 import { Error, Spinner } from 'components/ux'
 import Form from 'components/Form'
 
-const Update = (props) => {
+const Update = props => {
   const { match, model, itemQuery, updateItem } = props
   const { id } = match.params
   return (
     <Query query={itemQuery} variables={{ id }}>
       {({ error, loading, data }) => {
-        if (error) return (<Error>{error.message}<br />{error.stack}</Error>)
-        if (loading) return (<Spinner />)
+        if (error)
+          return (
+            <Error>
+              {error.message}
+              <br />
+              {error.stack}
+            </Error>
+          )
+        if (loading) return <Spinner />
         const { item } = data
-        if (!item) return (<Error>{`Item ${id} not found!`}</Error>)
+        if (!item) return <Error>{`Item ${id} not found!`}</Error>
         return (
           <Fragment>
             <Form
@@ -60,18 +67,18 @@ export default compose(
         }
       }
       return client
-      .mutate({
-        mutation: updateMutation,
-        variables,
-        update,
-      })
-      .then(({ data }) => {
-        console.log(data[updateMutationName])
-        props.snackbar.show('Updated!')
-      })
-      .catch(error => {
-        console.log(error)
-      })
-    }
-  }),
+        .mutate({
+          mutation: updateMutation,
+          variables,
+          update,
+        })
+        .then(({ data }) => {
+          console.log(data[updateMutationName])
+          props.snackbar.show('Updated!')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  })
 )(Update)

@@ -19,7 +19,7 @@ import { Upload } from 'components/form'
 import { appQuery } from 'preset/queries'
 import { setProfilePictureMutation } from 'preset/mutations'
 
-const User = (props) => {
+const User = props => {
   const { classes, error, handleSubmit, user } = props
 
   return (
@@ -28,7 +28,7 @@ const User = (props) => {
         className={classes.header}
         avatar={
           <Avatar aria-label={user.username} className={classes.avatar}>
-            {user.username.substring(0,1)}
+            {user.username.substring(0, 1)}
           </Avatar>
         }
         action={
@@ -46,13 +46,22 @@ const User = (props) => {
             name={'image'}
             label={'Image'}
           />
-          <Button size={'small'} color={'primary'} type={'submit'} variant={'raised'}>
+          <Button
+            size={'small'}
+            color={'primary'}
+            type={'submit'}
+            variant={'raised'}
+          >
             {'Upload'}
           </Button>
         </div>
-        {user.image &&
-          <img className={classes.image} src={user.image.url} alt={user.image.filename} />
-        }
+        {user.image && (
+          <img
+            className={classes.image}
+            src={user.image.url}
+            alt={user.image.filename}
+          />
+        )}
         <FormControl error className={classes.error}>
           <FormHelperText>{error || '\u00A0'}</FormHelperText>
         </FormControl>
@@ -66,7 +75,7 @@ const User = (props) => {
   )
 }
 
-const styles = (theme) => ({
+const styles = theme => ({
   form: {
     //width: '100%',
     //height: '100vh',
@@ -81,9 +90,7 @@ const styles = (theme) => ({
   avatar: {
     //backgroundColor: deepOrange[500],
   },
-  content: {
-
-  },
+  content: {},
   uploadWrap: {
     display: 'flex',
     alignItems: 'center',
@@ -107,30 +114,30 @@ export default compose(
   withApollo,
   graphql(setProfilePictureMutation, {
     props: ({ props, mutate }) => ({
-      setProfilePicture: (image) => mutate({
-        variables: { image },
-        update: (proxy, { data: { setProfilePicture } }) => {
-          const data = proxy.readQuery({ query: appQuery })
-          data.user.image = setProfilePicture
-          proxy.writeQuery({ query: appQuery, data })
-        }
-      }),
+      setProfilePicture: image =>
+        mutate({
+          variables: { image },
+          update: (proxy, { data: { setProfilePicture } }) => {
+            const data = proxy.readQuery({ query: appQuery })
+            data.user.image = setProfilePicture
+            proxy.writeQuery({ query: appQuery, data })
+          },
+        }),
     }),
   }),
   withHandlers({
     onSubmit: ({ setProfilePicture }) => ({ image }) => {
       return setProfilePicture(image[0])
-      .then(({ data: { setProfilePicture } }) => {
-        console.log('upload success', setProfilePicture)
-      })
-      .catch(error => {
-        throw new SubmissionError({ _error: error.message })
-      })
-    }
+        .then(({ data: { setProfilePicture } }) => {
+          console.log('upload success', setProfilePicture)
+        })
+        .catch(error => {
+          throw new SubmissionError({ _error: error.message })
+        })
+    },
   }),
   reduxForm({
     form: 'user',
     validate: () => ({}),
-  }),
+  })
 )(User)
-

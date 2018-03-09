@@ -12,7 +12,7 @@ import { withCreateItemMutation } from 'preset/mutations'
 
 import Form from 'components/Form'
 
-const Create = (props) => {
+const Create = props => {
   const { model, createItem } = props
   const initialValues = model.fields.reduce((values, field) => {
     if (field.default) {
@@ -68,18 +68,19 @@ export default compose(
           proxy.writeQuery({ query: listQuery, data })
         }
       }
-      return client.mutate({
-        mutation: createMutation,
-        variables,
-        update,
-      })
-      .then(({ data }) => {
-        console.log(data[createMutationName])
-        props.snackbar.show('Created!')
-      })
-      .catch(error => {
-        console.log(error)
-      })
+      return client
+        .mutate({
+          mutation: createMutation,
+          variables,
+          update,
+        })
+        .then(({ data }) => {
+          console.log(data[createMutationName])
+          props.snackbar.show('Created!')
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
-  }),
+  })
 )(Create)

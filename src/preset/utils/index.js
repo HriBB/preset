@@ -8,23 +8,29 @@ const getNameField = ({ fields }: any) => {
   }
 }
 
-const getModelFields = (fields: any) => (
-  `{ id ${fields.map(({ name, fields }) => (
-    fields && fields.length ? `${name} ${getModelFields(fields)}` : name
-  )).join(' ')} }`
-)
+const getModelFields = (fields: any) =>
+  `{ id ${fields
+    .map(
+      ({ name, fields }) =>
+        fields && fields.length ? `${name} ${getModelFields(fields)}` : name
+    )
+    .join(' ')} }`
 
-const getMutationArgs = (fields: any) => (
-  fields.map(f => `$${f.name}: ${f.type === 'File' ? 'Upload' : f.type}${f.required?'!':''}`).join(', ')
-)
+const getMutationArgs = (fields: any) =>
+  fields
+    .map(
+      f =>
+        `$${f.name}: ${f.type === 'File' ? 'Upload' : f.type}${
+          f.required ? '!' : ''
+        }`
+    )
+    .join(', ')
 
-const getMutationFields = (fields: any) => (
+const getMutationFields = (fields: any) =>
   fields.map(f => `${f.name}: $${f.name}`).join(', ')
-)
 
-const hasQuery = (client: any, query: any) => (
+const hasQuery = (client: any, query: any) =>
   client.queryManager.queryIdsByName[query.definitions[0].name.value]
-)
 
 module.exports = {
   getNameField,
