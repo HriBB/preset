@@ -59,7 +59,7 @@ const getModelFields = (model) => {
 }
 
 const getModels = (ast) => {
-  return ast._implementations.Preset.map(model => {
+  return ast._implementations.Node.map(model => {
     return {
       name: model.name,
       listQueryName: getListQueryName(model),
