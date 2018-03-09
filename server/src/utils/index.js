@@ -1,7 +1,6 @@
 // @flow weak
 
 const fs = require('fs')
-const path = require('path')
 const mkdirp = require('mkdirp')
 const shortid = require('shortid')
 const pluralize = require('pluralize')
@@ -12,6 +11,7 @@ const findDirective = (type, directiveName) => (
   type.astNode.directives.find(d => d.name.value === directiveName)
 )
 
+/*
 const findDirectiveArgument = (directive, argumentName) => (
   directive.arguments.find(a => a.name.value === argumentName)
 )
@@ -25,6 +25,7 @@ const getDirectiveArgument = (type, directiveName, argumentName) => {
     }
   }
 }
+*/
 
 const getDirectiveArguments = (type, directiveName) => {
   const directive = findDirective(type, directiveName)
@@ -73,7 +74,7 @@ const getModels = (ast) => {
 }
 
 const uploadFile = async (image) => {
-  const { stream, filename: originalname, mimetype, encoding } = await image
+  const { stream, filename: originalname, mimetype } = await image
   const filename = `${shortid.generate()}-${originalname.replace(' ', '-')}`
   const path = `${config.uploads.path}/${filename}`
   return new Promise((resolve, reject) =>

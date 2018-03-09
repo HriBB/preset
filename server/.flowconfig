@@ -1,8 +1,6 @@
 [ignore]
 <PROJECT_ROOT>/.git/
 
-<PROJECT_ROOT>/node_modules/.*\.json$
-
 [options]
 module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules

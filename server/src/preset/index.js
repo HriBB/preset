@@ -13,7 +13,7 @@ const config = require('config')
 const { getUserId } = require('user')
 const { getModels, uploadFile } = require('utils')
 
-const schema = importSchema(path.resolve(__dirname, 'schema.graphql'))
+const schema = importSchema(path.resolve(__dirname, '..', 'schema.graphql'))
 const ast = buildASTSchema(parse(schema))
 const models = getModels(ast)
 const modelsByName = keyBy(models, 'name')
@@ -77,7 +77,7 @@ const mutations = models.reduce((mutations, model) => {
       ...args,
       author: { connect: { id: userId } },
     }
-    if (image) {
+    if (image && image instanceof Promise) {
       const { filename, mimetype } = await uploadFile(image)
       const file = await ctx.db.mutation.createFile(
         { data: { filename, mimetype } },
@@ -91,14 +91,15 @@ const mutations = models.reduce((mutations, model) => {
       info
     )
   }
-  mutations[updateMutationName] = async (parent, { id, image, ...args }, ctx, info) => {
-    const userId = getUserId(ctx)
+  mutations[updateMutationName] = async (parent, input, ctx, info) => {
+    getUserId(ctx)
+    const { id, image, ...args } = input
     const exists = await ctx.db.exists[name]({ id })
     if (!exists) {
       throw new Error(`${name} not found or you're not the owner!`)
     }
     const data = args
-    if (image) {
+    if (image && image instanceof Promise) {
       const { filename, mimetype } = await uploadFile(image)
       const file = await ctx.db.mutation.createFile(
         { data: { filename, mimetype } },
@@ -116,7 +117,7 @@ const mutations = models.reduce((mutations, model) => {
     )
   }
   mutations[deleteMutationName] = async (parent, { id }, ctx, info) => {
-    const userId = getUserId(ctx)
+    getUserId(ctx)
     const exists = await ctx.db.exists[name]({ id })
     if (!exists) {
       throw new Error(`${name} not found or you're not the owner!`)
@@ -139,6 +140,7 @@ const resolvers = {
   File: {
     url: ({ filename }) => `${config.uploads.url}/${filename}`,
   },
+  JSON: GraphQLJSON,
   Upload: GraphQLUpload,
   Text: GraphQLScalar.string('Text').description('Text').min(1).max(255).create(),
   Textarea: GraphQLScalar.string('Textarea').description('Textarea').min(1).max(5000).create(),
