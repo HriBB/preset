@@ -6,7 +6,6 @@ import { compose, withHandlers, getContext } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
 import { graphql, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
-import gql from 'graphql-tag'
 
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -17,7 +16,8 @@ import Avatar from 'material-ui/Avatar'
 import CloseIcon from 'material-ui-icons/Close'
 
 import { Upload } from 'components/form'
-import { query as appQuery } from 'components/App'
+import { appQuery } from 'preset/queries'
+import { setProfilePictureMutation } from 'preset/mutations'
 
 const User = (props) => {
   const { classes, error, handleSubmit, user } = props
@@ -100,17 +100,6 @@ const styles = (theme) => ({
     justifyContent: 'flex-end',
   },
 })
-
-const setProfilePictureMutation = gql`
-  mutation setProfilePicture($image: Upload!) {
-    setProfilePicture(image: $image) {
-      id
-      url
-      filename
-      mimetype
-    }
-  }
-`
 
 export default compose(
   getContext({ snackbar: PropTypes.object }),

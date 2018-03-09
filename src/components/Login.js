@@ -4,7 +4,6 @@ import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
 import { graphql, withApollo } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -13,6 +12,7 @@ import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 
 import { Text } from 'components/form'
+import { loginMutation } from 'preset/mutations'
 
 const Login = (props) => {
   const { classes, error, handleSubmit } = props
@@ -87,19 +87,6 @@ const styles = (theme) => ({
     justifyContent: 'flex-end',
   },
 })
-
-const loginMutation = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      token
-      user {
-        id
-        username
-        email
-      }
-    }
-  }
-`
 
 export default compose(
   withStyles(styles),

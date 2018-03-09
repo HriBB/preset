@@ -7,13 +7,14 @@ import { compose, withHandlers, withStateHandlers, withContext } from 'recompose
 import { Link, NavLink, Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
 import classnames from 'classnames'
-import gql from 'graphql-tag'
 
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
 import Button from 'material-ui/Button'
 import Card from 'material-ui/Card'
+
+import { appQuery } from 'preset/queries'
 
 import { Error, Spinner, Snackbar } from 'components/ux'
 
@@ -22,28 +23,9 @@ import Login from 'components/Login'
 import Model from 'components/Model'
 import User from 'components/User'
 
-export const query = gql`
-  query app {
-    user: viewer {
-      id
-      username
-      email
-      image {
-        id
-        url
-        filename
-      }
-    }
-    models: models {
-      name
-      label
-    }
-  }
-`
-
 const App = (props) => {
   return (
-    <Query query={query}>
+    <Query query={appQuery}>
       {({ error, loading, data }) => {
 
         if (error) return (<Error>{error.message}</Error>)

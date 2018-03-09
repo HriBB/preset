@@ -3,46 +3,18 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 
 import List from 'components/List'
 import Create from 'components/Create'
 import Update from 'components/Update'
 
 import { Error, Spinner } from 'components/ux'
-
-const query = gql`
-  query model($name: String!) {
-    model: model(name: $name) {
-      name
-      label
-      itemQueryName
-      listQueryName
-      createMutationName
-      updateMutationName
-      deleteMutationName
-      fields {
-        name
-        label
-        type
-        list
-        required
-        fields {
-          name
-          label
-          type
-          list
-          required
-        }
-      }
-    }
-  }
-`
+import { modelQuery} from 'preset/queries'
 
 const Model = (props: any) => {
   const { match } = props
   return (
-    <Query query={query} variables={{ name: match.params.model }}>
+    <Query query={modelQuery} variables={{ name: match.params.model }}>
       {({ error, loading, data }) => {
         if (error) return (<Error>{error.message}</Error>)
         if (loading) return (<Spinner />)

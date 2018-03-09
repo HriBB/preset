@@ -2,14 +2,12 @@
 <PROJECT_ROOT>/.git/
 <PROJECT_ROOT>/.install/
 <PROJECT_ROOT>/server/
+<PROJECT_ROOT>/node_modules/jss/.*
 
 [libs]
-#node_modules/jss/flow-typed
+<PROJECT_ROOT>/node_modules/jss/flow-typed
+#<PROJECT_ROOT>/flow/interfaces
 
 [options]
 module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules
-
-# Support for ES7 classes
-esproposal.class_static_fields=enable
-esproposal.class_instance_fields=enable
