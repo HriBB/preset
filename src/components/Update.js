@@ -56,6 +56,7 @@ export default compose(
     updateItem: (props: any) => (data: any) => {
       const { client, listQuery, updateMutation, updateMutationName } = props
       const { __typename, ...variables } = data
+      console.log(data)
       const update = (proxy, { data: result }) => {
         const newItem = result[updateMutationName]
         if (hasQuery(client, listQuery)) {

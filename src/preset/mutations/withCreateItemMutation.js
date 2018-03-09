@@ -13,11 +13,10 @@ const withCreateItemMutation = (WrappedComponent: any) => (props: any) => {
   const { model: { fields, createMutationName } } = props
   const createMutation = gql(`
     mutation ${createMutationName}(${getMutationArgs(fields)}) {
-      ${createMutationName}(${getMutationFields(fields)}) ${getModelFields(
-    fields
-  )}
+      ${createMutationName}(${getMutationFields(fields)}) ${getModelFields(fields)}
     }
   `)
+  //console.log(createMutation.loc.source.body)
   return (
     <WrappedComponent
       createMutation={createMutation}

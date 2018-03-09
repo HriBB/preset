@@ -12,6 +12,7 @@ const withDeleteItemMutation = (WrappedComponent: any) => (props: any) => {
       }
     }
   `)
+  //console.log(deleteMutation.loc.source.body)
   return (
     <WrappedComponent
       deleteMutation={deleteMutation}

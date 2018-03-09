@@ -101,7 +101,7 @@ const styles = theme => ({
     //padding: `${theme.spacing.unit}px 0`,
   },
   image: {
-    maxWidth: '395px',
+    width: '395px',
   },
   actions: {
     justifyContent: 'flex-end',
