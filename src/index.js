@@ -24,18 +24,19 @@ const {
 } = getContext()
 
 const root = document.getElementById('root')
-
-render(
-  <ReduxProvider store={store}>
-    <ApolloProvider client={client}>
-      <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-          <Router>
-            <Route component={App} />
-          </Router>
-        </MuiThemeProvider>
-      </JssProvider>
-    </ApolloProvider>
-  </ReduxProvider>,
-  root,
-)
+if (root) {
+  render(
+    <ReduxProvider store={store}>
+      <ApolloProvider client={client}>
+        <JssProvider registry={sheetsRegistry} jss={jss} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+            <Router>
+              <Route component={App} />
+            </Router>
+          </MuiThemeProvider>
+        </JssProvider>
+      </ApolloProvider>
+    </ReduxProvider>,
+    root,
+  )
+}

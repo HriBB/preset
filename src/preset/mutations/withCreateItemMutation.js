@@ -12,11 +12,6 @@ const withCreateItemMutation = (WrappedComponent: any) => (props: any) => {
       ${createMutationName}(${getMutationFields(fields)}) ${getModelFields(fields)}
     }
   `)
-  console.log(
-    createMutation.loc &&
-    createMutation.loc.source && 
-    createMutation.loc.source.body
-  )
   return (
     <WrappedComponent
       createMutation={createMutation}
