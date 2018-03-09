@@ -13,7 +13,6 @@ type Props = {
   inputClassName?: string,
   labelClassName?: string,
   label?: string,
-  maxRows?: number,
 } & FieldProps
 
 const renderTextField = (props: Props) => {
@@ -24,14 +23,13 @@ const renderTextField = (props: Props) => {
     labelClassName,
     input,
     label,
-    maxRows,
     meta: { touched, error },
     ...other
   } = props
   return (
     <FormControl className={className} error={touched && !!error}>
       {label &&
-        <InputLabel className={labelClassName} htmlFor={input.name}>
+        <InputLabel className={labelClassName} htmlFor={input.name} shrink>
           {label}
         </InputLabel>
       }

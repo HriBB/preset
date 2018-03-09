@@ -18,11 +18,11 @@ const Login = (props) => {
   const { classes, error, handleSubmit } = props
   return (
     <form className={classes.form} onSubmit={handleSubmit}>  
+      <Typography className={classes.title} variant={'headline'} component={'h2'}>
+        Preset CMS
+      </Typography>
       <Card className={classes.card}>
         <CardContent className={classes.content}>
-          <Typography className={classes.title} variant={'headline'} component={'h2'}>
-            Preset CMS
-          </Typography>
           <Field
             component={Text}
             className={classes.field}
@@ -55,12 +55,14 @@ const styles = (theme) => ({
     width: '100%',
     height: '100vh',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   card: {
     width: '300px',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 4,
+    paddingTop: theme.spacing.unit * 6
   },
   content: {
     padding: '0',

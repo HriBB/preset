@@ -37,6 +37,19 @@ const Create = (props) => {
   )
 }
 
+const getMutationVariables = ({ model }, data) => {
+  return model.fields.reduce((obj, { name, type, list }) => {
+    if (!data.hasOwnProperty(name)) {
+      obj[name] = null
+    } else if (type === 'File') {
+      obj[name] = list ? data[name] : data[name][0]
+    } else {
+      obj[name] = data[name]
+    }
+    return obj
+  }, {})
+}
+
 export default compose(
   getContext({ snackbar: PropTypes.object }),
   withApollo,
@@ -46,17 +59,19 @@ export default compose(
   withHandlers({
     createItem: (props: any) => (data: any) => {
       const { client, listQuery, createMutation, createMutationName } = props
+      const variables = getMutationVariables(props, data)
+      const update = (proxy, { data: result }) => {
+        const newItem = result[createMutationName]
+        if (hasQuery(client, listQuery)) {
+          const data = proxy.readQuery({ query: listQuery })
+          data.items.push(newItem)
+          proxy.writeQuery({ query: listQuery, data })
+        }
+      }
       return client.mutate({
         mutation: createMutation,
-        variables: data,
-        update: (proxy, { data: result }) => {
-          const newItem = result[createMutationName]
-          if (hasQuery(client, listQuery)) {
-            const data = proxy.readQuery({ query: listQuery })
-            data.items.push(newItem)
-            proxy.writeQuery({ query: listQuery, data })
-          }
-        },
+        variables,
+        update,
       })
       .then(({ data }) => {
         console.log(data[createMutationName])
@@ -65,6 +80,6 @@ export default compose(
       .catch(error => {
         console.log(error)
       })
-    }
+    },
   }),
 )(Create)

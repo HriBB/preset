@@ -23,7 +23,7 @@ export function getFormField(type: string) {
     case 'Select': return Select
     case 'Checkbox': return Checkbox
     case 'Switch': return Switch
-    case 'Upload': return Upload
+    case 'File': return Upload
     default: return Text
   }
 }

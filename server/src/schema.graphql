@@ -27,14 +27,16 @@ type Field {
   name: String!
   label: String!
   type: String!
+  list: Boolean!
   required: Boolean!
+  fields: [Field]
 }
 
 type File {
   id: ID!
-  url: String!
-  filename: String!
-  mimetype: String!
+  url: String! @field(label: "URL")
+  filename: String! @field(label: "File Name")
+  mimetype: String! @field(label: "Mime Type")
   author: User
 }
 
@@ -55,20 +57,23 @@ type Post implements Preset @model(label: "Posts") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
-  isPublished: Checkbox! @field(label: "Published")
+  image: File @field(label: "Cover Image")
+  published: Checkbox! @field(label: "Published")
 }
 
 type NewsPost implements Preset @model(label: "News") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
-  isPublished: Checkbox! @field(label: "Published")
+  image: File @field(label: "Cover Image")
+  published: Checkbox! @field(label: "Published")
 }
 
 type ParentTestimonial implements Preset @model(label: "Parent Testimonials") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
-  isPublished: Checkbox! @field(label: "Published")
+  image: File @field(label: "Cover Image")
+  published: Checkbox! @field(label: "Published")
 }
 

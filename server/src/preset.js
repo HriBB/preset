@@ -11,7 +11,7 @@ const GraphQLScalar = require('graphql-scalar-types').default
 
 const config = require('config')
 const { getUserId } = require('user')
-const { getModels } = require('utils')
+const { getModels, uploadFile } = require('utils')
 
 const schema = importSchema(path.resolve(__dirname, 'schema.graphql'))
 const ast = buildASTSchema(parse(schema))
@@ -59,30 +59,53 @@ const queries = Object.assign(
 )
 
 const mutationText = models.map((m, i) => `
-  create${m.name}(${m.fields.map(f => `${f.name}: ${f.type}${f.required?'!':''}`).join(', ')}): ${m.name}
-  update${m.name}(id: ID!, ${m.fields.map(f => `${f.name}: ${f.type}${f.required?'!':''}`).join(', ')}): ${m.name}
+  create${m.name}(${m.fields.map(f => `${f.name}: ${f.type === 'File' ? 'Upload' : f.type}${f.required?'!':''}`).join(', ')}): ${m.name}
+  update${m.name}(id: ID!, ${m.fields.map(f => `${f.name}: ${f.type === 'File' ? 'Upload' : f.type}${f.required?'!':''}`).join(', ')}): ${m.name}
   delete${m.name}(id: ID!): ${m.name}
 `).join('')
 
 const mutations = models.reduce((mutations, model) => {
-  const { name, createMutationName, updateMutationName, deleteMutationName } = model
-  mutations[createMutationName] = (parent, args, ctx, info) => {
+  const {
+    name,
+    createMutationName,
+    updateMutationName,
+    deleteMutationName,
+  } = model
+  mutations[createMutationName] = async (parent, { image, ...args }, ctx, info) => {
     const userId = getUserId(ctx)
+    const data = {
+      ...args,
+      author: { connect: { id: userId } },
+    }
+    if (image) {
+      const { filename, mimetype } = await uploadFile(image)
+      const file = await ctx.db.mutation.createFile(
+        { data: { filename, mimetype } },
+      )
+      Object.assign(data, {
+        image: { connect: { id: file.id } },
+      })
+    }
     return ctx.db.mutation[createMutationName](
-      {
-        data: {
-          ...args,
-          author: { connect: { id: userId } },
-        },
-      },
+      { data },
       info
     )
   }
-  mutations[updateMutationName] = async (parent, { id, ...data }, ctx, info) => {
+  mutations[updateMutationName] = async (parent, { id, image, ...args }, ctx, info) => {
     const userId = getUserId(ctx)
     const exists = await ctx.db.exists[name]({ id })
     if (!exists) {
       throw new Error(`${name} not found or you're not the owner!`)
+    }
+    const data = args
+    if (image) {
+      const { filename, mimetype } = await uploadFile(image)
+      const file = await ctx.db.mutation.createFile(
+        { data: { filename, mimetype } },
+      )
+      Object.assign(data, {
+        image: { connect: { id: file.id } },
+      })
     }
     return ctx.db.mutation[updateMutationName](
       {
@@ -131,5 +154,3 @@ module.exports = {
   directives,
   resolvers,
 }
-
-

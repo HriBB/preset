@@ -35,7 +35,7 @@ const renderTextField = (props: Props) => {
   return (
     <FormControl className={className} error={touched && !!error}>
       {label &&
-        <InputLabel className={labelClassName} htmlFor={input.name}>
+        <InputLabel className={labelClassName} htmlFor={input.name} shrink>
           {label}
         </InputLabel>
       }

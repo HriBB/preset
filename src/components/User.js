@@ -46,8 +46,8 @@ const User = (props) => {
             name={'image'}
             label={'Image'}
           />
-          <Button color={'primary'} type={'submit'} variant={'raised'}>
-            {'Submit'}
+          <Button size={'small'} color={'primary'} type={'submit'} variant={'raised'}>
+            {'Upload'}
           </Button>
         </div>
         {user.image &&
@@ -87,13 +87,11 @@ const styles = (theme) => ({
   uploadWrap: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing.unit * 2,
   },
   upload: {
     width: '300px',
-    margin: `0 ${theme.spacing.unit}px 0 0`,
-    padding: `${theme.spacing.unit}px 0`,
-    borderBottom: `1px solid ${theme.palette.grey[600]}`,
+    margin: `0 ${theme.spacing.unit}px ${theme.spacing.unit * 2}px 0`,
+    //padding: `${theme.spacing.unit}px 0`,
   },
   image: {
     maxWidth: '395px',

@@ -15,7 +15,7 @@ import CloseIcon from 'material-ui-icons/Close'
 import { getFormField } from 'components/form'
 
 const Form = (props) => {
-  const { classes, handleSubmit, model, title, button } = props
+  const { classes, handleSubmit, initialValues, model, title, button } = props
   return (
     <Fragment>
       <CardHeader
@@ -35,14 +35,20 @@ const Form = (props) => {
       <CardContent className={classes.content}>
         <form onSubmit={handleSubmit}>  
           {model.fields.map(({ name, label, type }) =>
-            <div key={name} width={300}>
+            <div key={name}>
               <Field
                 component={getFormField(type)}
                 className={classes.field}
-                inputClassName={classes.input}
                 name={name}
                 label={label}
               />
+              {name === 'image' && initialValues.image &&
+                <img
+                  className={classes.image}
+                  src={initialValues.image.url}
+                  alt={initialValues.image.filename}
+                />
+              }
             </div>
           )}
         </form>
@@ -71,8 +77,8 @@ const styles = (theme) => ({
     width: '100%',
     marginBottom: theme.spacing.unit * 2,
   },
-  input: {
-    //border: '1px solid green',
+  image: {
+    maxWidth: '395px',
   },
   actions: {
     justifyContent: 'flex-end',

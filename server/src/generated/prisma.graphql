@@ -15,7 +15,8 @@ type NewsPost implements Node {
   id: ID!
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image(where: FileWhereInput): File
   author(where: UserWhereInput): User!
 }
 
@@ -23,7 +24,8 @@ type ParentTestimonial implements Node {
   id: ID!
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image(where: FileWhereInput): File
   author(where: UserWhereInput): User!
 }
 
@@ -31,7 +33,8 @@ type Post implements Node {
   id: ID!
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image(where: FileWhereInput): File
   author(where: UserWhereInput): User!
 }
 
@@ -243,7 +246,8 @@ type NewsPostConnection {
 input NewsPostCreateInput {
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: FileCreateOneInput
   author: UserCreateOneInput!
 }
 
@@ -259,8 +263,8 @@ enum NewsPostOrderByInput {
   title_DESC
   text_ASC
   text_DESC
-  isPublished_ASC
-  isPublished_DESC
+  published_ASC
+  published_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -271,7 +275,7 @@ type NewsPostPreviousValues {
   id: ID!
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
 }
 
 type NewsPostSubscriptionPayload {
@@ -294,7 +298,8 @@ input NewsPostSubscriptionWhereInput {
 input NewsPostUpdateInput {
   title: String
   text: String
-  isPublished: Boolean
+  published: Boolean
+  image: FileUpdateOneInput
   author: UserUpdateOneInput
 }
 
@@ -343,8 +348,9 @@ input NewsPostWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  isPublished: Boolean
-  isPublished_not: Boolean
+  published: Boolean
+  published_not: Boolean
+  image: FileWhereInput
   author: UserWhereInput
 }
 
@@ -372,7 +378,8 @@ type ParentTestimonialConnection {
 input ParentTestimonialCreateInput {
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: FileCreateOneInput
   author: UserCreateOneInput!
 }
 
@@ -388,8 +395,8 @@ enum ParentTestimonialOrderByInput {
   title_DESC
   text_ASC
   text_DESC
-  isPublished_ASC
-  isPublished_DESC
+  published_ASC
+  published_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -400,7 +407,7 @@ type ParentTestimonialPreviousValues {
   id: ID!
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
 }
 
 type ParentTestimonialSubscriptionPayload {
@@ -423,7 +430,8 @@ input ParentTestimonialSubscriptionWhereInput {
 input ParentTestimonialUpdateInput {
   title: String
   text: String
-  isPublished: Boolean
+  published: Boolean
+  image: FileUpdateOneInput
   author: UserUpdateOneInput
 }
 
@@ -472,8 +480,9 @@ input ParentTestimonialWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  isPublished: Boolean
-  isPublished_not: Boolean
+  published: Boolean
+  published_not: Boolean
+  image: FileWhereInput
   author: UserWhereInput
 }
 
@@ -490,7 +499,8 @@ type PostConnection {
 input PostCreateInput {
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: FileCreateOneInput
   author: UserCreateOneWithoutPostsInput!
 }
 
@@ -502,7 +512,8 @@ input PostCreateManyWithoutAuthorInput {
 input PostCreateWithoutAuthorInput {
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: FileCreateOneInput
 }
 
 type PostEdge {
@@ -517,8 +528,8 @@ enum PostOrderByInput {
   title_DESC
   text_ASC
   text_DESC
-  isPublished_ASC
-  isPublished_DESC
+  published_ASC
+  published_DESC
   updatedAt_ASC
   updatedAt_DESC
   createdAt_ASC
@@ -529,7 +540,7 @@ type PostPreviousValues {
   id: ID!
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
 }
 
 type PostSubscriptionPayload {
@@ -552,7 +563,8 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   title: String
   text: String
-  isPublished: Boolean
+  published: Boolean
+  image: FileUpdateOneInput
   author: UserUpdateOneWithoutPostsInput
 }
 
@@ -568,7 +580,8 @@ input PostUpdateManyWithoutAuthorInput {
 input PostUpdateWithoutAuthorDataInput {
   title: String
   text: String
-  isPublished: Boolean
+  published: Boolean
+  image: FileUpdateOneInput
 }
 
 input PostUpdateWithoutAuthorInput {
@@ -627,8 +640,9 @@ input PostWhereInput {
   text_not_starts_with: String
   text_ends_with: String
   text_not_ends_with: String
-  isPublished: Boolean
-  isPublished_not: Boolean
+  published: Boolean
+  published_not: Boolean
+  image: FileWhereInput
   author: UserWhereInput
 }
 

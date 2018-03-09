@@ -3,7 +3,7 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const { storeUpload } = require('utils')
+const { uploadFile } = require('utils')
 
 const schema = ``
 
@@ -59,18 +59,18 @@ const mutations = {
   },
   async setProfilePicture(parent, { image }, ctx, info) {
     const userId = getUserId(ctx)
-    const { filename, mimetype } = await storeUpload(image)
+    const { filename, mimetype } = await uploadFile(image)
     const file = await ctx.db.mutation.createFile(
       {
         data: { filename, mimetype },
       },
-      info
     )
     await ctx.db.mutation.updateUser(
       {
         data: { image: { connect: { id: file.id } } },
         where: { id: userId },
       },
+      info
     )
     return file
   },

@@ -2,10 +2,9 @@
 
 const fs = require('fs')
 const path = require('path')
-const pluralize = require('pluralize')
-const { GraphQLNonNull } = require('graphql')
 const mkdirp = require('mkdirp')
 const shortid = require('shortid')
+const pluralize = require('pluralize')
 
 const config = require('config')
 
@@ -35,17 +34,6 @@ const getDirectiveArguments = (type, directiveName) => {
   ), {})
 }
 
-const getTypeFields = (type) => (
-  Object.values(type._fields)
-    .filter(field => findDirective(field, 'field'))
-    .map(field => ({
-      name: field.name,
-      type: (field.astNode.type.type || field.astNode.type).name.value,
-      required: field.astNode.type.kind === 'NonNullType',
-      ...getDirectiveArguments(field, 'field'),
-    }))
-)
-
 const getItemQueryName = ({ name }) => (
   name.charAt(0).toLowerCase() + name.slice(1)
 )
@@ -54,22 +42,37 @@ const getListQueryName = ({ name }) => (
   name.charAt(0).toLowerCase() + pluralize(name).slice(1)
 )
 
-exports.getModels = (ast) => (
-  ast._implementations.Preset
-    .filter(type => findDirective(type, 'model'))
-    .map(type => ({
-      name: type.name,
-      listQueryName: getListQueryName(type),
-      itemQueryName: getItemQueryName(type),
-      createMutationName: `create${type.name}`,
-      updateMutationName: `update${type.name}`,
-      deleteMutationName: `delete${type.name}`,
-      fields: getTypeFields(type),
-      ...getDirectiveArguments(type, 'model'),
-    }))
-)
+const getModelFields = (model) => {
+  return Object.values(model._fields)
+  .filter(field => findDirective(field, 'field'))
+  .map(field => {
+    return {
+      name: field.name,
+      type: (field.astNode.type.type || field.astNode.type).name.value,
+      list: field.astNode.type.kind === 'ListType',
+      required: field.astNode.type.kind === 'NonNullType',
+      fields: field.type._fields ? getModelFields(field.type) : [],
+      ...getDirectiveArguments(field, 'field'),
+    }
+  })
+}
 
-exports.storeUpload = async (image) => {
+const getModels = (ast) => {
+  return ast._implementations.Preset.map(model => {
+    return {
+      name: model.name,
+      listQueryName: getListQueryName(model),
+      itemQueryName: getItemQueryName(model),
+      createMutationName: `create${model.name}`,
+      updateMutationName: `update${model.name}`,
+      deleteMutationName: `delete${model.name}`,
+      fields: getModelFields(model),
+      ...getDirectiveArguments(model, 'model'),
+    }
+  })
+}
+
+const uploadFile = async (image) => {
   const { stream, filename: originalname, mimetype, encoding } = await image
   const filename = `${shortid.generate()}-${originalname.replace(' ', '-')}`
   const path = `${config.uploads.path}/${filename}`
@@ -82,3 +85,8 @@ exports.storeUpload = async (image) => {
 }
 
 mkdirp.sync(config.uploads.path)
+
+module.exports = {
+  getModels,
+  uploadFile,
+}

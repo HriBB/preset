@@ -18,7 +18,8 @@ type Post {
   id: ID! @unique
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: File
   author: User!
 }
 
@@ -26,7 +27,8 @@ type NewsPost {
   id: ID! @unique
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: File
   author: User!
 }
 
@@ -34,6 +36,7 @@ type ParentTestimonial {
   id: ID! @unique
   title: String!
   text: String!
-  isPublished: Boolean!
+  published: Boolean!
+  image: File
   author: User!
 }

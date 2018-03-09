@@ -31,7 +31,7 @@ const renderTextField = (props: Props) => {
   return (
     <FormControl className={className} error={touched && !!error}>
       {label &&
-        <InputLabel className={labelClassName} htmlFor={input.name}>
+        <InputLabel className={labelClassName} htmlFor={input.name} shrink>
           {label}
         </InputLabel>
       }
@@ -41,8 +41,8 @@ const renderTextField = (props: Props) => {
         id={input.name}
         className={inputClassName}
         multiline
-        rows={10}
-        rowsMax={20}
+        rows={6}
+        rowsMax={18}
       />
       {touched && error &&
         <FormHelperText className={errorClassName}>{error}</FormHelperText>

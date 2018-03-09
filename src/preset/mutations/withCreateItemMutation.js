@@ -3,17 +3,20 @@
 import React from 'react'
 import gql from 'graphql-tag'
 
-import { getMutationArgs, getMutationFields } from 'preset/utils'
+import { getMutationArgs, getMutationFields, getModelFields } from 'preset/utils'
 
 const withCreateItemMutation = (WrappedComponent: any) => (props: any) => {
   const { model: { fields, createMutationName } } = props
   const createMutation = gql(`
     mutation ${createMutationName}(${getMutationArgs(fields)}) {
-      ${createMutationName}(${getMutationFields(fields)}) {
-        id ${fields.map(f => f.name).join(' ')}
-      }
+      ${createMutationName}(${getMutationFields(fields)}) ${getModelFields(fields)}
     }
   `)
+  console.log(
+    createMutation.loc &&
+    createMutation.loc.source && 
+    createMutation.loc.source.body
+  )
   return (
     <WrappedComponent
       createMutation={createMutation}

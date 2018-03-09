@@ -25,7 +25,15 @@ const query = gql`
         name
         label
         type
+        list
         required
+        fields {
+          name
+          label
+          type
+          list
+          required
+        }
       }
     }
   }

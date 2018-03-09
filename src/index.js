@@ -23,6 +23,8 @@ const {
   theme,
 } = getContext()
 
+const root = document.getElementById('root')
+
 render(
   <ReduxProvider store={store}>
     <ApolloProvider client={client}>
@@ -35,5 +37,5 @@ render(
       </JssProvider>
     </ApolloProvider>
   </ReduxProvider>,
-  document.getElementById('root'),
+  root,
 )
