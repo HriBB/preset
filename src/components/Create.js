@@ -5,11 +5,17 @@ import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { withApollo } from 'react-apollo'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
+
+import IconButton from 'material-ui/IconButton'
+import CloseIcon from 'material-ui-icons/Close'
 
 import { hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withCreateItemMutation } from 'preset/mutations'
 
+import Header from 'components/Header'
+import Content from 'components/Content'
 import Form from 'components/Form'
 
 const Create = props => {
@@ -25,14 +31,20 @@ const Create = props => {
 
   return (
     <Fragment>
-      <Form
-        button={`Create`}
-        title={`Create ${model.label}`}
-        form={`Create${model.name}`}
-        initialValues={initialValues}
-        onSubmit={createItem}
-        model={model}
-      />
+      <Header title={`Create ${model.single}`}>
+        <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
+          <CloseIcon />
+        </IconButton>
+      </Header>
+      <Content>
+        <Form
+          button={`Create`}
+          form={`Create${model.name}`}
+          initialValues={initialValues}
+          onSubmit={createItem}
+          model={model}
+        />
+      </Content>
     </Fragment>
   )
 }

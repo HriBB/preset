@@ -3,6 +3,7 @@
 const { resolve } = require('path')
 
 module.exports = {
+  schema: resolve(__dirname, 'schema.json'),
   server: {
     port: 4000,
     endpoint: '/',

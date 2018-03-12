@@ -40,3 +40,16 @@ type ParentTestimonial {
   image: File
   author: User!
 }
+
+type Homepage {
+  id: ID! @unique
+  hero_title: String!
+  hero_subtitle: String!
+  hero_button_text: String!
+  hero_button_url: String!
+  intro_title: String!
+  intro_lead: String!
+  intro_item_1: String!
+  intro_item_2: String!
+  intro_item_3: String!
+}

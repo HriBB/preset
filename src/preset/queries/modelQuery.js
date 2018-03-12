@@ -7,6 +7,7 @@ const modelQuery = gql`
     model: model(name: $name) {
       name
       label
+      single
       itemQueryName
       listQueryName
       createMutationName

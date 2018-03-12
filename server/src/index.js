@@ -3,7 +3,7 @@
 require('app-module-path').addPath(__dirname)
 
 const express = require('express')
-const { resolve } = require('path')
+const mkdirp = require('mkdirp')
 const { GraphQLServer } = require('graphql-yoga')
 const { Prisma } = require('prisma-binding')
 
@@ -23,7 +23,8 @@ const server = new GraphQLServer({
   }),
 })
 
-const uploads = resolve(__dirname, '..', 'uploads')
-server.express.use('/uploads', express.static(uploads))
+mkdirp.sync(config.uploads.path)
+
+server.express.use('/uploads', express.static(config.uploads.path))
 
 server.start(config.server, () => console.log('Server is running on http://localhost:4000'))

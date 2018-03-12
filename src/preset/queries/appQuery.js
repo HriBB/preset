@@ -17,6 +17,7 @@ const appQuery = gql`
     models: models {
       name
       label
+      single
     }
   }
 `

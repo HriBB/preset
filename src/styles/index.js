@@ -17,7 +17,7 @@ const theme = createMuiTheme({
   },
   drawer: {
     breakpoint: 'md',
-    width: 300,
+    width: 250,
   },
   tree: {
     itemHeight: 48,

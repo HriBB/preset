@@ -15,6 +15,7 @@ interface Node {
 type Model {
   name: String!
   label: String!
+  single: String!
   itemQueryName: String!
   listQueryName: String!
   createMutationName: String!
@@ -53,7 +54,7 @@ type File {
   author: User
 }
 
-type Post implements Node @model(label: "Posts") {
+type Post implements Node @model(label: "Posts", single: "Post") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
@@ -61,7 +62,7 @@ type Post implements Node @model(label: "Posts") {
   published: Checkbox! @field(label: "Published")
 }
 
-type NewsPost implements Node @model(label: "News") {
+type NewsPost implements Node @model(label: "News", single: "News") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
@@ -69,7 +70,7 @@ type NewsPost implements Node @model(label: "News") {
   published: Checkbox! @field(label: "Published")
 }
 
-type ParentTestimonial implements Node @model(label: "Parent Testimonials") {
+type ParentTestimonial implements Node @model(label: "Parent Testimonials", single: "Parent Testimonial") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")
@@ -77,3 +78,18 @@ type ParentTestimonial implements Node @model(label: "Parent Testimonials") {
   published: Checkbox! @field(label: "Published")
 }
 
+type Homepage implements Node @model(label: "Homepage", single: "Homepage") {
+  id: ID!
+  hero_title: Text! @field(label: "Hero Title")
+  hero_subtitle: Text! @field(label: "Hero Subtitle")
+  hero_button_text: Text! @field(label: "Hero Button Text")
+  hero_button_url: Text! @field(label: "Hero Button URL")
+  intro_title: Text! @field(label: "Intro Title")
+  intro_lead: Textarea! @field(label: "Intro Lead")
+  intro_item_1_title: Text! @field(label: "Intro Item 1 Title")
+  intro_item_1_text: Textarea! @field(label: "Intro Item 1 Text")
+  intro_item_2_title: Text! @field(label: "Intro Item 2 Title")
+  intro_item_2_text: Textarea! @field(label: "Intro Item 2 Text")
+  intro_item_3_title: Text! @field(label: "Intro Item 3 Title")
+  intro_item_3_text: Textarea! @field(label: "Intro Item 3 Text")
+}
