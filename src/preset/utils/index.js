@@ -9,9 +9,12 @@ const getNameField = ({ fields }: any) => {
 }
 
 const getModelFields = (fields: any) =>
-  `{ id ${fields.map(({ name, fields }) =>
-    fields && fields.length ? `${name} ${getModelFields(fields)}` : name
-  ).join(' ')} }`
+  `{ id ${fields
+    .map(
+      ({ name, fields }) =>
+        fields && fields.length ? `${name} ${getModelFields(fields)}` : name
+    )
+    .join(' ')} }`
 
 const getModelInitialValues = (model: any) =>
   model.fields.reduce((values, field) => {
@@ -24,11 +27,14 @@ const getModelInitialValues = (model: any) =>
   }, {})
 
 const getMutationArgs = (fields: any) =>
-  fields.map(f =>
-    `$${f.name}: ${f.type === 'File' ? 'Upload' : f.type}${
-      f.required ? '!' : ''
-    }`
-  ).join(', ')
+  fields
+    .map(
+      f =>
+        `$${f.name}: ${f.type === 'File' ? 'Upload' : f.type}${
+          f.required ? '!' : ''
+        }`
+    )
+    .join(', ')
 
 const getMutationFields = (fields: any) =>
   fields.map(f => `${f.name}: $${f.name}`).join(', ')
@@ -41,7 +47,9 @@ const getCreateVariables = ({ model }: any, data: any) =>
     if (!data.hasOwnProperty(name)) {
       obj[name] = null
     } else if (type === 'File') {
-      obj[name] = list ? data[name] : data[name] && data[name].length ? data[name][0] : null
+      obj[name] = list
+        ? data[name]
+        : data[name] && data[name].length ? data[name][0] : null
     } else {
       obj[name] = data[name]
     }
@@ -49,11 +57,14 @@ const getCreateVariables = ({ model }: any, data: any) =>
   }, {})
 
 const getUpdateVariables = (props: any, data: any) => ({
-  id: data.id, 
+  id: data.id,
   ...getCreateVariables(props, data),
 })
 
-const getCreateUpdateHandler = (props: any) => (proxy: any, { data: result }: any) => {
+const getCreateUpdateHandler = (props: any) => (
+  proxy: any,
+  { data: result }: any
+) => {
   const { client, listQuery, createMutationName } = props
   const newItem = result[createMutationName]
   if (hasQuery(client, listQuery)) {
@@ -63,7 +74,10 @@ const getCreateUpdateHandler = (props: any) => (proxy: any, { data: result }: an
   }
 }
 
-const getUpdateUpdateHandler = (id: any, props: any) => (proxy: any, { data: result }: any) => {
+const getUpdateUpdateHandler = (id: any, props: any) => (
+  proxy: any,
+  { data: result }: any
+) => {
   const { client, listQuery, updateMutationName } = props
   const newItem = result[updateMutationName]
   if (hasQuery(client, listQuery)) {

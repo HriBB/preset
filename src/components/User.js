@@ -21,7 +21,7 @@ import { Upload } from 'components/form'
 import { appQuery } from 'preset/queries'
 import { setProfilePictureMutation } from 'preset/mutations'
 
-import { Body, Header, Content }  from 'components/ux'
+import { Body, Header, Content } from 'components/ux'
 
 const User = props => {
   const { classes, error, handleSubmit, user } = props
@@ -120,7 +120,7 @@ export default compose(
   withApollo,
   graphql(setProfilePictureMutation, {
     props: ({ props, mutate }) => ({
-      setProfilePicture: (image) =>
+      setProfilePicture: image =>
         mutate({
           variables: { image },
           update: updateProfilePicture,
@@ -130,12 +130,12 @@ export default compose(
   withHandlers({
     onSubmit: ({ snackbar, setProfilePicture }) => ({ image }) =>
       setProfilePicture(image[0])
-      .then(({ data: { setProfilePicture } }) => {
-        snackbar.show(<Trans>Done</Trans>)
-      })
-      .catch(error => {
-        throw new SubmissionError({ _error: error.message })
-      }),
+        .then(({ data: { setProfilePicture } }) => {
+          snackbar.show(<Trans>Done</Trans>)
+        })
+        .catch(error => {
+          throw new SubmissionError({ _error: error.message })
+        }),
   }),
   reduxForm({
     form: 'user',

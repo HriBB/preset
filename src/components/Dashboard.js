@@ -5,11 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from 'material-ui/List'
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import InboxIcon from 'material-ui-icons/Inbox'
 import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'

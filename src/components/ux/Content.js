@@ -9,9 +9,7 @@ function Content(props) {
   const { classes, children } = props
   return (
     <div className={classes.root}>
-      <Card className={classes.card}>
-        {children}
-      </Card>
+      <Card className={classes.card}>{children}</Card>
     </div>
   )
 }

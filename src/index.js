@@ -36,15 +36,13 @@ if (root) {
   render(
     <ReduxProvider store={store}>
       <ApolloProvider client={client}>
-        
-          <JssProvider {...jssProps}>
-            <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-              <Router>
-                <Route component={App} />
-              </Router>
-            </MuiThemeProvider>
-          </JssProvider>
-        
+        <JssProvider {...jssProps}>
+          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+            <Router>
+              <Route component={App} />
+            </Router>
+          </MuiThemeProvider>
+        </JssProvider>
       </ApolloProvider>
     </ReduxProvider>,
     root

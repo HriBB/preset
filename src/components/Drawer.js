@@ -11,11 +11,7 @@ import { withStyles } from 'material-ui/styles'
 import Toolbar from 'material-ui/Toolbar'
 import MuiDrawer from 'material-ui/Drawer'
 import Divider from 'material-ui/Divider'
-import List, {
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from 'material-ui/List'
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import InboxIcon from 'material-ui-icons/Inbox'
 
 const Drawer = props => {
@@ -36,7 +32,7 @@ const Drawer = props => {
         </Link>
       </Toolbar>
       <List className={classes.list} component={'nav'}>
-        {models.map(model =>
+        {models.map(model => (
           <ListItem
             className={classes.item}
             key={model.name}
@@ -50,7 +46,7 @@ const Drawer = props => {
             </ListItemIcon>
             <ListItemText primary={<Trans id={model.label} />} />
           </ListItem>
-        )}
+        ))}
       </List>
       <Divider />
       <List className={classes.list} component={'nav'}>
@@ -104,5 +100,5 @@ const styles = theme => ({
 export default compose(
   getContext({ drawer: PropTypes.object }),
   withWidth({ withTheme: true }),
-  withStyles(styles),
+  withStyles(styles)
 )(Drawer)

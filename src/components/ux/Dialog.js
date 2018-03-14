@@ -19,13 +19,9 @@ const Dialog = ({ classes, open, onClose, title, content }) => {
       aria-labelledby={'dialog-title'}
       aria-describedby={'dialog-content'}
     >
-      <DialogTitle id={'dialog-title'}>
-        {title || ''}
-      </DialogTitle>
+      <DialogTitle id={'dialog-title'}>{title || ''}</DialogTitle>
       <DialogContent className={classes.content}>
-        <DialogContentText id={'dialog-content'}>
-          {content}
-        </DialogContentText>
+        <DialogContentText id={'dialog-content'}>{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color={'primary'} autoFocus>

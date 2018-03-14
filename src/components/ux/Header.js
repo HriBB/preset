@@ -12,7 +12,7 @@ import Toolbar from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 
-const Header = (props) => {
+const Header = props => {
   const { children, classes, drawer, title, titleLink } = props
   return (
     <AppBar className={classes.appbar} position={'sticky'} color={'primary'}>
@@ -62,5 +62,5 @@ const styles = theme => ({
 
 export default compose(
   getContext({ drawer: PropTypes.object }),
-  withStyles(styles),
+  withStyles(styles)
 )(Header)

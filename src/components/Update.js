@@ -22,20 +22,34 @@ const Update = props => {
   const { id } = match.params
   return (
     <Fragment>
-      <Header title={
-        <Fragment>
-          <Trans>Edit</Trans> <Trans id={model.single} />
-        </Fragment>
-      }>
+      <Header
+        title={
+          <Fragment>
+            <Trans>Edit</Trans> <Trans id={model.single} />
+          </Fragment>
+        }
+      >
         <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
       </Header>
       <Query query={itemQuery} variables={{ id }}>
         {({ error, loading, data }) => {
-          if (error) return <Error>{error.message}<br />{error.stack}</Error>
+          if (error)
+            return (
+              <Error>
+                {error.message}
+                <br />
+                {error.stack}
+              </Error>
+            )
           if (loading) return <Spinner />
-          if (!data.item) return <Error><Trans>Item not found</Trans></Error>
+          if (!data.item)
+            return (
+              <Error>
+                <Trans>Item not found</Trans>
+              </Error>
+            )
           return (
             <Content>
               <Form
@@ -65,16 +79,17 @@ export default compose(
   withUpdateItemMutation,
   withHandlers({
     updateItem: (props: any) => (data: any) =>
-      props.client.mutate({
-        mutation: props.updateMutation,
-        variables: getUpdateVariables(props, data),
-        update: getUpdateUpdateHandler(data.id, props),
-      })
-      .then(({ data }) => {
-        props.snackbar.show(<Trans>Updated</Trans>)
-      })
-      .catch(error => {
-        props.dialog.show(<Trans>Error</Trans>, error)
-      }),
-  }),
+      props.client
+        .mutate({
+          mutation: props.updateMutation,
+          variables: getUpdateVariables(props, data),
+          update: getUpdateUpdateHandler(data.id, props),
+        })
+        .then(({ data }) => {
+          props.snackbar.show(<Trans>Updated</Trans>)
+        })
+        .catch(error => {
+          props.dialog.show(<Trans>Error</Trans>, error)
+        }),
+  })
 )(Update)

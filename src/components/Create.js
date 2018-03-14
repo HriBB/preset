@@ -27,11 +27,13 @@ const Create = props => {
   const initialValues = getModelInitialValues(model)
   return (
     <Fragment>
-      <Header title={
-        <Fragment>
-          <Trans>Create</Trans> <Trans id={model.single} />
-        </Fragment>
-      }>
+      <Header
+        title={
+          <Fragment>
+            <Trans>Create</Trans> <Trans id={model.single} />
+          </Fragment>
+        }
+      >
         <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
@@ -60,17 +62,20 @@ export default compose(
   withCreateItemMutation,
   withHandlers({
     createItem: (props: any) => (data: any) =>
-      props.client.mutate({
-        mutation: props.createMutation,
-        variables: getCreateVariables(props, data),
-        update: getCreateUpdateHandler(props),
-      })
-      .then(({ data }) => {
-        props.snackbar.show(<Trans>{props.model.single} created</Trans>)
-        props.history.push(`/${props.model.name}/${data[props.createMutationName].id}`)
-      })
-      .catch(error => {
-        props.dialog.show('Error', error)
-      }),
-  }),
+      props.client
+        .mutate({
+          mutation: props.createMutation,
+          variables: getCreateVariables(props, data),
+          update: getCreateUpdateHandler(props),
+        })
+        .then(({ data }) => {
+          props.snackbar.show(<Trans>{props.model.single} created</Trans>)
+          props.history.push(
+            `/${props.model.name}/${data[props.createMutationName].id}`
+          )
+        })
+        .catch(error => {
+          props.dialog.show('Error', error)
+        }),
+  })
 )(Create)

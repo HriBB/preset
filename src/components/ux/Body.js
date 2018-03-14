@@ -5,9 +5,7 @@ import React from 'react'
 import { withStyles } from 'material-ui/styles'
 
 const Body = ({ classes, children }: any) => (
-  <div className={classes.root}>
-    {children}
-  </div>
+  <div className={classes.root}>{children}</div>
 )
 
 const styles = theme => ({

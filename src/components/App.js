@@ -3,7 +3,12 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
-import { compose, withHandlers, withStateHandlers, withContext } from 'recompose'
+import {
+  compose,
+  withHandlers,
+  withStateHandlers,
+  withContext,
+} from 'recompose'
 import { Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
 import { withStyles } from 'material-ui/styles'
@@ -34,10 +39,7 @@ const App = props => {
           const { user, models } = data
           return (
             <Fragment>
-              <Drawer
-                open={drawer}
-                models={models}
-              />
+              <Drawer open={drawer} models={models} />
               <Snackbar
                 open={!!props.snackbar}
                 onClose={props.hideSnackbar}
@@ -121,7 +123,7 @@ const EnhancedApp = compose(
       toggleDrawer: ({ drawer }) => () => ({ drawer: !drawer }),
       openDrawer: () => () => ({ drawer: true }),
       closeDrawer: () => () => ({ drawer: false }),
-      showSnackbar: () => (text) => ({ snackbar: text }),
+      showSnackbar: () => text => ({ snackbar: text }),
       hideSnackbar: () => () => ({ snackbar: false }),
       showDialog: () => (title, content) => ({
         dialog: { open: true, title, content },
@@ -137,30 +139,33 @@ const EnhancedApp = compose(
       client.resetStore()
     },
   }),
-  withContext({
-    user: PropTypes.object,
-    drawer: PropTypes.object,
-    snackbar: PropTypes.object,
-    dialog: PropTypes.object,
-  }, props => ({
-    user: {
-      logout: props.logout,
+  withContext(
+    {
+      user: PropTypes.object,
+      drawer: PropTypes.object,
+      snackbar: PropTypes.object,
+      dialog: PropTypes.object,
     },
-    drawer: {
-      toggle: props.toggleDrawer,
-      open: props.openDrawer,
-      close: props.closeDrawer,
-    },
-    snackbar: {
-      text: props.snackbar,
-      show: props.showSnackbar,
-      hide: props.hideSnackbar,
-    },
-    dialog: {
-      show: props.showDialog,
-      hide: props.hideDialog,
-    },
-  }))
+    props => ({
+      user: {
+        logout: props.logout,
+      },
+      drawer: {
+        toggle: props.toggleDrawer,
+        open: props.openDrawer,
+        close: props.closeDrawer,
+      },
+      snackbar: {
+        text: props.snackbar,
+        show: props.showSnackbar,
+        hide: props.hideSnackbar,
+      },
+      dialog: {
+        show: props.showDialog,
+        hide: props.hideDialog,
+      },
+    })
+  )
 )(App)
 
 export default hot(module)(EnhancedApp)

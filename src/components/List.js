@@ -32,7 +32,11 @@ const List = (props: any) => {
   return (
     <Fragment>
       <Header title={<Trans id={model.label} />}>
-        <IconButton component={Link} to={`/${model.name}/create`} color={'inherit'}>
+        <IconButton
+          component={Link}
+          to={`/${model.name}/create`}
+          color={'inherit'}
+        >
           <AddIcon />
         </IconButton>
         <IconButton component={Link} to={`/`} color={'inherit'}>
@@ -41,42 +45,44 @@ const List = (props: any) => {
       </Header>
       <Content>
         <Query query={listQuery}>
-          {({ error, loading, data }) => 
+          {({ error, loading, data }) => (
             <Fragment>
               {error && <Error>{error.message}</Error>}
               {!error && loading && <Spinner />}
-              {!error && !loading && data &&
-                <MuiList className={classes.list} component={'ul'}>
-                  {data.items.map(item => (
-                    <ListItem
-                      key={item.id}
-                      button
-                      component={Link}
-                      to={`/${model.name}/${item.id}`}
-                    >
-                      <Avatar
-                        className={classes.avatar}
-                        alt={item[getNameField(model)]}
-                        src={item.image ? item.image.url : null}
+              {!error &&
+                !loading &&
+                data && (
+                  <MuiList className={classes.list} component={'ul'}>
+                    {data.items.map(item => (
+                      <ListItem
+                        key={item.id}
+                        button
+                        component={Link}
+                        to={`/${model.name}/${item.id}`}
                       >
-                        {!item.image && <ImageIcon />}
-                      </Avatar>
-                      <ListItemText primary={item[getNameField(model)]} />
-                      <ListItemSecondaryAction>
-                        <IconButton
-                          aria-label={<Trans>Delete</Trans>}
-                          data-id={item.id}
-                          onClick={props.deleteItem}
+                        <Avatar
+                          className={classes.avatar}
+                          alt={item[getNameField(model)]}
+                          src={item.image ? item.image.url : null}
                         >
-                          <DeleteIcon />
-                        </IconButton>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  ))}
-                </MuiList>
-              }
+                          {!item.image && <ImageIcon />}
+                        </Avatar>
+                        <ListItemText primary={item[getNameField(model)]} />
+                        <ListItemSecondaryAction>
+                          <IconButton
+                            aria-label={<Trans>Delete</Trans>}
+                            data-id={item.id}
+                            onClick={props.deleteItem}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        </ListItemSecondaryAction>
+                      </ListItem>
+                    ))}
+                  </MuiList>
+                )}
             </Fragment>
-          }
+          )}
         </Query>
       </Content>
     </Fragment>
