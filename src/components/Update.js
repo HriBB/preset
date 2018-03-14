@@ -31,26 +31,24 @@ const Update = props => {
           <CloseIcon />
         </IconButton>
       </Header>
-      <Content>
-        <Query query={itemQuery} variables={{ id }}>
-          {({ error, loading, data }) => {
-            if (error) return <Error>{error.message}<br />{error.stack}</Error>
-            if (loading) return <Spinner />
-            if (!data.item) return <Error><Trans>Item {id} not found!</Trans></Error>
-            return (
-              <Fragment>
-                <Form
-                  button={<Trans>Save</Trans>}
-                  form={`Edit${model.name}`}
-                  initialValues={data.item}
-                  onSubmit={updateItem}
-                  model={model}
-                />
-              </Fragment>
-            )
-          }}
-        </Query>
-      </Content>
+      <Query query={itemQuery} variables={{ id }}>
+        {({ error, loading, data }) => {
+          if (error) return <Error>{error.message}<br />{error.stack}</Error>
+          if (loading) return <Spinner />
+          if (!data.item) return <Error><Trans>Item {id} not found!</Trans></Error>
+          return (
+            <Content>
+              <Form
+                button={<Trans>Save</Trans>}
+                form={`Edit${model.name}`}
+                initialValues={data.item}
+                onSubmit={updateItem}
+                model={model}
+              />
+            </Content>
+          )
+        }}
+      </Query>
     </Fragment>
   )
 }

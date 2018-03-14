@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
@@ -16,12 +16,12 @@ import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import UserIcon from 'material-ui-icons/Person'
 
-import { Header, Content } from 'components/ux'
+import { Body, Header, Content } from 'components/ux'
 
 const Dashboard = (props: any) => {
   const { classes, models, user } = props
   return (
-    <Fragment>
+    <Body>
       <Header title={<Trans>Dashboard</Trans>}>
         <IconButton component={Link} to={`/user`} color={'inherit'}>
           <UserIcon />
@@ -49,7 +49,7 @@ const Dashboard = (props: any) => {
           ))}
         </List>
       </Content>
-    </Fragment>
+    </Body>
   )
 }
 

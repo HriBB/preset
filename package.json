@@ -7,6 +7,7 @@
     "@lingui/babel-preset-react": "^2.0.5",
     "enzyme": "^3.3.0",
     "flow-bin": "0.67.1",
+    "nodemon": "^1.17.2",
     "prettier-eslint-cli": "4.7.1"
   },
   "licence": "",
@@ -88,8 +89,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "prettier": "prettier-eslint --write \"src/**/*.+(js|jsx)\"",
     "prettier-dry-run": "prettier-eslint \"src/**/*.+(js|jsx)\" -l debug",
-    "lingui-extract": "NODE_ENV=production lingui extract",
-    "lingui-compile": "NODE_ENV=production lingui compile"
+    "lingui": "lingui",
+    "lingui-watch": "nodemon -e json -w src/locale -x \"yarn lingui compile\""
   },
   "jest": {
     "collectCoverageFrom": [
@@ -143,6 +144,11 @@
       "@babel/plugin-proposal-object-rest-spread"
     ],
     "env": {
+      "development": {
+        "plugins": [
+          "react-hot-loader/babel"
+        ]
+      },
       "test": {
         "plugins": [
           "@babel/plugin-transform-modules-commonjs"

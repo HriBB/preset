@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
@@ -12,6 +12,7 @@ import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
 import { CardHeader, CardContent } from 'material-ui/Card'
 import IconButton from 'material-ui/IconButton'
+import red from 'material-ui/colors/red'
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import CloseIcon from 'material-ui-icons/Close'
@@ -20,13 +21,13 @@ import { Upload } from 'components/form'
 import { appQuery } from 'preset/queries'
 import { setProfilePictureMutation } from 'preset/mutations'
 
-import { Header, Content }  from 'components/ux'
+import { Body, Header, Content }  from 'components/ux'
 
 const User = props => {
   const { classes, error, handleSubmit, user } = props
 
   return (
-    <Fragment>
+    <Body>
       <Header title={<Trans>User</Trans>}>
         <IconButton component={Link} to={`/`} color={'inherit'}>
           <CloseIcon />
@@ -42,6 +43,7 @@ const User = props => {
               </Avatar>
             }
             title={user.username}
+            subheader={user.email}
           />
           <CardContent className={classes.content}>
             <div className={classes.uploadWrap}>
@@ -73,7 +75,7 @@ const User = props => {
           </CardContent>
         </form>
       </Content>
-    </Fragment>
+    </Body>
   )
 }
 
@@ -86,6 +88,7 @@ const styles = theme => ({
     paddingRight: theme.spacing.unit * 2 + 4,
   },
   avatar: {
+    backgroundColor: red[500],
   },
   content: {},
   uploadWrap: {
@@ -93,7 +96,6 @@ const styles = theme => ({
     alignItems: 'center',
   },
   upload: {
-    //width: '250px',
     margin: `0 ${theme.spacing.unit}px ${theme.spacing.unit * 2}px 0`,
   },
   image: {

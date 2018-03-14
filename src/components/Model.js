@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import { Trans } from '@lingui/react'
@@ -9,7 +9,7 @@ import List from 'components/List'
 import Create from 'components/Create'
 import Update from 'components/Update'
 
-import { Header, Error, Spinner } from 'components/ux'
+import { Body, Header, Error, Spinner } from 'components/ux'
 import { modelQuery } from 'preset/queries'
 
 const Model = (props: any) => {
@@ -19,45 +19,49 @@ const Model = (props: any) => {
       {({ error, loading, data }) => {
         if (error) {
           return (
-            <Fragment>
+            <Body>
               <Header title={<Trans>Error</Trans>} />
               <Error>{error.message}</Error>
-            </Fragment>
+            </Body>
           )
         }
         if (loading) {
           return (
-            <Fragment>
+            <Body>
               <Header />
               <Spinner />
-            </Fragment>
+            </Body>
           )
         }
         if (!data.model) {
           return (
-            <Fragment>
+            <Body>
               <Header title={<Trans>Error</Trans>} />
-              <Trans>Model {match.params.model} not found!</Trans>
-            </Fragment>
+              <Error>
+                <Trans>Model {match.params.model} not found!</Trans>
+              </Error>
+            </Body>
           )
         }
         const { model } = data
         return (
-          <Switch>
-            <Route
-              exact
-              path={`/${model.name}`}
-              render={matchProps => <List {...matchProps} model={model} />}
-            />
-            <Route
-              path={`/${model.name}/create`}
-              render={matchProps => <Create {...matchProps} model={model} />}
-            />
-            <Route
-              path={`/${model.name}/:id`}
-              render={matchProps => <Update {...matchProps} model={model} />}
-            />
-          </Switch>
+          <Body>
+            <Switch>
+              <Route
+                exact
+                path={`/${model.name}`}
+                render={matchProps => <List {...matchProps} model={model} />}
+              />
+              <Route
+                path={`/${model.name}/create`}
+                render={matchProps => <Create {...matchProps} model={model} />}
+              />
+              <Route
+                path={`/${model.name}/:id`}
+                render={matchProps => <Update {...matchProps} model={model} />}
+              />
+            </Switch>
+          </Body>
         )
       }}
     </Query>

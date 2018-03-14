@@ -1,9 +1,9 @@
 {
-  "Edit {0}": {
+  "Edit": {
     "origin": [
       [
         "src/components/Update.js",
-        25
+        27
       ]
     ]
   },
@@ -11,7 +11,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        48
+        39
       ]
     ]
   },
@@ -19,7 +19,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        55
+        43
       ]
     ]
   },
@@ -27,7 +27,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        87
+        76
       ]
     ]
   },
@@ -35,7 +35,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        90
+        79
       ]
     ]
   }

@@ -4,20 +4,11 @@
     "origin": [
       [
         "src/components/App.js",
-        49
+        46
       ],
       [
         "src/components/User.js",
-        137
-      ]
-    ]
-  },
-  "Create {0}": {
-    "translation": "Dodaj {0}",
-    "origin": [
-      [
-        "src/components/Create.js",
-        30
+        132
       ]
     ]
   },
@@ -26,7 +17,11 @@
     "origin": [
       [
         "src/components/Create.js",
-        37
+        32
+      ],
+      [
+        "src/components/Create.js",
+        41
       ]
     ]
   },
@@ -35,7 +30,7 @@
     "origin": [
       [
         "src/components/Create.js",
-        65
+        69
       ]
     ]
   },
@@ -113,8 +108,16 @@
         135
       ],
       [
+        "src/components/Model.js",
+        23
+      ],
+      [
+        "src/components/Model.js",
+        39
+      ],
+      [
         "src/components/Update.js",
-        90
+        79
       ]
     ]
   },
@@ -150,16 +153,16 @@
     "origin": [
       [
         "src/components/Model.js",
-        29
+        40
       ]
     ]
   },
-  "Edit {0}": {
-    "translation": "Uredi {0}",
+  "Edit": {
+    "translation": "Uredi",
     "origin": [
       [
         "src/components/Update.js",
-        25
+        27
       ]
     ]
   },
@@ -168,7 +171,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        48
+        39
       ]
     ]
   },
@@ -177,7 +180,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        55
+        43
       ]
     ]
   },
@@ -186,7 +189,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        87
+        76
       ]
     ]
   },
@@ -195,7 +198,7 @@
     "origin": [
       [
         "src/components/User.js",
-        57
+        52
       ]
     ]
   },
@@ -204,9 +207,29 @@
     "origin": [
       [
         "src/components/User.js",
-        65
+        60
       ]
     ]
+  },
+  "Create {0}": {
+    "translation": "Dodaj {0}",
+    "origin": [
+      [
+        "src/components/Create.js",
+        30
+      ]
+    ],
+    "obsolete": true
+  },
+  "Edit {0}": {
+    "translation": "Uredi {0}",
+    "origin": [
+      [
+        "src/components/Update.js",
+        25
+      ]
+    ],
+    "obsolete": true
   },
   "Posts": {
     "translation": "Prispevki",

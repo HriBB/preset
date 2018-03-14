@@ -3,22 +3,19 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
-import {
-  compose,
-  withHandlers,
-  withStateHandlers,
-  withContext,
-} from 'recompose'
+import { compose, withHandlers, withStateHandlers, withContext } from 'recompose'
 import { Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
+import { withStyles } from 'material-ui/styles'
+import { I18nProvider } from '@lingui/react'
 import { Trans } from '@lingui/react'
 
-import { withStyles } from 'material-ui/styles'
+import en from 'locale/si/messages'
+import si from 'locale/si/messages'
 
 import { appQuery } from 'preset/queries'
 
-import { Body, Dialog, Error, Spinner, Snackbar } from 'components/ux'
-
+import { Dialog, Error, Spinner, Snackbar } from 'components/ux'
 import Drawer from 'components/Drawer'
 import Dashboard from 'components/Dashboard'
 import Login from 'components/Login'
@@ -27,31 +24,31 @@ import User from 'components/User'
 
 const App = props => {
   return (
-    <Query query={appQuery}>
-      {({ error, loading, data }) => {
-        if (error) return <Error>{error.message}</Error>
-        if (loading) return <Spinner />
-        if (!data.user) return <Login />
-        const { drawer } = props
-        const { user, models } = data
-        return (
-          <Fragment>
-            <Drawer
-              open={drawer}
-              models={models}
-            />
-            <Snackbar
-              open={!!props.snackbar}
-              onClose={props.hideSnackbar}
-              message={props.snackbar || <Trans>Done</Trans>}
-            />
-            <Dialog
-              open={props.dialog.open}
-              onClose={props.hideDialog}
-              title={props.dialog.title}
-              content={props.dialog.content}
-            />
-            <Body>
+    <I18nProvider language={'si'} catalogs={{ en, si }}>
+      <Query query={appQuery}>
+        {({ error, loading, data }) => {
+          if (error) return <Error>{error.message}</Error>
+          if (loading) return <Spinner />
+          if (!data.user) return <Login />
+          const { drawer } = props
+          const { user, models } = data
+          return (
+            <Fragment>
+              <Drawer
+                open={drawer}
+                models={models}
+              />
+              <Snackbar
+                open={!!props.snackbar}
+                onClose={props.hideSnackbar}
+                message={props.snackbar || <Trans>Done</Trans>}
+              />
+              <Dialog
+                open={props.dialog.open}
+                onClose={props.hideDialog}
+                title={props.dialog.title}
+                content={props.dialog.content}
+              />
               <Switch>
                 <Route
                   exact
@@ -69,11 +66,11 @@ const App = props => {
                   render={matchProps => <Model {...matchProps} user={user} />}
                 />
               </Switch>
-            </Body>
-          </Fragment>
-        )
-      }}
-    </Query>
+            </Fragment>
+          )
+        }}
+      </Query>
+    </I18nProvider>
   )
 }
 
