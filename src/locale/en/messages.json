@@ -1,0 +1,217 @@
+{
+  "Done": {
+    "translation": "Done",
+    "origin": [
+      [
+        "src/components/App.js",
+        49
+      ],
+      [
+        "src/components/User.js",
+        137
+      ]
+    ]
+  },
+  "Create {0}": {
+    "translation": "Create {0}",
+    "origin": [
+      [
+        "src/components/Create.js",
+        30
+      ]
+    ]
+  },
+  "Create": {
+    "translation": "Create",
+    "origin": [
+      [
+        "src/components/Create.js",
+        37
+      ]
+    ]
+  },
+  "{0} created": {
+    "translation": "{0} created",
+    "origin": [
+      [
+        "src/components/Create.js",
+        65
+      ]
+    ]
+  },
+  "Dashboard": {
+    "translation": "Dashboard",
+    "origin": [
+      [
+        "src/components/Dashboard.js",
+        32
+      ]
+    ]
+  },
+  "Welcome {0}": {
+    "translation": "Welcome {0}",
+    "origin": [
+      [
+        "src/components/Dashboard.js",
+        33
+      ]
+    ]
+  },
+  "User": {
+    "translation": "User",
+    "origin": [
+      [
+        "src/components/Drawer.js",
+        67
+      ],
+      [
+        "src/components/User.js",
+        30
+      ]
+    ]
+  },
+  "Menu": {
+    "translation": "Menu",
+    "origin": [
+      [
+        "src/components/Header.js",
+        23
+      ],
+      [
+        "src/components/ux/Header.js",
+        23
+      ]
+    ]
+  },
+  "Delete": {
+    "translation": "Delete",
+    "origin": [
+      [
+        "src/components/List.js",
+        61
+      ]
+    ]
+  },
+  "Deleted": {
+    "translation": "Deleted",
+    "origin": [
+      [
+        "src/components/List.js",
+        124
+      ]
+    ]
+  },
+  "Error": {
+    "translation": "Error",
+    "origin": [
+      [
+        "src/components/List.js",
+        127
+      ],
+      [
+        "src/components/Update.js",
+        90
+      ]
+    ]
+  },
+  "Username": {
+    "translation": "Username",
+    "origin": [
+      [
+        "src/components/Login.js",
+        36
+      ]
+    ]
+  },
+  "Password": {
+    "translation": "Password",
+    "origin": [
+      [
+        "src/components/Login.js",
+        43
+      ]
+    ]
+  },
+  "Login": {
+    "translation": "Login",
+    "origin": [
+      [
+        "src/components/Login.js",
+        52
+      ]
+    ]
+  },
+  "Model {0} not found!": {
+    "translation": "Model {0} not found!",
+    "origin": [
+      [
+        "src/components/Model.js",
+        29
+      ]
+    ]
+  },
+  "Edit {0}": {
+    "translation": "Edit {0}",
+    "origin": [
+      [
+        "src/components/Update.js",
+        25
+      ]
+    ]
+  },
+  "Item {id} not found!": {
+    "translation": "Item {id} not found!",
+    "origin": [
+      [
+        "src/components/Update.js",
+        48
+      ]
+    ]
+  },
+  "Save": {
+    "translation": "Save",
+    "origin": [
+      [
+        "src/components/Update.js",
+        55
+      ]
+    ]
+  },
+  "Updated": {
+    "translation": "Updated",
+    "origin": [
+      [
+        "src/components/Update.js",
+        87
+      ]
+    ]
+  },
+  "Image": {
+    "translation": "Image",
+    "origin": [
+      [
+        "src/components/User.js",
+        57
+      ]
+    ]
+  },
+  "Upload": {
+    "translation": "Upload",
+    "origin": [
+      [
+        "src/components/User.js",
+        65
+      ]
+    ]
+  },
+  "Model ${0} not found!": {
+    "translation": "Model ${0} not found!",
+    "origin": [
+      [
+        "src/components/Model.js",
+        29
+      ]
+    ],
+    "obsolete": true
+  }
+}

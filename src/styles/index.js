@@ -19,9 +19,6 @@ const theme = createMuiTheme({
     breakpoint: 'md',
     width: 250,
   },
-  tree: {
-    itemHeight: 48,
-  },
 })
 
 // Configure JSS

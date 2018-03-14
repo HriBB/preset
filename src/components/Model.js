@@ -3,6 +3,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
+import { Trans } from '@lingui/react'
 
 import List from 'components/List'
 import Create from 'components/Create'
@@ -16,11 +17,20 @@ const Model = (props: any) => {
   return (
     <Query query={modelQuery} variables={{ name: match.params.model }}>
       {({ error, loading, data }) => {
-        if (error) return <Error>{error.message}</Error>
-        if (loading) return <Spinner />
+        if (error) {
+          return <Error>{error.message}</Error>
+        }
+        if (loading) {
+          return <Spinner />
+        }
+        if (!data.model) {
+          return (
+            <Error>
+              <Trans>Model {match.params.model} not found!</Trans>
+            </Error>
+          )
+        }
         const { model } = data
-        if (!model)
-          return <Error>{`Model ${match.params.model} not found!`}</Error>
         return (
           <Switch>
             <Route

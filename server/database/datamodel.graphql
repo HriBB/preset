@@ -4,6 +4,8 @@ type User {
   username: String! @unique
   email: String! @unique
   password: String!
+  first_name: String
+  last_name: String
   posts: [Post!]!
   image: File
 }
@@ -39,17 +41,4 @@ type ParentTestimonial {
   published: Boolean!
   image: File
   author: User!
-}
-
-type Homepage {
-  id: ID! @unique
-  hero_title: String!
-  hero_subtitle: String!
-  hero_button_text: String!
-  hero_button_url: String!
-  intro_title: String!
-  intro_lead: String!
-  intro_item_1: String!
-  intro_item_2: String!
-  intro_item_3: String!
 }

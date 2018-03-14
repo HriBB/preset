@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, getContext } from 'recompose'
 import { Link, NavLink } from 'react-router-dom'
+import { Trans, withI18n } from '@lingui/react'
 
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import { withStyles } from 'material-ui/styles'
@@ -31,7 +32,7 @@ const Drawer = props => {
     >
       <Toolbar className={classes.drawerToolbar}>
         <Link to={'/'} className={classes.drawerTitle}>
-          {'Preset CMS'}
+          Preset CMS
         </Link>
       </Toolbar>
       <List className={classes.drawerList} component={'nav'}>
@@ -43,7 +44,7 @@ const Drawer = props => {
             to={`/${model.name}`}
             onClick={drawer.toggle}
             button
-            >
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -63,7 +64,7 @@ const Drawer = props => {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={'User'} />
+          <ListItemText primary={<Trans>User</Trans>} />
         </ListItem>
       </List>
     </MuiDrawer>
@@ -94,12 +95,15 @@ const styles = theme => ({
     '& svg': {
       marginRight: 0,
     },
+    '&.active': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
-
 })
 
 export default compose(
   getContext({ drawer: PropTypes.object }),
   withWidth({ withTheme: true }),
   withStyles(styles),
+  withI18n(),
 )(Drawer)

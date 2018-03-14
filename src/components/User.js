@@ -6,6 +6,7 @@ import { compose, withHandlers, getContext } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
 import { graphql, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -19,15 +20,14 @@ import { Upload } from 'components/form'
 import { appQuery } from 'preset/queries'
 import { setProfilePictureMutation } from 'preset/mutations'
 
-import Header from 'components/Header'
-import Content from 'components/Content'
+import { Header, Content }  from 'components/ux'
 
 const User = props => {
   const { classes, error, handleSubmit, user } = props
 
   return (
     <Fragment>
-      <Header title={'User'}>
+      <Header title={<Trans>User</Trans>}>
         <IconButton component={Link} to={`/`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
@@ -54,7 +54,7 @@ const User = props => {
                 component={Upload}
                 className={classes.upload}
                 name={'image'}
-                label={'Image'}
+                label={<Trans>Image</Trans>}
               />
               <Button
                 size={'small'}
@@ -62,7 +62,7 @@ const User = props => {
                 type={'submit'}
                 variant={'raised'}
               >
-                {'Upload'}
+                <Trans>Upload</Trans>
               </Button>
             </div>
             {user.image && (
@@ -98,44 +98,47 @@ const styles = theme => ({
     alignItems: 'center',
   },
   upload: {
-    width: '300px',
+    width: '250px',
     margin: `0 ${theme.spacing.unit}px ${theme.spacing.unit * 2}px 0`,
   },
   image: {
-    width: '395px',
+    maxWidth: '150px',
   },
   actions: {
     justifyContent: 'flex-end',
   },
 })
 
+const updateProfilePicture = (proxy, { data: { setProfilePicture } }) => {
+  const data = proxy.readQuery({ query: appQuery })
+  data.user.image = setProfilePicture
+  proxy.writeQuery({ query: appQuery, data })
+}
+
 export default compose(
-  getContext({ snackbar: PropTypes.object }),
+  getContext({
+    snackbar: PropTypes.object,
+  }),
   withStyles(styles),
   withApollo,
   graphql(setProfilePictureMutation, {
     props: ({ props, mutate }) => ({
-      setProfilePicture: image =>
+      setProfilePicture: (image) =>
         mutate({
           variables: { image },
-          update: (proxy, { data: { setProfilePicture } }) => {
-            const data = proxy.readQuery({ query: appQuery })
-            data.user.image = setProfilePicture
-            proxy.writeQuery({ query: appQuery, data })
-          },
+          update: updateProfilePicture,
         }),
     }),
   }),
   withHandlers({
-    onSubmit: ({ setProfilePicture }) => ({ image }) => {
-      return setProfilePicture(image[0])
-        .then(({ data: { setProfilePicture } }) => {
-          console.log('upload success', setProfilePicture)
-        })
-        .catch(error => {
-          throw new SubmissionError({ _error: error.message })
-        })
-    },
+    onSubmit: ({ snackbar, setProfilePicture }) => ({ image }) =>
+      setProfilePicture(image[0])
+      .then(({ data: { setProfilePicture } }) => {
+        snackbar.show(<Trans>Done</Trans>)
+      })
+      .catch(error => {
+        throw new SubmissionError({ _error: error.message })
+      }),
   }),
   reduxForm({
     form: 'user',

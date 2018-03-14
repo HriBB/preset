@@ -38,6 +38,8 @@ type User {
   username: String!
   email: String!
   password: String!
+  first_name: String
+  last_name: String
   image: File
 }
 
@@ -76,20 +78,4 @@ type ParentTestimonial implements Node @model(label: "Parent Testimonials", sing
   text: Textarea! @field(label: "Text")
   image: File @field(label: "Cover Image")
   published: Checkbox! @field(label: "Published")
-}
-
-type Homepage implements Node @model(label: "Homepage", single: "Homepage") {
-  id: ID!
-  hero_title: Text! @field(label: "Hero Title")
-  hero_subtitle: Text! @field(label: "Hero Subtitle")
-  hero_button_text: Text! @field(label: "Hero Button Text")
-  hero_button_url: Text! @field(label: "Hero Button URL")
-  intro_title: Text! @field(label: "Intro Title")
-  intro_lead: Textarea! @field(label: "Intro Lead")
-  intro_item_1_title: Text! @field(label: "Intro Item 1 Title")
-  intro_item_1_text: Textarea! @field(label: "Intro Item 1 Text")
-  intro_item_2_title: Text! @field(label: "Intro Item 2 Title")
-  intro_item_2_text: Textarea! @field(label: "Intro Item 2 Text")
-  intro_item_3_title: Text! @field(label: "Intro Item 3 Title")
-  intro_item_3_text: Textarea! @field(label: "Intro Item 3 Text")
 }

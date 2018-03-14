@@ -1,0 +1,18 @@
+{
+  "Dashboard": {
+    "origin": [
+      [
+        "src/components/Dashboard.js",
+        32
+      ]
+    ]
+  },
+  "Welcome {0}": {
+    "origin": [
+      [
+        "src/components/Dashboard.js",
+        33
+      ]
+    ]
+  }
+}

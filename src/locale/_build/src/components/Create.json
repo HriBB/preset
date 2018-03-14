@@ -1,0 +1,26 @@
+{
+  "Create {0}": {
+    "origin": [
+      [
+        "src/components/Create.js",
+        30
+      ]
+    ]
+  },
+  "Create": {
+    "origin": [
+      [
+        "src/components/Create.js",
+        37
+      ]
+    ]
+  },
+  "{0} created": {
+    "origin": [
+      [
+        "src/components/Create.js",
+        65
+      ]
+    ]
+  }
+}

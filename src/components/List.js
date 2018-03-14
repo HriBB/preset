@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import {
@@ -13,19 +14,18 @@ import {
   ListItemSecondaryAction,
   ListItemText,
 } from 'material-ui/List'
+import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
 import DeleteIcon from 'material-ui-icons/Delete'
 import AddIcon from 'material-ui-icons/Add'
+import ImageIcon from 'material-ui-icons/Image'
 
 import { getNameField, hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withDeleteItemMutation } from 'preset/mutations'
 
-import { Error, Spinner } from 'components/ux'
-
-import Header from 'components/Header'
-import Content from 'components/Content'
+import { Header, Content, Error, Spinner } from 'components/ux'
 
 const List = (props: any) => {
   const { classes, listQuery, model } = props
@@ -41,39 +41,42 @@ const List = (props: any) => {
       </Header>
       <Content>
         <Query query={listQuery}>
-          {({ error, loading, data }) => {
-            return (
-              <Fragment>
-                {error && <Error>{error.message}</Error>}
-                {!error && loading && <Spinner />}
-                {!error &&
-                  !loading &&
-                  data && (
-                    <MuiList className={classes.list} component={'ul'}>
-                      {data.items.map(item => (
-                        <ListItem
-                          key={item.id}
-                          button
-                          component={Link}
-                          to={`/${model.name}/${item.id}`}
+          {({ error, loading, data }) => 
+            <Fragment>
+              {error && <Error>{error.message}</Error>}
+              {!error && loading && <Spinner />}
+              {!error && !loading && data &&
+                <MuiList className={classes.list} component={'ul'}>
+                  {data.items.map(item => (
+                    <ListItem
+                      key={item.id}
+                      button
+                      component={Link}
+                      to={`/${model.name}/${item.id}`}
+                    >
+                      <Avatar
+                        className={classes.avatar}
+                        alt={item[getNameField(model)]}
+                        src={item.image ? item.image.url : null}
+                      >
+                        {!item.image && <ImageIcon />}
+                      </Avatar>
+                      <ListItemText primary={item[getNameField(model)]} />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          aria-label={<Trans>Delete</Trans>}
+                          data-id={item.id}
+                          onClick={props.deleteItem}
                         >
-                          <ListItemText primary={item[getNameField(model)]} />
-                          <ListItemSecondaryAction>
-                            <IconButton
-                              aria-label={'Delete'}
-                              data-id={item.id}
-                              onClick={props.deleteItem}
-                            >
-                              <DeleteIcon />
-                            </IconButton>
-                          </ListItemSecondaryAction>
-                        </ListItem>
-                      ))}
-                    </MuiList>
-                  )}
-              </Fragment>
-            )
-          }}
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  ))}
+                </MuiList>
+              }
+            </Fragment>
+          }
         </Query>
       </Content>
     </Fragment>
@@ -87,6 +90,9 @@ const styles = theme => ({
   list: {
     //marginTop: theme.spacing.unit * 2,
   },
+  avatar: {
+    color: '#fff',
+  },
   link: {
     color: 'inherit',
     fontSize: theme.typography.fontSize * 1.2,
@@ -96,7 +102,10 @@ const styles = theme => ({
 })
 
 export default compose(
-  getContext({ snackbar: PropTypes.object }),
+  getContext({
+    dialog: PropTypes.object,
+    snackbar: PropTypes.object,
+  }),
   withStyles(styles),
   withApollo,
   withListQuery,
@@ -120,11 +129,10 @@ export default compose(
           update,
         })
         .then(({ data }) => {
-          console.log(data[deleteMutationName])
-          props.snackbar.show('Deleted!')
+          props.snackbar.show(<Trans>Deleted</Trans>)
         })
         .catch(error => {
-          console.log(error)
+          props.dialog.show(<Trans>Error</Trans>, error)
         })
     },
   })

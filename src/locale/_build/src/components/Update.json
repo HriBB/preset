@@ -1,0 +1,42 @@
+{
+  "Edit {0}": {
+    "origin": [
+      [
+        "src/components/Update.js",
+        25
+      ]
+    ]
+  },
+  "Item {id} not found!": {
+    "origin": [
+      [
+        "src/components/Update.js",
+        48
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "src/components/Update.js",
+        55
+      ]
+    ]
+  },
+  "Updated": {
+    "origin": [
+      [
+        "src/components/Update.js",
+        87
+      ]
+    ]
+  },
+  "Error": {
+    "origin": [
+      [
+        "src/components/Update.js",
+        90
+      ]
+    ]
+  }
+}

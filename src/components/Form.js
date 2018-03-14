@@ -54,7 +54,7 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 2,
   },
   image: {
-    maxWidth: '395px',
+    maxWidth: '150px',
   },
   actions: {
     justifyContent: 'flex-end',

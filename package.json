@@ -3,12 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@lingui/babel-preset-react": "^2.0.5",
     "enzyme": "^3.3.0",
     "flow-bin": "0.67.1",
     "prettier-eslint-cli": "4.7.1"
   },
   "licence": "",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.40",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-flow": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@lingui/react": "^2.0.5",
     "apollo-cache-inmemory": "1.1.10",
     "apollo-client": "2.2.6",
     "apollo-link": "1.2.1",
@@ -16,10 +25,11 @@
     "apollo-link-http": "1.5.3",
     "apollo-upload-client": "8.0.0",
     "autoprefixer": "8.1.0",
-    "babel-core": "6.26.0",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "8.2.2",
-    "babel-jest": "22.4.1",
-    "babel-loader": "7.1.4",
+    "babel-jest": "^22.4.1",
+    "babel-loader": "^8.0.0-beta",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
@@ -64,7 +74,7 @@
     "redux": "^3.7.2",
     "redux-form": "7.3.0",
     "redux-thunk": "^2.2.0",
-    "style-loader": "0.20.2",
+    "style-loader": "^0.20.3",
     "sw-precache-webpack-plugin": "0.11.5",
     "url-loader": "1.0.1",
     "webpack": "3.11.0",
@@ -115,10 +125,42 @@
   },
   "babel": {
     "presets": [
-      "react-app"
-    ]
+      [
+        "@babel/preset-env",
+        {
+          "modules": false
+        }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow",
+      "@lingui/babel-preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "lingui": {
+    "fallbackLocale": "en",
+    "format": "lingui",
+    "sourceLocale": "",
+    "localeDir": "<rootDir>/src/locale",
+    "srcPathDirs": [
+      "<rootDir>/src"
+    ],
+    "srcPathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

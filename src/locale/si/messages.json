@@ -1,0 +1,217 @@
+{
+  "Done": {
+    "translation": "Končano",
+    "origin": [
+      [
+        "src/components/App.js",
+        49
+      ],
+      [
+        "src/components/User.js",
+        137
+      ]
+    ]
+  },
+  "Create {0}": {
+    "translation": "Dodaj {0}",
+    "origin": [
+      [
+        "src/components/Create.js",
+        30
+      ]
+    ]
+  },
+  "Create": {
+    "translation": "Dodaj",
+    "origin": [
+      [
+        "src/components/Create.js",
+        37
+      ]
+    ]
+  },
+  "{0} created": {
+    "translation": "{0} ustvarjen",
+    "origin": [
+      [
+        "src/components/Create.js",
+        65
+      ]
+    ]
+  },
+  "Dashboard": {
+    "translation": "Nadzorna plošča",
+    "origin": [
+      [
+        "src/components/Dashboard.js",
+        32
+      ]
+    ]
+  },
+  "Welcome {0}": {
+    "translation": "Pozdravljen/a {0}",
+    "origin": [
+      [
+        "src/components/Dashboard.js",
+        33
+      ]
+    ]
+  },
+  "User": {
+    "translation": "Uporabnik",
+    "origin": [
+      [
+        "src/components/Drawer.js",
+        67
+      ],
+      [
+        "src/components/User.js",
+        30
+      ]
+    ]
+  },
+  "Menu": {
+    "translation": "Meni",
+    "origin": [
+      [
+        "src/components/Header.js",
+        23
+      ],
+      [
+        "src/components/ux/Header.js",
+        23
+      ]
+    ]
+  },
+  "Delete": {
+    "translation": "Odstrani",
+    "origin": [
+      [
+        "src/components/List.js",
+        61
+      ]
+    ]
+  },
+  "Deleted": {
+    "translation": "Odstranjeno",
+    "origin": [
+      [
+        "src/components/List.js",
+        124
+      ]
+    ]
+  },
+  "Error": {
+    "translation": "Napaka",
+    "origin": [
+      [
+        "src/components/List.js",
+        127
+      ],
+      [
+        "src/components/Update.js",
+        90
+      ]
+    ]
+  },
+  "Username": {
+    "translation": "Uporabniško ime",
+    "origin": [
+      [
+        "src/components/Login.js",
+        36
+      ]
+    ]
+  },
+  "Password": {
+    "translation": "Geslo",
+    "origin": [
+      [
+        "src/components/Login.js",
+        43
+      ]
+    ]
+  },
+  "Login": {
+    "translation": "Prijava",
+    "origin": [
+      [
+        "src/components/Login.js",
+        52
+      ]
+    ]
+  },
+  "Model {0} not found!": {
+    "translation": "Model {0} ne obstaja!",
+    "origin": [
+      [
+        "src/components/Model.js",
+        29
+      ]
+    ]
+  },
+  "Edit {0}": {
+    "translation": "Uredi {0}",
+    "origin": [
+      [
+        "src/components/Update.js",
+        25
+      ]
+    ]
+  },
+  "Item {id} not found!": {
+    "translation": "Model {id} ne obstaja",
+    "origin": [
+      [
+        "src/components/Update.js",
+        48
+      ]
+    ]
+  },
+  "Save": {
+    "translation": "Shrani",
+    "origin": [
+      [
+        "src/components/Update.js",
+        55
+      ]
+    ]
+  },
+  "Updated": {
+    "translation": "Shranjeno",
+    "origin": [
+      [
+        "src/components/Update.js",
+        87
+      ]
+    ]
+  },
+  "Image": {
+    "translation": "Slika",
+    "origin": [
+      [
+        "src/components/User.js",
+        57
+      ]
+    ]
+  },
+  "Upload": {
+    "translation": "Naloži",
+    "origin": [
+      [
+        "src/components/User.js",
+        65
+      ]
+    ]
+  },
+  "Model ${0} not found!": {
+    "translation": "Model {0} ne obstaja",
+    "origin": [
+      [
+        "src/components/Model.js",
+        29
+      ]
+    ],
+    "obsolete": true
+  }
+}

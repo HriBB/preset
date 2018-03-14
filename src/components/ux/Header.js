@@ -4,6 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { compose, getContext } from 'recompose'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import AppBar from 'material-ui/AppBar'
@@ -11,22 +12,21 @@ import Toolbar from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 
-
 const Header = (props) => {
   const { children, classes, drawer, title, titleLink } = props
   return (
-    <AppBar className={classes.appbar} position={'static'} color={'primary'}>
+    <AppBar className={classes.appbar} position={'sticky'} color={'primary'}>
       <Toolbar className={classes.toolbar}>
         <IconButton
           className={classes.menuButton}
           color={'inherit'}
-          aria-label={'Menu'}
+          aria-label={<Trans>Menu</Trans>}
           onClick={drawer.toggle}
         >
           <MenuIcon />
         </IconButton>
-        <Link to={titleLink || '/'} className={classes.title || 'Preset CMS'}>
-          {title}
+        <Link to={titleLink || '/'} className={classes.title}>
+          {title || 'Preset CMS'}
         </Link>
         <div style={{ flex: '1' }} />
         {children}
@@ -44,7 +44,6 @@ const styles = theme => ({
   toolbar: {
     flex: '1',
     padding: `0 ${theme.spacing.unit * 2}px 0`,
-    maxWidth: '960px',
   },
   menuButton: {
     [theme.breakpoints.up(theme.drawer.breakpoint)]: {

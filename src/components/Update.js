@@ -5,17 +5,16 @@ import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
+import { Trans } from '@lingui/react'
 
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
 
-import { hasQuery } from 'preset/utils'
+import { getUpdateVariables, getUpdateUpdateHandler } from 'preset/utils'
 import { withItemQuery, withListQuery } from 'preset/queries'
 import { withUpdateItemMutation } from 'preset/mutations'
 
-import { Error, Spinner } from 'components/ux'
-import Header from 'components/Header'
-import Content from 'components/Content'
+import { Header, Content, Error, Spinner } from 'components/ux'
 import Form from 'components/Form'
 
 const Update = props => {
@@ -23,7 +22,7 @@ const Update = props => {
   const { id } = match.params
   return (
     <Fragment>
-      <Header title={`Edit ${model.single}`}>
+      <Header title={<Trans>Edit {model.single}</Trans>}>
         <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
@@ -31,7 +30,7 @@ const Update = props => {
       <Content>
         <Query query={itemQuery} variables={{ id }}>
           {({ error, loading, data }) => {
-            if (error)
+            if (error) {
               return (
                 <Error>
                   {error.message}
@@ -39,15 +38,23 @@ const Update = props => {
                   {error.stack}
                 </Error>
               )
-            if (loading) return <Spinner />
-            const { item } = data
-            if (!item) return <Error>{`Item ${id} not found!`}</Error>
+            }
+            if (loading) {
+              return <Spinner />
+            }
+            if (!data.item) {
+              return (
+                <Error>
+                  <Trans>Item {id} not found!</Trans>
+                </Error>
+              )
+            }
             return (
               <Fragment>
                 <Form
-                  button={`Save`}
+                  button={<Trans>Save</Trans>}
                   form={`Edit${model.name}`}
-                  initialValues={item}
+                  initialValues={data.item}
                   onSubmit={updateItem}
                   model={model}
                 />
@@ -61,39 +68,26 @@ const Update = props => {
 }
 
 export default compose(
-  getContext({ snackbar: PropTypes.object }),
+  getContext({
+    dialog: PropTypes.object,
+    snackbar: PropTypes.object,
+  }),
   withApollo,
   withItemQuery,
   withListQuery,
   withUpdateItemMutation,
   withHandlers({
-    updateItem: (props: any) => (data: any) => {
-      const { client, listQuery, updateMutation, updateMutationName } = props
-      const { __typename, ...variables } = data
-      console.log(data)
-      const update = (proxy, { data: result }) => {
-        const newItem = result[updateMutationName]
-        if (hasQuery(client, listQuery)) {
-          const { id } = variables
-          const data = proxy.readQuery({ query: listQuery })
-          const index = data.items.findIndex(i => i.id === id)
-          data.items[index] = newItem
-          proxy.writeQuery({ query: listQuery, data })
-        }
-      }
-      return client
-        .mutate({
-          mutation: updateMutation,
-          variables,
-          update,
-        })
-        .then(({ data }) => {
-          console.log(data[updateMutationName])
-          props.snackbar.show('Updated!')
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-  })
+    updateItem: (props: any) => (data: any) =>
+      props.client.mutate({
+        mutation: props.updateMutation,
+        variables: getUpdateVariables(props, data),
+        update: getUpdateUpdateHandler(data.id, props),
+      })
+      .then(({ data }) => {
+        props.snackbar.show(<Trans>Updated</Trans>)
+      })
+      .catch(error => {
+        props.dialog.show(<Trans>Error</Trans>, error)
+      }),
+  }),
 )(Update)

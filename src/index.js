@@ -5,8 +5,11 @@ import { render } from 'react-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import { ApolloProvider } from 'react-apollo'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import JssProvider from 'react-jss/lib/JssProvider'
+import { I18nProvider } from '@lingui/react'
 import { MuiThemeProvider } from 'material-ui/styles'
+import JssProvider from 'react-jss/lib/JssProvider'
+
+import si from 'locale/si/messages'
 
 import client from 'apollo'
 import createStore from 'store'
@@ -23,22 +26,27 @@ const {
   theme,
 } = getContext()
 
+const jssProps = {
+  registry: sheetsRegistry,
+  generateClassName,
+  jss,
+}
+
 const root = document.getElementById('root')
+
 if (root) {
   render(
     <ReduxProvider store={store}>
       <ApolloProvider client={client}>
-        <JssProvider
-          registry={sheetsRegistry}
-          jss={jss}
-          generateClassName={generateClassName}
-        >
-          <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-            <Router>
-              <Route component={App} />
-            </Router>
-          </MuiThemeProvider>
-        </JssProvider>
+        <I18nProvider language={'si'} catalogs={{ si }}>
+          <JssProvider {...jssProps}>
+            <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
+              <Router>
+                <Route component={App} />
+              </Router>
+            </MuiThemeProvider>
+          </JssProvider>
+        </I18nProvider>
       </ApolloProvider>
     </ReduxProvider>,
     root

@@ -4,6 +4,7 @@ import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
 import { graphql, withApollo } from 'react-apollo'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -32,14 +33,14 @@ const Login = props => {
             className={classes.field}
             inputClassName={classes.input}
             name={'username'}
-            label={'Username'}
+            label={<Trans>Username</Trans>}
           />
           <Field
             component={Text}
             className={classes.field}
             inputClassName={classes.input}
             name={'password'}
-            label={'Password'}
+            label={<Trans>Password</Trans>}
             type={'password'}
           />
           <FormControl error className={classes.error}>
@@ -48,7 +49,7 @@ const Login = props => {
         </CardContent>
         <CardActions className={classes.actions}>
           <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>
-            Login
+            <Trans>Login</Trans>
           </Button>
         </CardActions>
       </Card>

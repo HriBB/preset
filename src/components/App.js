@@ -11,12 +11,13 @@ import {
 } from 'recompose'
 import { Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 
 import { appQuery } from 'preset/queries'
 
-import { Error, Spinner, Snackbar } from 'components/ux'
+import { Body, Dialog, Error, Spinner, Snackbar } from 'components/ux'
 
 import Drawer from 'components/Drawer'
 import Dashboard from 'components/Dashboard'
@@ -32,20 +33,36 @@ const App = props => {
         if (loading) return <Spinner />
         if (!data.user) return <Login />
 
-        const { classes, drawer } = props
+        const { drawer } = props
         const { user, models } = data
         return (
           <Fragment>
 
-            <Drawer open={drawer} models={models} />
+            <Drawer
+              open={drawer}
+              models={models}
+            />
 
-            <div className={classes.content}>
+            <Snackbar
+              open={!!props.snackbar}
+              onClose={props.hideSnackbar}
+              message={props.snackbar || <Trans>Done</Trans>}
+            />
+
+            <Dialog
+              open={props.dialog.open}
+              onClose={props.hideDialog}
+              title={props.dialog.title}
+              content={props.dialog.content}
+            />
+
+            <Body>
               <Switch>
                 <Route
                   exact
                   path={'/'}
                   render={matchProps => (
-                    <Dashboard {...matchProps} user={user} />
+                    <Dashboard {...matchProps} models={models} user={user} />
                   )}
                 />
                 <Route
@@ -57,13 +74,7 @@ const App = props => {
                   render={matchProps => <Model {...matchProps} user={user} />}
                 />
               </Switch>
-            </div>
-
-            <Snackbar
-              open={!!props.snackbar}
-              onClose={props.hideSnackbar}
-              message={props.snackbar || 'Saved!'}
-            />
+            </Body>
 
           </Fragment>
         )
@@ -100,9 +111,6 @@ const styles = theme => ({
       width: '100%',
     },
   },
-  content: {
-    flex: '1',
-  },
 })
 
 const EnhancedApp = compose(
@@ -115,19 +123,34 @@ const EnhancedApp = compose(
     },
   }),
   withStateHandlers(
-    ({ drawer = false, snackbar = false }) => ({ drawer, snackbar }),
+    ({
+      drawer = false,
+      snackbar = false,
+      dialog = { open: false, title: null, content: null },
+    }) => ({
+      drawer,
+      snackbar,
+      dialog,
+    }),
     {
       toggleDrawer: ({ drawer }) => () => ({ drawer: !drawer }),
       openDrawer: () => () => ({ drawer: true }),
       closeDrawer: () => () => ({ drawer: false }),
-      showSnackbar: ({ snackbar }) => text => ({ snackbar: text }),
-      hideSnackbar: ({ snackbar }) => () => ({ snackbar: false }),
+      showSnackbar: () => (text) => ({ snackbar: text }),
+      hideSnackbar: () => () => ({ snackbar: false }),
+      showDialog: () => (title, content) => ({
+        dialog: { open: true, title, content },
+      }),
+      hideDialog: () => () => ({
+        dialog: { open: false, title: null, content: null },
+      }),
     }
   ),
   withContext({
     user: PropTypes.object,
     drawer: PropTypes.object,
     snackbar: PropTypes.object,
+    dialog: PropTypes.object,
   }, props => ({
     user: {
       logout: props.logout,
@@ -141,6 +164,10 @@ const EnhancedApp = compose(
       text: props.snackbar,
       show: props.showSnackbar,
       hide: props.hideSnackbar,
+    },
+    dialog: {
+      show: props.showDialog,
+      hide: props.hideDialog,
     },
   }))
 )(App)
