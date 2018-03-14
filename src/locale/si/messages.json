@@ -1,4 +1,94 @@
 {
+  "Posts": {
+    "translation": "Prispevki",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        2
+      ]
+    ]
+  },
+  "Post": {
+    "translation": "Prispevek",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        3
+      ]
+    ]
+  },
+  "Title": {
+    "translation": "Naslov",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        4
+      ]
+    ]
+  },
+  "Text": {
+    "translation": "Besedilo",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        5
+      ]
+    ]
+  },
+  "Cover Image": {
+    "translation": "Naslovna slika",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        6
+      ]
+    ]
+  },
+  "Published": {
+    "translation": "Objavljeno",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        7
+      ]
+    ]
+  },
+  "News": {
+    "translation": "Novice",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        8
+      ]
+    ]
+  },
+  "News Item": {
+    "translation": "Novica",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        9
+      ]
+    ]
+  },
+  "Parent Testimonials": {
+    "translation": "Izkušnje staršev",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        10
+      ]
+    ]
+  },
+  "Parent Testimonial": {
+    "translation": "Izkušnja staršev",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        11
+      ]
+    ]
+  },
   "Done": {
     "translation": "Končano",
     "origin": [
@@ -8,7 +98,7 @@
       ],
       [
         "src/components/User.js",
-        132
+        134
       ]
     ]
   },
@@ -17,11 +107,11 @@
     "origin": [
       [
         "src/components/Create.js",
-        32
+        33
       ],
       [
         "src/components/Create.js",
-        41
+        43
       ]
     ]
   },
@@ -30,7 +120,7 @@
     "origin": [
       [
         "src/components/Create.js",
-        69
+        73
       ]
     ]
   },
@@ -39,11 +129,11 @@
     "origin": [
       [
         "src/components/Dashboard.js",
-        25
+        21
       ],
       [
         "src/components/Dashboard.js",
-        32
+        28
       ]
     ]
   },
@@ -52,7 +142,7 @@
     "origin": [
       [
         "src/components/Dashboard.js",
-        33
+        29
       ]
     ]
   },
@@ -61,11 +151,11 @@
     "origin": [
       [
         "src/components/Drawer.js",
-        67
+        63
       ],
       [
         "src/components/User.js",
-        30
+        31
       ]
     ]
   },
@@ -87,7 +177,7 @@
     "origin": [
       [
         "src/components/List.js",
-        67
+        73
       ]
     ]
   },
@@ -96,7 +186,7 @@
     "origin": [
       [
         "src/components/List.js",
-        132
+        138
       ]
     ]
   },
@@ -105,7 +195,7 @@
     "origin": [
       [
         "src/components/List.js",
-        135
+        141
       ],
       [
         "src/components/Model.js",
@@ -117,7 +207,7 @@
       ],
       [
         "src/components/Update.js",
-        79
+        92
       ]
     ]
   },
@@ -153,7 +243,7 @@
     "origin": [
       [
         "src/components/Model.js",
-        40
+        41
       ]
     ]
   },
@@ -162,7 +252,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        27
+        28
       ]
     ]
   },
@@ -171,7 +261,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        39
+        50
       ]
     ]
   },
@@ -180,7 +270,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        43
+        56
       ]
     ]
   },
@@ -189,7 +279,7 @@
     "origin": [
       [
         "src/components/Update.js",
-        76
+        89
       ]
     ]
   },
@@ -198,7 +288,7 @@
     "origin": [
       [
         "src/components/User.js",
-        52
+        54
       ]
     ]
   },
@@ -207,52 +297,8 @@
     "origin": [
       [
         "src/components/User.js",
-        60
+        62
       ]
     ]
-  },
-  "Create {0}": {
-    "translation": "Dodaj {0}",
-    "origin": [
-      [
-        "src/components/Create.js",
-        30
-      ]
-    ],
-    "obsolete": true
-  },
-  "Edit {0}": {
-    "translation": "Uredi {0}",
-    "origin": [
-      [
-        "src/components/Update.js",
-        25
-      ]
-    ],
-    "obsolete": true
-  },
-  "Posts": {
-    "translation": "Prispevki",
-    "obsolete": true
-  },
-  "Post": {
-    "translation": "Prispevek",
-    "obsolete": true
-  },
-  "News": {
-    "translation": "Novice",
-    "obsolete": true
-  },
-  "News Item": {
-    "translation": "Novica",
-    "obsolete": true
-  },
-  "Parent Testimonials": {
-    "translation": "Izkušnje staršev",
-    "obsolete": true
-  },
-  "Parent Testimonial": {
-    "translation": "Izkušnja staršev",
-    "obsolete": true
   }
 }

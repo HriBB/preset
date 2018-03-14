@@ -22,7 +22,6 @@
     "graphql-yoga": "1.5.0",
     "jsonwebtoken": "8.2.0",
     "lodash.keyby": "^4.6.0",
-    "lowdb": "^1.0.0",
     "mkdirp": "^0.5.1",
     "nodemon": "1.17.1",
     "pluralize": "^7.0.0",

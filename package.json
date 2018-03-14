@@ -6,7 +6,6 @@
     "@babel/core": "^7.0.0-beta.40",
     "@lingui/babel-preset-react": "^2.0.5",
     "enzyme": "^3.3.0",
-    "flow-bin": "0.67.1",
     "nodemon": "^1.17.2",
     "prettier-eslint-cli": "4.7.1"
   },
@@ -25,14 +24,11 @@
     "apollo-link-context": "1.0.7",
     "apollo-link-http": "1.5.3",
     "apollo-upload-client": "8.0.0",
+    "app-module-path": "^2.2.0",
     "autoprefixer": "8.1.0",
-    "babel-core": "^7.0.0-0",
     "babel-eslint": "8.2.2",
     "babel-jest": "^22.4.1",
     "babel-loader": "^8.0.0-beta",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react-app": "^3.1.1",
-    "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "classnames": "^2.2.5",
     "css-loader": "0.28.10",
@@ -87,10 +83,12 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "prettier": "prettier-eslint --ignore \"**/locale/**\" --write \"src/**/*.+(js|jsx)\"",
-    "prettier-dry-run": "prettier-eslint \"src/**/*.+(js|jsx)\" -l debug",
     "lingui": "lingui",
-    "lingui-watch": "nodemon -e json -w src/locale -x \"yarn lingui compile\""
+    "lingui-extract": "node scripts/extract.js && yarn lingui extract",
+    "lingui-compile": "yarn lingui compile",
+    "lingui-watch": "nodemon -e json -w src/locale -x \"yarn lingui compile\"",
+    "prettier": "prettier-eslint --ignore \"**/locale/**\" --write \"src/**/*.+(js|jsx)\"",
+    "prettier-dry-run": "prettier-eslint --ignore \"**/locale/**\" \"src/**/*.+(js|jsx)\" -l debug"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -156,19 +154,20 @@
       }
     }
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "lingui": {
     "fallbackLocale": "en",
     "format": "lingui",
     "sourceLocale": "",
     "localeDir": "<rootDir>/src/locale",
     "srcPathDirs": [
-      "<rootDir>/src"
+      "<rootDir>/src",
+      "<rootDir>/server/.cache"
     ],
     "srcPathIgnorePatterns": [
       "/node_modules/"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

@@ -1,0 +1,82 @@
+{
+  "Posts": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        2
+      ]
+    ]
+  },
+  "Post": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        3
+      ]
+    ]
+  },
+  "Title": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        4
+      ]
+    ]
+  },
+  "Text": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        5
+      ]
+    ]
+  },
+  "Cover Image": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        6
+      ]
+    ]
+  },
+  "Published": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        7
+      ]
+    ]
+  },
+  "News": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        8
+      ]
+    ]
+  },
+  "News Item": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        9
+      ]
+    ]
+  },
+  "Parent Testimonials": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        10
+      ]
+    ]
+  },
+  "Parent Testimonial": {
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        11
+      ]
+    ]
+  }
+}

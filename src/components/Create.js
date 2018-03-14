@@ -6,7 +6,7 @@ import { compose, withHandlers, getContext } from 'recompose'
 import { withApollo } from 'react-apollo'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import { Trans } from '@lingui/react'
+import { Trans, withI18n } from '@lingui/react'
 
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
@@ -56,6 +56,7 @@ export default compose(
     dialog: PropTypes.object,
     snackbar: PropTypes.object,
   }),
+  withI18n(),
   withApollo,
   withRouter,
   withListQuery,

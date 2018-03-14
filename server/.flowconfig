@@ -1,5 +1,11 @@
 [ignore]
 <PROJECT_ROOT>/.git/
+<PROJECT_ROOT>/.cache/
+<PROJECT_ROOT>/node_modules/bcryptjs/src/bower.json
+./node_modules/config-chain/test/*
+./node_modules/npm/node_modules/config-chain/test/*
+./node_modules/npm/test/fixtures/config/*
+.*/node_modules/.*\.json$
 
 [options]
 module.system.node.resolve_dirname=src

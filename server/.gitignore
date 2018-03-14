@@ -3,6 +3,7 @@ dist
 uploads
 package-lock.json
 node_modules
+.cache
 .idea
 .vscode
 *.log

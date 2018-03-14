@@ -34,6 +34,14 @@
     request-promise "^4.1.1"
     yargs "^8.0.2"
 
+"@lingui/core@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@lingui/core/-/core-2.0.5.tgz#4e6cdd2443fc7071aa4ff7f4363ac07e52da2e1e"
+  dependencies:
+    "@babel/runtime" "^7.0.0-beta.38"
+    make-plural "^4.1.1"
+    messageformat-parser "^2.0.0"
+
 "@types/body-parser@*":
   version "1.16.8"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.16.8.tgz#687ec34140624a3bec2b1a8ea9268478ae8f3be3"
@@ -3135,6 +3143,12 @@ make-dir@^1.0.0:
   dependencies:
     pify "^3.0.0"
 
+make-plural@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/make-plural/-/make-plural-4.1.1.tgz#5658ce9d337487077daed221854c8cef9dd75749"
+  optionalDependencies:
+    minimist "^1.2.0"
+
 map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
@@ -3187,6 +3201,10 @@ memorystream@^0.3.1:
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
+
+messageformat-parser@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/messageformat-parser/-/messageformat-parser-2.0.0.tgz#e37efa0cb07b6784e5f3adc089cbf266208c01c7"
 
 methods@~1.1.2:
   version "1.1.2"

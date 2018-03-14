@@ -1,16 +1,16 @@
 // @flow weak
 
-const path = require('path')
 const { buildASTSchema, parse } = require('graphql')
 const { importSchema } = require('graphql-import')
 
+const config = require('config')
 const getModels = require('./getModels')
 const { createQueryText, createQueries } = require('./queries')
 const { createMutationText, createMutations } = require('./mutations')
 const resolvers = require('./resolvers')
 const directives = require('./directives')
 
-const schema = importSchema(path.resolve(__dirname, '..', 'schema.graphql'))
+const schema = importSchema(config.schema)
 const ast = buildASTSchema(parse(schema))
 const models = getModels(ast)
 

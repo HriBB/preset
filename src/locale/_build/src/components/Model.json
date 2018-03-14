@@ -11,11 +11,11 @@
       ]
     ]
   },
-  "Model {0} not found!": {
+  "Model not found": {
     "origin": [
       [
         "src/components/Model.js",
-        40
+        41
       ]
     ]
   }
