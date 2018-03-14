@@ -3,6 +3,10 @@
     "origin": [
       [
         "src/components/Dashboard.js",
+        25
+      ],
+      [
+        "src/components/Dashboard.js",
         32
       ]
     ]

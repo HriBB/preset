@@ -47,7 +47,10 @@ const Form = props => {
 
 const styles = theme => ({
   content: {
-    //
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing.unit * 3,
+    },
   },
   field: {
     width: '100%',

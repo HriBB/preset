@@ -44,6 +44,10 @@
     "origin": [
       [
         "src/components/Dashboard.js",
+        25
+      ],
+      [
+        "src/components/Dashboard.js",
         32
       ]
     ]
@@ -88,7 +92,7 @@
     "origin": [
       [
         "src/components/List.js",
-        61
+        67
       ]
     ]
   },
@@ -97,7 +101,7 @@
     "origin": [
       [
         "src/components/List.js",
-        124
+        132
       ]
     ]
   },
@@ -106,7 +110,7 @@
     "origin": [
       [
         "src/components/List.js",
-        127
+        135
       ],
       [
         "src/components/Update.js",
@@ -204,14 +208,28 @@
       ]
     ]
   },
-  "Model ${0} not found!": {
-    "translation": "Model {0} ne obstaja",
-    "origin": [
-      [
-        "src/components/Model.js",
-        29
-      ]
-    ],
+  "Posts": {
+    "translation": "Prispevki",
+    "obsolete": true
+  },
+  "Post": {
+    "translation": "Prispevek",
+    "obsolete": true
+  },
+  "News": {
+    "translation": "Novice",
+    "obsolete": true
+  },
+  "News Item": {
+    "translation": "Novica",
+    "obsolete": true
+  },
+  "Parent Testimonials": {
+    "translation": "Izkušnje staršev",
+    "obsolete": true
+  },
+  "Parent Testimonial": {
+    "translation": "Izkušnja staršev",
     "obsolete": true
   }
 }

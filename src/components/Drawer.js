@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, getContext } from 'recompose'
 import { Link, NavLink } from 'react-router-dom'
-import { Trans, withI18n } from '@lingui/react'
+import { Trans } from '@lingui/react'
 
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import { withStyles } from 'material-ui/styles'
@@ -25,20 +25,20 @@ const Drawer = props => {
   return (
     <MuiDrawer
       className={classes.drawer}
-      classes={{ paper: classes.drawerPaper }}
+      classes={{ paper: classes.paper }}
       open={isWidthUpSm || open}
       variant={variant}
       onClose={drawer.toggle}
     >
-      <Toolbar className={classes.drawerToolbar}>
-        <Link to={'/'} className={classes.drawerTitle}>
+      <Toolbar className={classes.toolbar}>
+        <Link to={'/'} className={classes.title}>
           Preset CMS
         </Link>
       </Toolbar>
-      <List className={classes.drawerList} component={'nav'}>
-        {models.map(model => (
+      <List className={classes.list} component={'nav'}>
+        {models.map(model =>
           <ListItem
-            className={classes.drawerListItem}
+            className={classes.item}
             key={model.name}
             component={NavLink}
             to={`/${model.name}`}
@@ -48,15 +48,15 @@ const Drawer = props => {
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary={model.label} />
+            <ListItemText primary={<Trans id={model.label} />} />
           </ListItem>
-        ))}
+        )}
       </List>
       <Divider />
-      <List className={classes.drawerList} component={'nav'}>
+      <List className={classes.list} component={'nav'}>
         <ListItem
-          className={classes.drawerListItem}
-          component={Link}
+          className={classes.item}
+          component={NavLink}
           to={'/user'}
           onClick={drawer.toggle}
           button
@@ -75,22 +75,22 @@ const styles = theme => ({
   drawer: {
     width: theme.drawer.width,
   },
-  drawerPaper: {
+  paper: {
     width: theme.drawer.width,
   },
-  drawerTitle: {
+  title: {
     ...theme.typography.title,
     color: '#000',
     textDecoration: 'none',
   },
-  drawerToolbar: {
+  toolbar: {
     padding: `0 ${theme.spacing.unit * 3}px`,
     borderBottom: `1px solid ${theme.palette.grey[300]}`,
   },
-  drawerList: {
+  list: {
     flex: '0 1 auto',
   },
-  drawerListItem: {
+  item: {
     paddingLeft: theme.spacing.unit * 3,
     '& svg': {
       marginRight: 0,
@@ -105,5 +105,4 @@ export default compose(
   getContext({ drawer: PropTypes.object }),
   withWidth({ withTheme: true }),
   withStyles(styles),
-  withI18n(),
 )(Drawer)

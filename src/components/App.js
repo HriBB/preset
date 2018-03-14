@@ -32,30 +32,25 @@ const App = props => {
         if (error) return <Error>{error.message}</Error>
         if (loading) return <Spinner />
         if (!data.user) return <Login />
-
         const { drawer } = props
         const { user, models } = data
         return (
           <Fragment>
-
             <Drawer
               open={drawer}
               models={models}
             />
-
             <Snackbar
               open={!!props.snackbar}
               onClose={props.hideSnackbar}
               message={props.snackbar || <Trans>Done</Trans>}
             />
-
             <Dialog
               open={props.dialog.open}
               onClose={props.hideDialog}
               title={props.dialog.title}
               content={props.dialog.content}
             />
-
             <Body>
               <Switch>
                 <Route
@@ -75,7 +70,6 @@ const App = props => {
                 />
               </Switch>
             </Body>
-
           </Fragment>
         )
       }}
@@ -116,12 +110,6 @@ const styles = theme => ({
 const EnhancedApp = compose(
   withApollo,
   withStyles(styles),
-  withHandlers({
-    logout: ({ client }) => e => {
-      localStorage.removeItem('token')
-      client.resetStore()
-    },
-  }),
   withStateHandlers(
     ({
       drawer = false,
@@ -146,6 +134,12 @@ const EnhancedApp = compose(
       }),
     }
   ),
+  withHandlers({
+    logout: ({ client }) => e => {
+      localStorage.removeItem('token')
+      client.resetStore()
+    },
+  }),
   withContext({
     user: PropTypes.object,
     drawer: PropTypes.object,

@@ -44,7 +44,7 @@ const Dashboard = (props: any) => {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={model.label} />
+              <ListItemText primary={<Trans id={model.label} />} />
             </ListItem>
           ))}
         </List>
@@ -52,7 +52,6 @@ const Dashboard = (props: any) => {
     </Fragment>
   )
 }
-
 
 const styles = theme => ({
   drawer: {
@@ -79,7 +78,6 @@ const styles = theme => ({
       marginRight: 0,
     },
   },
-
 })
 
 export default withStyles(styles)(Dashboard)

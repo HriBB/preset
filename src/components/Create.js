@@ -27,7 +27,11 @@ const Create = props => {
   const initialValues = getModelInitialValues(model)
   return (
     <Fragment>
-      <Header title={<Trans>Create {model.single}</Trans>}>
+      <Header title={
+        <Fragment>
+          <Trans>Create</Trans> <Trans id={model.single} />
+        </Fragment>
+      }>
         <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>

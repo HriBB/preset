@@ -64,7 +64,7 @@ type Post implements Node @model(label: "Posts", single: "Post") {
   published: Checkbox! @field(label: "Published")
 }
 
-type NewsPost implements Node @model(label: "News", single: "News") {
+type NewsPost implements Node @model(label: "News", single: "News Item") {
   id: ID!
   title: Text! @field(label: "Title")
   text: Textarea! @field(label: "Text")

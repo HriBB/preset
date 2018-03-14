@@ -87,7 +87,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "prettier": "prettier-eslint --write \"src/**/*.+(js|jsx)\"",
-    "prettier-dry-run": "prettier-eslint \"src/**/*.+(js|jsx)\" -l debug"
+    "prettier-dry-run": "prettier-eslint \"src/**/*.+(js|jsx)\" -l debug",
+    "lingui-extract": "NODE_ENV=production lingui extract",
+    "lingui-compile": "NODE_ENV=production lingui compile"
   },
   "jest": {
     "collectCoverageFrom": [

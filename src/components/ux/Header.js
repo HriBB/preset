@@ -26,7 +26,7 @@ const Header = (props) => {
           <MenuIcon />
         </IconButton>
         <Link to={titleLink || '/'} className={classes.title}>
-          {title || 'Preset CMS'}
+          {title}
         </Link>
         <div style={{ flex: '1' }} />
         {children}

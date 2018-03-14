@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import { Trans } from '@lingui/react'
@@ -9,7 +9,7 @@ import List from 'components/List'
 import Create from 'components/Create'
 import Update from 'components/Update'
 
-import { Error, Spinner } from 'components/ux'
+import { Header, Error, Spinner } from 'components/ux'
 import { modelQuery } from 'preset/queries'
 
 const Model = (props: any) => {
@@ -18,16 +18,27 @@ const Model = (props: any) => {
     <Query query={modelQuery} variables={{ name: match.params.model }}>
       {({ error, loading, data }) => {
         if (error) {
-          return <Error>{error.message}</Error>
+          return (
+            <Fragment>
+              <Header title={<Trans>Error</Trans>} />
+              <Error>{error.message}</Error>
+            </Fragment>
+          )
         }
         if (loading) {
-          return <Spinner />
+          return (
+            <Fragment>
+              <Header />
+              <Spinner />
+            </Fragment>
+          )
         }
         if (!data.model) {
           return (
-            <Error>
+            <Fragment>
+              <Header title={<Trans>Error</Trans>} />
               <Trans>Model {match.params.model} not found!</Trans>
-            </Error>
+            </Fragment>
           )
         }
         const { model } = data

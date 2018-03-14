@@ -44,6 +44,10 @@
     "origin": [
       [
         "src/components/Dashboard.js",
+        25
+      ],
+      [
+        "src/components/Dashboard.js",
         32
       ]
     ]
@@ -88,7 +92,7 @@
     "origin": [
       [
         "src/components/List.js",
-        61
+        67
       ]
     ]
   },
@@ -97,7 +101,7 @@
     "origin": [
       [
         "src/components/List.js",
-        124
+        132
       ]
     ]
   },
@@ -106,7 +110,7 @@
     "origin": [
       [
         "src/components/List.js",
-        127
+        135
       ],
       [
         "src/components/Update.js",
@@ -204,14 +208,28 @@
       ]
     ]
   },
-  "Model ${0} not found!": {
-    "translation": "Model ${0} not found!",
-    "origin": [
-      [
-        "src/components/Model.js",
-        29
-      ]
-    ],
+  "Posts": {
+    "translation": "Posts",
+    "obsolete": true
+  },
+  "Post": {
+    "translation": "Post",
+    "obsolete": true
+  },
+  "News": {
+    "translation": "News",
+    "obsolete": true
+  },
+  "News Item": {
+    "translation": "News Item",
+    "obsolete": true
+  },
+  "Parent Testimonials": {
+    "translation": "Parent Testimonials",
+    "obsolete": true
+  },
+  "Parent Testimonial": {
+    "translation": "Parent Testimonial",
     "obsolete": true
   }
 }

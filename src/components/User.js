@@ -41,11 +41,6 @@ const User = props => {
                 {user.username.substring(0, 1)}
               </Avatar>
             }
-            action={
-              <IconButton component={Link} to={`/`}>
-                <CloseIcon />
-              </IconButton>
-            }
             title={user.username}
           />
           <CardContent className={classes.content}>
@@ -98,7 +93,7 @@ const styles = theme => ({
     alignItems: 'center',
   },
   upload: {
-    width: '250px',
+    //width: '250px',
     margin: `0 ${theme.spacing.unit}px ${theme.spacing.unit * 2}px 0`,
   },
   image: {
