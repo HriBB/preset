@@ -35,7 +35,7 @@ const Update = props => {
         {({ error, loading, data }) => {
           if (error) return <Error>{error.message}<br />{error.stack}</Error>
           if (loading) return <Spinner />
-          if (!data.item) return <Error><Trans>Item {id} not found!</Trans></Error>
+          if (!data.item) return <Error><Trans>Item not found</Trans></Error>
           return (
             <Content>
               <Form

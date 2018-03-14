@@ -148,8 +148,8 @@
       ]
     ]
   },
-  "Model {0} not found!": {
-    "translation": "Model {0} ne obstaja!",
+  "Model not found": {
+    "translation": "Model ne obstaja",
     "origin": [
       [
         "src/components/Model.js",
@@ -166,8 +166,8 @@
       ]
     ]
   },
-  "Item {id} not found!": {
-    "translation": "Model {id} ne obstaja",
+  "Item not found": {
+    "translation": "Vnos ne obstaja",
     "origin": [
       [
         "src/components/Update.js",

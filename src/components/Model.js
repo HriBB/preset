@@ -37,9 +37,7 @@ const Model = (props: any) => {
           return (
             <Body>
               <Header title={<Trans>Error</Trans>} />
-              <Error>
-                <Trans>Model {match.params.model} not found!</Trans>
-              </Error>
+              <Error><Trans>Model not found</Trans></Error>
             </Body>
           )
         }

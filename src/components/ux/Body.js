@@ -12,6 +12,7 @@ const Body = ({ classes, children }: any) => (
 
 const styles = theme => ({
   root: {
+    position: 'relative',
     flex: '1',
     minHeight: '100vh',
     background: theme.palette.grey[100],
