@@ -1,6 +1,7 @@
 // @flow weak
 
-const pluralize = require('pluralize')
+const { importSchema } = require('graphql-import')
+const config = require('config')
 
 const findDirective = (type, directiveName) => (
   type.astNode.directives.find(d => d.name.value === directiveName)
@@ -13,14 +14,6 @@ const getDirectiveArguments = (type, directiveName) => {
     Object.assign(args, { [name.value]: value.value })
   ), {})
 }
-
-const getItemQueryName = ({ name }) => (
-  name.charAt(0).toLowerCase() + name.slice(1)
-)
-
-const getListQueryName = ({ name }) => (
-  name.charAt(0).toLowerCase() + pluralize(name).slice(1)
-)
 
 const getModelFields = (model) => {
   return Object.values(model._fields)
@@ -37,19 +30,6 @@ const getModelFields = (model) => {
   })
 }
 
-const getModels = (ast) => {
-  return ast._implementations.Node.map(model => {
-    return {
-      name: model.name,
-      listQueryName: getListQueryName(model),
-      itemQueryName: getItemQueryName(model),
-      createMutationName: `create${model.name}`,
-      updateMutationName: `update${model.name}`,
-      deleteMutationName: `delete${model.name}`,
-      fields: getModelFields(model),
-      ...getDirectiveArguments(model, 'model'),
-    }
-  })
-}
+const schema = importSchema(config.schema)
 
-module.exports = getModels
+module.exports = schema

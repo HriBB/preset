@@ -4,7 +4,7 @@ const { resolve } = require('path')
 
 module.exports = {
   root: __dirname,
-  schema: resolve(__dirname, 'schema.graphql'),
+  schema: resolve(__dirname, '..', 'schema', 'schema.graphql'),
   server: {
     port: 4000,
     endpoint: '/',

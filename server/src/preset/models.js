@@ -1,9 +1,8 @@
 // @flow weak
 
 const { buildASTSchema, parse } = require('graphql')
-const { importSchema } = require('graphql-import')
 const pluralize = require('pluralize')
-const config = require('config')
+const schema = require('./schema')
 
 const findDirective = (type, directiveName) => (
   type.astNode.directives.find(d => d.name.value === directiveName)
@@ -55,7 +54,7 @@ const getModels = (ast) => {
   })
 }
 
-const schema = importSchema(config.schema)
+
 const ast = buildASTSchema(parse(schema))
 const models = getModels(ast)
 

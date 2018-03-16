@@ -3,15 +3,7 @@
 const { getUserId } = require('user')
 const { uploadFile } = require('utils')
 
-const field = ({ name, type, required }) => 
-  `${name}: ${type === 'File' ? 'Upload' : type}${required ? '!' : ''}`
-
-exports.createMutationText = (models) =>
-  models.map(({ name, fields }, i) => `
-  create${name}(${fields.map(field).join(', ')}): ${name}
-  update${name}(id: ID!, ${fields.map(field).join(', ')}): ${name}
-  delete${name}(id: ID!): ${name}
-  `).join('')
+const models = require('./models')
 
 const createModel = (model) => async (parent, { image, ...args }, ctx, info) => {
   const { createMutationName } = model
@@ -72,11 +64,11 @@ const deleteModel = (model) => async (parent, { id }, ctx, info) => {
   return ctx.db.mutation[deleteMutationName]({ where: { id } })
 }
 
-exports.createMutations = (models) => (
-  models.reduce((mutations, model) => ({
-    ...mutations,
-    [model.createMutationName]: createModel(model),
-    [model.updateMutationName]: updateModel(model),
-    [model.deleteMutationName]: deleteModel(model),
-  }), {})
-)
+const mutations = models.reduce((mutations, model) => ({
+  ...mutations,
+  [model.createMutationName]: createModel(model),
+  [model.updateMutationName]: updateModel(model),
+  [model.deleteMutationName]: deleteModel(model),
+}), {})
+
+module.exports = mutations
