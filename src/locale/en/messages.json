@@ -300,5 +300,243 @@
         62
       ]
     ]
+  },
+  "storitve.name": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        21
+      ]
+    ]
+  },
+  "storitve.anchor": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        22
+      ]
+    ]
+  },
+  "pristop.name": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        25
+      ]
+    ]
+  },
+  "pristop.anchor": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        26
+      ]
+    ]
+  },
+  "tehnologije.name": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        29
+      ]
+    ]
+  },
+  "tehnologije.anchor": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        30
+      ]
+    ]
+  },
+  "kontakt.name": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        33
+      ]
+    ]
+  },
+  "kontakt.anchor": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        34
+      ]
+    ]
+  },
+  "common.menu": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        65
+      ]
+    ]
+  },
+  "hero.button_url": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Hero/index.js",
+        33
+      ]
+    ]
+  },
+  "hero.subtitle": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Hero/index.js",
+        45
+      ]
+    ]
+  },
+  "koraki.item1": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        34
+      ]
+    ]
+  },
+  "koraki.item2": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        42
+      ]
+    ]
+  },
+  "koraki.item3": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        50
+      ]
+    ]
+  },
+  "koraki.item4": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        58
+      ]
+    ]
+  },
+  "koraki.item5": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        66
+      ]
+    ]
+  },
+  "storitve.item1": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        35
+      ]
+    ]
+  },
+  "storitve.item2": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        45
+      ]
+    ]
+  },
+  "storitve.item3": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        55
+      ]
+    ]
+  },
+  "storitve.item4": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        65
+      ]
+    ]
+  },
+  "storitve.item5": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        75
+      ]
+    ]
+  },
+  "storitve.item6": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        85
+      ]
+    ]
+  },
+  "storitve": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        20
+      ]
+    ],
+    "obsolete": true
+  },
+  "pristop": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        21
+      ]
+    ],
+    "obsolete": true
+  },
+  "tehnologije": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        22
+      ]
+    ],
+    "obsolete": true
+  },
+  "kontakt": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Header/index.js",
+        23
+      ]
+    ],
+    "obsolete": true
   }
 }

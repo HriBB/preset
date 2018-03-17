@@ -3,6 +3,7 @@
 <PROJECT_ROOT>/.install/
 <PROJECT_ROOT>/scripts/
 <PROJECT_ROOT>/server/
+<PROJECT_ROOT>/website/
 <PROJECT_ROOT>/node_modules/bcryptjs/src/bower.json
 <PROJECT_ROOT>/node_modules/config-chain/test/*
 <PROJECT_ROOT>/node_modules/npm/node_modules/config-chain/test/*

@@ -1,7 +1,8 @@
 {
   "extends": "react-app",
   "rules": {
-    "semi": ["error", "never"],
+    "semi": 0,
+    "strict": 0,
     "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "jsx-quotes": ["error", "prefer-single"],
     "no-unused-vars": 2,
