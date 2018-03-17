@@ -1,5 +1,5 @@
 {
-  "Username": {
+  "cms.username": {
     "origin": [
       [
         "src/components/Login.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "Password": {
+  "cms.password": {
     "origin": [
       [
         "src/components/Login.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "Login": {
+  "cms.login": {
     "origin": [
       [
         "src/components/Login.js",

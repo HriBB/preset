@@ -1,6 +1,6 @@
 {
-  "Posts": {
-    "translation": "Posts",
+  "cms.posts.single": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -8,8 +8,8 @@
       ]
     ]
   },
-  "Post": {
-    "translation": "Post",
+  "cms.posts.plural": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -17,8 +17,8 @@
       ]
     ]
   },
-  "Title": {
-    "translation": "Title",
+  "cms.news.single": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -26,8 +26,8 @@
       ]
     ]
   },
-  "Text": {
-    "translation": "Text",
+  "cms.news.plural": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -35,8 +35,8 @@
       ]
     ]
   },
-  "Cover Image": {
-    "translation": "Cover Image",
+  "cms.parent_testimonials.single": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -44,8 +44,8 @@
       ]
     ]
   },
-  "Published": {
-    "translation": "Published",
+  "cms.parent_testimonials.plural": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -53,8 +53,8 @@
       ]
     ]
   },
-  "News": {
-    "translation": "News",
+  "cms.fields.title": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -62,8 +62,8 @@
       ]
     ]
   },
-  "News Item": {
-    "translation": "News",
+  "cms.fields.text": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -71,8 +71,8 @@
       ]
     ]
   },
-  "Parent Testimonials": {
-    "translation": "Parent Testimonials",
+  "cms.fields.image": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -80,8 +80,8 @@
       ]
     ]
   },
-  "Parent Testimonial": {
-    "translation": "Parent Testimonial",
+  "cms.fields.published": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -89,12 +89,12 @@
       ]
     ]
   },
-  "Done": {
-    "translation": "Done",
+  "cms.done": {
+    "translation": "",
     "origin": [
       [
         "src/components/App.js",
-        46
+        41
       ],
       [
         "src/components/User.js",
@@ -102,8 +102,8 @@
       ]
     ]
   },
-  "Create": {
-    "translation": "Create",
+  "cms.create": {
+    "translation": "",
     "origin": [
       [
         "src/components/Create.js",
@@ -115,17 +115,18 @@
       ]
     ]
   },
-  "{0} created": {
-    "translation": "{0} created",
+  "cms.model_created": {
+    "translation": "",
+    "defaults": "{0} created",
     "origin": [
       [
         "src/components/Create.js",
-        73
+        74
       ]
     ]
   },
-  "Dashboard": {
-    "translation": "Dashboard",
+  "cms.dashboard": {
+    "translation": "",
     "origin": [
       [
         "src/components/Dashboard.js",
@@ -137,8 +138,9 @@
       ]
     ]
   },
-  "Welcome {0}": {
-    "translation": "Welcome {0}",
+  "cms.welcome": {
+    "translation": "",
+    "defaults": "Welcome {0}",
     "origin": [
       [
         "src/components/Dashboard.js",
@@ -146,8 +148,8 @@
       ]
     ]
   },
-  "User": {
-    "translation": "User",
+  "cms.user": {
+    "translation": "",
     "origin": [
       [
         "src/components/Drawer.js",
@@ -159,21 +161,8 @@
       ]
     ]
   },
-  "Menu": {
-    "translation": "Menu",
-    "origin": [
-      [
-        "src/components/Header.js",
-        23
-      ],
-      [
-        "src/components/ux/Header.js",
-        23
-      ]
-    ]
-  },
-  "Delete": {
-    "translation": "Delete",
+  "cms.delete": {
+    "translation": "",
     "origin": [
       [
         "src/components/List.js",
@@ -181,8 +170,8 @@
       ]
     ]
   },
-  "Deleted": {
-    "translation": "Deleted",
+  "cms.model_deleted": {
+    "translation": "",
     "origin": [
       [
         "src/components/List.js",
@@ -190,8 +179,8 @@
       ]
     ]
   },
-  "Error": {
-    "translation": "Error",
+  "cms.error": {
+    "translation": "",
     "origin": [
       [
         "src/components/List.js",
@@ -211,8 +200,8 @@
       ]
     ]
   },
-  "Username": {
-    "translation": "Username",
+  "cms.username": {
+    "translation": "",
     "origin": [
       [
         "src/components/Login.js",
@@ -220,8 +209,8 @@
       ]
     ]
   },
-  "Password": {
-    "translation": "Password",
+  "cms.password": {
+    "translation": "",
     "origin": [
       [
         "src/components/Login.js",
@@ -229,8 +218,8 @@
       ]
     ]
   },
-  "Login": {
-    "translation": "Login",
+  "cms.login": {
+    "translation": "",
     "origin": [
       [
         "src/components/Login.js",
@@ -238,8 +227,8 @@
       ]
     ]
   },
-  "Model not found": {
-    "translation": "Model not found",
+  "cms.model_not_found": {
+    "translation": "",
     "origin": [
       [
         "src/components/Model.js",
@@ -247,8 +236,8 @@
       ]
     ]
   },
-  "Edit": {
-    "translation": "Edit",
+  "cms.edit": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -256,8 +245,8 @@
       ]
     ]
   },
-  "Item not found": {
-    "translation": "Item not found",
+  "cms.item_not_found": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -265,8 +254,8 @@
       ]
     ]
   },
-  "Save": {
-    "translation": "Save",
+  "cms.save": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -274,8 +263,8 @@
       ]
     ]
   },
-  "Updated": {
-    "translation": "Updated",
+  "cms.model_updated": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -283,8 +272,8 @@
       ]
     ]
   },
-  "Image": {
-    "translation": "Image",
+  "cms.image": {
+    "translation": "",
     "origin": [
       [
         "src/components/User.js",
@@ -292,12 +281,21 @@
       ]
     ]
   },
-  "Upload": {
-    "translation": "Upload",
+  "cms.upload": {
+    "translation": "",
     "origin": [
       [
         "src/components/User.js",
         62
+      ]
+    ]
+  },
+  "cms.menu": {
+    "translation": "",
+    "origin": [
+      [
+        "src/components/ux/Header.js",
+        23
       ]
     ]
   },
@@ -498,45 +496,5 @@
         85
       ]
     ]
-  },
-  "storitve": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        20
-      ]
-    ],
-    "obsolete": true
-  },
-  "pristop": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        21
-      ]
-    ],
-    "obsolete": true
-  },
-  "tehnologije": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        22
-      ]
-    ],
-    "obsolete": true
-  },
-  "kontakt": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        23
-      ]
-    ],
-    "obsolete": true
   }
 }

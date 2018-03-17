@@ -1,5 +1,5 @@
 {
-  "Edit": {
+  "cms.edit": {
     "origin": [
       [
         "src/components/Update.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "Item not found": {
+  "cms.item_not_found": {
     "origin": [
       [
         "src/components/Update.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "Save": {
+  "cms.save": {
     "origin": [
       [
         "src/components/Update.js",
@@ -23,7 +23,7 @@
       ]
     ]
   },
-  "Updated": {
+  "cms.model_updated": {
     "origin": [
       [
         "src/components/Update.js",
@@ -31,7 +31,7 @@
       ]
     ]
   },
-  "Error": {
+  "cms.error": {
     "origin": [
       [
         "src/components/Update.js",

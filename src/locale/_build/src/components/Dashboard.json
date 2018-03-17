@@ -1,5 +1,5 @@
 {
-  "Dashboard": {
+  "cms.dashboard": {
     "origin": [
       [
         "src/components/Dashboard.js",
@@ -11,7 +11,8 @@
       ]
     ]
   },
-  "Welcome {0}": {
+  "cms.welcome": {
+    "defaults": "Welcome {0}",
     "origin": [
       [
         "src/components/Dashboard.js",

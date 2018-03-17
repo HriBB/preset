@@ -1,6 +1,6 @@
 {
-  "Posts": {
-    "translation": "Prispevki",
+  "cms.posts.single": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -8,8 +8,8 @@
       ]
     ]
   },
-  "Post": {
-    "translation": "Prispevek",
+  "cms.posts.plural": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -17,8 +17,8 @@
       ]
     ]
   },
-  "Title": {
-    "translation": "Naslov",
+  "cms.news.single": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -26,8 +26,8 @@
       ]
     ]
   },
-  "Text": {
-    "translation": "Besedilo",
+  "cms.news.plural": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -35,8 +35,8 @@
       ]
     ]
   },
-  "Cover Image": {
-    "translation": "Naslovna slika",
+  "cms.parent_testimonials.single": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -44,8 +44,8 @@
       ]
     ]
   },
-  "Published": {
-    "translation": "Objavljeno",
+  "cms.parent_testimonials.plural": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -53,8 +53,8 @@
       ]
     ]
   },
-  "News": {
-    "translation": "Novice",
+  "cms.fields.title": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -62,8 +62,8 @@
       ]
     ]
   },
-  "News Item": {
-    "translation": "Novica",
+  "cms.fields.text": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -71,8 +71,8 @@
       ]
     ]
   },
-  "Parent Testimonials": {
-    "translation": "Izkušnje staršev",
+  "cms.fields.image": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -80,8 +80,8 @@
       ]
     ]
   },
-  "Parent Testimonial": {
-    "translation": "Izkušnja staršev",
+  "cms.fields.published": {
+    "translation": "",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -89,12 +89,12 @@
       ]
     ]
   },
-  "Done": {
-    "translation": "Končano",
+  "cms.done": {
+    "translation": "",
     "origin": [
       [
         "src/components/App.js",
-        46
+        41
       ],
       [
         "src/components/User.js",
@@ -102,8 +102,8 @@
       ]
     ]
   },
-  "Create": {
-    "translation": "Dodaj",
+  "cms.create": {
+    "translation": "",
     "origin": [
       [
         "src/components/Create.js",
@@ -115,17 +115,18 @@
       ]
     ]
   },
-  "{0} created": {
-    "translation": "{0} ustvarjen",
+  "cms.model_created": {
+    "translation": "",
+    "defaults": "{0} created",
     "origin": [
       [
         "src/components/Create.js",
-        73
+        74
       ]
     ]
   },
-  "Dashboard": {
-    "translation": "Nadzorna plošča",
+  "cms.dashboard": {
+    "translation": "",
     "origin": [
       [
         "src/components/Dashboard.js",
@@ -137,8 +138,9 @@
       ]
     ]
   },
-  "Welcome {0}": {
-    "translation": "Pozdravljen/a {0}",
+  "cms.welcome": {
+    "translation": "",
+    "defaults": "Welcome {0}",
     "origin": [
       [
         "src/components/Dashboard.js",
@@ -146,8 +148,8 @@
       ]
     ]
   },
-  "User": {
-    "translation": "Uporabnik",
+  "cms.user": {
+    "translation": "",
     "origin": [
       [
         "src/components/Drawer.js",
@@ -159,21 +161,8 @@
       ]
     ]
   },
-  "Menu": {
-    "translation": "Meni",
-    "origin": [
-      [
-        "src/components/Header.js",
-        23
-      ],
-      [
-        "src/components/ux/Header.js",
-        23
-      ]
-    ]
-  },
-  "Delete": {
-    "translation": "Odstrani",
+  "cms.delete": {
+    "translation": "",
     "origin": [
       [
         "src/components/List.js",
@@ -181,8 +170,8 @@
       ]
     ]
   },
-  "Deleted": {
-    "translation": "Odstranjeno",
+  "cms.model_deleted": {
+    "translation": "",
     "origin": [
       [
         "src/components/List.js",
@@ -190,8 +179,8 @@
       ]
     ]
   },
-  "Error": {
-    "translation": "Napaka",
+  "cms.error": {
+    "translation": "",
     "origin": [
       [
         "src/components/List.js",
@@ -211,8 +200,8 @@
       ]
     ]
   },
-  "Username": {
-    "translation": "Uporabniško ime",
+  "cms.username": {
+    "translation": "",
     "origin": [
       [
         "src/components/Login.js",
@@ -220,8 +209,8 @@
       ]
     ]
   },
-  "Password": {
-    "translation": "Geslo",
+  "cms.password": {
+    "translation": "",
     "origin": [
       [
         "src/components/Login.js",
@@ -229,8 +218,8 @@
       ]
     ]
   },
-  "Login": {
-    "translation": "Prijava",
+  "cms.login": {
+    "translation": "",
     "origin": [
       [
         "src/components/Login.js",
@@ -238,8 +227,8 @@
       ]
     ]
   },
-  "Model not found": {
-    "translation": "Model ne obstaja",
+  "cms.model_not_found": {
+    "translation": "",
     "origin": [
       [
         "src/components/Model.js",
@@ -247,8 +236,8 @@
       ]
     ]
   },
-  "Edit": {
-    "translation": "Uredi",
+  "cms.edit": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -256,8 +245,8 @@
       ]
     ]
   },
-  "Item not found": {
-    "translation": "Vnos ne obstaja",
+  "cms.item_not_found": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -265,8 +254,8 @@
       ]
     ]
   },
-  "Save": {
-    "translation": "Shrani",
+  "cms.save": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -274,8 +263,8 @@
       ]
     ]
   },
-  "Updated": {
-    "translation": "Shranjeno",
+  "cms.model_updated": {
+    "translation": "",
     "origin": [
       [
         "src/components/Update.js",
@@ -283,8 +272,8 @@
       ]
     ]
   },
-  "Image": {
-    "translation": "Slika",
+  "cms.image": {
+    "translation": "",
     "origin": [
       [
         "src/components/User.js",
@@ -292,12 +281,21 @@
       ]
     ]
   },
-  "Upload": {
-    "translation": "Naloži",
+  "cms.upload": {
+    "translation": "",
     "origin": [
       [
         "src/components/User.js",
         62
+      ]
+    ]
+  },
+  "cms.menu": {
+    "translation": "",
+    "origin": [
+      [
+        "src/components/ux/Header.js",
+        23
       ]
     ]
   },
@@ -498,45 +496,5 @@
         85
       ]
     ]
-  },
-  "storitve": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        20
-      ]
-    ],
-    "obsolete": true
-  },
-  "pristop": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        21
-      ]
-    ],
-    "obsolete": true
-  },
-  "tehnologije": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        22
-      ]
-    ],
-    "obsolete": true
-  },
-  "kontakt": {
-    "translation": "",
-    "origin": [
-      [
-        "website/src/components/Header/index.js",
-        23
-      ]
-    ],
-    "obsolete": true
   }
 }

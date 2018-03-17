@@ -14,8 +14,6 @@ interface Node {
 
 type Model {
   name: String!
-  label: String!
-  single: String!
   itemQueryName: String!
   listQueryName: String!
   createMutationName: String!
@@ -26,7 +24,6 @@ type Model {
 
 type Field {
   name: String!
-  label: String!
   type: String!
   list: Boolean!
   required: Boolean!
@@ -50,32 +47,32 @@ type AuthPayload {
 
 type File {
   id: ID!
-  url: String! @field(label: "URL")
-  filename: String! @field(label: "File Name")
-  mimetype: String! @field(label: "Mime Type")
+  url: String! @field
+  filename: String! @field
+  mimetype: String! @field
   author: User
 }
 
-type Post implements Node @model(label: "Posts", single: "Post") {
+type Post implements Node @model(id:"posts") {
   id: ID!
-  title: Text! @field(label: "Title")
-  text: Textarea! @field(label: "Text")
-  image: File @field(label: "Cover Image")
-  published: Checkbox! @field(label: "Published")
+  title: Text! @field
+  text: Textarea! @field
+  image: File @field
+  published: Checkbox! @field
 }
 
-type NewsPost implements Node @model(label: "News", single: "News Item") {
+type NewsPost implements Node @model(id:"news") {
   id: ID!
-  title: Text! @field(label: "Title")
-  text: Textarea! @field(label: "Text")
-  image: File @field(label: "Cover Image")
-  published: Checkbox! @field(label: "Published")
+  title: Text! @field
+  text: Textarea! @field
+  image: File @field
+  published: Checkbox! @field
 }
 
-type ParentTestimonial implements Node @model(label: "Parent Testimonials", single: "Parent Testimonial") {
+type ParentTestimonial implements Node @model(id:"parent_testimonials") {
   id: ID!
-  title: Text! @field(label: "Title")
-  text: Textarea! @field(label: "Text")
-  image: File @field(label: "Cover Image")
-  published: Checkbox! @field(label: "Published")
+  title: Text! @field
+  text: Textarea! @field
+  image: File @field
+  published: Checkbox! @field
 }

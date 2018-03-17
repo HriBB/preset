@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { graphql, withApollo } from 'react-apollo'
+import { mutation, withApollo } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
@@ -28,7 +28,7 @@ const User = props => {
 
   return (
     <Body>
-      <Header title={<Trans>User</Trans>}>
+      <Header title={<Trans>cms.user</Trans>}>
         <IconButton component={Link} to={`/`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
@@ -51,7 +51,7 @@ const User = props => {
                 component={Upload}
                 className={classes.upload}
                 name={'image'}
-                label={<Trans>Image</Trans>}
+                label={<Trans>cms.image</Trans>}
               />
               <Button
                 size={'small'}
@@ -59,7 +59,7 @@ const User = props => {
                 type={'submit'}
                 variant={'raised'}
               >
-                <Trans>Upload</Trans>
+                <Trans>cms.upload</Trans>
               </Button>
             </div>
             {user.image && (
@@ -118,7 +118,7 @@ export default compose(
   }),
   withStyles(styles),
   withApollo,
-  graphql(setProfilePictureMutation, {
+  mutation(setProfilePictureMutation, {
     props: ({ props, mutate }) => ({
       setProfilePicture: image =>
         mutate({
@@ -131,7 +131,7 @@ export default compose(
     onSubmit: ({ snackbar, setProfilePicture }) => ({ image }) =>
       setProfilePicture(image[0])
         .then(({ data: { setProfilePicture } }) => {
-          snackbar.show(<Trans>Done</Trans>)
+          snackbar.show(<Trans>cms.done</Trans>)
         })
         .catch(error => {
           throw new SubmissionError({ _error: error.message })

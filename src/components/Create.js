@@ -30,7 +30,7 @@ const Create = props => {
       <Header
         title={
           <Fragment>
-            <Trans>Create</Trans> <Trans id={model.single} />
+            <Trans>cms.create</Trans> <Trans id={model.single} />
           </Fragment>
         }
       >
@@ -40,8 +40,8 @@ const Create = props => {
       </Header>
       <Content>
         <Form
-          button={<Trans>Create</Trans>}
-          form={`Create${model.name}`}
+          button={<Trans>cms.create</Trans>}
+          form={`create${model.name}`}
           initialValues={initialValues}
           onSubmit={createItem}
           model={model}
@@ -70,7 +70,11 @@ export default compose(
           update: getCreateUpdateHandler(props),
         })
         .then(({ data }) => {
-          props.snackbar.show(<Trans>{props.model.single} created</Trans>)
+          props.snackbar.show(
+            <Trans id='cms.model_created'>
+              {props.model.single} created
+            </Trans>
+          )
           props.history.push(
             `/${props.model.name}/${data[props.createMutationName].id}`
           )

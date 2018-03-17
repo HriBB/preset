@@ -20,7 +20,7 @@ const Model = (props: any) => {
         if (error) {
           return (
             <Body>
-              <Header title={<Trans>Error</Trans>} />
+              <Header title={<Trans>cms.error</Trans>} />
               <Error>{error.message}</Error>
             </Body>
           )
@@ -36,9 +36,9 @@ const Model = (props: any) => {
         if (!data.model) {
           return (
             <Body>
-              <Header title={<Trans>Error</Trans>} />
+              <Header title={<Trans>cms.error</Trans>} />
               <Error>
-                <Trans>Model not found</Trans>
+                <Trans>cms.model_not_found</Trans>
               </Error>
             </Body>
           )

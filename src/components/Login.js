@@ -3,7 +3,7 @@
 import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { graphql, withApollo } from 'react-apollo'
+import { mutation, withApollo } from 'react-apollo'
 import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
@@ -33,14 +33,14 @@ const Login = props => {
             className={classes.field}
             inputClassName={classes.input}
             name={'username'}
-            label={<Trans>Username</Trans>}
+            label={<Trans>cms.username</Trans>}
           />
           <Field
             component={Text}
             className={classes.field}
             inputClassName={classes.input}
             name={'password'}
-            label={<Trans>Password</Trans>}
+            label={<Trans>cms.password</Trans>}
             type={'password'}
           />
           <FormControl error className={classes.error}>
@@ -49,7 +49,7 @@ const Login = props => {
         </CardContent>
         <CardActions className={classes.actions}>
           <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>
-            <Trans>Login</Trans>
+            <Trans>cms.login</Trans>
           </Button>
         </CardActions>
       </Card>
@@ -98,7 +98,7 @@ const styles = theme => ({
 export default compose(
   withStyles(styles),
   withApollo,
-  graphql(loginMutation, {
+  mutation(loginMutation, {
     props: ({ ownProps, mutate }) => ({
       login: (username, password) =>
         mutate({

@@ -70,7 +70,7 @@ const List = (props: any) => {
                         <ListItemText primary={item[getNameField(model)]} />
                         <ListItemSecondaryAction>
                           <IconButton
-                            aria-label={<Trans>Delete</Trans>}
+                            aria-label={<Trans>cms.delete</Trans>}
                             data-id={item.id}
                             onClick={props.deleteItem}
                           >
@@ -135,10 +135,10 @@ export default compose(
           update,
         })
         .then(({ data }) => {
-          props.snackbar.show(<Trans>Deleted</Trans>)
+          props.snackbar.show(<Trans>cms.model_deleted</Trans>)
         })
         .catch(error => {
-          props.dialog.show(<Trans>Error</Trans>, error)
+          props.dialog.show(<Trans>cms.error</Trans>, error)
         })
     },
   })

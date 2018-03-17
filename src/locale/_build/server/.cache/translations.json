@@ -1,5 +1,5 @@
 {
-  "Posts": {
+  "cms.posts.single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "Post": {
+  "cms.posts.plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "Title": {
+  "cms.news.single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -23,7 +23,7 @@
       ]
     ]
   },
-  "Text": {
+  "cms.news.plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -31,7 +31,7 @@
       ]
     ]
   },
-  "Cover Image": {
+  "cms.parent_testimonials.single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -39,7 +39,7 @@
       ]
     ]
   },
-  "Published": {
+  "cms.parent_testimonials.plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -47,7 +47,7 @@
       ]
     ]
   },
-  "News": {
+  "cms.fields.title": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -55,7 +55,7 @@
       ]
     ]
   },
-  "News Item": {
+  "cms.fields.text": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -63,7 +63,7 @@
       ]
     ]
   },
-  "Parent Testimonials": {
+  "cms.fields.image": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -71,7 +71,7 @@
       ]
     ]
   },
-  "Parent Testimonial": {
+  "cms.fields.published": {
     "origin": [
       [
         "server/.cache/translations.js",

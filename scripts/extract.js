@@ -23,11 +23,13 @@ require('app-module-path').addPath(resolve(serverRoot, 'node_modules'))
 const models = require('preset/models')
 
 const keys = {}
-models.forEach(model => {
-  keys[model.label] = true
-  keys[model.single] = true
-  model.fields.forEach(field => {
-    keys[field.label] = true
+models.forEach(({ id }) => {
+  keys[`cms.${id}.single`] = true
+  keys[`cms.${id}.plural`] = true
+})
+models.forEach(({ fields }) => {
+  fields.forEach(({ name }) => {
+    keys[`cms.fields.${name.toLowerCase()}`] = true
   })
 })
 

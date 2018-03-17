@@ -3,12 +3,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
-import {
-  compose,
-  withHandlers,
-  withStateHandlers,
-  withContext,
-} from 'recompose'
+import { compose, withHandlers, withStateHandlers, withContext } from 'recompose'
 import { Route, Switch } from 'react-router-dom'
 import { Query, withApollo } from 'react-apollo'
 import { withStyles } from 'material-ui/styles'
@@ -43,7 +38,7 @@ const App = props => {
               <Snackbar
                 open={!!props.snackbar}
                 onClose={props.hideSnackbar}
-                message={props.snackbar || <Trans>Done</Trans>}
+                message={props.snackbar || <Trans>cms.done</Trans>}
               />
               <Dialog
                 open={props.dialog.open}

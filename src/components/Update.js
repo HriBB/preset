@@ -25,7 +25,7 @@ const Update = props => {
       <Header
         title={
           <Fragment>
-            <Trans>Edit</Trans> <Trans id={model.single} />
+            <Trans>cms.edit</Trans> <Trans id={model.single} />
           </Fragment>
         }
       >
@@ -47,13 +47,13 @@ const Update = props => {
           if (!data.item)
             return (
               <Error>
-                <Trans>Item not found</Trans>
+                <Trans>cms.item_not_found</Trans>
               </Error>
             )
           return (
             <Content>
               <Form
-                button={<Trans>Save</Trans>}
+                button={<Trans>cms.save</Trans>}
                 form={`Edit${model.name}`}
                 initialValues={data.item}
                 onSubmit={updateItem}
@@ -86,10 +86,10 @@ export default compose(
           update: getUpdateUpdateHandler(data.id, props),
         })
         .then(({ data }) => {
-          props.snackbar.show(<Trans>Updated</Trans>)
+          props.snackbar.show(<Trans>cms.model_updated</Trans>)
         })
         .catch(error => {
-          props.dialog.show(<Trans>Error</Trans>, error)
+          props.dialog.show(<Trans>cms.error</Trans>, error)
         }),
   })
 )(Update)

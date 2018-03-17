@@ -60,7 +60,7 @@ const Drawer = props => {
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={<Trans>User</Trans>} />
+          <ListItemText primary={<Trans>cms.user</Trans>} />
         </ListItem>
       </List>
     </MuiDrawer>

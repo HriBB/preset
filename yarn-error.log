@@ -1,5 +1,5 @@
 Arguments: 
-  /home/bojan/.nvm/versions/node/v9.2.0/bin/node /usr/share/yarn/bin/yarn.js lingui extract
+  /home/bojan/.nvm/versions/node/v9.2.0/bin/node /usr/share/yarn/bin/yarn.js lingui extract --cleanup
 
 PATH: 
   /home/bojan/.nvm/versions/node/v9.2.0/bin:/home/bojan/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/bojan/bin:/home/bojan/Android/Sdk/tools
@@ -153,7 +153,6 @@ npm manifest:
         "@lingui/babel-preset-react"
       ],
       "plugins": [
-        "@babel/plugin-transform-flow-strip-types",
         "@babel/plugin-syntax-dynamic-import",
         "@babel/plugin-proposal-class-properties",
         "@babel/plugin-proposal-object-rest-spread"
@@ -178,8 +177,8 @@ npm manifest:
       "localeDir": "<rootDir>/src/locale",
       "srcPathDirs": [
         "<rootDir>/src",
-        "<rootDir>/../server/.cache",
-        "<rootDir>/../website/src"
+        "<rootDir>/server/.cache",
+        "<rootDir>/website/src"
       ],
       "srcPathIgnorePatterns": [
         "/node_modules/"
@@ -8810,7 +8809,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c lingui extract
+  Arguments: -c lingui extract --cleanup
   Directory: /home/bojan/www/preset/preset
   Output:
   
