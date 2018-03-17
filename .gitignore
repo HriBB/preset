@@ -8,4 +8,5 @@ website
 npm-debug.log
 .idea/*
 *.swp
+*.log
 .vscode
