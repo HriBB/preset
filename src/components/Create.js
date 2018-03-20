@@ -30,7 +30,7 @@ const Create = props => {
       <Header
         title={
           <Fragment>
-            <Trans>cms.create</Trans> <Trans id={model.single} />
+            <Trans>cms.create</Trans> <Trans id={model.name} />
           </Fragment>
         }
       >
@@ -72,7 +72,7 @@ export default compose(
         .then(({ data }) => {
           props.snackbar.show(
             <Trans id='cms.model_created'>
-              {props.model.single} created
+              {props.model.name} created
             </Trans>
           )
           props.history.push(

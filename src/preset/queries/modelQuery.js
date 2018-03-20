@@ -6,8 +6,6 @@ const modelQuery = gql`
   query model($name: String!) {
     model: model(name: $name) {
       name
-      label
-      single
       itemQueryName
       listQueryName
       createMutationName
@@ -15,13 +13,11 @@ const modelQuery = gql`
       deleteMutationName
       fields {
         name
-        label
         type
         list
         required
         fields {
           name
-          label
           type
           list
           required

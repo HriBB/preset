@@ -1,4 +1,3 @@
-
 directive @model(label: String) on FIELD
 directive @field(label: String) on FIELD_DEFINITION
 
@@ -10,6 +9,25 @@ scalar Upload
 
 interface Node {
   id: ID!
+}
+
+enum LOCALE {
+  SI
+  EN
+}
+
+enum EDITOR {
+  Text
+  Textarea
+}
+
+type Translation {
+  id: ID!
+  lang: LOCALE!
+  ns: String!
+  key: String!
+  value: String
+  editor: EDITOR!
 }
 
 type Model {

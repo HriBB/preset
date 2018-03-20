@@ -2,7 +2,7 @@
 
 import React, { Fragment } from 'react'
 import { compose } from 'recompose'
-import { Field, reduxForm } from 'redux-form'
+import { Form, Field, reduxForm } from 'redux-form'
 
 import { withStyles } from 'material-ui/styles'
 import { CardContent, CardActions } from 'material-ui/Card'
@@ -10,19 +10,19 @@ import Button from 'material-ui/Button'
 
 import { getFormField } from 'components/form'
 
-const Form = props => {
+const ModelForm = props => {
   const { classes, handleSubmit, initialValues, model, button } = props
   return (
     <Fragment>
       <CardContent className={classes.content}>
-        <form onSubmit={handleSubmit}>
-          {model.fields.map(({ name, label, type }) => (
+        <Form onSubmit={handleSubmit}>
+          {model.fields.map(({ name, type }) => (
             <div key={name}>
               <Field
                 component={getFormField(type)}
                 className={classes.field}
                 name={name}
-                label={label}
+                label={name}
               />
               {name === 'image' &&
                 initialValues.image && (
@@ -34,7 +34,7 @@ const Form = props => {
                 )}
             </div>
           ))}
-        </form>
+        </Form>
       </CardContent>
       <CardActions className={classes.actions}>
         <Button color={'secondary'} variant={'raised'} onClick={handleSubmit}>
@@ -90,4 +90,7 @@ const validate = (fields, { model }) => {
   return errors
 }
 
-export default compose(withStyles(styles), reduxForm({ validate }))(Form)
+export default compose(
+  withStyles(styles),
+  reduxForm({ validate }),
+)(ModelForm)

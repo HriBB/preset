@@ -20,6 +20,7 @@ import Drawer from 'components/Drawer'
 import Dashboard from 'components/Dashboard'
 import Login from 'components/Login'
 import Model from 'components/Model'
+import Translations from 'components/Translations'
 import User from 'components/User'
 
 const App = props => {
@@ -57,6 +58,10 @@ const App = props => {
                 <Route
                   path={'/user'}
                   render={matchProps => <User {...matchProps} user={user} />}
+                />
+                <Route
+                  path={'/translations/:namespace?'}
+                  render={matchProps => <Translations {...matchProps} user={user} />}
                 />
                 <Route
                   path={'/:model'}

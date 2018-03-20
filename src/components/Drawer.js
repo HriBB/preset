@@ -12,7 +12,9 @@ import Toolbar from 'material-ui/Toolbar'
 import MuiDrawer from 'material-ui/Drawer'
 import Divider from 'material-ui/Divider'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
+
 import InboxIcon from 'material-ui-icons/Inbox'
+import TranslateIcon from 'material-ui-icons/Translate'
 
 const Drawer = props => {
   const { classes, drawer, models, open, theme, width } = props
@@ -32,6 +34,18 @@ const Drawer = props => {
         </Link>
       </Toolbar>
       <List className={classes.list} component={'nav'}>
+        <ListItem
+          className={classes.item}
+          component={NavLink}
+          to={'/translations/'}
+          onClick={drawer.toggle}
+          button
+        >
+          <ListItemIcon>
+            <TranslateIcon />
+          </ListItemIcon>
+          <ListItemText primary={<Trans>cms.translations</Trans>} />
+        </ListItem>
         {models.map(model => (
           <ListItem
             className={classes.item}
@@ -44,7 +58,7 @@ const Drawer = props => {
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
-            <ListItemText primary={<Trans id={model.label} />} />
+            <ListItemText primary={<Trans id={model.name} />} />
           </ListItem>
         ))}
       </List>

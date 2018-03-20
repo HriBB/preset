@@ -25,7 +25,7 @@ const Update = props => {
       <Header
         title={
           <Fragment>
-            <Trans>cms.edit</Trans> <Trans id={model.single} />
+            <Trans>cms.edit</Trans> <Trans id={model.name} />
           </Fragment>
         }
       >

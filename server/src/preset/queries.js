@@ -26,6 +26,9 @@ const queries = Object.assign(
       }
       return modelsByName[name]
     },
+    translations: (parent, args, ctx, info) => {
+      throw new Error(`not implementeeeeeee`)
+    },
   },
   models.reduce((queries, { itemQueryName, listQueryName }) => ({
     ...queries,

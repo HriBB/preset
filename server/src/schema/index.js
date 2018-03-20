@@ -36,7 +36,7 @@ schema {
 }
 `
 
-//console.log(typeDefs)
+console.log(typeDefs)
 
 const schema = makeExecutableSchema({
   typeDefs,

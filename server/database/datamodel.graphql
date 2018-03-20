@@ -16,6 +16,25 @@ type File {
   mimetype: String!
 }
 
+enum LOCALE {
+  SI
+  EN
+}
+
+enum EDITOR {
+  Text
+  Textarea
+}
+
+type Translation {
+  id: ID! @unique
+  lang: LOCALE!
+  ns: String!
+  key: String!
+  value: String
+  editor: EDITOR!
+}
+
 type Post {
   id: ID! @unique
   title: String!

@@ -40,7 +40,7 @@ const Dashboard = (props: any) => {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary={<Trans id={model.label} />} />
+              <ListItemText primary={<Trans id={model.name} />} />
             </ListItem>
           ))}
         </List>

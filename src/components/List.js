@@ -31,7 +31,7 @@ const List = (props: any) => {
   const { classes, listQuery, model } = props
   return (
     <Fragment>
-      <Header title={<Trans id={model.label} />}>
+      <Header title={<Trans id={model.name} />}>
         <IconButton
           component={Link}
           to={`/${model.name}/create`}

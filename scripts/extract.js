@@ -24,12 +24,12 @@ const models = require('preset/models')
 
 const keys = {}
 models.forEach(({ id }) => {
-  keys[`cms.${id}.single`] = true
-  keys[`cms.${id}.plural`] = true
+  keys[`cms.${id}_single`] = true
+  keys[`cms.${id}_plural`] = true
 })
 models.forEach(({ fields }) => {
   fields.forEach(({ name }) => {
-    keys[`cms.fields.${name.toLowerCase()}`] = true
+    keys[`cms.${name.toLowerCase()}_field`] = true
   })
 })
 

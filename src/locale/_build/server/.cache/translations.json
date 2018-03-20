@@ -1,5 +1,5 @@
 {
-  "cms.posts.single": {
+  "cms.posts_single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "cms.posts.plural": {
+  "cms.posts_plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "cms.news.single": {
+  "cms.news_single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -23,7 +23,7 @@
       ]
     ]
   },
-  "cms.news.plural": {
+  "cms.news_plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -31,7 +31,7 @@
       ]
     ]
   },
-  "cms.parent_testimonials.single": {
+  "cms.parent_testimonials_single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -39,7 +39,7 @@
       ]
     ]
   },
-  "cms.parent_testimonials.plural": {
+  "cms.parent_testimonials_plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -47,7 +47,7 @@
       ]
     ]
   },
-  "cms.fields.title": {
+  "cms.field_title": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -55,7 +55,7 @@
       ]
     ]
   },
-  "cms.fields.text": {
+  "cms.field_text": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -63,7 +63,7 @@
       ]
     ]
   },
-  "cms.fields.image": {
+  "cms.field_image": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -71,7 +71,7 @@
       ]
     ]
   },
-  "cms.fields.published": {
+  "cms.field_published": {
     "origin": [
       [
         "server/.cache/translations.js",

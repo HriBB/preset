@@ -7,10 +7,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lingui": "lingui",
-    "lingui-extract": "node scripts/extract.js && yarn lingui extract",
-    "lingui-compile": "yarn lingui compile",
-    "lingui-watch": "nodemon -e json -w src/locale -x \"yarn lingui compile\"",
+    "lingui-extract": "node scripts/extract.js && lingui extract && lingui compile",
+    "lingui-watch": "nodemon -e json -w src/locale/en -w src/locale/si -x \"lingui compile\"",
     "prettier": "prettier-eslint --ignore \"**/locale/**\" --write \"src/**/*.+(js|jsx)\"",
     "prettier-dry-run": "prettier-eslint --ignore \"**/locale/**\" \"src/**/*.+(js|jsx)\" -l debug"
   },

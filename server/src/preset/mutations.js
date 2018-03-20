@@ -64,11 +64,19 @@ const deleteModel = (model) => async (parent, { id }, ctx, info) => {
   return ctx.db.mutation[deleteMutationName]({ where: { id } })
 }
 
-const mutations = models.reduce((mutations, model) => ({
-  ...mutations,
-  [model.createMutationName]: createModel(model),
-  [model.updateMutationName]: updateModel(model),
-  [model.deleteMutationName]: deleteModel(model),
-}), {})
+const mutations = Object.assign(
+  {
+    updateTranslations: (parent, args, { language, messages }, info) => {
+      throw new Error(`not implementedddddddd`)
+    },
+  },
+  models.reduce((mutations, model) => ({
+    ...mutations,
+    [model.createMutationName]: createModel(model),
+    [model.updateMutationName]: updateModel(model),
+    [model.deleteMutationName]: deleteModel(model),
+  }), {})
+)
+  
 
 module.exports = mutations

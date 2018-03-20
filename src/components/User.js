@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { mutation, withApollo } from 'react-apollo'
+import { mutation } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
@@ -117,7 +117,6 @@ export default compose(
     snackbar: PropTypes.object,
   }),
   withStyles(styles),
-  withApollo,
   mutation(setProfilePictureMutation, {
     props: ({ props, mutate }) => ({
       setProfilePicture: image =>

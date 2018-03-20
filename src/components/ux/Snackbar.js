@@ -1,6 +1,9 @@
 // @flow
 
 import React from 'react'
+import { compose } from 'recompose'
+import { withI18n } from '@lingui/react'
+
 import { withStyles } from 'material-ui/styles'
 import Snackbar from 'material-ui/Snackbar'
 import IconButton from 'material-ui/IconButton'
@@ -14,7 +17,7 @@ const styles = theme => ({
 })
 
 const SimpleSnackbar = props => {
-  const { classes, open, onClose, message } = props
+  const { classes, i18n, open, onClose, message } = props
   return (
     <Snackbar
       anchorOrigin={{
@@ -31,7 +34,7 @@ const SimpleSnackbar = props => {
       action={
         <IconButton
           key={'close'}
-          aria-label={'Close'}
+          aria-label={i18n._('cms.close')}
           color={'inherit'}
           className={classes.close}
           onClick={onClose}
@@ -43,4 +46,7 @@ const SimpleSnackbar = props => {
   )
 }
 
-export default withStyles(styles)(SimpleSnackbar)
+export default compose(
+  withI18n(),
+  withStyles(styles),
+)(SimpleSnackbar)

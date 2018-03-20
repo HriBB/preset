@@ -1,5 +1,5 @@
 {
-  "cms.posts.single": {
+  "cms.posts_single": {
     "translation": "",
     "origin": [
       [
@@ -8,7 +8,7 @@
       ]
     ]
   },
-  "cms.posts.plural": {
+  "cms.posts_plural": {
     "translation": "",
     "origin": [
       [
@@ -17,7 +17,7 @@
       ]
     ]
   },
-  "cms.news.single": {
+  "cms.news_single": {
     "translation": "",
     "origin": [
       [
@@ -26,7 +26,7 @@
       ]
     ]
   },
-  "cms.news.plural": {
+  "cms.news_plural": {
     "translation": "",
     "origin": [
       [
@@ -35,7 +35,7 @@
       ]
     ]
   },
-  "cms.parent_testimonials.single": {
+  "cms.parent_testimonials_single": {
     "translation": "",
     "origin": [
       [
@@ -44,7 +44,7 @@
       ]
     ]
   },
-  "cms.parent_testimonials.plural": {
+  "cms.parent_testimonials_plural": {
     "translation": "",
     "origin": [
       [
@@ -53,7 +53,7 @@
       ]
     ]
   },
-  "cms.fields.title": {
+  "cms.field_title": {
     "translation": "",
     "origin": [
       [
@@ -62,7 +62,7 @@
       ]
     ]
   },
-  "cms.fields.text": {
+  "cms.field_text": {
     "translation": "",
     "origin": [
       [
@@ -71,7 +71,7 @@
       ]
     ]
   },
-  "cms.fields.image": {
+  "cms.field_image": {
     "translation": "",
     "origin": [
       [
@@ -80,7 +80,7 @@
       ]
     ]
   },
-  "cms.fields.published": {
+  "cms.field_published": {
     "translation": "",
     "origin": [
       [
@@ -94,11 +94,11 @@
     "origin": [
       [
         "src/components/App.js",
-        41
+        42
       ],
       [
         "src/components/User.js",
-        134
+        133
       ]
     ]
   },
@@ -148,12 +148,25 @@
       ]
     ]
   },
+  "cms.translations": {
+    "translation": "",
+    "origin": [
+      [
+        "src/components/Drawer.js",
+        47
+      ],
+      [
+        "src/components/Translations/Translations.js",
+        18
+      ]
+    ]
+  },
   "cms.user": {
     "translation": "",
     "origin": [
       [
         "src/components/Drawer.js",
-        63
+        77
       ],
       [
         "src/components/User.js",
@@ -236,6 +249,19 @@
       ]
     ]
   },
+  "cms.save": {
+    "translation": "",
+    "origin": [
+      [
+        "src/components/Translations/Form.js",
+        43
+      ],
+      [
+        "src/components/Update.js",
+        56
+      ]
+    ]
+  },
   "cms.edit": {
     "translation": "",
     "origin": [
@@ -251,15 +277,6 @@
       [
         "src/components/Update.js",
         50
-      ]
-    ]
-  },
-  "cms.save": {
-    "translation": "",
-    "origin": [
-      [
-        "src/components/Update.js",
-        56
       ]
     ]
   },
@@ -296,6 +313,15 @@
       [
         "src/components/ux/Header.js",
         23
+      ]
+    ]
+  },
+  "cms.close": {
+    "translation": "",
+    "origin": [
+      [
+        "src/components/ux/Snackbar.js",
+        37
       ]
     ]
   },
@@ -380,6 +406,28 @@
       ]
     ]
   },
+  "hero.title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Hero/index.js",
+        25
+      ]
+    ]
+  },
+  "hero.subtitle": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Hero/index.js",
+        28
+      ],
+      [
+        "website/src/components/Hero/index.js",
+        45
+      ]
+    ]
+  },
   "hero.button_url": {
     "translation": "",
     "origin": [
@@ -389,12 +437,66 @@
       ]
     ]
   },
-  "hero.subtitle": {
+  "hero.button_text": {
     "translation": "",
     "origin": [
       [
         "website/src/components/Hero/index.js",
-        45
+        38
+      ]
+    ]
+  },
+  "kontakt.company": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Kontakt/index.js",
+        29
+      ]
+    ]
+  },
+  "kontakt.address1": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Kontakt/index.js",
+        32
+      ]
+    ]
+  },
+  "kontakt.address2": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Kontakt/index.js",
+        35
+      ]
+    ]
+  },
+  "kontakt.country": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Kontakt/index.js",
+        38
+      ]
+    ]
+  },
+  "koraki.title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        23
+      ]
+    ]
+  },
+  "koraki.lead": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Koraki/index.js",
+        26
       ]
     ]
   },
@@ -404,6 +506,10 @@
       [
         "website/src/components/Koraki/index.js",
         34
+      ],
+      [
+        "website/src/components/Koraki/index.js",
+        36
       ]
     ]
   },
@@ -413,6 +519,10 @@
       [
         "website/src/components/Koraki/index.js",
         42
+      ],
+      [
+        "website/src/components/Koraki/index.js",
+        44
       ]
     ]
   },
@@ -422,6 +532,10 @@
       [
         "website/src/components/Koraki/index.js",
         50
+      ],
+      [
+        "website/src/components/Koraki/index.js",
+        52
       ]
     ]
   },
@@ -431,6 +545,10 @@
       [
         "website/src/components/Koraki/index.js",
         58
+      ],
+      [
+        "website/src/components/Koraki/index.js",
+        60
       ]
     ]
   },
@@ -440,6 +558,181 @@
       [
         "website/src/components/Koraki/index.js",
         66
+      ],
+      [
+        "website/src/components/Koraki/index.js",
+        68
+      ]
+    ]
+  },
+  "pristop.title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        20
+      ]
+    ]
+  },
+  "pristop.lead": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        23
+      ]
+    ]
+  },
+  "pristop.list1_title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        29
+      ]
+    ]
+  },
+  "pristop.list1_item1": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        33
+      ]
+    ]
+  },
+  "pristop.list1_item2": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        36
+      ]
+    ]
+  },
+  "pristop.list1_item3": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        39
+      ]
+    ]
+  },
+  "pristop.list1_item4": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        42
+      ]
+    ]
+  },
+  "pristop.list2_title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        48
+      ]
+    ]
+  },
+  "pristop.list2_item1": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        52
+      ]
+    ]
+  },
+  "pristop.list2_item2": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        55
+      ]
+    ]
+  },
+  "pristop.list2_item3": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        58
+      ]
+    ]
+  },
+  "pristop.list2_item4": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        61
+      ]
+    ]
+  },
+  "pristop.list3_title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        67
+      ]
+    ]
+  },
+  "pristop.list3_item1": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        71
+      ]
+    ]
+  },
+  "pristop.list3_item2": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        74
+      ]
+    ]
+  },
+  "pristop.list3_item3": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        77
+      ]
+    ]
+  },
+  "pristop.list3_item4": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Pristop/index.js",
+        80
+      ]
+    ]
+  },
+  "storitve.title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        23
+      ]
+    ]
+  },
+  "storitve.lead": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Storitve/index.js",
+        26
       ]
     ]
   },
@@ -449,6 +742,10 @@
       [
         "website/src/components/Storitve/index.js",
         35
+      ],
+      [
+        "website/src/components/Storitve/index.js",
+        38
       ]
     ]
   },
@@ -458,6 +755,10 @@
       [
         "website/src/components/Storitve/index.js",
         45
+      ],
+      [
+        "website/src/components/Storitve/index.js",
+        48
       ]
     ]
   },
@@ -467,6 +768,10 @@
       [
         "website/src/components/Storitve/index.js",
         55
+      ],
+      [
+        "website/src/components/Storitve/index.js",
+        58
       ]
     ]
   },
@@ -476,6 +781,10 @@
       [
         "website/src/components/Storitve/index.js",
         65
+      ],
+      [
+        "website/src/components/Storitve/index.js",
+        68
       ]
     ]
   },
@@ -485,6 +794,10 @@
       [
         "website/src/components/Storitve/index.js",
         75
+      ],
+      [
+        "website/src/components/Storitve/index.js",
+        78
       ]
     ]
   },
@@ -494,7 +807,129 @@
       [
         "website/src/components/Storitve/index.js",
         85
+      ],
+      [
+        "website/src/components/Storitve/index.js",
+        88
       ]
     ]
+  },
+  "tehnologije.title": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Tehnologije/index.js",
+        21
+      ]
+    ]
+  },
+  "tehnologije.lead": {
+    "translation": "",
+    "origin": [
+      [
+        "website/src/components/Tehnologije/index.js",
+        24
+      ]
+    ]
+  },
+  "cms.posts.single": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        2
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.posts.plural": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        3
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.news.single": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        4
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.news.plural": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        5
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.parent_testimonials.single": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        6
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.parent_testimonials.plural": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        7
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.fields.title": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        8
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.fields.text": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        9
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.fields.image": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        10
+      ]
+    ],
+    "obsolete": true
+  },
+  "cms.fields.published": {
+    "translation": "",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        11
+      ]
+    ],
+    "obsolete": true
   }
 }
