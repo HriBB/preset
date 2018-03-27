@@ -16,7 +16,7 @@ import red from 'material-ui/colors/red'
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import CloseIcon from 'material-ui-icons/Close'
-import { Body, Header, Content } from 'material-ui-preset'
+import { Body, Header, Content } from 'components/ux'
 
 import { AppQuery } from 'components/App'
 import { Upload } from 'components/Form'

@@ -5,7 +5,7 @@ import { Query } from 'react-apollo'
 
 import modelsQuery from './Models.graphql'
 
-const Models = ({ children }: any) => (
+const PresetModels = ({ children }: any) => (
   <Query query={modelsQuery}>
     {({ error, loading, data }) => 
       children({
@@ -23,4 +23,4 @@ const Models = ({ children }: any) => (
   </Query>
 )
 
-export default Models
+export default PresetModels

@@ -10,7 +10,7 @@ import { Trans, withI18n } from '@lingui/react'
 
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
-import { Header, Content } from 'material-ui-preset'
+import { Header, Content } from 'components/ux'
 
 import Form from './Form'
 
@@ -21,7 +21,7 @@ import {
   getCreateUpdateHandler,
 } from './utils'
 
-const Create = props => {
+const PresetCreate = props => {
   const { model, createItem } = props
   const initialValues = getInitialValues(model)
   return (
@@ -33,7 +33,7 @@ const Create = props => {
           </Fragment>
         }
       >
-        <IconButton component={Link} to={`/preset/${model.name}`} color={'inherit'}>
+        <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
       </Header>
@@ -60,12 +60,6 @@ export default compose(
   withRouter,
   withHandlers({
     createItem: (props) => (data) => {
-      console.log({
-        mutation: getCreateMutation(props.model),
-        update: getCreateUpdateHandler(props),
-        variables: getCreateVariables(props, data),
-      })
-      /*
       return props.client
         .mutate({
           mutation: getCreateMutation(props.model),
@@ -77,13 +71,12 @@ export default compose(
             <Trans>{props.model.name} created</Trans>
           )
           props.history.push(
-            `/preset/${props.model.name}/${data[`create${props.model.name}`].id}`
+            `/${props.model.name}/${data[`create${props.model.name}`].id}`
           )
         })
         .catch(error => {
           props.dialog.show(<Trans>Error</Trans>, error)
         })
-        */
     },
   })
-)(Create)
+)(PresetCreate)

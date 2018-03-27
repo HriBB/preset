@@ -10,10 +10,9 @@ import { withStyles } from 'material-ui/styles'
 import { I18nProvider } from '@lingui/react'
 import { Trans } from '@lingui/react'
 
-import { Dialog, Error, Spinner, Snackbar } from 'material-ui-preset'
+import { Dialog, Error, Spinner, Snackbar } from 'components/ux'
 import { Dashboard } from 'components/Dashboard'
 import { Login } from 'components/Login'
-import { Model } from 'components/PresetOld'
 import { Preset } from 'components/Preset'
 import { Translations } from 'components/Translations'
 import { User } from 'components/User'
@@ -65,12 +64,8 @@ const App = props => {
                   render={matchProps => <Translations {...matchProps} user={user} />}
                 />
                 <Route
-                  path={'/preset/:model'}
-                  render={matchProps => <Preset {...matchProps} user={user} />}
-                />
-                <Route
                   path={'/:model'}
-                  render={matchProps => <Model {...matchProps} user={user} />}
+                  render={matchProps => <Preset {...matchProps} user={user} />}
                 />
               </Switch>
             </Fragment>

@@ -11,7 +11,7 @@ import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import UserIcon from 'material-ui-icons/Person'
-import { Body, Header, Content } from 'material-ui-preset'
+import { Body, Header, Content } from 'components/ux'
 
 const Dashboard = (props: any) => {
   const { classes, models, user } = props

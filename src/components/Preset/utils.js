@@ -56,7 +56,8 @@ const getItemQueryName = ({ name }: Model) => {
 const getQueryFields = ({ name, models }: Model) => {
   const model = models.find(m => m.name === name)
   const fields = model && model.fields ? model.fields : []
-  return `{ ${fields
+  return `{
+    ${fields
     .filter(({ name, type }) => (
       type.kind !== 'OBJECT' ||
       type.name === 'File'
@@ -66,14 +67,15 @@ const getQueryFields = ({ name, models }: Model) => {
         ? `${name} ${getQueryFields({ name: type.name, models })}`
         : name
     )
-    .join(' ')} }`
+    .join(' ')}
+  }`
 }
 
 const getMutationArgs = ({ fields }: Model) => {
   return fields
     .filter(f => f.name !== 'id')
     .map(({ name, type }) => {
-      const required = type.kind === 'NOT_NULL' ? '!' : ''
+      const required = type.kind === 'NON_NULL' ? '!' : ''
       const t = type.ofType ? type.ofType.name : type.name
       return `$${name}: ${t === 'File' ? 'Upload' : t}${required}`
     })
@@ -90,6 +92,25 @@ const getMutationVars = ({ fields }: Model) => {
 // public helpers
 // @todo can you do this with directives?
 
+export const getModel = ({ model, schema }) => {
+  return {
+    ...model,
+    models: schema.types.filter(t => (
+      t.kind === 'OBJECT' &&
+      t.name !== 'Query' &&
+      t.name !== 'Mutation' &&
+      t.name !== 'Model' &&
+      t.name !== 'Field' &&
+      t.name.charAt(0) !== '_'
+    )),
+  }
+}
+
+export const getFieldType = ({ name, type }) => {
+  const { ofType } = type
+  return type.name ? type.name : ofType ? ofType.name : name
+}
+
 export const getNameField = ({ fields }: Model) => {
   for (let field of fields) {
     if (field.type.ofType && field.type.ofType.name === 'Text') {
@@ -99,14 +120,15 @@ export const getNameField = ({ fields }: Model) => {
 }
 
 export const getInitialValues = ({ fields }: Model) => {
-  return fields.reduce((values, field) => {
-    if (field.default) {
-      values[field.name] = field.default
-    } else if (field.type === 'Checkbox') {
-      values[field.name] = false
-    }
-    return values
-  }, {})
+  return fields
+    .reduce((values, field) => {
+      const { name } = field
+      const type = getFieldType(field)
+      if (type === 'Checkbox') {
+        values[name] = false
+      }
+      return values
+    }, {})
 }
 
 // queries
@@ -173,18 +195,22 @@ export const getDeleteMutation = (model: Model) => {
 // we need to do some parsing before we send data back to the server
 
 export const getCreateVariables = (props: Props, data) => {
-  return props.model.fields.reduce((obj, { name, type, list }) => {
-    if (!data.hasOwnProperty(name)) {
-      obj[name] = null
-    } else if (type === 'File') {
-      obj[name] = list
-        ? data[name]
-        : data[name] && data[name].length ? data[name][0] : null
-    } else {
-      obj[name] = data[name]
-    }
-    return obj
-  }, {})
+  return props.model.fields
+    .filter(f => f.name !== 'id')
+    .reduce((obj, field) => {
+      const { name } = field
+      const type = getFieldType(field)
+      if (!data.hasOwnProperty(name)) {
+        obj[name] = null
+      } else if (type === 'File') {
+        obj[name] = field.type.kind !== 'LIST'
+          ? data[name] && data[name].length ? data[name][0] : null
+          : data[name]
+      } else {
+        obj[name] = data[name]
+      }
+      return obj
+    }, {})
 }
 
 export const getUpdateVariables = (props: Props, data) => ({

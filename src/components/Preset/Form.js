@@ -9,23 +9,24 @@ import { withStyles } from 'material-ui/styles'
 import { CardContent, CardActions } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 
+import { getFieldType } from './utils'
 import { getField } from 'components/Form'
 
-const ModelForm = props => {
+const PresetForm = props => {
   const { classes, handleSubmit, initialValues, model, button } = props
   return (
     <Fragment>
       <CardContent className={classes.content}>
         <Form onSubmit={handleSubmit}>
-          {model.fields.filter(f => f.name !== 'id').map(({ name, type }) => (
-            <div key={name}>
+          {model.fields.filter(f => f.name !== 'id').map(f => (
+            <div key={f.name}>
               <Field
-                component={getField(type)}
+                component={getField(getFieldType(f))}
                 className={classes.field}
-                name={name}
-                label={name}
+                name={f.name}
+                label={f.name}
               />
-              {name === 'image' &&
+              {f.name === 'image' &&
                 initialValues.image && (
                   <img
                     className={classes.image}
@@ -94,4 +95,4 @@ const validate = (fields, { model }) => {
 export default compose(
   withStyles(styles),
   reduxForm({ validate }),
-)(ModelForm)
+)(PresetForm)

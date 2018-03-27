@@ -15,7 +15,7 @@ import CloseIcon from 'material-ui-icons/Close'
 import DeleteIcon from 'material-ui-icons/Delete'
 import AddIcon from 'material-ui-icons/Add'
 import ImageIcon from 'material-ui-icons/Image'
-import { Header, Content, Error, Spinner } from 'material-ui-preset'
+import { Header, Content, Error, Spinner } from 'components/ux'
 
 import {
   getNameField,
@@ -49,7 +49,7 @@ const PresetList = (props: any) => {
       <Header title={<Trans id={model.name} />}>
         <IconButton
           component={Link}
-          to={`/preset/${model.name}/create`}
+          to={`/${model.name}/create`}
           color={'inherit'}
         >
           <AddIcon />
@@ -74,7 +74,7 @@ const PresetList = (props: any) => {
                     key={item.id}
                     button
                     component={Link}
-                    to={`/preset/${model.name}/${item.id}`}
+                    to={`/${model.name}/${item.id}`}
                   >
                     <Avatar
                       className={classes.avatar}

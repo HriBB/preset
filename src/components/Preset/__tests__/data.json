@@ -1,0 +1,984 @@
+{
+  "data": {
+    "schema": {
+      "types": [
+        {
+          "name": "Query",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "files",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "file",
+              "type": {
+                "name": "File",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "models",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "model",
+              "type": {
+                "name": "Model",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "translations",
+              "type": {
+                "name": "JSON",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "posts",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "post",
+              "type": {
+                "name": "Post",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "newsPosts",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "newsPost",
+              "type": {
+                "name": "NewsPost",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "parentTestimonials",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "parentTestimonial",
+              "type": {
+                "name": "ParentTestimonial",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "viewer",
+              "type": {
+                "name": "User",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "users",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            }
+          ]
+        },
+        {
+          "name": "File",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "url",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "filename",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "mimetype",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "author",
+              "type": {
+                "name": "User",
+                "kind": "OBJECT"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ID",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "String",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "User",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "username",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "email",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "password",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "first_name",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "last_name",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "image",
+              "type": {
+                "name": "File",
+                "kind": "OBJECT"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Model",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "name",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "itemQueryName",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "listQueryName",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "createMutationName",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "updateMutationName",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "deleteMutationName",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "fields",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Field",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "name",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "list",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "required",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "fields",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Boolean",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "JSON",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "Post",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "title",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "text",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "image",
+              "type": {
+                "name": "File",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "published",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Node",
+          "kind": "INTERFACE",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Text",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "Textarea",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "Checkbox",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "NewsPost",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "title",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "text",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "image",
+              "type": {
+                "name": "File",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "published",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ParentTestimonial",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "title",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "text",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "image",
+              "type": {
+                "name": "File",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "published",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mutation",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "updateTranslations",
+              "type": {
+                "name": "JSON",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "createPost",
+              "type": {
+                "name": "Post",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "updatePost",
+              "type": {
+                "name": "Post",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "deletePost",
+              "type": {
+                "name": "Post",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "createNewsPost",
+              "type": {
+                "name": "NewsPost",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "updateNewsPost",
+              "type": {
+                "name": "NewsPost",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "deleteNewsPost",
+              "type": {
+                "name": "NewsPost",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "createParentTestimonial",
+              "type": {
+                "name": "ParentTestimonial",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "updateParentTestimonial",
+              "type": {
+                "name": "ParentTestimonial",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "deleteParentTestimonial",
+              "type": {
+                "name": "ParentTestimonial",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "signup",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "login",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "setProfilePicture",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Upload",
+          "kind": "SCALAR",
+          "fields": null
+        },
+        {
+          "name": "AuthPayload",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "token",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "user",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__Schema",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "types",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "queryType",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "mutationType",
+              "type": {
+                "name": "__Type",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "subscriptionType",
+              "type": {
+                "name": "__Type",
+                "kind": "OBJECT"
+              }
+            },
+            {
+              "name": "directives",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__Type",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "kind",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "name",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "description",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "fields",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "interfaces",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "possibleTypes",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "enumValues",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "inputFields",
+              "type": {
+                "name": null,
+                "kind": "LIST"
+              }
+            },
+            {
+              "name": "ofType",
+              "type": {
+                "name": "__Type",
+                "kind": "OBJECT"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__TypeKind",
+          "kind": "ENUM",
+          "fields": null
+        },
+        {
+          "name": "__Field",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "name",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "description",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "args",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "isDeprecated",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "deprecationReason",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__InputValue",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "name",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "description",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "defaultValue",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__EnumValue",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "name",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "description",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "isDeprecated",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "deprecationReason",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__Directive",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "name",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "description",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "locations",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "args",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        },
+        {
+          "name": "__DirectiveLocation",
+          "kind": "ENUM",
+          "fields": null
+        },
+        {
+          "name": "LOCALE",
+          "kind": "ENUM",
+          "fields": null
+        },
+        {
+          "name": "EDITOR",
+          "kind": "ENUM",
+          "fields": null
+        },
+        {
+          "name": "Translation",
+          "kind": "OBJECT",
+          "fields": [
+            {
+              "name": "id",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "lang",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "ns",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "key",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            },
+            {
+              "name": "value",
+              "type": {
+                "name": "String",
+                "kind": "SCALAR"
+              }
+            },
+            {
+              "name": "editor",
+              "type": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "model": {
+      "name": "Post",
+      "fields": [
+        {
+          "name": "id",
+          "description": "",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "title",
+          "description": "",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Text",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "text",
+          "description": "",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Textarea",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "",
+          "type": {
+            "name": "File",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "published",
+          "description": "",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Checkbox",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ]
+    }
+  }
+}

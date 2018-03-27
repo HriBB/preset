@@ -9,9 +9,8 @@ import Upload from './Upload'
 
 export { Select, Text, Textarea, Checkbox, Switch, Upload }
 
-export const getField = (type: Object) => {
-  const t = type.ofType ? type.ofType.name : type.name
-  switch (t) {
+export const getField = (type: string) => {
+  switch (type) {
     case 'Text':
       return Text
     case 'Textarea':

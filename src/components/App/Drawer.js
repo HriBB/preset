@@ -52,7 +52,7 @@ const Drawer = props => {
         <Models>
           {({ error, loading, models }) => 
             models.map(model => (
-              <ListItem key={model.name} to={`/preset/${model.name}`} {...itemProps}>
+              <ListItem key={model.name} to={`/${model.name}`} {...itemProps}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
                 <ListItemText primary={<Trans id={model.name} />} />
               </ListItem>

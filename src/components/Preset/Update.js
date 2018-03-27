@@ -9,7 +9,7 @@ import { Trans, withI18n } from '@lingui/react'
 
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
-import { Header, Content, Error, Spinner } from 'material-ui-preset'
+import { Header, Content, Error, Spinner } from 'components/ux'
 
 import Form from './Form'
 
@@ -20,7 +20,7 @@ import {
   getUpdateUpdateHandler,
 } from './utils'
 
-const Update = props => {
+const PresetUpdate = props => {
   const { match, model, updateItem } = props
   const { id } = match.params
   return (
@@ -33,7 +33,7 @@ const Update = props => {
           </Fragment>
         }
       >
-        <IconButton component={Link} to={`/preset/${model.name}`} color={'inherit'}>
+        <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
       </Header>
@@ -97,4 +97,4 @@ export default compose(
           props.dialog.show(<Trans>Error</Trans>, error)
         }),
   })
-)(Update)
+)(PresetUpdate)
