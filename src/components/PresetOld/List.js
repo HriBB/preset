@@ -25,7 +25,7 @@ import { getNameField, hasQuery } from 'preset/utils'
 import { withListQuery } from 'preset/queries'
 import { withDeleteItemMutation } from 'preset/mutations'
 
-import { Header, Content, Error, Spinner } from 'components/ux'
+import { Header, Content, Error, Spinner } from 'material-ui-preset'
 
 const List = (props: any) => {
   const { classes, listQuery, model } = props
@@ -70,7 +70,7 @@ const List = (props: any) => {
                         <ListItemText primary={item[getNameField(model)]} />
                         <ListItemSecondaryAction>
                           <IconButton
-                            aria-label={<Trans>cms.delete</Trans>}
+                            aria-label={<Trans>Delete</Trans>}
                             data-id={item.id}
                             onClick={props.deleteItem}
                           >
@@ -135,10 +135,10 @@ export default compose(
           update,
         })
         .then(({ data }) => {
-          props.snackbar.show(<Trans>cms.model_deleted</Trans>)
+          props.snackbar.show(<Trans>Model deleted</Trans>)
         })
         .catch(error => {
-          props.dialog.show(<Trans>cms.error</Trans>, error)
+          props.dialog.show(<Trans>Error</Trans>, error)
         })
     },
   })

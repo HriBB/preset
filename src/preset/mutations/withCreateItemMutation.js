@@ -18,7 +18,7 @@ const withCreateItemMutation = (WrappedComponent: any) => (props: any) => {
   )}
     }
   `)
-  //console.log(createMutation.loc.source.body)
+  console.log(createMutation.loc.source.body)
   return (
     <WrappedComponent
       createMutation={createMutation}

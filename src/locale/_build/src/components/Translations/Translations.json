@@ -1,5 +1,5 @@
 {
-  "cms.translations": {
+  "Translations": {
     "origin": [
       [
         "src/components/Translations/Translations.js",

@@ -18,7 +18,7 @@ const withUpdateItemMutation = (WrappedComponent: any) => (props: any) => {
   )}) ${getModelFields(fields)}
     }
   `)
-  //console.log(updateMutation.loc.source.body)
+  console.log(updateMutation.loc.source.body)
   return (
     <WrappedComponent
       updateMutation={updateMutation}

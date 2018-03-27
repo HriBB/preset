@@ -1,17 +1,17 @@
 {
-  "cms.translations": {
+  "Translations": {
     "origin": [
       [
         "src/components/Drawer.js",
-        47
+        49
       ]
     ]
   },
-  "cms.user": {
+  "User": {
     "origin": [
       [
         "src/components/Drawer.js",
-        77
+        85
       ]
     ]
   }

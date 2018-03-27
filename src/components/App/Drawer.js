@@ -16,10 +16,18 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import InboxIcon from 'material-ui-icons/Inbox'
 import TranslateIcon from 'material-ui-icons/Translate'
 
+import { Models } from 'components/Preset'
+
 const Drawer = props => {
   const { classes, drawer, models, open, theme, width } = props
   const isWidthUpSm = isWidthUp(theme.drawer.breakpoint, width)
   const variant = isWidthUpSm ? 'permanent' : 'temporary'
+  const itemProps = {
+    className: classes.item,
+    component: NavLink,
+    onClick: drawer.toggle,
+    button: true,
+  }
   return (
     <MuiDrawer
       className={classes.drawer}
@@ -34,47 +42,31 @@ const Drawer = props => {
         </Link>
       </Toolbar>
       <List className={classes.list} component={'nav'}>
-        <ListItem
-          className={classes.item}
-          component={NavLink}
-          to={'/translations/'}
-          onClick={drawer.toggle}
-          button
-        >
-          <ListItemIcon>
-            <TranslateIcon />
-          </ListItemIcon>
-          <ListItemText primary={<Trans>cms.translations</Trans>} />
-        </ListItem>
         {models.map(model => (
-          <ListItem
-            className={classes.item}
-            key={model.name}
-            component={NavLink}
-            to={`/${model.name}`}
-            onClick={drawer.toggle}
-            button
-          >
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
+          <ListItem key={model.name} to={`/${model.name}`} {...itemProps}>
+            <ListItemIcon><InboxIcon /></ListItemIcon>
             <ListItemText primary={<Trans id={model.name} />} />
           </ListItem>
         ))}
-      </List>
-      <Divider />
-      <List className={classes.list} component={'nav'}>
-        <ListItem
-          className={classes.item}
-          component={NavLink}
-          to={'/user'}
-          onClick={drawer.toggle}
-          button
-        >
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary={<Trans>cms.user</Trans>} />
+        <Divider />
+        <Models>
+          {({ error, loading, models }) => 
+            models.map(model => (
+              <ListItem key={model.name} to={`/preset/${model.name}`} {...itemProps}>
+                <ListItemIcon><InboxIcon /></ListItemIcon>
+                <ListItemText primary={<Trans id={model.name} />} />
+              </ListItem>
+            ))
+          }
+        </Models>
+        <Divider />
+        <ListItem to={'/translations/'} {...itemProps}>
+          <ListItemIcon><TranslateIcon /></ListItemIcon>
+          <ListItemText primary={<Trans>Translations</Trans>} />
+        </ListItem>
+        <ListItem to={'/user'} {...itemProps}>
+          <ListItemIcon><InboxIcon /></ListItemIcon>
+          <ListItemText primary={<Trans>User</Trans>} />
         </ListItem>
       </List>
     </MuiDrawer>

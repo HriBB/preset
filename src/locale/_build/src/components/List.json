@@ -1,5 +1,5 @@
 {
-  "cms.delete": {
+  "Delete": {
     "origin": [
       [
         "src/components/List.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "cms.model_deleted": {
+  "Model deleted": {
     "origin": [
       [
         "src/components/List.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "cms.error": {
+  "Error": {
     "origin": [
       [
         "src/components/List.js",

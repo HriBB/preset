@@ -7,15 +7,15 @@ import { Trans } from '@lingui/react'
 import { withStyles } from 'material-ui/styles'
 import IconButton from 'material-ui/IconButton'
 import CloseIcon from 'material-ui-icons/Close'
+import { Body, Header, Content } from 'material-ui-preset'
 
-import { Body, Header, Content } from 'components/ux'
 import List from './List'
 import Form from './Form'
 
 const Translations = ({ classes, match }) => {
   return (
     <Body>
-      <Header title={<Trans>cms.translations</Trans>}>
+      <Header title={<Trans>Translations</Trans>}>
         <IconButton
           component={Link}
           to={match.params.namespace ? '/translations' : '/'}

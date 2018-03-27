@@ -34,7 +34,7 @@ const SimpleSnackbar = props => {
       action={
         <IconButton
           key={'close'}
-          aria-label={i18n._('cms.close')}
+          aria-label={i18n._('Close')}
           color={'inherit'}
           className={classes.close}
           onClick={onClose}

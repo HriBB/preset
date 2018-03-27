@@ -1,5 +1,5 @@
 {
-  "cms.error": {
+  "Error": {
     "origin": [
       [
         "src/components/Model.js",
@@ -11,7 +11,7 @@
       ]
     ]
   },
-  "cms.model_not_found": {
+  "Model not found": {
     "origin": [
       [
         "src/components/Model.js",

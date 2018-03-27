@@ -138,6 +138,12 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          // Process .graphql files
+          {
+            test: /\.(graphql|gql)$/,
+            exclude: /node_modules/,
+            loader: 'graphql-tag/loader',
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,

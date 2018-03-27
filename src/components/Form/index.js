@@ -9,6 +9,26 @@ import Upload from './Upload'
 
 export { Select, Text, Textarea, Checkbox, Switch, Upload }
 
+export const getField = (type: Object) => {
+  const t = type.ofType ? type.ofType.name : type.name
+  switch (t) {
+    case 'Text':
+      return Text
+    case 'Textarea':
+      return Textarea
+    case 'Select':
+      return Select
+    case 'Checkbox':
+      return Checkbox
+    case 'Switch':
+      return Switch
+    case 'File':
+      return Upload
+    default:
+      return Text
+  }
+}
+
 export function getFormField(type: string) {
   switch (type) {
     case 'Text':

@@ -12,7 +12,7 @@ import JssProvider from 'react-jss/lib/JssProvider'
 import client from 'apollo'
 import createStore from 'store'
 import getContext from 'styles'
-import App from 'components/App'
+import { App } from 'components/App'
 
 const store = createStore()
 

@@ -101,15 +101,34 @@ Your feedback is **very helpful**, please share your opinion and thoughts! If yo
 
 ```
 {
-  __type(name:"Post") {
-    kind
+  __type(name: "Film") {
     name
-    description
     fields {
       name
+      description
+      type {
+        name
+        kind
+        ofType {
+          name
+          kind
+          ofType {
+            name
+            kind
+          }
+        }
+      }
       args {
+        name
         description
         defaultValue
+        type {
+          name
+          kind
+          ofType {
+            name
+          }
+        }
       }
     }
   }

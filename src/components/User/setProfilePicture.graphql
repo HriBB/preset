@@ -1,0 +1,8 @@
+mutation setProfilePicture($image: Upload!) {
+  setProfilePicture(image: $image) {
+    id
+    url
+    filename
+    mimetype
+  }
+}

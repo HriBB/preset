@@ -1,0 +1,15 @@
+query AppQuery {
+  user: viewer {
+    id
+    username
+    email
+    image {
+      id
+      url
+      filename
+    }
+  }
+  models: models {
+    name
+  }
+}

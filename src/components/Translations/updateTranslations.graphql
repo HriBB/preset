@@ -1,0 +1,3 @@
+mutation setProfilePicture($language: String!, $messages: JSON!) {
+  updateTranslations(language: $language, messages: $messages)
+}

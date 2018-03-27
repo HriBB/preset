@@ -7,12 +7,10 @@ const f = ({ name, type, required }) =>
 
 const mutationText = `
   updateTranslations(language: String!, messages: JSON!): JSON
-  ${
-models.map(({ name, fields }, i) => `
-   create${name}(${fields.map(f).join(', ')}): ${name}
-   update${name}(id: ID!, ${fields.map(f).join(', ')}): ${name}
-   delete${name}(id: ID!): ${name}
-`).join('')
-}`
+  ${models.map(({ name, fields }, i) => `
+  create${name}(${fields.map(f).join(', ')}): ${name}
+  update${name}(id: ID!, ${fields.map(f).join(', ')}): ${name}
+  delete${name}(id: ID!): ${name}
+`).join('')}`
 
 module.exports = mutationText

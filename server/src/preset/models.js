@@ -2,6 +2,7 @@
 
 const { buildASTSchema, parse } = require('graphql')
 const pluralize = require('pluralize')
+
 const schema = require('./schema')
 
 const findDirective = (type, directiveName) => (

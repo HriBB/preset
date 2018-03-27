@@ -1,5 +1,5 @@
-directive @model(label: String) on FIELD
-directive @field(label: String) on FIELD_DEFINITION
+directive @model on FIELD
+directive @field on FIELD_DEFINITION
 
 scalar JSON
 scalar Text
@@ -71,7 +71,7 @@ type File {
   author: User
 }
 
-type Post implements Node @model(id:"posts") {
+type Post implements Node @model {
   id: ID!
   title: Text! @field
   text: Textarea! @field
@@ -79,7 +79,7 @@ type Post implements Node @model(id:"posts") {
   published: Checkbox! @field
 }
 
-type NewsPost implements Node @model(id:"news") {
+type NewsPost implements Node @model {
   id: ID!
   title: Text! @field
   text: Textarea! @field
@@ -87,7 +87,7 @@ type NewsPost implements Node @model(id:"news") {
   published: Checkbox! @field
 }
 
-type ParentTestimonial implements Node @model(id:"parent_testimonials") {
+type ParentTestimonial implements Node @model {
   id: ID!
   title: Text! @field
   text: Textarea! @field

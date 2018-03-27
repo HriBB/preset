@@ -10,18 +10,19 @@ import { withStyles } from 'material-ui/styles'
 import { I18nProvider } from '@lingui/react'
 import { Trans } from '@lingui/react'
 
+import { Dialog, Error, Spinner, Snackbar } from 'material-ui-preset'
+import { Dashboard } from 'components/Dashboard'
+import { Login } from 'components/Login'
+import { Model } from 'components/PresetOld'
+import { Preset } from 'components/Preset'
+import { Translations } from 'components/Translations'
+import { User } from 'components/User'
+
 import en from 'locale/si/messages'
 import si from 'locale/si/messages'
 
-import { appQuery } from 'preset/queries'
-
-import { Dialog, Error, Spinner, Snackbar } from 'components/ux'
-import Drawer from 'components/Drawer'
-import Dashboard from 'components/Dashboard'
-import Login from 'components/Login'
-import Model from 'components/Model'
-import Translations from 'components/Translations'
-import User from 'components/User'
+import Drawer from './Drawer'
+import appQuery from './App.graphql'
 
 const App = props => {
   return (
@@ -39,7 +40,7 @@ const App = props => {
               <Snackbar
                 open={!!props.snackbar}
                 onClose={props.hideSnackbar}
-                message={props.snackbar || <Trans>cms.done</Trans>}
+                message={props.snackbar || <Trans>Done</Trans>}
               />
               <Dialog
                 open={props.dialog.open}
@@ -62,6 +63,10 @@ const App = props => {
                 <Route
                   path={'/translations/:namespace?'}
                   render={matchProps => <Translations {...matchProps} user={user} />}
+                />
+                <Route
+                  path={'/preset/:model'}
+                  render={matchProps => <Preset {...matchProps} user={user} />}
                 />
                 <Route
                   path={'/:model'}

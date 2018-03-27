@@ -1,5 +1,5 @@
 {
-  "cms.create": {
+  "Create": {
     "origin": [
       [
         "src/components/Create.js",
@@ -11,8 +11,7 @@
       ]
     ]
   },
-  "cms.model_created": {
-    "defaults": "{0} created",
+  "{0} created": {
     "origin": [
       [
         "src/components/Create.js",

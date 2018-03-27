@@ -3,12 +3,13 @@
 import React, { Fragment } from 'react'
 import { compose } from 'recompose'
 import { Form, Field, reduxForm } from 'redux-form'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import { CardContent, CardActions } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 
-import { getFormField } from 'components/form'
+import { getField } from 'components/Form'
 
 const ModelForm = props => {
   const { classes, handleSubmit, initialValues, model, button } = props
@@ -16,10 +17,10 @@ const ModelForm = props => {
     <Fragment>
       <CardContent className={classes.content}>
         <Form onSubmit={handleSubmit}>
-          {model.fields.map(({ name, type }) => (
+          {model.fields.filter(f => f.name !== 'id').map(({ name, type }) => (
             <div key={name}>
               <Field
-                component={getFormField(type)}
+                component={getField(type)}
                 className={classes.field}
                 name={name}
                 label={name}
@@ -70,17 +71,17 @@ const validate = (fields, { model }) => {
     switch (type) {
       case 'Text':
         if (required && !fields[name]) {
-          return (errors[name] = 'Required')
+          return (errors[name] = <Trans>Required</Trans>)
         }
         break
       case 'Textarea':
         if (required && !fields[name]) {
-          return (errors[name] = 'Required')
+          return (errors[name] = <Trans>Required</Trans>)
         }
         break
       case 'Checkbox':
         if (required && !fields.hasOwnProperty(name)) {
-          return (errors[name] = 'Required')
+          return (errors[name] = <Trans>Required</Trans>)
         }
         break
       default:

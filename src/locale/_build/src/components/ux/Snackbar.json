@@ -1,5 +1,5 @@
 {
-  "cms.close": {
+  "Close": {
     "origin": [
       [
         "src/components/ux/Snackbar.js",

@@ -14,8 +14,8 @@ import { getUpdateVariables, getUpdateUpdateHandler } from 'preset/utils'
 import { withItemQuery, withListQuery } from 'preset/queries'
 import { withUpdateItemMutation } from 'preset/mutations'
 
-import { Header, Content, Error, Spinner } from 'components/ux'
-import Form from 'components/Form'
+import { Header, Content, Error, Spinner } from 'material-ui-preset'
+import Form from './Form'
 
 const Update = props => {
   const { match, model, itemQuery, updateItem } = props
@@ -25,7 +25,7 @@ const Update = props => {
       <Header
         title={
           <Fragment>
-            <Trans>cms.edit</Trans> <Trans id={model.name} />
+            <Trans>Edit</Trans> <Trans id={model.name} />
           </Fragment>
         }
       >
@@ -47,13 +47,13 @@ const Update = props => {
           if (!data.item)
             return (
               <Error>
-                <Trans>cms.item_not_found</Trans>
+                <Trans>Item not found</Trans>
               </Error>
             )
           return (
             <Content>
               <Form
-                button={<Trans>cms.save</Trans>}
+                button={<Trans>Save</Trans>}
                 form={`Edit${model.name}`}
                 initialValues={data.item}
                 onSubmit={updateItem}
@@ -86,10 +86,10 @@ export default compose(
           update: getUpdateUpdateHandler(data.id, props),
         })
         .then(({ data }) => {
-          props.snackbar.show(<Trans>cms.model_updated</Trans>)
+          props.snackbar.show(<Trans>Model updated</Trans>)
         })
         .catch(error => {
-          props.dialog.show(<Trans>cms.error</Trans>, error)
+          props.dialog.show(<Trans>Error</Trans>, error)
         }),
   })
 )(Update)

@@ -1,5 +1,5 @@
 {
-  "cms.menu": {
+  "Menu": {
     "origin": [
       [
         "src/components/ux/Header.js",

@@ -1,2 +1,3 @@
-import Translations from './Translations'
-export default Translations
+// @flow
+
+export { default as Translations } from './Translations'

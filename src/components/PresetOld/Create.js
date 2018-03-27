@@ -19,8 +19,8 @@ import {
 import { withListQuery } from 'preset/queries'
 import { withCreateItemMutation } from 'preset/mutations'
 
-import { Header, Content } from 'components/ux'
-import Form from 'components/Form'
+import { Header, Content } from 'material-ui-preset'
+import Form from './Form'
 
 const Create = props => {
   const { model, createItem } = props
@@ -30,7 +30,7 @@ const Create = props => {
       <Header
         title={
           <Fragment>
-            <Trans>cms.create</Trans> <Trans id={model.name} />
+            <Trans>Create</Trans> <Trans id={model.name} />
           </Fragment>
         }
       >
@@ -40,7 +40,7 @@ const Create = props => {
       </Header>
       <Content>
         <Form
-          button={<Trans>cms.create</Trans>}
+          button={<Trans>Create</Trans>}
           form={`create${model.name}`}
           initialValues={initialValues}
           onSubmit={createItem}
@@ -71,9 +71,7 @@ export default compose(
         })
         .then(({ data }) => {
           props.snackbar.show(
-            <Trans id='cms.model_created'>
-              {props.model.name} created
-            </Trans>
+            <Trans>{props.model.name} created</Trans>
           )
           props.history.push(
             `/${props.model.name}/${data[props.createMutationName].id}`

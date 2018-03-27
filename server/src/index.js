@@ -25,6 +25,8 @@ const server = new GraphQLServer({
 
 mkdirp.sync(config.uploads.path)
 
+console.log(config.uploads.path)
+
 server.express.use('/uploads', express.static(config.uploads.path))
 
 server.start(config.server, () => console.log('Server is running on http://localhost:4000'))

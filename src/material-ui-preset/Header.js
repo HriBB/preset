@@ -20,7 +20,7 @@ const Header = props => {
         <IconButton
           className={classes.menuButton}
           color={'inherit'}
-          aria-label={<Trans>cms.menu</Trans>}
+          aria-label={<Trans>Menu</Trans>}
           onClick={drawer.toggle}
         >
           <MenuIcon />

@@ -4,29 +4,26 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Form, Field, reduxForm, SubmissionError } from 'redux-form'
-import { mutation } from 'react-apollo'
+import { mutation } from 'react-apollo/mutation-hoc'
 import { Trans, withI18n } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import { CardContent, CardActions } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 
-import { updateTranslationsMutation } from 'preset/mutations'
-
-import { Text } from 'components/form'
+import { Text } from 'components/Form'
+import updateTranslationsMutation from './updateTranslations.graphql'
+import messages from './messages'
 
 const TranslationForm = props => {
-  const { classes, handleSubmit, i18n, match } = props
-  const { _catalogs: c } = i18n
-  const languages = Object.keys(c)
-  const messages = Object.keys(c[languages[0]].messages)
-    .filter(message => message.split('.')[0] === match.params.namespace)
-
+  const { classes, handleSubmit, match } = props
+  const { params: { namespace } } = match
+  const msgs = messages.filter(m => m.split('.')[0] === namespace)
   return (
     <Fragment>
       <CardContent className={classes.content}>
         <Form onSubmit={handleSubmit}>
-          {messages.map(message => (
+          {msgs.map(message => (
             <div key={message}>
               <Field
                 component={Text}
@@ -40,7 +37,7 @@ const TranslationForm = props => {
       </CardContent>
       <CardActions className={classes.actions}>
         <Button color={'secondary'} variant={'raised'} onClick={handleSubmit}>
-          {<Trans>cms.save</Trans>}
+          {<Trans>Save</Trans>}
         </Button>
       </CardActions>
     </Fragment>
@@ -94,7 +91,7 @@ export default compose(
       //{ snackbar, saveTranslations }
       return saveTranslations(image[0])
         .then(({ data: { saveTranslations } }) => {
-          snackbar.show(<Trans>cms.done</Trans>)
+          snackbar.show(<Trans>Done</Trans>)
         })
         .catch(error => {
           throw new SubmissionError({ _error: error.message })

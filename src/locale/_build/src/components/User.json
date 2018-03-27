@@ -1,5 +1,5 @@
 {
-  "cms.user": {
+  "User": {
     "origin": [
       [
         "src/components/User.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "cms.image": {
+  "Image": {
     "origin": [
       [
         "src/components/User.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "cms.upload": {
+  "Upload": {
     "origin": [
       [
         "src/components/User.js",
@@ -23,7 +23,7 @@
       ]
     ]
   },
-  "cms.done": {
+  "Done": {
     "origin": [
       [
         "src/components/User.js",

@@ -1,0 +1,10 @@
+query PresetModels {
+  schema: __schema {
+    types {
+      name
+      interfaces {
+        name
+      }
+    }
+  }
+}

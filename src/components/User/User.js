@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { mutation } from 'react-apollo'
+import { mutation } from 'react-apollo/mutation-hoc'
 import { Link } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
@@ -16,19 +16,18 @@ import red from 'material-ui/colors/red'
 import Button from 'material-ui/Button'
 import Avatar from 'material-ui/Avatar'
 import CloseIcon from 'material-ui-icons/Close'
+import { Body, Header, Content } from 'material-ui-preset'
 
-import { Upload } from 'components/form'
-import { appQuery } from 'preset/queries'
-import { setProfilePictureMutation } from 'preset/mutations'
+import { AppQuery } from 'components/App'
+import { Upload } from 'components/Form'
 
-import { Body, Header, Content } from 'components/ux'
+import setProfilePictureMutation from './setProfilePicture.graphql'
 
 const User = props => {
   const { classes, error, handleSubmit, user } = props
-
   return (
     <Body>
-      <Header title={<Trans>cms.user</Trans>}>
+      <Header title={<Trans>User</Trans>}>
         <IconButton component={Link} to={`/`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
@@ -51,7 +50,7 @@ const User = props => {
                 component={Upload}
                 className={classes.upload}
                 name={'image'}
-                label={<Trans>cms.image</Trans>}
+                label={<Trans>Image</Trans>}
               />
               <Button
                 size={'small'}
@@ -59,7 +58,7 @@ const User = props => {
                 type={'submit'}
                 variant={'raised'}
               >
-                <Trans>cms.upload</Trans>
+                <Trans>Upload</Trans>
               </Button>
             </div>
             {user.image && (
@@ -107,9 +106,9 @@ const styles = theme => ({
 })
 
 const updateProfilePicture = (proxy, { data: { setProfilePicture } }) => {
-  const data = proxy.readQuery({ query: appQuery })
+  const data = proxy.readQuery({ query: AppQuery })
   data.user.image = setProfilePicture
-  proxy.writeQuery({ query: appQuery, data })
+  proxy.writeQuery({ query: AppQuery, data })
 }
 
 export default compose(
@@ -130,7 +129,7 @@ export default compose(
     onSubmit: ({ snackbar, setProfilePicture }) => ({ image }) =>
       setProfilePicture(image[0])
         .then(({ data: { setProfilePicture } }) => {
-          snackbar.show(<Trans>cms.done</Trans>)
+          snackbar.show(<Trans>Done</Trans>)
         })
         .catch(error => {
           throw new SubmissionError({ _error: error.message })

@@ -5,11 +5,11 @@ import { Route, Switch } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import { Trans } from '@lingui/react'
 
-import List from 'components/List'
-import Create from 'components/Create'
-import Update from 'components/Update'
+import List from './List'
+import Create from './Create'
+import Update from './Update'
 
-import { Body, Header, Error, Spinner } from 'components/ux'
+import { Body, Header, Error, Spinner } from 'material-ui-preset'
 import { modelQuery } from 'preset/queries'
 
 const Model = (props: any) => {
@@ -20,7 +20,7 @@ const Model = (props: any) => {
         if (error) {
           return (
             <Body>
-              <Header title={<Trans>cms.error</Trans>} />
+              <Header title={<Trans>Error</Trans>} />
               <Error>{error.message}</Error>
             </Body>
           )
@@ -36,9 +36,9 @@ const Model = (props: any) => {
         if (!data.model) {
           return (
             <Body>
-              <Header title={<Trans>cms.error</Trans>} />
+              <Header title={<Trans>Error</Trans>} />
               <Error>
-                <Trans>cms.model_not_found</Trans>
+                <Trans>Model not found</Trans>
               </Error>
             </Body>
           )

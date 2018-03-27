@@ -11,22 +11,21 @@ import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import UserIcon from 'material-ui-icons/Person'
-
-import { Body, Header, Content } from 'components/ux'
+import { Body, Header, Content } from 'material-ui-preset'
 
 const Dashboard = (props: any) => {
   const { classes, models, user } = props
   return (
     <Body>
-      <Header title={<Trans>cms.dashboard</Trans>}>
+      <Header title={<Trans>Dashboard</Trans>}>
         <IconButton component={Link} to={`/user`} color={'inherit'}>
           <UserIcon />
         </IconButton>
       </Header>
       <Content>
         <CardHeader
-          avatar={<Avatar aria-label={<Trans>cms.dashboard</Trans>}>{'D'}</Avatar>}
-          title={<Trans id='cms.welcome'>Welcome {user.username}</Trans>}
+          avatar={<Avatar aria-label={<Trans>Dashboard</Trans>}>{'D'}</Avatar>}
+          title={<Trans>Welcome {user.username}</Trans>}
         />
         <List className={classes.drawerList} component={'nav'}>
           {models.map(model => (

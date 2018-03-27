@@ -3,7 +3,8 @@
 import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { mutation, withApollo } from 'react-apollo'
+import { withApollo } from 'react-apollo'
+import { mutation } from 'react-apollo/mutation-hoc'
 import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
@@ -12,8 +13,8 @@ import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 
-import { Text } from 'components/form'
-import { loginMutation } from 'preset/mutations'
+import { Text } from 'components/Form'
+import loginMutation from './login.graphql'
 
 const Login = props => {
   const { classes, error, handleSubmit } = props
@@ -33,14 +34,14 @@ const Login = props => {
             className={classes.field}
             inputClassName={classes.input}
             name={'username'}
-            label={<Trans>cms.username</Trans>}
+            label={<Trans>Username</Trans>}
           />
           <Field
             component={Text}
             className={classes.field}
             inputClassName={classes.input}
             name={'password'}
-            label={<Trans>cms.password</Trans>}
+            label={<Trans>Password</Trans>}
             type={'password'}
           />
           <FormControl error className={classes.error}>
@@ -49,7 +50,7 @@ const Login = props => {
         </CardContent>
         <CardActions className={classes.actions}>
           <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>
-            <Trans>cms.login</Trans>
+            <Trans>Login</Trans>
           </Button>
         </CardActions>
       </Card>
