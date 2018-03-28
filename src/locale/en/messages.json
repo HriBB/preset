@@ -1,6 +1,6 @@
 {
-  "cms.post_single": {
-    "translation": "",
+  "Post_single": {
+    "translation": "Post",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -8,8 +8,8 @@
       ]
     ]
   },
-  "cms.post_plural": {
-    "translation": "",
+  "Post_plural": {
+    "translation": "Post",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -17,8 +17,8 @@
       ]
     ]
   },
-  "cms.newspost_single": {
-    "translation": "",
+  "NewsPost_single": {
+    "translation": "News",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -26,8 +26,8 @@
       ]
     ]
   },
-  "cms.newspost_plural": {
-    "translation": "",
+  "NewsPost_plural": {
+    "translation": "News",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -35,8 +35,8 @@
       ]
     ]
   },
-  "cms.parenttestimonial_single": {
-    "translation": "",
+  "ParentTestimonial_single": {
+    "translation": "Parent Testimonial",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -44,8 +44,8 @@
       ]
     ]
   },
-  "cms.parenttestimonial_plural": {
-    "translation": "",
+  "ParentTestimonial_plural": {
+    "translation": "Parent Testimonials",
     "origin": [
       [
         "server/.cache/translations.js",
@@ -53,12 +53,60 @@
       ]
     ]
   },
-  "Done": {
-    "translation": "",
+  "title": {
+    "translation": "Title",
     "origin": [
+      [
+        "server/.cache/translations.js",
+        8
+      ]
+    ]
+  },
+  "text": {
+    "translation": "Text",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        9
+      ]
+    ]
+  },
+  "image": {
+    "translation": "Image",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        10
+      ]
+    ]
+  },
+  "published": {
+    "translation": "Published",
+    "origin": [
+      [
+        "server/.cache/translations.js",
+        11
+      ]
+    ]
+  },
+  "Done": {
+    "translation": "Done",
+    "origin": [
+      [
+        "src/components/App/App.js",
+        44
+      ],
       [
         "src/components/App.js",
         42
+      ],
+      [
+        "src/components/Translations/Editor.js",
+        98
+      ],
+      [
+        "src/components/User/User.js",
+        132
       ],
       [
         "src/components/User.js",
@@ -66,53 +114,13 @@
       ]
     ]
   },
-  "Create": {
-    "translation": "",
-    "origin": [
-      [
-        "src/components/Create.js",
-        33
-      ],
-      [
-        "src/components/Create.js",
-        43
-      ]
-    ]
-  },
-  "{0} created": {
-    "translation": "",
-    "origin": [
-      [
-        "src/components/Create.js",
-        74
-      ]
-    ]
-  },
-  "Dashboard": {
-    "translation": "",
-    "origin": [
-      [
-        "src/components/Dashboard.js",
-        21
-      ],
-      [
-        "src/components/Dashboard.js",
-        28
-      ]
-    ]
-  },
-  "Welcome {0}": {
-    "translation": "",
-    "origin": [
-      [
-        "src/components/Dashboard.js",
-        29
-      ]
-    ]
-  },
   "Translations": {
-    "translation": "",
+    "translation": "Translations",
     "origin": [
+      [
+        "src/components/App/Drawer.js",
+        57
+      ],
       [
         "src/components/Drawer.js",
         49
@@ -124,11 +132,19 @@
     ]
   },
   "User": {
-    "translation": "",
+    "translation": "User",
     "origin": [
+      [
+        "src/components/App/Drawer.js",
+        61
+      ],
       [
         "src/components/Drawer.js",
         85
+      ],
+      [
+        "src/components/User/User.js",
+        30
       ],
       [
         "src/components/User.js",
@@ -136,26 +152,102 @@
       ]
     ]
   },
+  "Create": {
+    "translation": "Create",
+    "origin": [
+      [
+        "src/components/Create.js",
+        33
+      ],
+      [
+        "src/components/Create.js",
+        43
+      ],
+      [
+        "src/components/Preset/Create.js",
+        32
+      ],
+      [
+        "src/components/Preset/Create.js",
+        42
+      ]
+    ]
+  },
+  "{0} created": {
+    "translation": "{0} created",
+    "origin": [
+      [
+        "src/components/Create.js",
+        74
+      ],
+      [
+        "src/components/Preset/Create.js",
+        71
+      ]
+    ]
+  },
+  "Dashboard": {
+    "translation": "Dashboard",
+    "origin": [
+      [
+        "src/components/Dashboard/Dashboard.js",
+        27
+      ],
+      [
+        "src/components/Dashboard/Dashboard.js",
+        34
+      ],
+      [
+        "src/components/Dashboard.js",
+        21
+      ],
+      [
+        "src/components/Dashboard.js",
+        28
+      ]
+    ]
+  },
+  "Welcome {0}": {
+    "translation": "Welcome {0}",
+    "origin": [
+      [
+        "src/components/Dashboard/Dashboard.js",
+        35
+      ],
+      [
+        "src/components/Dashboard.js",
+        29
+      ]
+    ]
+  },
   "Delete": {
-    "translation": "",
+    "translation": "Delete",
     "origin": [
       [
         "src/components/List.js",
         73
+      ],
+      [
+        "src/components/Preset/List.js",
+        88
       ]
     ]
   },
   "Model deleted": {
-    "translation": "",
+    "translation": "Model deleted",
     "origin": [
       [
         "src/components/List.js",
         138
+      ],
+      [
+        "src/components/Preset/List.js",
+        123
       ]
     ]
   },
   "Error": {
-    "translation": "",
+    "translation": "Error",
     "origin": [
       [
         "src/components/List.js",
@@ -170,14 +262,38 @@
         39
       ],
       [
+        "src/components/Preset/Create.js",
+        78
+      ],
+      [
+        "src/components/Preset/List.js",
+        126
+      ],
+      [
+        "src/components/Preset/Preset.js",
+        21
+      ],
+      [
+        "src/components/Preset/Preset.js",
+        37
+      ],
+      [
+        "src/components/Preset/Update.js",
+        97
+      ],
+      [
         "src/components/Update.js",
         92
       ]
     ]
   },
   "Username": {
-    "translation": "",
+    "translation": "Username",
     "origin": [
+      [
+        "src/components/Login/Login.js",
+        37
+      ],
       [
         "src/components/Login.js",
         37
@@ -185,8 +301,12 @@
     ]
   },
   "Password": {
-    "translation": "",
+    "translation": "Password",
     "origin": [
+      [
+        "src/components/Login/Login.js",
+        44
+      ],
       [
         "src/components/Login.js",
         44
@@ -194,8 +314,12 @@
     ]
   },
   "Login": {
-    "translation": "",
+    "translation": "Login",
     "origin": [
+      [
+        "src/components/Login/Login.js",
+        53
+      ],
       [
         "src/components/Login.js",
         53
@@ -203,30 +327,42 @@
     ]
   },
   "Model not found": {
-    "translation": "",
+    "translation": "Model not found",
     "origin": [
       [
         "src/components/Model.js",
         41
+      ],
+      [
+        "src/components/Preset/Preset.js",
+        39
       ]
     ]
   },
-  "Save": {
-    "translation": "",
+  "Required": {
+    "translation": "Required",
     "origin": [
       [
-        "src/components/Translations/Form.js",
-        42
+        "src/components/Preset/Form.js",
+        75
       ],
       [
-        "src/components/Update.js",
-        56
+        "src/components/Preset/Form.js",
+        80
+      ],
+      [
+        "src/components/Preset/Form.js",
+        85
       ]
     ]
   },
   "Edit": {
-    "translation": "",
+    "translation": "Edit",
     "origin": [
+      [
+        "src/components/Preset/Update.js",
+        31
+      ],
       [
         "src/components/Update.js",
         28
@@ -234,17 +370,42 @@
     ]
   },
   "Item not found": {
-    "translation": "",
+    "translation": "Item not found",
     "origin": [
+      [
+        "src/components/Preset/Update.js",
+        57
+      ],
       [
         "src/components/Update.js",
         50
       ]
     ]
   },
-  "Model updated": {
-    "translation": "",
+  "Save": {
+    "translation": "Save",
     "origin": [
+      [
+        "src/components/Preset/Update.js",
+        64
+      ],
+      [
+        "src/components/Translations/Form.js",
+        46
+      ],
+      [
+        "src/components/Update.js",
+        56
+      ]
+    ]
+  },
+  "Model updated": {
+    "translation": "Model updated",
+    "origin": [
+      [
+        "src/components/Preset/Update.js",
+        94
+      ],
       [
         "src/components/Update.js",
         89
@@ -252,8 +413,12 @@
     ]
   },
   "Image": {
-    "translation": "",
+    "translation": "Image",
     "origin": [
+      [
+        "src/components/User/User.js",
+        53
+      ],
       [
         "src/components/User.js",
         54
@@ -261,8 +426,12 @@
     ]
   },
   "Upload": {
-    "translation": "",
+    "translation": "Upload",
     "origin": [
+      [
+        "src/components/User/User.js",
+        61
+      ],
       [
         "src/components/User.js",
         62
@@ -270,7 +439,7 @@
     ]
   },
   "Menu": {
-    "translation": "",
+    "translation": "Menu",
     "origin": [
       [
         "src/components/ux/Header.js",
@@ -279,47 +448,11 @@
     ]
   },
   "Close": {
-    "translation": "",
+    "translation": "Close",
     "origin": [
       [
         "src/components/ux/Snackbar.js",
         37
-      ]
-    ]
-  },
-  "cms.title_field": {
-    "translation": "",
-    "origin": [
-      [
-        "server/.cache/translations.js",
-        8
-      ]
-    ]
-  },
-  "cms.text_field": {
-    "translation": "",
-    "origin": [
-      [
-        "server/.cache/translations.js",
-        9
-      ]
-    ]
-  },
-  "cms.image_field": {
-    "translation": "",
-    "origin": [
-      [
-        "server/.cache/translations.js",
-        10
-      ]
-    ]
-  },
-  "cms.published_field": {
-    "translation": "",
-    "origin": [
-      [
-        "server/.cache/translations.js",
-        11
       ]
     ]
   }

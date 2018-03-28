@@ -11,8 +11,8 @@ const queryText = `
 `
 
 const mutationText = `
-  signup(username: String!, email: String!, password: String!): AuthPayload!
-  login(username: String!, password: String!): AuthPayload!
+  signup(username: String! email: String! password: String!): AuthPayload!
+  login(username: String! password: String!): AuthPayload!
   setProfilePicture(image: Upload!): File!
 `
 

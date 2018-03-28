@@ -23,6 +23,8 @@ import si from 'locale/si/messages'
 import Drawer from './Drawer'
 import appQuery from './App.graphql'
 
+console.log(si)
+
 const App = props => {
   return (
     <I18nProvider language={'si'} catalogs={{ en, si }}>
@@ -32,10 +34,10 @@ const App = props => {
           if (loading) return <Spinner />
           if (!data.user) return <Login />
           const { drawer } = props
-          const { user, models } = data
+          const { user } = data
           return (
             <Fragment>
-              <Drawer open={drawer} models={models} />
+              <Drawer open={drawer} />
               <Snackbar
                 open={!!props.snackbar}
                 onClose={props.hideSnackbar}
@@ -52,7 +54,7 @@ const App = props => {
                   exact
                   path={'/'}
                   render={matchProps => (
-                    <Dashboard {...matchProps} models={models} user={user} />
+                    <Dashboard {...matchProps} user={user} />
                   )}
                 />
                 <Route
@@ -60,7 +62,7 @@ const App = props => {
                   render={matchProps => <User {...matchProps} user={user} />}
                 />
                 <Route
-                  path={'/translations/:namespace?'}
+                  path={'/translations/:ns?'}
                   render={matchProps => <Translations {...matchProps} user={user} />}
                 />
                 <Route

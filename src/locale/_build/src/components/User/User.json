@@ -1,0 +1,34 @@
+{
+  "User": {
+    "origin": [
+      [
+        "src/components/User/User.js",
+        30
+      ]
+    ]
+  },
+  "Image": {
+    "origin": [
+      [
+        "src/components/User/User.js",
+        53
+      ]
+    ]
+  },
+  "Upload": {
+    "origin": [
+      [
+        "src/components/User/User.js",
+        61
+      ]
+    ]
+  },
+  "Done": {
+    "origin": [
+      [
+        "src/components/User/User.js",
+        132
+      ]
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "Create": {
+    "origin": [
+      [
+        "src/components/Preset/Create.js",
+        32
+      ],
+      [
+        "src/components/Preset/Create.js",
+        42
+      ]
+    ]
+  },
+  "{0} created": {
+    "origin": [
+      [
+        "src/components/Preset/Create.js",
+        71
+      ]
+    ]
+  },
+  "Error": {
+    "origin": [
+      [
+        "src/components/Preset/Create.js",
+        78
+      ]
+    ]
+  }
+}

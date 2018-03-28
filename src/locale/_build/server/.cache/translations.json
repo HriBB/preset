@@ -1,5 +1,5 @@
 {
-  "cms.post_single": {
+  "Post_single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -7,7 +7,7 @@
       ]
     ]
   },
-  "cms.post_plural": {
+  "Post_plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -15,7 +15,7 @@
       ]
     ]
   },
-  "cms.newspost_single": {
+  "NewsPost_single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -23,7 +23,7 @@
       ]
     ]
   },
-  "cms.newspost_plural": {
+  "NewsPost_plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -31,7 +31,7 @@
       ]
     ]
   },
-  "cms.parenttestimonial_single": {
+  "ParentTestimonial_single": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -39,7 +39,7 @@
       ]
     ]
   },
-  "cms.parenttestimonial_plural": {
+  "ParentTestimonial_plural": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -47,7 +47,7 @@
       ]
     ]
   },
-  "cms.title_field": {
+  "title": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -55,7 +55,7 @@
       ]
     ]
   },
-  "cms.text_field": {
+  "text": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -63,7 +63,7 @@
       ]
     ]
   },
-  "cms.image_field": {
+  "image": {
     "origin": [
       [
         "server/.cache/translations.js",
@@ -71,7 +71,7 @@
       ]
     ]
   },
-  "cms.published_field": {
+  "published": {
     "origin": [
       [
         "server/.cache/translations.js",

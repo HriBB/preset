@@ -56,12 +56,12 @@ const extractServerTranslations = () => {
 
   const keys = {}
   models.forEach(({ name }) => {
-    keys[`cms.${name.toLowerCase()}_single`] = true
-    keys[`cms.${name.toLowerCase()}_plural`] = true
+    keys[`${name}_single`] = true
+    keys[`${name}_plural`] = true
   })
   models.forEach(({ fields }) => {
     fields.forEach(({ name }) => {
-      keys[`cms.${name.toLowerCase()}_field`] = true
+      keys[name] = true
     })
   })
 

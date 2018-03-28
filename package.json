@@ -117,7 +117,7 @@
       "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
@@ -160,14 +160,12 @@
     }
   },
   "lingui": {
-    "fallbackLocale": "en",
+    "fallbackLocale": "si",
     "format": "lingui",
     "sourceLocale": "",
     "localeDir": "<rootDir>/src/locale",
     "srcPathDirs": [
-      "<rootDir>/src",
-      "<rootDir>/server/.cache",
-      "<rootDir>/website/src"
+      "<rootDir>/src"
     ],
     "srcPathIgnorePatterns": [
       "/node_modules/"

@@ -24,7 +24,7 @@ const PresetForm = props => {
                 component={getField(getFieldType(f))}
                 className={classes.field}
                 name={f.name}
-                label={f.name}
+                label={<Trans id={f.name} />}
               />
               {f.name === 'image' &&
                 initialValues.image && (

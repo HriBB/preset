@@ -13,8 +13,15 @@ import IconButton from 'material-ui/IconButton'
 import UserIcon from 'material-ui-icons/Person'
 import { Body, Header, Content } from 'components/ux'
 
+import { Models } from 'components/Preset'
+
 const Dashboard = (props: any) => {
-  const { classes, models, user } = props
+  const { classes, user } = props
+  const itemProps = {
+    className: classes.drawerListItem,
+    component: NavLink,
+    button: true,
+  }
   return (
     <Body>
       <Header title={<Trans>Dashboard</Trans>}>
@@ -28,20 +35,16 @@ const Dashboard = (props: any) => {
           title={<Trans>Welcome {user.username}</Trans>}
         />
         <List className={classes.drawerList} component={'nav'}>
-          {models.map(model => (
-            <ListItem
-              className={classes.drawerListItem}
-              key={model.name}
-              component={NavLink}
-              to={`/${model.name}`}
-              button
-            >
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary={<Trans id={model.name} />} />
-            </ListItem>
-          ))}
+          <Models>
+            {({ error, loading, models }) => 
+              models.map(model => (
+                <ListItem key={model.name} to={`/${model.name}`} {...itemProps}>
+                  <ListItemIcon><InboxIcon /></ListItemIcon>
+                  <ListItemText primary={<Trans id={`${model.name}_plural`} />} />
+                </ListItem>
+              ))
+            }
+          </Models>
         </List>
       </Content>
     </Body>

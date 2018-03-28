@@ -1,0 +1,26 @@
+{
+  "Delete": {
+    "origin": [
+      [
+        "src/components/Preset/List.js",
+        88
+      ]
+    ]
+  },
+  "Model deleted": {
+    "origin": [
+      [
+        "src/components/Preset/List.js",
+        123
+      ]
+    ]
+  },
+  "Error": {
+    "origin": [
+      [
+        "src/components/Preset/List.js",
+        126
+      ]
+    ]
+  }
+}

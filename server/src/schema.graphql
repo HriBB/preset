@@ -27,7 +27,7 @@ type Translation {
   ns: String!
   key: String!
   value: String
-  editor: EDITOR!
+  editor: EDITOR
 }
 
 type Model {

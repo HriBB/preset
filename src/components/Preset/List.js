@@ -46,7 +46,7 @@ const PresetList = (props: any) => {
   const { classes, model } = props
   return (
     <Fragment>
-      <Header title={<Trans id={model.name} />}>
+      <Header title={<Trans id={`${model.name}_single`} />}>
         <IconButton
           component={Link}
           to={`/${model.name}/create`}

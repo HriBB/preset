@@ -44,7 +44,7 @@ type Translation implements Node {
   ns: String!
   key: String!
   value: String
-  editor: EDITOR!
+  editor: EDITOR
 }
 
 type User implements Node {
@@ -1423,7 +1423,7 @@ input TranslationCreateInput {
   ns: String!
   key: String!
   value: String
-  editor: EDITOR!
+  editor: EDITOR
 }
 
 """
@@ -1465,7 +1465,7 @@ type TranslationPreviousValues {
   ns: String!
   key: String!
   value: String
-  editor: EDITOR!
+  editor: EDITOR
 }
 
 type TranslationSubscriptionPayload {

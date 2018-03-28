@@ -7,7 +7,7 @@ const queryText = `
   file(id: ID!): File
   models: [Model]
   model(name: String!): Model
-  translations(lang: String!, ns: String!): JSON
+  translations(lang: String! ns: [String]): JSON
   ${models.map(model => `
   ${model.listQueryName}: [${model.name}]
   ${model.itemQueryName}(id: ID!): ${model.name}

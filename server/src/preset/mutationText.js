@@ -6,10 +6,11 @@ const f = ({ name, type, required }) =>
   `${name}: ${type === 'File' ? 'Upload' : type}${required ? '!' : ''}`
 
 const mutationText = `
-  updateTranslations(language: String!, messages: JSON!): JSON
+  updateTranslations(language: String! messages: JSON!): JSON
+  setTranslationEditor(lang: String! ns: String! key: String! editor: String!): Translation
   ${models.map(({ name, fields }, i) => `
-  create${name}(${fields.map(f).join(', ')}): ${name}
-  update${name}(id: ID!, ${fields.map(f).join(', ')}): ${name}
+  create${name}(${fields.map(f).join(' ')}): ${name}
+  update${name}(id: ID! ${fields.map(f).join(' ')}): ${name}
   delete${name}(id: ID!): ${name}
 `).join('')}`
 

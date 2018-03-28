@@ -4,7 +4,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, getContext } from 'recompose'
 import { Link, NavLink } from 'react-router-dom'
-import { Trans } from '@lingui/react'
+import { Trans, withI18n } from '@lingui/react'
 
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import { withStyles } from 'material-ui/styles'
@@ -12,14 +12,13 @@ import Toolbar from 'material-ui/Toolbar'
 import MuiDrawer from 'material-ui/Drawer'
 import Divider from 'material-ui/Divider'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
-
 import InboxIcon from 'material-ui-icons/Inbox'
 import TranslateIcon from 'material-ui-icons/Translate'
 
 import { Models } from 'components/Preset'
 
 const Drawer = props => {
-  const { classes, drawer, models, open, theme, width } = props
+  const { classes, drawer, open, theme, width } = props
   const isWidthUpSm = isWidthUp(theme.drawer.breakpoint, width)
   const variant = isWidthUpSm ? 'permanent' : 'temporary'
   const itemProps = {
@@ -42,21 +41,14 @@ const Drawer = props => {
         </Link>
       </Toolbar>
       <List className={classes.list} component={'nav'}>
-        {models.map(model => (
-          <ListItem key={model.name} to={`/${model.name}`} {...itemProps}>
-            <ListItemIcon><InboxIcon /></ListItemIcon>
-            <ListItemText primary={<Trans id={model.name} />} />
-          </ListItem>
-        ))}
-        <Divider />
         <Models>
           {({ error, loading, models }) => 
-            models.map(model => (
+            models.map(model =>
               <ListItem key={model.name} to={`/${model.name}`} {...itemProps}>
                 <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary={<Trans id={model.name} />} />
+                <ListItemText primary={<Trans id={`${model.name}_plural`} />} />
               </ListItem>
-            ))
+            )
           }
         </Models>
         <Divider />
@@ -106,5 +98,6 @@ const styles = theme => ({
 export default compose(
   getContext({ drawer: PropTypes.object }),
   withWidth({ withTheme: true }),
-  withStyles(styles)
+  withStyles(styles),
+  withI18n(),
 )(Drawer)

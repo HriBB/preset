@@ -28,8 +28,7 @@ const PresetUpdate = props => {
       <Header
         title={
           <Fragment>
-            <Trans>Edit</Trans>
-            <Trans id={model.name} />
+            <Trans>Edit</Trans> <Trans id={`${model.name}_single`} />
           </Fragment>
         }
       >

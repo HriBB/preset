@@ -10,7 +10,7 @@ import CloseIcon from 'material-ui-icons/Close'
 import { Body, Header, Content } from 'components/ux'
 
 import List from './List'
-import Form from './Form'
+import Editor from './Editor'
 
 const Translations = ({ classes, match }) => {
   return (
@@ -18,7 +18,7 @@ const Translations = ({ classes, match }) => {
       <Header title={<Trans>Translations</Trans>}>
         <IconButton
           component={Link}
-          to={match.params.namespace ? '/translations' : '/'}
+          to={match.params.ns ? '/translations' : '/'}
           color={'inherit'}
         >
           <CloseIcon />
@@ -27,7 +27,7 @@ const Translations = ({ classes, match }) => {
       <Content>
         <Switch>
           <Route path={'/translations/'} exact component={List} />
-          <Route path={'/translations/:namespace'} component={Form} />
+          <Route path={'/translations/:ns'} component={Editor} />
         </Switch>
       </Content>
     </Body>

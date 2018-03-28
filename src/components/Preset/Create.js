@@ -29,7 +29,7 @@ const PresetCreate = props => {
       <Header
         title={
           <Fragment>
-            <Trans>Create</Trans> <Trans id={model.name} />
+            <Trans>Create</Trans> <Trans id={`${model.name}_single`} />
           </Fragment>
         }
       >

@@ -26,8 +26,13 @@ const queries = Object.assign(
       }
       return modelsByName[name]
     },
-    translations: (parent, args, ctx, info) => {
-      throw new Error(`not implementeeeeeee`)
+    translations: async (parent, { lang, ns }, ctx, info) => {
+      return ctx.db.query.translations({
+        where: {
+          lang: lang.toUpperCase(),
+          ns_in: ns,
+        },
+      })
     },
   },
   models.reduce((queries, { itemQueryName, listQueryName }) => ({
