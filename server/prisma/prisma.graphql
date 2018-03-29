@@ -60,3 +60,12 @@ type ParentTestimonial {
   image: File
   author: User!
 }
+
+type Article {
+  id: ID! @unique
+  title: String!
+  text: String!
+  published: Boolean!
+  image: File
+  author: User!
+}

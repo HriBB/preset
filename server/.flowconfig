@@ -1,6 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/.git/
 <PROJECT_ROOT>/.cache/
+<PROJECT_ROOT>/generated/
 <PROJECT_ROOT>/node_modules/bcryptjs/src/bower.json
 <PROJECT_ROOT>/node_modules/config-chain/test/*
 <PROJECT_ROOT>/node_modules/npm/node_modules/config-chain/test/*
