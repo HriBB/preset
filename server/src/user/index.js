@@ -1,9 +1,13 @@
 // @flow weak
 
+const { resolve } = require('path')
+const { readSchema } = require('utils')
 const { getUserId } = require('./utils')
 const queries = require('./queries')
 const mutations = require('./mutations')
 const resolvers = require('./resolvers')
+
+const typeDefs = readSchema(resolve(__dirname, 'user.graphql'))
 
 const queryText = `
   viewer: User
@@ -17,7 +21,7 @@ const mutationText = `
 `
 
 module.exports = {
-  schema: '',
+  typeDefs,
   queryText,
   mutationText,
   queries,

@@ -1,0 +1,18 @@
+enum LOCALE {
+  SI
+  EN
+}
+
+enum EDITOR {
+  Text
+  Textarea
+}
+
+type Translation {
+  id: ID!
+  lang: LOCALE!
+  ns: String!
+  key: String!
+  value: String
+  editor: EDITOR
+}

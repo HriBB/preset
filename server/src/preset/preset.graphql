@@ -1,3 +1,5 @@
+# import User from '../user/user.graphql'
+
 directive @model on FIELD
 directive @field on FIELD_DEFINITION
 
@@ -9,58 +11,6 @@ scalar Upload
 
 interface Node {
   id: ID!
-}
-
-enum LOCALE {
-  SI
-  EN
-}
-
-enum EDITOR {
-  Text
-  Textarea
-}
-
-type Translation {
-  id: ID!
-  lang: LOCALE!
-  ns: String!
-  key: String!
-  value: String
-  editor: EDITOR
-}
-
-type Model {
-  name: String!
-  itemQueryName: String!
-  listQueryName: String!
-  createMutationName: String!
-  updateMutationName: String!
-  deleteMutationName: String!
-  fields: [Field!]!
-}
-
-type Field {
-  name: String!
-  type: String!
-  list: Boolean!
-  required: Boolean!
-  fields: [Field]
-}
-
-type User {
-  id: ID!
-  username: String!
-  email: String!
-  password: String!
-  first_name: String
-  last_name: String
-  image: File
-}
-
-type AuthPayload {
-  token: String!
-  user: User!
 }
 
 type File {

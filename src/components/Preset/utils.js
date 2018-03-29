@@ -45,12 +45,12 @@ const hasQuery = (client, query) => {
   return client.queryManager.queryIdsByName[name]
 }
 
-const getListQueryName = ({ name }: Model) => {
-  return name.charAt(0).toLowerCase() + pluralize(name.slice(1))
-}
-
 const getItemQueryName = ({ name }: Model) => {
   return name.charAt(0).toLowerCase() + name.slice(1)
+}
+
+const getListQueryName = ({ name }: Model) => {
+  return name.charAt(0).toLowerCase() + pluralize(name.slice(1))
 }
 
 const getQueryFields = ({ name, models }: Model) => {
@@ -111,12 +111,17 @@ export const getFieldType = ({ name, type }) => {
   return type.name ? type.name : ofType ? ofType.name : name
 }
 
-export const getNameField = ({ fields }: Model) => {
-  for (let field of fields) {
-    if (field.type.ofType && field.type.ofType.name === 'Text') {
-      return field.name
+const nameField = {}
+export const getNameField = ({ name, fields }: Model) => {
+  if (!nameField[name]) {
+    for (let field of fields) {
+      if (field.type.ofType && field.type.ofType.name === 'Text') {
+        nameField[name] = field.name
+        break
+      }
     }
   }
+  return nameField[name]
 }
 
 export const getInitialValues = ({ fields }: Model) => {
@@ -135,60 +140,80 @@ export const getInitialValues = ({ fields }: Model) => {
 // create dynamic queries based on introspection model
 // @todo memoize queries for each model
 
-export const getListQuery = (model: Model) => {
-  const queryName = getListQueryName(model)
-  const queryFields = getQueryFields(model)
-  return gql(`
-    query ${queryName} {
-      items: ${queryName} ${queryFields}
-    }
-  `)
+const itemQuery = {}
+export const getItemQuery = (model: Model) => {
+  if (!itemQuery[model.name]) {
+    const queryName = getItemQueryName(model)
+    const queryFields = getQueryFields(model)
+    itemQuery[model.name] = gql(`
+      query ${queryName}($id: ID!) {
+        item: ${queryName}(id: $id) ${queryFields}
+      }
+    `)
+  }
+  return itemQuery[model.name]
 }
 
-export const getItemQuery = (model: Model) => {
-  const queryName = getItemQueryName(model)
-  const queryFields = getQueryFields(model)
-  return gql(`
-    query ${queryName}($id: ID!) {
-      item: ${queryName}(id: $id) ${queryFields}
-    }
-  `)
+const listQuery = {}
+export const getListQuery = (model: Model) => {
+  if (!listQuery[model.name]) {
+    const queryName = getListQueryName(model)
+    const queryFields = getQueryFields(model)
+    listQuery[model.name] = gql(`
+      query ${queryName} {
+        items: ${queryName} ${queryFields}
+      }
+    `)
+  }
+  return listQuery[model.name]
 }
 
 // mutations
 // create dynamic mutations based on introspection model
 // @todo memoize mutation for each model
 
+const createMutation = {}
 export const getCreateMutation = (model: Model) => {
-  const args = getMutationArgs(model)
-  const vars = getMutationVars(model)
-  const fields = getQueryFields(model)
-  return gql(`
-    mutation create${model.name}(${args}) {
-      create${model.name}(${vars}) ${fields}
-    }
-  `)  
-}
-
-export const getUpdateMutation = (model: Model) => {
-  const args = getMutationArgs(model)
-  const vars = getMutationVars(model)
-  const fields = getQueryFields(model)
-  return gql(`
-    mutation update${model.name}($id: ID!, ${args}) {
-      update${model.name}(id: $id, ${vars}) ${fields}
-    }
-  `)
-}
-
-export const getDeleteMutation = (model: Model) => {
-  return gql(`
-    mutation delete${model.name}($id: ID!) {
-      delete${model.name}(id: $id) {
-        id
+  if (!createMutation[model.name]) {
+    const args = getMutationArgs(model)
+    const vars = getMutationVars(model)
+    const fields = getQueryFields(model)
+    createMutation[model.name] = gql(`
+      mutation create${model.name}(${args}) {
+        create${model.name}(${vars}) ${fields}
       }
-    }
-  `)
+    `)
+  }
+  return createMutation[model.name]
+}
+
+const updateMutation = {}
+export const getUpdateMutation = (model: Model) => {
+  if (!updateMutation[model.name]) {
+    const args = getMutationArgs(model)
+    const vars = getMutationVars(model)
+    const fields = getQueryFields(model)
+    updateMutation[model.name] = gql(`
+      mutation update${model.name}($id: ID!, ${args}) {
+        update${model.name}(id: $id, ${vars}) ${fields}
+      }
+    `)
+  }
+  return updateMutation[model.name]
+}
+
+const deleteMutation = {}
+export const getDeleteMutation = (model: Model) => {
+  if (!deleteMutation[model.name]) {
+    deleteMutation[model.name] = gql(`
+      mutation delete${model.name}($id: ID!) {
+        delete${model.name}(id: $id) {
+          id
+        }
+      }
+    `)
+  }
+  return deleteMutation[model.name]
 }
 
 // mutation variables
@@ -222,9 +247,9 @@ export const getUpdateVariables = (props: Props, data) => ({
 // these functions create functions that
 // will update apollo cache after a mutation
 
-export const getCreateUpdateHandler = (props: Props) => (proxy, { data: result }) => {
+export const getCreateUpdateHandler = (props: Props) => (proxy, { data }) => {
   const { client, model } = props
-  const newItem = result[`create${model.name}`]
+  const newItem = data[`create${model.name}`]
   const queryName = getListQueryName(model)
   if (hasQuery(client, queryName)) {
     const query = getListQuery(model)
@@ -234,9 +259,9 @@ export const getCreateUpdateHandler = (props: Props) => (proxy, { data: result }
   }
 }
 
-export const getUpdateUpdateHandler = (id: string, props: Props) => (proxy, { data: result }) => {
+export const getUpdateUpdateHandler = (id: string, props: Props) => (proxy, { data }) => {
   const { client, model } = props
-  const newItem = result[`update${model.name}`]
+  const newItem = data[`update${model.name}`]
   const queryName = getListQueryName(model)
   if (hasQuery(client, queryName)) {
     const query = getListQuery(model)
@@ -247,9 +272,9 @@ export const getUpdateUpdateHandler = (id: string, props: Props) => (proxy, { da
   }
 }
 
-export const getDeleteUpdateHandler = (id: string, props: Props) => (proxy, { data: result }) => {
+export const getDeleteUpdateHandler = (id: string, props: Props) => (proxy, { data }) => {
   const { client, model } = props
-  const { id } = result[`delete${model.name}`]
+  const { id } = data[`delete${model.name}`]
   const queryName = getListQueryName(model)
   if (hasQuery(client, queryName)) {
     const query = getListQuery(model)

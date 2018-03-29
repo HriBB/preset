@@ -76,30 +76,20 @@ export default compose(
   withI18n(),
   mutation(updateTranslationsMutation, {
     props: ({ props, mutate }) => ({
-      saveTranslations: (language, messages) =>
+      updateTranslations: (lang, messages) =>
         mutate({
-          variables: { language, messages },
+          variables: { lang, messages },
         }),
     }),
   }),
   withHandlers({
-    onSubmit: (props) => (data) => {
-      const { i18n, snackbar, saveTranslations } = props
-      /*
-      const messages = {}
-      for (let ns of Object.keys(data)) {
-        for (let id of Object.keys(data[ns])) {
-          messages[`${ns}.${id}`] = data[ns][id]
-        }
-      }
-      */
-      return saveTranslations(i18n.language, data)
-        .then(({ data: { saveTranslations } }) => {
+    onSubmit: ({ i18n, snackbar, updateTranslations }) => (data) =>
+      updateTranslations(i18n.language, data)
+        .then(({ data: { updateTranslations } }) =>
           snackbar.show(<Trans>Done</Trans>)
-        })
+        )
         .catch(error => {
           throw new SubmissionError({ _error: error.message })
-        })
-    },
+        }),
   }),
 )(TranslationEditor)

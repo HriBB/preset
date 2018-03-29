@@ -1,3 +1,12 @@
+enum LOCALE {
+  SI
+  EN
+}
+
+enum EDITOR {
+  Text
+  Textarea
+}
 
 type User {
   id: ID! @unique
@@ -14,16 +23,6 @@ type File {
   id: ID! @unique
   filename: String!
   mimetype: String!
-}
-
-enum LOCALE {
-  SI
-  EN
-}
-
-enum EDITOR {
-  Text
-  Textarea
 }
 
 type Translation {

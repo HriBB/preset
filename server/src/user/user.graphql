@@ -1,0 +1,16 @@
+# import File from '../preset/preset.graphql'
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  password: String!
+  first_name: String
+  last_name: String
+  image: File
+}
