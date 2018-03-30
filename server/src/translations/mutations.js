@@ -1,7 +1,7 @@
 // @flow weak
 
-const updateTranslations = async (parent, { language, messages }, ctx, info) => {
-  const lang = language.toUpperCase()
+const updateTranslations = async (parent, { lang, messages }, ctx, info) => {
+  lang = lang.toUpperCase()
 
   const where = { OR: [] }
   for (let ns of Object.keys(messages)) {

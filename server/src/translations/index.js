@@ -9,7 +9,7 @@ const mutations = require('./mutations')
 const typeDefs = readSchema(resolve(__dirname, 'translations.graphql'))
 
 const queryText = `
-  translations(lang: String! ns: [String]): JSON
+  translations(lang: String ns: [String]): JSON
 `
 
 const mutationText = `
