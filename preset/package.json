@@ -8,7 +8,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "lingui-extract": "node scripts/lingui.js --src=cms && node scripts/lingui.js --src=website",
     "lingui-extract-cms": "node scripts/lingui.js --src=cms",
-    "lingui-extract-website": "node scripts/lingui.js --src=website"
+    "lingui-extract-website": "node scripts/lingui.js --src=website",
+    "lingui-extract-test": "node scripts/lingui.js --src=test"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",
@@ -16,6 +17,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.42",
     "@babel/plugin-transform-flow-strip-types": "^7.0.0-beta.42",
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-flow": "^7.0.0-beta.42",
     "@babel/preset-react": "^7.0.0-beta.42",
@@ -23,6 +25,7 @@
     "@lingui/cli": "^2.0.5",
     "@lingui/core": "^2.0.5",
     "@lingui/react": "^2.0.5",
+    "app-module-path": "^2.2.0",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -45,6 +48,7 @@
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
+    "graphql": "^0.13.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
@@ -55,6 +59,7 @@
     "react": "^16.3.0",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.3.0",
+    "react-hot-loader": "^4.0.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -98,22 +103,51 @@
     ]
   },
   "babel": {
-    "presets": [
-      [
-        "@babel/preset-env"
-      ],
-      "@babel/preset-react",
-      "@babel/preset-flow",
-      "@lingui/babel-preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-syntax-dynamic-import",
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread"
-    ],
     "env": {
-      "test": {
+      "production": {
+        "presets": [
+          [
+            "@babel/preset-env"
+          ],
+          "@babel/preset-react",
+          "@babel/preset-flow",
+          "@lingui/babel-preset-react"
+        ],
         "plugins": [
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread"
+        ]
+      },
+      "development": {
+        "presets": [
+          [
+            "@babel/preset-env"
+          ],
+          "@babel/preset-react",
+          "@babel/preset-flow",
+          "@lingui/babel-preset-react"
+        ],
+        "plugins": [
+          "react-hot-loader/babel",
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread"
+        ]
+      },
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env"
+          ],
+          "@babel/preset-react",
+          "@babel/preset-flow",
+          "@lingui/babel-preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
           "@babel/plugin-transform-modules-commonjs"
         ]
       }

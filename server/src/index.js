@@ -1,6 +1,10 @@
 // @flow weak
 
+const { resolve } = require('path')
+const preset = resolve(__dirname, '..', '..', 'preset', 'src')
+console.log(preset)
 require('app-module-path').addPath(__dirname)
+require('app-module-path').addPath(preset)
 
 const express = require('express')
 const mkdirp = require('mkdirp')

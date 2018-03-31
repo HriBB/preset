@@ -1,6 +1,6 @@
 
 // Do this as the first thing so that any code reading it knows the right env.
-process.env.BABEL_ENV = 'production'
+process.env.BABEL_ENV = 'lingui'
 process.env.NODE_ENV = 'production'
 
 // Makes the script crash on unhandled rejections instead of silently
@@ -26,6 +26,7 @@ const linguiExtract = require('@lingui/cli/lingui-extract').default
 
 // Setup paths
 const root = resolve(__dirname, '..', '..')
+const preset = resolve(root, 'preset')
 const admin = resolve(root, 'admin')
 const server = resolve(root, 'server')
 const website = resolve(root, 'website')
@@ -50,7 +51,7 @@ const extractTranslations = (cfg) => {
   linguiExtract(config, format, options)
 }
 
-const extractClientTranslations = () => {
+const extractWebsiteTranslations = () => {
   extractTranslations({
     rootDir: website,
     localeDir: resolve(website, 'src', 'locale'),
@@ -106,12 +107,25 @@ const extractServerTranslations = () => {
   })
 }
 
+const extractTestTranslations = () => {
+  extractTranslations({
+    rootDir: preset,
+    localeDir: resolve(preset, 'src', 'locale'),
+    srcPathDirs: [
+      resolve(preset, 'src'),
+    ],
+  })
+}
+
 switch (argv.src) {
   case 'website':
-    extractClientTranslations()
+    extractWebsiteTranslations()
     break
   case 'cms':
     extractServerTranslations()
+    break
+  case 'test':
+    extractTestTranslations()
     break
   default:
     console.log(`Invalid src parameter "${argv.src}"! Only "cms" and "website" are allowed.`)

@@ -134,27 +134,51 @@
     ]
   },
   "babel": {
-    "presets": [
-      [
-        "@babel/preset-env"
-      ],
-      "@babel/preset-react",
-      "@babel/preset-flow",
-      "@lingui/babel-preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-syntax-dynamic-import",
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread"
-    ],
     "env": {
-      "development": {
+      "production": {
+        "presets": [
+          [
+            "@babel/preset-env"
+          ],
+          "@babel/preset-react",
+          "@babel/preset-flow",
+          "@lingui/babel-preset-react"
+        ],
         "plugins": [
-          "react-hot-loader/babel"
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread"
+        ]
+      },
+      "development": {
+        "presets": [
+          [
+            "@babel/preset-env"
+          ],
+          "@babel/preset-react",
+          "@babel/preset-flow",
+          "@lingui/babel-preset-react"
+        ],
+        "plugins": [
+          "react-hot-loader/babel",
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread"
         ]
       },
       "test": {
+        "presets": [
+          [
+            "@babel/preset-env"
+          ],
+          "@babel/preset-react",
+          "@babel/preset-flow",
+          "@lingui/babel-preset-react"
+        ],
         "plugins": [
+          "@babel/plugin-syntax-dynamic-import",
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-object-rest-spread",
           "@babel/plugin-transform-modules-commonjs"
         ]
       }
@@ -173,7 +197,21 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": 0,
+      "strict": 0,
+      "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+      "jsx-quotes": ["error", "prefer-single"],
+      "no-unused-vars": 2,
+      "comma-dangle": ["error", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "ignore"
+      }]
+    }
   },
   "eslintIgnore": [
     "server/src/generated/prisma.js"

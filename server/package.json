@@ -15,6 +15,8 @@
     "app-module-path": "^2.2.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "5.0.1",
+    "empty": "^0.10.1",
+    "eslint-config-react-app": "^2.1.0",
     "graphql": "^0.13.2",
     "graphql-directive": "0.2.1",
     "graphql-import": "0.5.0",
@@ -31,8 +33,12 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
     "graphql-cli": "2.15.8",
     "npm-run-all": "4.1.2",
     "prisma": "^1.5.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

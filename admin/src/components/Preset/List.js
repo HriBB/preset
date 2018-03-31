@@ -22,7 +22,7 @@ import {
   getListQuery,
   getDeleteMutation,
   getDeleteUpdateHandler,
-} from './utils'
+} from 'preset-client'
 
 const styles = theme => ({
   header: {

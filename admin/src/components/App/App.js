@@ -23,8 +23,6 @@ import si from 'locale/si/messages'
 import Drawer from './Drawer'
 import appQuery from './App.graphql'
 
-console.log(si)
-
 const App = props => {
   return (
     <I18nProvider language={'si'} catalogs={{ en, si }}>

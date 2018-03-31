@@ -2,12 +2,15 @@
 <PROJECT_ROOT>/.git/
 <PROJECT_ROOT>/.cache/
 <PROJECT_ROOT>/generated/
-<PROJECT_ROOT>/node_modules/bcryptjs/src/bower.json
-<PROJECT_ROOT>/node_modules/config-chain/test/*
-<PROJECT_ROOT>/node_modules/npm/node_modules/config-chain/test/*
-<PROJECT_ROOT>/node_modules/npm/test/fixtures/config/*
+.*/node_modules/prisma-cli-engine/*
+.*/node_modules/bcryptjs/src/bower.json
+.*/node_modules/config-chain/test/*
+.*/node_modules/npm/node_modules/config-chain/test/*
+.*/node_modules/npm/test/fixtures/config/*
 .*/node_modules/.*\.json$
 
 [options]
+module.name_mapper='preset-server' -> 'empty/object'
+module.system.node.resolve_dirname=<PROJECT_ROOT>/../preset/src
 module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules

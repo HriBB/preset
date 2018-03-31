@@ -3,10 +3,15 @@
 import gql from 'graphql-tag'
 import pluralize from 'pluralize'
 
-// @todo write some tests
+const nameField = {}
+const itemQuery = {}
+const listQuery = {}
+const createMutation = {}
+const updateMutation = {}
+const deleteMutation = {}
 
 // types
-// @todo import types from graphql
+// @todo import introspection types from graphql/?
 
 type FieldOfType = {
   name: string,
@@ -40,7 +45,7 @@ type Props = {
 // private helpers
 // @todo investigate introspection schema visitor
 
-const hasQuery = (client, query) => {
+const hasQuery = (client: any, query: any) => {
   const name = typeof query === 'string' ? query : query.definitions[0].name.value
   return client.queryManager.queryIdsByName[name]
 }
@@ -90,9 +95,8 @@ const getMutationVars = ({ fields }: Model) => {
 }
 
 // public helpers
-// @todo can you do this with directives?
 
-export const getModel = ({ model, schema }) => {
+const getModel = ({ model, schema }: any) => {
   return {
     ...model,
     models: schema.types.filter(t => (
@@ -106,13 +110,12 @@ export const getModel = ({ model, schema }) => {
   }
 }
 
-export const getFieldType = ({ name, type }) => {
+const getFieldType = ({ name, type }: Field) => {
   const { ofType } = type
   return type.name ? type.name : ofType ? ofType.name : name
 }
 
-const nameField = {}
-export const getNameField = ({ name, fields }: Model) => {
+const getNameField = ({ name, fields }: Model) => {
   if (!nameField[name]) {
     for (let field of fields) {
       if (field.type.ofType && field.type.ofType.name === 'Text') {
@@ -124,7 +127,7 @@ export const getNameField = ({ name, fields }: Model) => {
   return nameField[name]
 }
 
-export const getInitialValues = ({ fields }: Model) => {
+const getInitialValues = ({ fields }: Model) => {
   return fields
     .reduce((values, field) => {
       const { name } = field
@@ -138,10 +141,8 @@ export const getInitialValues = ({ fields }: Model) => {
 
 // queries
 // create dynamic queries based on introspection model
-// @todo memoize queries for each model
 
-const itemQuery = {}
-export const getItemQuery = (model: Model) => {
+const getItemQuery = (model: Model) => {
   if (!itemQuery[model.name]) {
     const queryName = getItemQueryName(model)
     const queryFields = getQueryFields(model)
@@ -154,8 +155,7 @@ export const getItemQuery = (model: Model) => {
   return itemQuery[model.name]
 }
 
-const listQuery = {}
-export const getListQuery = (model: Model) => {
+const getListQuery = (model: Model) => {
   if (!listQuery[model.name]) {
     const queryName = getListQueryName(model)
     const queryFields = getQueryFields(model)
@@ -170,10 +170,9 @@ export const getListQuery = (model: Model) => {
 
 // mutations
 // create dynamic mutations based on introspection model
-// @todo memoize mutation for each model
 
-const createMutation = {}
-export const getCreateMutation = (model: Model) => {
+
+const getCreateMutation = (model: Model) => {
   if (!createMutation[model.name]) {
     const args = getMutationArgs(model)
     const vars = getMutationVars(model)
@@ -187,8 +186,7 @@ export const getCreateMutation = (model: Model) => {
   return createMutation[model.name]
 }
 
-const updateMutation = {}
-export const getUpdateMutation = (model: Model) => {
+const getUpdateMutation = (model: Model) => {
   if (!updateMutation[model.name]) {
     const args = getMutationArgs(model)
     const vars = getMutationVars(model)
@@ -202,8 +200,7 @@ export const getUpdateMutation = (model: Model) => {
   return updateMutation[model.name]
 }
 
-const deleteMutation = {}
-export const getDeleteMutation = (model: Model) => {
+const getDeleteMutation = (model: Model) => {
   if (!deleteMutation[model.name]) {
     deleteMutation[model.name] = gql(`
       mutation delete${model.name}($id: ID!) {
@@ -219,7 +216,7 @@ export const getDeleteMutation = (model: Model) => {
 // mutation variables
 // we need to do some parsing before we send data back to the server
 
-export const getCreateVariables = (props: Props, data) => {
+const getCreateVariables = (props: Props, data) => {
   return props.model.fields
     .filter(f => f.name !== 'id')
     .reduce((obj, field) => {
@@ -238,7 +235,7 @@ export const getCreateVariables = (props: Props, data) => {
     }, {})
 }
 
-export const getUpdateVariables = (props: Props, data) => ({
+const getUpdateVariables = (props: Props, data) => ({
   id: data.id,
   ...getCreateVariables(props, data),
 })
@@ -247,7 +244,7 @@ export const getUpdateVariables = (props: Props, data) => ({
 // these functions create functions that
 // will update apollo cache after a mutation
 
-export const getCreateUpdateHandler = (props: Props) => (proxy, { data }) => {
+const getCreateUpdateHandler = (props: Props) => (proxy: any, { data }: any) => {
   const { client, model } = props
   const newItem = data[`create${model.name}`]
   const queryName = getListQueryName(model)
@@ -259,7 +256,7 @@ export const getCreateUpdateHandler = (props: Props) => (proxy, { data }) => {
   }
 }
 
-export const getUpdateUpdateHandler = (id: string, props: Props) => (proxy, { data }) => {
+const getUpdateUpdateHandler = (id: string, props: Props) => (proxy: any, { data }: any) => {
   const { client, model } = props
   const newItem = data[`update${model.name}`]
   const queryName = getListQueryName(model)
@@ -272,7 +269,7 @@ export const getUpdateUpdateHandler = (id: string, props: Props) => (proxy, { da
   }
 }
 
-export const getDeleteUpdateHandler = (id: string, props: Props) => (proxy, { data }) => {
+const getDeleteUpdateHandler = (id: string, props: Props) => (proxy: any, { data }: any) => {
   const { client, model } = props
   const { id } = data[`delete${model.name}`]
   const queryName = getListQueryName(model)
@@ -282,4 +279,21 @@ export const getDeleteUpdateHandler = (id: string, props: Props) => (proxy, { da
     data.items = data.items.filter(i => i.id !== id)
     proxy.writeQuery({ query, data })
   }
+}
+
+module.exports = {
+  getModel,
+  getFieldType,
+  getNameField,
+  getInitialValues,
+  getItemQuery,
+  getListQuery,
+  getCreateMutation,
+  getUpdateMutation,
+  getDeleteMutation,
+  getCreateVariables,
+  getUpdateVariables,
+  getCreateUpdateHandler,
+  getUpdateUpdateHandler,
+  getDeleteUpdateHandler,
 }

@@ -5,11 +5,12 @@ import { Query } from 'react-apollo'
 import { Trans } from '@lingui/react'
 import { Route, Switch } from 'react-router-dom'
 
+import { getModel } from 'preset-client'
+
 import { Body, Header, Error, Spinner } from 'components/ux'
 import List from './List'
 import Create from './Create'
 import Update from './Update'
-import { getModel } from './utils'
 import modelQuery from './Preset.graphql'
 
 const Preset = ({ match }: any) => (
