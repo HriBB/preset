@@ -93,6 +93,7 @@
     "react-jss": "^8.3.5",
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
+    "react-swipeable-views": "^0.12.13",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-form": "7.3.0",
@@ -201,16 +202,28 @@
     "rules": {
       "semi": 0,
       "strict": 0,
-      "quotes": ["error", "single", { "allowTemplateLiterals": true }],
-      "jsx-quotes": ["error", "prefer-single"],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "jsx-quotes": [
+        "error",
+        "prefer-single"
+      ],
       "no-unused-vars": 2,
-      "comma-dangle": ["error", {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "ignore"
-      }]
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "ignore"
+        }
+      ]
     }
   },
   "eslintIgnore": [

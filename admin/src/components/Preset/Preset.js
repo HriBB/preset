@@ -5,7 +5,7 @@ import { Query } from 'react-apollo'
 import { Trans } from '@lingui/react'
 import { Route, Switch } from 'react-router-dom'
 
-import { getModel } from 'preset-client'
+import { getModel } from './utils'
 
 import { Body, Header, Error, Spinner } from 'components/ux'
 import List from './List'

@@ -17,7 +17,7 @@ const createModel = (model) => async (parent, { image, ...args }, ctx, info) => 
     const file = await createFile(image, ctx)
     Object.assign(data, { image: { connect: { id: file.id } } })
   }
-  return ctx.db.mutation[`create${model.name}`]({ data }, info)
+  return ctx.db.mutation[model.createMutation]({ data }, info)
 }
 
 const updateModel = (model) => async (parent, input, ctx, info) => {
@@ -31,7 +31,7 @@ const updateModel = (model) => async (parent, input, ctx, info) => {
     const file = await createFile(image, ctx)
     Object.assign(data, { image: { connect: { id: file.id } } })
   }
-  return ctx.db.mutation[`update${model.name}`]({ data, where: { id } }, info)
+  return ctx.db.mutation[model.updateMutation]({ data, where: { id } }, info)
 }
 
 const deleteModel = (model) => async (parent, { id }, ctx, info) => {
@@ -40,14 +40,14 @@ const deleteModel = (model) => async (parent, { id }, ctx, info) => {
   if (!exists) {
     throw new Error(`${model.name} not found!`)
   }
-  return ctx.db.mutation[`delete${model.name}`]({ where: { id } })
+  return ctx.db.mutation[model.deleteMutation]({ where: { id } })
 }
 
 const mutations = models.reduce((mutations, model) => ({
   ...mutations,
-  [`create${model.name}`]: createModel(model),
-  [`update${model.name}`]: updateModel(model),
-  [`delete${model.name}`]: deleteModel(model),
+  [model.createMutation]: createModel(model),
+  [model.updateMutation]: updateModel(model),
+  [model.deleteMutation]: deleteModel(model),
 }), {})
 
 module.exports = mutations

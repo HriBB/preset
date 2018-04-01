@@ -19,7 +19,7 @@ import {
   getCreateMutation,
   getCreateVariables,
   getCreateUpdateHandler,
-} from 'preset-client'
+} from './utils'
 
 const PresetCreate = props => {
   const { model, createItem } = props

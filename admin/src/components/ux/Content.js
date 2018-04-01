@@ -4,11 +4,12 @@ import React from 'react'
 
 import { withStyles } from 'material-ui/styles'
 import Card from 'material-ui/Card'
+import classnames from 'classnames'
 
 function Content(props) {
-  const { classes, children } = props
+  const { classes, className, children } = props
   return (
-    <div className={classes.root}>
+    <div className={classnames(classes.root, className)}>
       <Card className={classes.card}>{children}</Card>
     </div>
   )
@@ -16,7 +17,7 @@ function Content(props) {
 
 const styles = theme => ({
   root: {
-    maxWidth: '772px',
+    maxWidth: '960px',
     marginLeft: 'auto',
     marginRight: 'auto',
     padding: theme.spacing.unit * 2,

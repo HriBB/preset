@@ -23,7 +23,7 @@ import si from 'locale/si/messages'
 import Drawer from './Drawer'
 import appQuery from './App.graphql'
 
-const App = props => {
+const App = (props) => {
   return (
     <I18nProvider language={'si'} catalogs={{ en, si }}>
       <Query query={appQuery}>
@@ -35,7 +35,10 @@ const App = props => {
           const { user } = data
           return (
             <Fragment>
-              <Drawer open={drawer} />
+              <Drawer
+                page={props.match.params.page}
+                open={drawer}
+              />
               <Snackbar
                 open={!!props.snackbar}
                 onClose={props.hideSnackbar}

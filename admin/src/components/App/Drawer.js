@@ -2,7 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { compose, getContext } from 'recompose'
+import { compose, getContext, withStateHandlers } from 'recompose'
 import { Link, NavLink } from 'react-router-dom'
 import { Trans, withI18n } from '@lingui/react'
 
@@ -10,23 +10,16 @@ import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import { withStyles } from 'material-ui/styles'
 import Toolbar from 'material-ui/Toolbar'
 import MuiDrawer from 'material-ui/Drawer'
-import Divider from 'material-ui/Divider'
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
-import InboxIcon from 'material-ui-icons/Inbox'
-import TranslateIcon from 'material-ui-icons/Translate'
+import List, { ListItem, ListItemText } from 'material-ui/List'
+import Collapse from 'material-ui/transitions/Collapse'
 
 import { Models } from 'components/Preset'
+import { namespaces } from 'components/Translations'
 
-const Drawer = props => {
-  const { classes, drawer, open, theme, width } = props
+const Drawer = (props) => {
+  const { classes, drawer, list, open, page, theme, width } = props
   const isWidthUpSm = isWidthUp(theme.drawer.breakpoint, width)
   const variant = isWidthUpSm ? 'permanent' : 'temporary'
-  const itemProps = {
-    className: classes.item,
-    component: NavLink,
-    onClick: drawer.toggle,
-    button: true,
-  }
   return (
     <MuiDrawer
       className={classes.drawer}
@@ -41,25 +34,93 @@ const Drawer = props => {
         </Link>
       </Toolbar>
       <List className={classes.list} component={'nav'}>
-        <Models>
-          {({ error, loading, models }) => 
-            models.map(model =>
-              <ListItem key={model.name} to={`/${model.name}`} {...itemProps}>
-                <ListItemIcon><InboxIcon /></ListItemIcon>
-                <ListItemText primary={<Trans id={`${model.name}_plural`} />} />
+
+        <ListItem
+          button
+          className={classes.item}
+          data-id={'models'}
+          onClick={props.handleClick}
+        >
+          <ListItemText
+            className={classes.itemText}
+            disableTypography
+            primary={<Trans>Models</Trans>}
+          />
+        </ListItem>
+
+        <Collapse in={list['models']} timeout={'auto'} unmountOnExit>
+          <List disablePadding>
+            <Models>
+              {({ error, loading, models }) => 
+                models.map(model =>
+                  <ListItem
+                    key={model.name}
+                    button
+                    className={classes.item2}
+                    component={NavLink}
+                    to={`/${model.name}`}
+                    onClick={drawer.toggle}
+                  >
+                    <ListItemText
+                      className={classes.item2Text}
+                      disableTypography
+                      primary={<Trans id={`${model.name}_plural`} />}
+                    />
+                  </ListItem>
+                )
+              }
+            </Models>
+          </List>
+        </Collapse>
+
+        <ListItem
+          button
+          className={classes.item}
+          data-id={'translations'}
+          onClick={props.handleClick}
+        >
+          <ListItemText
+            className={classes.itemText}
+            disableTypography
+            primary={<Trans>Translations</Trans>}
+          />
+        </ListItem>
+
+        <Collapse in={list['translations'] || page === 'translations'} timeout={'auto'} unmountOnExit>
+          <List disablePadding>
+            {namespaces.map(ns => 
+              <ListItem
+                key={ns}
+                button
+                className={classes.item2}
+                component={NavLink}
+                onClick={drawer.toggle}
+                to={`/translations/${ns}`}
+              >
+                <ListItemText
+                  className={classes.item2Text}
+                  disableTypography
+                  primary={ns.charAt(0).toUpperCase() + ns.slice(1)}
+                />
               </ListItem>
-            )
-          }
-        </Models>
-        <Divider />
-        <ListItem to={'/translations/'} {...itemProps}>
-          <ListItemIcon><TranslateIcon /></ListItemIcon>
-          <ListItemText primary={<Trans>Translations</Trans>} />
+            )}
+          </List>
+        </Collapse>
+
+        <ListItem
+          button
+          className={classes.item}
+          component={NavLink}
+          onClick={drawer.toggle}
+          to={'/user'}
+        >
+          <ListItemText
+            className={classes.itemText}
+            disableTypography
+            primary={<Trans>User</Trans>}
+          />
         </ListItem>
-        <ListItem to={'/user'} {...itemProps}>
-          <ListItemIcon><InboxIcon /></ListItemIcon>
-          <ListItemText primary={<Trans>User</Trans>} />
-        </ListItem>
+
       </List>
     </MuiDrawer>
   )
@@ -93,11 +154,45 @@ const styles = theme => ({
       backgroundColor: theme.palette.action.hover,
     },
   },
+  itemText: {
+    //fontSize: '0.875rem',
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  item2: {
+    paddingLeft: theme.spacing.unit * 6,
+    '& svg': {
+      marginRight: 0,
+    },
+    '&.active': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+  item2Text: {
+    //fontSize: '0.875rem',
+    fontWeight: theme.typography.fontWeightLight,
+  },
 })
+
+const findId = ({ dataset, parentNode }) => {
+  return dataset && dataset.id ? dataset.id : findId(parentNode)
+}
 
 export default compose(
   getContext({ drawer: PropTypes.object }),
   withWidth({ withTheme: true }),
   withStyles(styles),
   withI18n(),
+  withStateHandlers(
+    ({ list = {}, ...props }) => {
+      console.log(props)
+      return { list }
+    },
+    {
+      handleClick: ({ list }) => (e) => {
+        const id = findId(e.target)
+        list[id] = !list[id]
+        return list
+      },
+    }
+  ),
 )(Drawer)

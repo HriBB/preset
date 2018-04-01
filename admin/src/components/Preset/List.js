@@ -22,25 +22,7 @@ import {
   getListQuery,
   getDeleteMutation,
   getDeleteUpdateHandler,
-} from 'preset-client'
-
-const styles = theme => ({
-  header: {
-    paddingRight: theme.spacing.unit * 2 + 4,
-  },
-  list: {
-    //marginTop: theme.spacing.unit * 2,
-  },
-  avatar: {
-    color: '#fff',
-  },
-  link: {
-    color: 'inherit',
-    fontSize: theme.typography.fontSize * 1.2,
-    textDecoration: 'none',
-    marginRight: theme.spacing.unit * 2,
-  },
-})
+} from './utils'
 
 const PresetList = (props: any) => {
   const { classes, model } = props
@@ -102,6 +84,25 @@ const PresetList = (props: any) => {
     </Fragment>
   )
 }
+
+const styles = theme => ({
+  header: {
+    paddingRight: theme.spacing.unit * 2 + 4,
+  },
+  list: {
+    //marginTop: theme.spacing.unit * 2,
+  },
+  avatar: {
+    color: '#fff',
+  },
+  link: {
+    color: 'inherit',
+    fontSize: theme.typography.fontSize * 1.2,
+    textDecoration: 'none',
+    marginRight: theme.spacing.unit * 2,
+  },
+})
+
 
 export default compose(
   getContext({

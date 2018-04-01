@@ -9,7 +9,7 @@ import {
   getCreateMutation,
   getUpdateMutation,
   getDeleteMutation,
-} from '../index'
+} from '../utils'
 
 const file = path.resolve(__dirname, 'data.json')
 const json = fs.readFileSync(file, 'utf8')

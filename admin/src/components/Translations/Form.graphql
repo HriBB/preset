@@ -1,3 +1,0 @@
-query TranslationsForm($lang: String, $ns: [String]) {
-  translations(lang: $lang, ns: $ns)
-}

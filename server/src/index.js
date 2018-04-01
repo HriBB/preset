@@ -1,16 +1,11 @@
 // @flow weak
 
-const { resolve } = require('path')
-const preset = resolve(__dirname, '..', '..', 'preset', 'src')
-console.log(preset)
-require('app-module-path').addPath(__dirname)
-require('app-module-path').addPath(preset)
-
 const express = require('express')
 const mkdirp = require('mkdirp')
 const { GraphQLServer } = require('graphql-yoga')
 const { Prisma } = require('prisma-binding')
 
+require('app-module-path').addPath(__dirname)
 const config = require('config')
 const schema = require('schema')
 
@@ -18,12 +13,7 @@ const server = new GraphQLServer({
   schema,
   context: req => ({
     ...req,
-    db: new Prisma({
-      typeDefs: './src/generated/prisma.graphql',
-      endpoint: process.env.PRISMA_ENDPOINT,
-      secret: process.env.PRISMA_SECRET,
-      debug: true,
-    }),
+    db: new Prisma(config.db),
   }),
 })
 

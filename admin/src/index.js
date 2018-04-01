@@ -39,7 +39,7 @@ if (root) {
         <JssProvider {...jssProps}>
           <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
             <Router>
-              <Route component={App} />
+              <Route path={'/:page?'} component={App} />
             </Router>
           </MuiThemeProvider>
         </JssProvider>

@@ -21,26 +21,22 @@ const getFields = (model) => {
   })
 }
 
-const getItemQueryName = ({ name }) => (
-  name.charAt(0).toLowerCase() + name.slice(1)
-)
-
-const getListQueryName = ({ name }) => (
-  name.charAt(0).toLowerCase() + pluralize(name).slice(1)
-)
-
-const getModels = (schema) => {
-  const ast = buildASTSchema(parse(schema))
+const getModels = (typeDefs) => {
+  const ast = buildASTSchema(parse(typeDefs))
   return ast._implementations.Node.map(model => {
+    const { name } = model
     return {
-      name: model.name,
+      name,
       fields: getFields(model),
+      itemQuery: name.charAt(0).toLowerCase() + name.slice(1),
+      listQuery: name.charAt(0).toLowerCase() + pluralize(name).slice(1),
+      createMutation: `create${name}`,
+      updateMutation: `update${name}`,
+      deleteMutation: `delete${name}`,
     }
   })
 }
 
 module.exports = {
   getModels,
-  getItemQueryName,
-  getListQueryName,
 }

@@ -9,7 +9,7 @@ import { withStyles } from 'material-ui/styles'
 import { CardContent, CardActions } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 
-import { getFieldType } from 'preset-client'
+import { getFieldType } from './utils'
 import { getField } from 'components/Form'
 
 const PresetForm = props => {

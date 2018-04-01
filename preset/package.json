@@ -6,10 +6,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lingui-extract": "node scripts/lingui.js --src=cms && node scripts/lingui.js --src=website",
-    "lingui-extract-cms": "node scripts/lingui.js --src=cms",
-    "lingui-extract-website": "node scripts/lingui.js --src=website",
-    "lingui-extract-test": "node scripts/lingui.js --src=test"
+    "extract": "node scripts/lingui.js --src=admin && node scripts/lingui.js --src=website",
+    "extract:admin": "node scripts/lingui.js --src=admin",
+    "extract:website": "node scripts/lingui.js --src=website"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",

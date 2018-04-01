@@ -18,7 +18,7 @@ import {
   getUpdateMutation,
   getUpdateVariables,
   getUpdateUpdateHandler,
-} from 'preset-client'
+} from './utils'
 
 const PresetUpdate = props => {
   const { match, model, updateItem } = props

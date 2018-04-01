@@ -22,10 +22,10 @@ const queryText = `
 const f = ({ name, type, required }) => 
   `${name}: ${type === 'File' ? 'Upload' : type}${required ? '!' : ''}`
 
-const mutationText = models.map(({ name, fields }, i) => `
-  create${name}(${fields.map(f).join(' ')}): ${name}
-  update${name}(id: ID! ${fields.map(f).join(' ')}): ${name}
-  delete${name}(id: ID!): ${name}
+const mutationText = models.map(({ name, fields, ...model }, i) => `
+  ${model.createMutation}(${fields.map(f).join(' ')}): ${name}
+  ${model.updateMutation}(id: ID! ${fields.map(f).join(' ')}): ${name}
+  ${model.deleteMutation}(id: ID!): ${name}
 `).join('')
 
 module.exports = {

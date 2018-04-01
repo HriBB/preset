@@ -1,7 +1,9 @@
 // @flow
 
 import React, { Fragment } from 'react'
-import { compose } from 'recompose'
+import PropTypes from 'prop-types'
+import { compose, withHandlers, getContext } from 'recompose'
+import { SubmissionError } from 'redux-form'
 import { Form, Field, reduxForm } from 'redux-form'
 import { Trans, withI18n } from '@lingui/react'
 
@@ -26,15 +28,14 @@ const TranslationForm = props => {
     <Fragment>
       <CardContent className={classes.content}>
         <Form onSubmit={handleSubmit}>
-          {keys.map(({ id, editor }) => (
-            <div key={id}>
-              <Field
-                component={getEditor(editor)}
-                className={classes.field}
-                name={id}
-                label={id}
-              />
-            </div>
+          {Object.keys(keys).map((key) => (
+            <Field
+              key={keys[key].id}
+              component={getEditor(keys[key].editor)}
+              className={classes.field}
+              name={`${keys[key].id}.value`}
+              label={keys[key].id}
+            />
           ))}
         </Form>
         <FormControl error className={classes.error}>
@@ -65,6 +66,7 @@ const styles = theme => ({
     maxWidth: '150px',
   },
   actions: {
+    display: 'none',
     justifyContent: 'flex-end',
   },
 })
@@ -75,10 +77,23 @@ const validate = (fields, { model }) => {
 }
 
 export default compose(
+  getContext({
+    snackbar: PropTypes.object,
+  }),
   withStyles(styles),
   withI18n(),
+  withHandlers({
+    onSubmit: ({ i18n, snackbar, updateTranslations }) => (data) =>
+      updateTranslations(i18n.language, data)
+        .then(({ data: { updateTranslations } }) =>
+          snackbar.show(<Trans>Done</Trans>)
+        )
+        .catch(error => {
+          throw new SubmissionError({ _error: error.message })
+        }),
+  }),
   reduxForm({
-    form: 'translations',
+    //form: 'translations',
     validate,
   }),
 )(TranslationForm)

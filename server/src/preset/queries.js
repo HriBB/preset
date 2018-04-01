@@ -11,14 +11,14 @@ const queries = Object.assign(
       return ctx.db.query.files({}, info)
     },
   },
-  models.reduce((queries, { itemQuery, listQuery }) => ({
+  models.reduce((queries, model) => ({
     ...queries,
-    [itemQuery]: (parent, { id }, ctx, info) => (
-      ctx.db.query[itemQuery]({ where: { id } }, info)
-    ),
-    [listQuery]: (parent, args, ctx, info) => (
-      ctx.db.query[listQuery]({}, info)
-    ),
+    [model.itemQuery]: (parent, { id }, ctx, info) => {
+      return ctx.db.query[model.itemQuery]({ where: { id } }, info)
+    },
+    [model.listQuery]: (parent, args, ctx, info) => {
+      return ctx.db.query[model.listQuery]({}, info)
+    },
   }), {})
 )
 

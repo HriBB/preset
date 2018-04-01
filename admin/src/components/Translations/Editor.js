@@ -16,8 +16,8 @@ import formQuery from './Form.graphql'
 import messages from './messages'
 
 type Props = {
-  i18n: Object,
-  match: Object,
+  lang: string,
+  ns: string,
   onSubmit: Function,
 }
 
@@ -43,10 +43,7 @@ const prepareTranslations = (ns, data) => {
   return { keys, values }
 }
 
-const TranslationEditor = (props: Props) => {
-  const { i18n, match } = props
-  const lang = i18n.language
-  const ns = match.params.ns
+const TranslationEditor = ({ lang, ns, onSubmit }: Props) => {
   return (
     <Query query={formQuery} variables={{ lang, ns }}>
       {({ error, loading, data }) => {
@@ -59,7 +56,7 @@ const TranslationEditor = (props: Props) => {
         const { keys, values } = prepareTranslations(ns, data)
         return (
           <Form
-            onSubmit={props.onSubmit}
+            onSubmit={onSubmit}
             initialValues={values}
             keys={keys}
           />
