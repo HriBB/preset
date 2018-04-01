@@ -159,7 +159,8 @@
     "sourceLocale": "",
     "localeDir": "<rootDir>/src/locale",
     "srcPathDirs": [
-      "<rootDir>/src"
+      "<rootDir>/src",
+      "<rootDir>/.cache"
     ],
     "srcPathIgnorePatterns": [
       "/node_modules/"

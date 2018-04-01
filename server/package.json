@@ -40,5 +40,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "eslintIgnore": [
+    "src/generated/*"
+  ]
 }
