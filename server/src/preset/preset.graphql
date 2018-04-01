@@ -44,3 +44,8 @@ type ParentTestimonial implements Node @model {
   image: File @field
   published: Checkbox! @field
 }
+
+extend type Query {
+  files: [File]
+  file(id: ID!): File
+}

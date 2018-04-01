@@ -33,7 +33,7 @@ const PresetCreate = props => {
           </Fragment>
         }
       >
-        <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
+        <IconButton component={Link} to={`/model/${model.name}`} color={'inherit'}>
           <CloseIcon />
         </IconButton>
       </Header>
@@ -71,7 +71,7 @@ export default compose(
             <Trans>{props.model.name} created</Trans>
           )
           props.history.push(
-            `/${props.model.name}/${data[`create${props.model.name}`].id}`
+            `/model/${props.model.name}/${data[`create${props.model.name}`].id}`
           )
         })
         .catch(error => {

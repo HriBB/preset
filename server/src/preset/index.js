@@ -12,8 +12,6 @@ const directives = require('./directives')
 const typeDefs = readSchema(resolve(__dirname, 'preset.graphql'))
 
 const queryText = `
-  files: [File]
-  file(id: ID!): File
   ${models.map(model => `
   ${model.listQuery}: [${model.name}]
   ${model.itemQuery}(id: ID!): ${model.name}

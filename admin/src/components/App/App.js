@@ -16,6 +16,7 @@ import { Login } from 'components/Login'
 import { Preset } from 'components/Preset'
 import { Translations } from 'components/Translations'
 import { User } from 'components/User'
+import { NotFound } from 'components/NotFound'
 
 import en from 'locale/si/messages'
 import si from 'locale/si/messages'
@@ -67,8 +68,11 @@ const App = (props) => {
                   render={matchProps => <Translations {...matchProps} user={user} />}
                 />
                 <Route
-                  path={'/:model'}
+                  path={'/model/:model'}
                   render={matchProps => <Preset {...matchProps} user={user} />}
+                />
+                <Route
+                  render={matchProps => <NotFound user={user} />}
                 />
               </Switch>
             </Fragment>

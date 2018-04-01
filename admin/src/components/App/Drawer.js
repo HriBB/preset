@@ -17,7 +17,7 @@ import { Models } from 'components/Preset'
 import { namespaces } from 'components/Translations'
 
 const Drawer = (props) => {
-  const { classes, drawer, list, open, page, theme, width } = props
+  const { classes, drawer, expand, open, theme, width } = props
   const isWidthUpSm = isWidthUp(theme.drawer.breakpoint, width)
   const variant = isWidthUpSm ? 'permanent' : 'temporary'
   return (
@@ -48,7 +48,7 @@ const Drawer = (props) => {
           />
         </ListItem>
 
-        <Collapse in={list['models']} timeout={'auto'} unmountOnExit>
+        <Collapse in={expand.models} timeout={'auto'} unmountOnExit>
           <List disablePadding>
             <Models>
               {({ error, loading, models }) => 
@@ -58,7 +58,7 @@ const Drawer = (props) => {
                     button
                     className={classes.item2}
                     component={NavLink}
-                    to={`/${model.name}`}
+                    to={`/model/${model.name}`}
                     onClick={drawer.toggle}
                   >
                     <ListItemText
@@ -86,7 +86,7 @@ const Drawer = (props) => {
           />
         </ListItem>
 
-        <Collapse in={list['translations'] || page === 'translations'} timeout={'auto'} unmountOnExit>
+        <Collapse in={expand.translations} timeout={'auto'} unmountOnExit>
           <List disablePadding>
             {namespaces.map(ns => 
               <ListItem
@@ -183,15 +183,12 @@ export default compose(
   withStyles(styles),
   withI18n(),
   withStateHandlers(
-    ({ list = {}, ...props }) => {
-      console.log(props)
-      return { list }
-    },
+    ({ page }) => ({ expand: { [page]: true } }),
     {
-      handleClick: ({ list }) => (e) => {
+      handleClick: ({ expand }) => (e) => {
         const id = findId(e.target)
-        list[id] = !list[id]
-        return list
+        expand[id] = !expand[id]
+        return expand
       },
     }
   ),

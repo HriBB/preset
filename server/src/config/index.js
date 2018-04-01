@@ -12,13 +12,13 @@ module.exports = {
     },
   },
   db: {
-    typeDefs: './src/generated/prisma.graphql',
+    typeDefs: resolve(__dirname, '..', 'generated', 'prisma.graphql'),
     endpoint: process.env.PRISMA_ENDPOINT,
     secret: process.env.PRISMA_SECRET,
     debug: true,
   },
   uploads: {
     url: 'http://localhost:4000/uploads',
-    path: resolve(__dirname, '..', 'uploads'),
+    path: resolve(__dirname, '..', '..', 'uploads'),
   },
 }

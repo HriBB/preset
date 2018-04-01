@@ -14,3 +14,14 @@ type User {
   last_name: String
   image: File
 }
+
+extend type Query {
+  viewer: User
+  users: [User]
+}
+
+extend type Mutation {
+  signup(username: String! email: String! password: String!): AuthPayload!
+  login(username: String! password: String!): AuthPayload!
+  setProfilePicture(image: Upload!): File!
+}

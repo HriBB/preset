@@ -31,7 +31,7 @@ const PresetList = (props: any) => {
       <Header title={<Trans id={`${model.name}_single`} />}>
         <IconButton
           component={Link}
-          to={`/${model.name}/create`}
+          to={`/model/${model.name}/create`}
           color={'inherit'}
         >
           <AddIcon />
@@ -56,7 +56,7 @@ const PresetList = (props: any) => {
                     key={item.id}
                     button
                     component={Link}
-                    to={`/${model.name}/${item.id}`}
+                    to={`/model/${model.name}/${item.id}`}
                   >
                     <Avatar
                       className={classes.avatar}

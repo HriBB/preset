@@ -48,15 +48,15 @@ const Preset = ({ match }: any) => (
           <Switch>
             <Route
               exact
-              path={`/${model.name}`}
+              path={`/model/${model.name}`}
               render={matchProps => <List {...matchProps} model={model} />}
             />
             <Route
-              path={`/${model.name}/create`}
+              path={`/model/${model.name}/create`}
               render={matchProps => <Create {...matchProps} model={model} />}
             />
             <Route
-              path={`/${model.name}/:id`}
+              path={`/model/${model.name}/:id`}
               render={matchProps => <Update {...matchProps} model={model} />}
             />
           </Switch>
