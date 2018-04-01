@@ -1,0 +1,18 @@
+{
+  "Error": {
+    "origin": [
+      [
+        "src/components/NotFound/NotFound.js",
+        13
+      ]
+    ]
+  },
+  "Page not found.": {
+    "origin": [
+      [
+        "src/components/NotFound/NotFound.js",
+        14
+      ]
+    ]
+  }
+}

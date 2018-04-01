@@ -10,8 +10,6 @@ const typeDefs = readSchema(resolve(__dirname, 'translations.graphql'))
 
 module.exports = {
   typeDefs,
-  queryText: '',
-  mutationText: '',
   queries,
   mutations,
   directives: {},

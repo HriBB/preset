@@ -34,15 +34,10 @@ ${translations.typeDefs}
 ${user.typeDefs}
 
 type Query {
-${preset.queryText}
-${translations.queryText}
-${user.queryText}
+  _: Boolean
 }
-
-type Mutation {
-${preset.mutationText}
-${translations.mutationText}
-${user.mutationText}
+type Mutation{
+  _: Boolean
 }
 
 schema {

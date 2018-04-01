@@ -7,9 +7,6 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lingui-extract": "node scripts/lingui.js --src=cms && node scripts/lingui.js --src=website",
-    "lingui-extract-cms": "node scripts/lingui.js --src=cms",
-    "lingui-extract-website": "node scripts/lingui.js --src=website",
     "prettier": "prettier-eslint --ignore \"**/locale/**\" --write \"src/**/*.+(js|jsx)\"",
     "prettier-dry-run": "prettier-eslint --ignore \"**/locale/**\" \"src/**/*.+(js|jsx)\" -l debug"
   },
@@ -149,21 +146,6 @@
       "@babel/plugin-proposal-object-rest-spread"
     ],
     "env": {
-      "lingui": {
-        "presets": [
-          [
-            "@babel/preset-env"
-          ],
-          "@babel/preset-react",
-          "@babel/preset-flow",
-          "@lingui/babel-preset-react"
-        ],
-        "plugins": [
-          "@babel/plugin-syntax-dynamic-import",
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread"
-        ]
-      },
       "test": {
         "plugins": [
           "@babel/plugin-transform-modules-commonjs"
@@ -213,6 +195,6 @@
     }
   },
   "eslintIgnore": [
-    "server/src/generated/prisma.js"
+    "src/locale/*"
   ]
 }

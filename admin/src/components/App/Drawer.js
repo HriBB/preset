@@ -38,7 +38,7 @@ const Drawer = (props) => {
         <ListItem
           button
           className={classes.item}
-          data-id={'models'}
+          data-id={'model'}
           onClick={props.handleClick}
         >
           <ListItemText
@@ -48,7 +48,7 @@ const Drawer = (props) => {
           />
         </ListItem>
 
-        <Collapse in={expand.models} timeout={'auto'} unmountOnExit>
+        <Collapse in={expand.model} timeout={'auto'} unmountOnExit>
           <List disablePadding>
             <Models>
               {({ error, loading, models }) => 

@@ -26,7 +26,7 @@ const linguiExtract = require('@lingui/cli/lingui-extract').default
 
 // Setup paths
 const root = resolve(__dirname, '..', '..')
-const preset = resolve(root, 'preset')
+//const preset = resolve(root, 'preset')
 const admin = resolve(root, 'admin')
 const server = resolve(root, 'server')
 const website = resolve(root, 'website')
@@ -81,8 +81,17 @@ const extractAdminTranslations = () => {
 
   fs.writeFileSync(file, content)
 
+  console.log('****************')
+  console.log('****************')
+  console.log(resolve(admin, 'src', 'locale'))
+  console.log([
+    resolve(admin, 'src'),
+    resolve(server, '.cache'),
+  ])
+  console.log('****************')
+  console.log('****************')
+
   extractTranslations({
-    rootDir: admin,
     localeDir: resolve(admin, 'src', 'locale'),
     srcPathDirs: [
       resolve(admin, 'src'),
@@ -93,7 +102,6 @@ const extractAdminTranslations = () => {
 
 const extractWebsiteTranslations = () => {
   extractTranslations({
-    rootDir: website,
     localeDir: resolve(website, 'src', 'locale'),
     srcPathDirs: [
       resolve(website, 'src'),
