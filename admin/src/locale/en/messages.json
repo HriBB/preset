@@ -1,7 +1,29 @@
 {
+  "Models": {
+    "translation": "Models",
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        47
+      ]
+    ]
+  },
+  "Page not found.": {
+    "translation": "Models",
+    "origin": [
+      [
+        "src/components/NotFound/NotFound.js",
+        14
+      ]
+    ]
+  },
   "Post_single": {
     "translation": "Post",
     "origin": [
+      [
+        ".cache/translations.js",
+        2
+      ],
       [
         "server/.cache/translations.js",
         2
@@ -12,6 +34,10 @@
     "translation": "Post",
     "origin": [
       [
+        ".cache/translations.js",
+        3
+      ],
+      [
         "server/.cache/translations.js",
         3
       ]
@@ -20,6 +46,10 @@
   "NewsPost_single": {
     "translation": "News",
     "origin": [
+      [
+        ".cache/translations.js",
+        4
+      ],
       [
         "server/.cache/translations.js",
         4
@@ -30,6 +60,10 @@
     "translation": "News",
     "origin": [
       [
+        ".cache/translations.js",
+        5
+      ],
+      [
         "server/.cache/translations.js",
         5
       ]
@@ -38,6 +72,10 @@
   "ParentTestimonial_single": {
     "translation": "Parent Testimonial",
     "origin": [
+      [
+        ".cache/translations.js",
+        6
+      ],
       [
         "server/.cache/translations.js",
         6
@@ -48,6 +86,10 @@
     "translation": "Parent Testimonials",
     "origin": [
       [
+        ".cache/translations.js",
+        7
+      ],
+      [
         "server/.cache/translations.js",
         7
       ]
@@ -56,6 +98,10 @@
   "title": {
     "translation": "Title",
     "origin": [
+      [
+        ".cache/translations.js",
+        8
+      ],
       [
         "server/.cache/translations.js",
         8
@@ -66,6 +112,10 @@
     "translation": "Text",
     "origin": [
       [
+        ".cache/translations.js",
+        9
+      ],
+      [
         "server/.cache/translations.js",
         9
       ]
@@ -75,6 +125,10 @@
     "translation": "Image",
     "origin": [
       [
+        ".cache/translations.js",
+        10
+      ],
+      [
         "server/.cache/translations.js",
         10
       ]
@@ -83,6 +137,10 @@
   "published": {
     "translation": "Published",
     "origin": [
+      [
+        ".cache/translations.js",
+        11
+      ],
       [
         "server/.cache/translations.js",
         11
@@ -94,7 +152,7 @@
     "origin": [
       [
         "src/components/App/App.js",
-        44
+        46
       ],
       [
         "src/components/App.js",
@@ -102,7 +160,11 @@
       ],
       [
         "src/components/Translations/Editor.js",
-        98
+        86
+      ],
+      [
+        "src/components/Translations/Form.js",
+        89
       ],
       [
         "src/components/User/User.js",
@@ -119,7 +181,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        57
+        85
       ],
       [
         "src/components/Drawer.js",
@@ -127,7 +189,7 @@
       ],
       [
         "src/components/Translations/Translations.js",
-        18
+        36
       ]
     ]
   },
@@ -136,7 +198,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        61
+        120
       ],
       [
         "src/components/Drawer.js",
@@ -229,7 +291,7 @@
       ],
       [
         "src/components/Preset/List.js",
-        88
+        70
       ]
     ]
   },
@@ -242,7 +304,7 @@
       ],
       [
         "src/components/Preset/List.js",
-        123
+        124
       ]
     ]
   },
@@ -262,24 +324,28 @@
         39
       ],
       [
+        "src/components/NotFound/NotFound.js",
+        13
+      ],
+      [
         "src/components/Preset/Create.js",
         78
       ],
       [
         "src/components/Preset/List.js",
-        126
+        127
       ],
       [
         "src/components/Preset/Preset.js",
-        21
+        22
       ],
       [
         "src/components/Preset/Preset.js",
-        37
+        38
       ],
       [
         "src/components/Preset/Update.js",
-        97
+        96
       ],
       [
         "src/components/Update.js",
@@ -335,7 +401,7 @@
       ],
       [
         "src/components/Preset/Preset.js",
-        39
+        40
       ]
     ]
   },
@@ -374,7 +440,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        57
+        56
       ],
       [
         "src/components/Update.js",
@@ -387,11 +453,15 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        64
+        63
       ],
       [
         "src/components/Translations/Form.js",
-        46
+        47
+      ],
+      [
+        "src/components/Translations/Translations.js",
+        66
       ],
       [
         "src/components/Update.js",
@@ -404,7 +474,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        94
+        93
       ],
       [
         "src/components/Update.js",

@@ -1,3 +1,0 @@
-query TranslationsForm($lang: String) {
-  translations(lang: $lang)
-}

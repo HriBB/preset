@@ -1,53 +1,37 @@
 // @flow
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { compose, withHandlers, getContext } from 'recompose'
-import { SubmissionError } from 'redux-form'
-import { Form, Field, reduxForm } from 'redux-form'
-import { Trans, withI18n } from '@lingui/react'
+import { connect } from 'react-redux'
+import { compose, getContext, withHandlers } from 'recompose'
+import { mutation } from 'react-apollo/mutation-hoc'
+import { Form, reduxForm, getFormValues } from 'redux-form'
+import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
-import { CardContent, CardActions } from 'material-ui/Card'
-import Button from 'material-ui/Button'
+import { CardContent } from 'material-ui/Card'
 
-import { Text, Textarea } from 'components/Form'
+import Field from './Field'
+import updateTranslationsMutation from './updateTranslations.graphql'
 
-const getEditor = (editor) => {
-  switch (editor) {
-    case 'Text': return Text
-    case 'Textarea': return Textarea
-    default: return Text
-  }
-}
-
-const TranslationForm = props => {
-  const { classes, error, handleSubmit, keys } = props
+const TranslationForm = (props) => {
+  const { classes, error, handleSubmit, initialValues, values, ns } = props
   return (
-    <Fragment>
-      <CardContent className={classes.content}>
-        <Form onSubmit={handleSubmit}>
-          {Object.keys(keys).map((key) => (
-            <Field
-              key={keys[key].id}
-              component={getEditor(keys[key].editor)}
-              className={classes.field}
-              name={`${keys[key].id}.value`}
-              label={keys[key].id}
-            />
-          ))}
-        </Form>
-        <FormControl error className={classes.error}>
-          <FormHelperText>{error || '\u00A0'}</FormHelperText>
-        </FormControl>
-      </CardContent>
-      <CardActions className={classes.actions}>
-        <Button color={'secondary'} variant={'raised'} onClick={handleSubmit}>
-          {<Trans>Save</Trans>}
-        </Button>
-      </CardActions>
-    </Fragment>
+    <CardContent className={classes.content}>
+      <Form onSubmit={handleSubmit}>
+        {Object.keys(initialValues[ns]).map((key) => (
+          <Field
+            key={key}
+            data={values[ns][key]}
+            change={props.change}
+          />
+        ))}
+      </Form>
+      <FormControl error className={classes.error}>
+        <FormHelperText>{error || '\u00A0'}</FormHelperText>
+      </FormControl>
+    </CardContent>
   )
 }
 
@@ -57,13 +41,6 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing.unit * 3,
     },
-  },
-  field: {
-    width: '100%',
-    marginBottom: theme.spacing.unit * 2,
-  },
-  image: {
-    maxWidth: '150px',
   },
   actions: {
     display: 'none',
@@ -77,23 +54,57 @@ const validate = (fields, { model }) => {
 }
 
 export default compose(
+  withStyles(styles),
   getContext({
+    dialog: PropTypes.object,
     snackbar: PropTypes.object,
   }),
-  withStyles(styles),
-  withI18n(),
-  withHandlers({
-    onSubmit: ({ i18n, snackbar, updateTranslations }) => (data) =>
-      updateTranslations(i18n.language, data)
-        .then(({ data: { updateTranslations } }) =>
-          snackbar.show(<Trans>Done</Trans>)
-        )
-        .catch(error => {
-          throw new SubmissionError({ _error: error.message })
+  mutation(updateTranslationsMutation, {
+    props: ({ props, mutate }) => ({
+      updateTranslations: data =>
+        mutate({
+          variables: { data },
         }),
+    }),
+  }),
+  withHandlers({
+    onSubmit: (props) => (data) => {
+      const { initialValues, lang, ns } = props
+
+      if (data === initialValues) {
+        //return console.log('the same, skip update')
+      }
+
+      const changed = Object.keys(data[ns])
+        //.filter(key => data[ns][key] !== initialValues[ns][key])
+        .map(key => ({
+          id: data[ns][key].id,
+          lang: lang.toUpperCase(),
+          ns,
+          key,
+          value: data[ns][key].value,
+          editor: data[ns][key].editor,
+        }))
+
+      return props.updateTranslations(changed)
+        .then(({ data }) => {
+          props.snackbar.show(
+            <Trans>Translations saved</Trans>
+          )
+        })
+        .catch(error => {
+          console.log(error)
+          //props.dialog.show(<Trans>Error</Trans>, error)
+        })
+    },
   }),
   reduxForm({
-    //form: 'translations',
     validate,
+    destroyOnUnmount: false,
   }),
+  connect(
+    (state, { form }) => ({
+      values: getFormValues(form)(state),
+    }),
+  ),
 )(TranslationForm)

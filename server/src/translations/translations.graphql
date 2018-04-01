@@ -18,10 +18,18 @@ type Translation {
 }
 
 extend type Query {
-  translations(lang: String ns: [String]): JSON
+  translations(lang: String ns: [String]): [Translation]
+}
+
+input TranslationInput {
+  id: ID
+  lang: LOCALE!
+  ns: String!
+  key: String!
+  value: String!
+  editor: EDITOR
 }
 
 extend type Mutation {
-  updateTranslations(lang: String! messages: JSON!): JSON
-  setTranslationEditor(lang: String! ns: String! key: String! editor: String!): Translation
+  updateTranslations(data: [TranslationInput!]!): [Translation]
 }

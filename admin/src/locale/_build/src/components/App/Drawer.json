@@ -1,9 +1,17 @@
 {
+  "Models": {
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        47
+      ]
+    ]
+  },
   "Translations": {
     "origin": [
       [
         "src/components/App/Drawer.js",
-        57
+        85
       ]
     ]
   },
@@ -11,7 +19,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        61
+        120
       ]
     ]
   }

@@ -1,0 +1,10 @@
+query TranslationsForm($lang: String) {
+  translations(lang: $lang) {
+    id
+    lang
+    ns
+    key
+    value
+    editor
+  }
+}

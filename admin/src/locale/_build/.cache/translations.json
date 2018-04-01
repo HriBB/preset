@@ -1,0 +1,82 @@
+{
+  "Post_single": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        2
+      ]
+    ]
+  },
+  "Post_plural": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        3
+      ]
+    ]
+  },
+  "NewsPost_single": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        4
+      ]
+    ]
+  },
+  "NewsPost_plural": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        5
+      ]
+    ]
+  },
+  "ParentTestimonial_single": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        6
+      ]
+    ]
+  },
+  "ParentTestimonial_plural": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        7
+      ]
+    ]
+  },
+  "title": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        8
+      ]
+    ]
+  },
+  "text": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        9
+      ]
+    ]
+  },
+  "image": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        10
+      ]
+    ]
+  },
+  "published": {
+    "origin": [
+      [
+        ".cache/translations.js",
+        11
+      ]
+    ]
+  }
+}

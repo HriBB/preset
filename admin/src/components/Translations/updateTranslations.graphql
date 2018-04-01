@@ -1,3 +1,10 @@
-mutation updateTranslations($lang: String!, $messages: JSON!) {
-  updateTranslations(lang: $lang, messages: $messages)
+mutation updateTranslations($data: [TranslationInput!]!) {
+  updateTranslations(data: $data) {
+    id
+    lang
+    ns
+    key
+    value
+    editor
+  }
 }

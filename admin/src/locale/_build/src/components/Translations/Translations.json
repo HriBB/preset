@@ -3,7 +3,15 @@
     "origin": [
       [
         "src/components/Translations/Translations.js",
-        18
+        36
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "src/components/Translations/Translations.js",
+        66
       ]
     ]
   }

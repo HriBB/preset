@@ -1,5 +1,5 @@
 // @flow
 
-export { default as Translations } from './Translations'
-export { messages } from './Translations'
-export { namespaces } from './Translations'
+export { default as Translations } from './Editor'
+export { messages } from './Editor'
+export { namespaces } from './Editor'

@@ -1,92 +1,125 @@
 // @flow
 
 import React from 'react'
-import PropTypes from 'prop-types'
-import { compose, withHandlers, getContext } from 'recompose'
-import { SubmissionError } from 'redux-form'
+import { connect } from 'react-redux'
+import { compose } from 'recompose'
 import { Query } from 'react-apollo'
-import { mutation } from 'react-apollo/mutation-hoc'
+import { Link } from 'react-router-dom'
+import { submit, isDirty } from 'redux-form'
 import { Trans, withI18n } from '@lingui/react'
 
-import { Error, Spinner } from 'components/ux'
+import { withStyles } from 'material-ui/styles'
+import Toolbar from 'material-ui/Toolbar'
+import Button from 'material-ui/Button'
+import IconButton from 'material-ui/IconButton'
+import CloseIcon from 'material-ui-icons/Close'
+
+import { Body, Header, Content, Error, Spinner } from 'components/ux'
+
 import Form from './Form'
+import translations from './translations'
+import translationsQuery from './Editor.graphql'
 
-import updateTranslationsMutation from './updateTranslations.graphql'
-import formQuery from './Form.graphql'
-import messages from './messages'
+export const messages = translations
+  .reduce((obj, translation) => {
+    const [ns, key] = translation.split('.')
+    if (!obj[ns]) obj[ns] = {}
+    if (!obj[ns][key]) obj[ns][key] = { key: translation }
+    return obj
+  }, {})
 
-type Props = {
-  lang: string,
-  ns: string,
-  onSubmit: Function,
+export const namespaces = Object.keys(messages)
+
+const getNamespace = ({ match }) => {
+  return match.params.ns || namespaces[0]
 }
 
-const prepareTranslations = (ns, data) => {
-  const editors = {}
-  const values = {}
-  
-  data.translations.forEach(translation => {
-    const { ns, key, value, editor } = translation
-    if (editor) {
-      editors[`${ns}.${key}`] = editor
-    }
-    if (!values[ns]) {
-      values[ns] = {}
-    }
-    values[ns][key] = value
-  })
-  
-  const keys = messages
-    .filter(m => m.split('.')[0] === ns)
-    .map(m => ({ id: m, editor: editors[m] }))
-
-  return { keys, values }
-}
-
-const TranslationEditor = ({ lang, ns, onSubmit }: Props) => {
+const Editor = ({ classes, i18n, isFormDirty, ...props }) => {
+  const lang = i18n.language
+  const ns = getNamespace(props)
   return (
-    <Query query={formQuery} variables={{ lang, ns }}>
-      {({ error, loading, data }) => {
-        if (error) {
-          return <Error>{error.message}</Error>
-        }
-        if (loading) {
-          return <Spinner />
-        }
-        const { keys, values } = prepareTranslations(ns, data)
-        return (
-          <Form
-            onSubmit={onSubmit}
-            initialValues={values}
-            keys={keys}
-          />
-        )
-      }}
-    </Query>
+    <Body>
+      <Header title={<Trans>Translations</Trans>}>
+        <IconButton component={Link} to={'/'} color={'inherit'}>
+          <CloseIcon />
+        </IconButton>
+      </Header>
+      <Content className={classes.content}>
+        <Query query={translationsQuery} variables={{ lang, ns }}>
+          {({ error, loading, data }) => {
+            if (error) {
+              return <Error>{error.message}</Error>
+            }
+            if (loading) {
+              return <Spinner />
+            }
+            data.translations.forEach(({ id, ns, key, value, editor }) => {
+              messages[ns][key] = { id, key: `${ns}.${key}`, value, editor }
+            })
+            return (
+              <Form
+                key={ns}
+                lang={lang}
+                ns={ns}
+                form={`translations${ns}`}
+                initialValues={{ [ns]: messages[ns] }}
+                keys={messages[ns]}
+              />
+            )
+          }}
+        </Query>
+      </Content>
+      <Toolbar className={classes.footer}>
+        <Button
+          color={'secondary'}
+          variant={'raised'}
+          disabled={!isFormDirty}
+          onClick={props.submitForm}
+        >
+          <Trans>Save</Trans>
+        </Button>
+      </Toolbar>
+    </Body>
   )
 }
 
+const styles = theme => ({
+  content: {
+    marginBottom: theme.spacing.unit * 7,
+  },
+  footer: {
+    position: 'fixed',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'flex-end',
+    //backgroundColor: theme.palette.grey[300],
+    backgroundColor: '#fff',
+    borderTop: `1px solid ${theme.palette.grey[300]}`,
+    //boxShadow: theme.shadows[24],
+    [theme.breakpoints.up(theme.drawer.breakpoint)]: {
+      left: theme.drawer.width,
+    },
+  },
+  [theme.breakpoints.up(theme.drawer.breakpoint)]: {
+    content: {
+      marginBottom: theme.spacing.unit * 8,
+    },
+    footer: {
+      left: theme.drawer.width,
+    },
+  },
+})
+
 export default compose(
-  getContext({
-    snackbar: PropTypes.object,
-  }),
+  withStyles(styles),
   withI18n(),
-  mutation(updateTranslationsMutation, {
-    props: ({ props, mutate }) => ({
-      updateTranslations: (lang, messages) =>
-        mutate({
-          variables: { lang, messages },
-        }),
+  connect(
+    (state, props) => ({
+      isFormDirty: isDirty(`translations${getNamespace(props)}`)(state),
     }),
-  }),
-  withHandlers({
-    onSubmit: ({ i18n, snackbar, updateTranslations }) => (data) =>
-      updateTranslations(i18n.language, data)
-        .then(({ data: { updateTranslations } }) =>
-          snackbar.show(<Trans>Done</Trans>)
-        )
-        .catch(error => {
-          throw new SubmissionError({ _error: error.message })
-        }),
-  }),
-)(TranslationEditor)
+    (dispatch, props) => ({
+      submitForm: () => dispatch(submit(`translations${getNamespace(props)}`)),
+    }),
+  ),
+)(Editor)
