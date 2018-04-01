@@ -1,0 +1,18 @@
+{
+  "Translations": {
+    "origin": [
+      [
+        "../admin/src/components/Translations/Translations.js",
+        36
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "../admin/src/components/Translations/Translations.js",
+        66
+      ]
+    ]
+  }
+}

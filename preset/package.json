@@ -7,8 +7,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "extract": "node scripts/lingui.js --src=admin && node scripts/lingui.js --src=website",
-    "extract:admin": "node scripts/lingui.js --src=admin",
-    "extract:website": "node scripts/lingui.js --src=website"
+    "extract-admin": "node scripts/lingui.js --src=admin",
+    "extract-website": "node scripts/lingui.js --src=website"
   },
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",
@@ -102,51 +102,22 @@
     ]
   },
   "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow",
+      "@lingui/babel-preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
     "env": {
-      "production": {
-        "presets": [
-          [
-            "@babel/preset-env"
-          ],
-          "@babel/preset-react",
-          "@babel/preset-flow",
-          "@lingui/babel-preset-react"
-        ],
-        "plugins": [
-          "@babel/plugin-syntax-dynamic-import",
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread"
-        ]
-      },
-      "development": {
-        "presets": [
-          [
-            "@babel/preset-env"
-          ],
-          "@babel/preset-react",
-          "@babel/preset-flow",
-          "@lingui/babel-preset-react"
-        ],
-        "plugins": [
-          "react-hot-loader/babel",
-          "@babel/plugin-syntax-dynamic-import",
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread"
-        ]
-      },
       "test": {
-        "presets": [
-          [
-            "@babel/preset-env"
-          ],
-          "@babel/preset-react",
-          "@babel/preset-flow",
-          "@lingui/babel-preset-react"
-        ],
         "plugins": [
-          "@babel/plugin-syntax-dynamic-import",
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread",
           "@babel/plugin-transform-modules-commonjs"
         ]
       }

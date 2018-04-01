@@ -1,0 +1,26 @@
+{
+  "Username": {
+    "origin": [
+      [
+        "../admin/src/components/Login/Login.js",
+        37
+      ]
+    ]
+  },
+  "Password": {
+    "origin": [
+      [
+        "../admin/src/components/Login/Login.js",
+        44
+      ]
+    ]
+  },
+  "Login": {
+    "origin": [
+      [
+        "../admin/src/components/Login/Login.js",
+        53
+      ]
+    ]
+  }
+}

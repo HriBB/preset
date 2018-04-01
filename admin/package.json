@@ -135,8 +135,21 @@
     ]
   },
   "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ],
+      "@babel/preset-react",
+      "@babel/preset-flow",
+      "@lingui/babel-preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import",
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ],
     "env": {
-      "production": {
+      "lingui": {
         "presets": [
           [
             "@babel/preset-env"
@@ -146,40 +159,13 @@
           "@lingui/babel-preset-react"
         ],
         "plugins": [
-          "@babel/plugin-syntax-dynamic-import",
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread"
-        ]
-      },
-      "development": {
-        "presets": [
-          [
-            "@babel/preset-env"
-          ],
-          "@babel/preset-react",
-          "@babel/preset-flow",
-          "@lingui/babel-preset-react"
-        ],
-        "plugins": [
-          "react-hot-loader/babel",
           "@babel/plugin-syntax-dynamic-import",
           "@babel/plugin-proposal-class-properties",
           "@babel/plugin-proposal-object-rest-spread"
         ]
       },
       "test": {
-        "presets": [
-          [
-            "@babel/preset-env"
-          ],
-          "@babel/preset-react",
-          "@babel/preset-flow",
-          "@lingui/babel-preset-react"
-        ],
         "plugins": [
-          "@babel/plugin-syntax-dynamic-import",
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-object-rest-spread",
           "@babel/plugin-transform-modules-commonjs"
         ]
       }
