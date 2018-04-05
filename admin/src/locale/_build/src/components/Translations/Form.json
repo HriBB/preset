@@ -1,17 +1,9 @@
 {
-  "Save": {
+  "Translations saved": {
     "origin": [
       [
         "src/components/Translations/Form.js",
-        47
-      ]
-    ]
-  },
-  "Done": {
-    "origin": [
-      [
-        "src/components/Translations/Form.js",
-        89
+        92
       ]
     ]
   }

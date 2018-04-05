@@ -1,0 +1,18 @@
+{
+  "si": {
+    "origin": [
+      [
+        "src/components/Translations/LanguageSwitch.js",
+        16
+      ]
+    ]
+  },
+  "en": {
+    "origin": [
+      [
+        "src/components/Translations/LanguageSwitch.js",
+        17
+      ]
+    ]
+  }
+}

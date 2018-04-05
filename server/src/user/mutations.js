@@ -32,6 +32,18 @@ exports.login = async (parent, { username, password }, ctx, info) => {
   }
 }
 
+exports.createUser = async (parent, args, ctx, info) => {
+  throw new Error('createUser not implemented')
+}
+
+exports.updateUser = async (parent, args, ctx, info) => {
+  throw new Error('updateUser not implemented')
+}
+
+exports.deleteUser = async (parent, args, ctx, info) => {
+  throw new Error('deleteUser not implemented')
+}
+
 exports.setProfilePicture = async (parent, { image }, ctx, info) => {
   const userId = getUserId(ctx)
   const { filename, mimetype } = await uploadFile(image)

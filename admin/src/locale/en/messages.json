@@ -1,22 +1,4 @@
 {
-  "Models": {
-    "translation": "Models",
-    "origin": [
-      [
-        "src/components/App/Drawer.js",
-        47
-      ]
-    ]
-  },
-  "Page not found.": {
-    "translation": "Models",
-    "origin": [
-      [
-        "src/components/NotFound/NotFound.js",
-        14
-      ]
-    ]
-  },
   "Post_single": {
     "translation": "Post",
     "origin": [
@@ -152,19 +134,11 @@
     "origin": [
       [
         "src/components/App/App.js",
-        46
+        47
       ],
       [
         "src/components/App.js",
         42
-      ],
-      [
-        "src/components/Translations/Editor.js",
-        86
-      ],
-      [
-        "src/components/Translations/Form.js",
-        89
       ],
       [
         "src/components/User/User.js",
@@ -173,6 +147,15 @@
       [
         "src/components/User.js",
         133
+      ]
+    ]
+  },
+  "Posts": {
+    "translation": "Posts",
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        47
       ]
     ]
   },
@@ -186,6 +169,10 @@
       [
         "src/components/Drawer.js",
         49
+      ],
+      [
+        "src/components/Translations/Editor.js",
+        44
       ],
       [
         "src/components/Translations/Translations.js",
@@ -405,6 +392,15 @@
       ]
     ]
   },
+  "Page not found.": {
+    "translation": "Page not found.",
+    "origin": [
+      [
+        "src/components/NotFound/NotFound.js",
+        14
+      ]
+    ]
+  },
   "Required": {
     "translation": "Required",
     "origin": [
@@ -456,8 +452,8 @@
         63
       ],
       [
-        "src/components/Translations/Form.js",
-        47
+        "src/components/Translations/Editor.js",
+        82
       ],
       [
         "src/components/Translations/Translations.js",
@@ -479,6 +475,51 @@
       [
         "src/components/Update.js",
         89
+      ]
+    ]
+  },
+  "Text": {
+    "translation": "Text",
+    "origin": [
+      [
+        "src/components/Translations/Field.js",
+        24
+      ]
+    ]
+  },
+  "Textarea": {
+    "translation": "Textarea",
+    "origin": [
+      [
+        "src/components/Translations/Field.js",
+        25
+      ]
+    ]
+  },
+  "Translations saved": {
+    "translation": "Prevod shranjen",
+    "origin": [
+      [
+        "src/components/Translations/Form.js",
+        92
+      ]
+    ]
+  },
+  "si": {
+    "translation": "Slovenščina",
+    "origin": [
+      [
+        "src/components/Translations/LanguageSwitch.js",
+        16
+      ]
+    ]
+  },
+  "en": {
+    "translation": "English",
+    "origin": [
+      [
+        "src/components/Translations/LanguageSwitch.js",
+        17
       ]
     ]
   },

@@ -19,3 +19,4 @@ module.name_mapper='.*\(.graphql\)' -> 'empty/object'
 module.system.node.resolve_dirname=<PROJECT_ROOT>/../preset/src
 module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules
+esproposal.export_star_as=enable

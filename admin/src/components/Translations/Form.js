@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { compose, getContext, withHandlers } from 'recompose'
 import { mutation } from 'react-apollo/mutation-hoc'
 import { Form, reduxForm, getFormValues } from 'redux-form'
-import { Trans } from '@lingui/react'
+import { Trans, withI18n } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
 import { FormControl, FormHelperText } from 'material-ui/Form'
@@ -15,7 +15,21 @@ import { CardContent } from 'material-ui/Card'
 import Field from './Field'
 import updateTranslationsMutation from './updateTranslations.graphql'
 
-const TranslationForm = (props) => {
+type Props = {
+  classes: Object,
+  error: string,
+  handleSubmit: Function,
+  initialValues: Object,
+  values: Object,
+  dialog: Object,
+  snackbar: Object,
+  lang: string,
+  ns: string,
+  change: Function,
+  updateTranslations: Function,
+}
+
+const TranslationForm = (props: Props) => {
   const { classes, error, handleSubmit, initialValues, values, ns } = props
   return (
     <CardContent className={classes.content}>
@@ -54,6 +68,7 @@ const validate = (fields, { model }) => {
 }
 
 export default compose(
+  withI18n(),
   withStyles(styles),
   getContext({
     dialog: PropTypes.object,
@@ -68,15 +83,15 @@ export default compose(
     }),
   }),
   withHandlers({
-    onSubmit: (props) => (data) => {
-      const { initialValues, lang, ns } = props
+    onSubmit: (props: Props) => (data) => {
+      const { initialValues: initial, lang, ns } = props
 
-      if (data === initialValues) {
-        //return console.log('the same, skip update')
+      if (data === initial) {
+        return
       }
 
       const changed = Object.keys(data[ns])
-        //.filter(key => data[ns][key] !== initialValues[ns][key])
+        .filter(key => data[ns][key].value && data[ns][key] !== initial[ns][key])
         .map(key => ({
           id: data[ns][key].id,
           lang: lang.toUpperCase(),
@@ -93,13 +108,13 @@ export default compose(
           )
         })
         .catch(error => {
-          console.log(error)
-          //props.dialog.show(<Trans>Error</Trans>, error)
+          props.dialog.show(<Trans>Error</Trans>, error.message)
         })
     },
   }),
   reduxForm({
     validate,
+    enableReinitialize: true,
     destroyOnUnmount: false,
   }),
   connect(

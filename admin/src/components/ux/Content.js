@@ -17,7 +17,7 @@ function Content(props) {
 
 const styles = theme => ({
   root: {
-    maxWidth: '960px',
+    maxWidth: '772px',
     marginLeft: 'auto',
     marginRight: 'auto',
     padding: theme.spacing.unit * 2,

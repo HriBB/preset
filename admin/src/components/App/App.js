@@ -1,84 +1,68 @@
 // @flow
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
+import { connect } from 'react-redux'
 import { compose, withHandlers, withStateHandlers, withContext } from 'recompose'
+import { withApollo } from 'react-apollo'
+import { query } from 'react-apollo/query-hoc'
 import { Route, Switch } from 'react-router-dom'
-import { Query, withApollo } from 'react-apollo'
-import { withStyles } from 'material-ui/styles'
-import { I18nProvider } from '@lingui/react'
-import { Trans } from '@lingui/react'
+import { I18nProvider, Trans } from '@lingui/react'
 
-import { Dialog, Error, Spinner, Snackbar } from 'components/ux'
+import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
+import { withStyles } from 'material-ui/styles'
+
+import { Dialog, Snackbar, Error, Spinner, NotFoundView } from 'components/ux'
 import { Dashboard } from 'components/Dashboard'
-import { Login } from 'components/Login'
 import { Preset } from 'components/Preset'
 import { Translations } from 'components/Translations'
 import { User } from 'components/User'
-import { NotFound } from 'components/NotFound'
-
-import en from 'locale/si/messages'
-import si from 'locale/si/messages'
 
 import Drawer from './Drawer'
+
+import si from 'locale/si/messages'
+import en from 'locale/en/messages'
+
 import appQuery from './App.graphql'
 
 const App = (props) => {
+  const { data: { error, loading }, theme, width } = props
+  const drawerDocked = isWidthUp(theme.drawer.breakpoint, width)
   return (
-    <I18nProvider language={'si'} catalogs={{ en, si }}>
-      <Query query={appQuery}>
-        {({ error, loading, data }) => {
-          if (error) return <Error>{error.message}</Error>
-          if (loading) return <Spinner />
-          if (!data.user) return <Login />
-          const { drawer } = props
-          const { user } = data
-          return (
-            <Fragment>
-              <Drawer
-                page={props.match.params.page}
-                open={drawer}
-              />
-              <Snackbar
-                open={!!props.snackbar}
-                onClose={props.hideSnackbar}
-                message={props.snackbar || <Trans>Done</Trans>}
-              />
-              <Dialog
-                open={props.dialog.open}
-                onClose={props.hideDialog}
-                title={props.dialog.title}
-                content={props.dialog.content}
-              />
-              <Switch>
-                <Route
-                  exact
-                  path={'/'}
-                  render={matchProps => (
-                    <Dashboard {...matchProps} user={user} />
-                  )}
-                />
-                <Route
-                  path={'/user'}
-                  render={matchProps => <User {...matchProps} user={user} />}
-                />
-                <Route
-                  path={'/translations/:ns?'}
-                  render={matchProps => <Translations {...matchProps} user={user} />}
-                />
-                <Route
-                  path={'/model/:model'}
-                  render={matchProps => <Preset {...matchProps} user={user} />}
-                />
-                <Route
-                  render={matchProps => <NotFound user={user} />}
-                />
-              </Switch>
-            </Fragment>
-          )
-        }}
-      </Query>
+    <I18nProvider language={props.language} catalogs={{ en, si }}>
+      <Drawer
+        language={props.language}
+        page={props.match.params.page}
+        open={drawerDocked || props.drawer}
+        variant={drawerDocked ? 'permanent' : 'temporary'}
+      />
+      <Snackbar
+        open={!!props.snackbar}
+        onClose={props.hideSnackbar}
+        message={props.snackbar || <Trans>Done</Trans>}
+      />
+      <Dialog
+        open={props.dialog.open}
+        onClose={props.hideDialog}
+        title={props.dialog.title}
+        content={props.dialog.content}
+      />
+      {error && 
+        <Error>{error.message}</Error>
+      }
+      {!error && loading &&
+        <Spinner />
+      }
+      {!error && !loading &&
+        <Switch>
+          <Route exact path={'/'} component={Dashboard} />
+          <Route path={'/user'} component={User} />
+          <Route path={'/translations/:ns?'} component={Translations} />
+          <Route path={'/model/:model'} component={Preset} />
+          <Route component={NotFoundView} />
+        </Switch>
+      }
     </I18nProvider>
   )
 }
@@ -116,6 +100,20 @@ const styles = theme => ({
 const EnhancedApp = compose(
   withApollo,
   withStyles(styles),
+  withWidth({ withTheme: true }),
+  query(appQuery),
+  connect(
+    (state, props) => ({
+      language: state.app.language,
+    }),
+  ),
+  withHandlers({
+    logout: ({ client }) => e => {
+      localStorage.removeItem('token')
+      client.resetStore()
+    },
+  }),
+  // TODO: put in redux
   withStateHandlers(
     ({
       drawer = false,
@@ -140,21 +138,16 @@ const EnhancedApp = compose(
       }),
     }
   ),
-  withHandlers({
-    logout: ({ client }) => e => {
-      localStorage.removeItem('token')
-      client.resetStore()
-    },
-  }),
   withContext(
     {
-      user: PropTypes.object,
+      viewer: PropTypes.object,
       drawer: PropTypes.object,
       snackbar: PropTypes.object,
       dialog: PropTypes.object,
     },
     props => ({
-      user: {
+      viewer: {
+        ...props.data.viewer,
         logout: props.logout,
       },
       drawer: {

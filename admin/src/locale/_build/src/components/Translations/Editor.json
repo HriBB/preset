@@ -1,9 +1,17 @@
 {
-  "Done": {
+  "Translations": {
     "origin": [
       [
         "src/components/Translations/Editor.js",
-        86
+        44
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "src/components/Translations/Editor.js",
+        82
       ]
     ]
   }

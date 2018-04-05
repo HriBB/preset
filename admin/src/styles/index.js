@@ -16,7 +16,7 @@ const theme = createMuiTheme({
     type: 'light',
   },
   drawer: {
-    breakpoint: 'sm',
+    breakpoint: 'md',
     width: 260,
   },
 })

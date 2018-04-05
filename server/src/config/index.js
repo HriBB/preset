@@ -7,6 +7,12 @@ module.exports = {
   server: {
     port: 4000,
     endpoint: '/',
+    /*
+    cors: {
+      origin: 'http://localhost:3000',
+      credentials: true,
+    },
+    */
     uploads: {
       maxFiles: 10,
     },

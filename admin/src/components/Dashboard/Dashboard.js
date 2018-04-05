@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react'
+import PropTypes from 'prop-types'
+import { compose, getContext} from 'recompose'
 import { Link, NavLink } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
@@ -11,12 +13,11 @@ import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
 import UserIcon from 'material-ui-icons/Person'
-import { Body, Header, Content } from 'components/ux'
+import { Body, Header, Content, LanguageSwitcher } from 'components/ux'
 
 import { Models } from 'components/Preset'
 
-const Dashboard = (props: any) => {
-  const { classes, user } = props
+const Dashboard = ({ classes, viewer }) => {
   const itemProps = {
     className: classes.drawerListItem,
     component: NavLink,
@@ -25,6 +26,7 @@ const Dashboard = (props: any) => {
   return (
     <Body>
       <Header title={<Trans>Dashboard</Trans>}>
+        <LanguageSwitcher />
         <IconButton component={Link} to={`/user`} color={'inherit'}>
           <UserIcon />
         </IconButton>
@@ -32,11 +34,11 @@ const Dashboard = (props: any) => {
       <Content>
         <CardHeader
           avatar={<Avatar aria-label={<Trans>Dashboard</Trans>}>{'D'}</Avatar>}
-          title={<Trans>Welcome {user.username}</Trans>}
+          title={<Trans>Welcome {viewer.username}</Trans>}
         />
         <List className={classes.drawerList} component={'nav'}>
           <Models>
-            {({ error, loading, models }) => 
+            {({ models }) => 
               models.map(model => (
                 <ListItem key={model.name} to={`/model/${model.name}`} {...itemProps}>
                   <ListItemIcon>
@@ -82,4 +84,9 @@ const styles = theme => ({
   },
 })
 
-export default withStyles(styles)(Dashboard)
+export default compose(
+  getContext({
+    viewer: PropTypes.object,
+  }),
+  withStyles(styles),
+)(Dashboard)

@@ -6,7 +6,6 @@ import { compose, getContext, withStateHandlers } from 'recompose'
 import { Link, NavLink } from 'react-router-dom'
 import { Trans, withI18n } from '@lingui/react'
 
-import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import { withStyles } from 'material-ui/styles'
 import Toolbar from 'material-ui/Toolbar'
 import MuiDrawer from 'material-ui/Drawer'
@@ -17,22 +16,22 @@ import { Models } from 'components/Preset'
 import { namespaces } from 'components/Translations'
 
 const Drawer = (props) => {
-  const { classes, drawer, expand, open, theme, width } = props
-  const isWidthUpSm = isWidthUp(theme.drawer.breakpoint, width)
-  const variant = isWidthUpSm ? 'permanent' : 'temporary'
+  const { classes, drawer, expand, language, i18n, open, variant } = props
   return (
     <MuiDrawer
       className={classes.drawer}
       classes={{ paper: classes.paper }}
-      open={isWidthUpSm || open}
+      open={open}
       variant={variant}
       onClose={drawer.toggle}
     >
+
       <Toolbar className={classes.toolbar}>
         <Link to={'/'} className={classes.title}>
-          Preset CMS
+          Preset CMS {language} {i18n.language}
         </Link>
       </Toolbar>
+
       <List className={classes.list} component={'nav'}>
 
         <ListItem
@@ -44,7 +43,7 @@ const Drawer = (props) => {
           <ListItemText
             className={classes.itemText}
             disableTypography
-            primary={<Trans>Models</Trans>}
+            primary={<Trans>Posts</Trans>}
           />
         </ListItem>
 
@@ -59,7 +58,7 @@ const Drawer = (props) => {
                     className={classes.item2}
                     component={NavLink}
                     to={`/model/${model.name}`}
-                    onClick={drawer.toggle}
+                    onClick={drawer.close}
                   >
                     <ListItemText
                       className={classes.item2Text}
@@ -94,7 +93,7 @@ const Drawer = (props) => {
                 button
                 className={classes.item2}
                 component={NavLink}
-                onClick={drawer.toggle}
+                onClick={drawer.close}
                 to={`/translations/${ns}`}
               >
                 <ListItemText
@@ -110,9 +109,8 @@ const Drawer = (props) => {
         <ListItem
           button
           className={classes.item}
-          component={NavLink}
-          onClick={drawer.toggle}
-          to={'/user'}
+          data-id={'user'}
+          onClick={props.handleClick}
         >
           <ListItemText
             className={classes.itemText}
@@ -120,6 +118,37 @@ const Drawer = (props) => {
             primary={<Trans>User</Trans>}
           />
         </ListItem>
+
+        <Collapse in={expand.user} timeout={'auto'} unmountOnExit>
+          <List disablePadding>
+            <ListItem
+              button
+              className={classes.item2}
+              component={NavLink}
+              onClick={drawer.close}
+              to={'/user'}
+            >
+              <ListItemText
+                className={classes.item2Text}
+                disableTypography
+                primary={<Trans>Profile</Trans>}
+              />
+            </ListItem>
+            <ListItem
+              button
+              className={classes.item2}
+              component={NavLink}
+              onClick={drawer.close}
+              to={'/user/list'}
+            >
+              <ListItemText
+                className={classes.item2Text}
+                disableTypography
+                primary={<Trans>List</Trans>}
+              />
+            </ListItem>
+          </List>
+        </Collapse>
 
       </List>
     </MuiDrawer>
@@ -170,6 +199,7 @@ const styles = theme => ({
   item2Text: {
     //fontSize: '0.875rem',
     fontWeight: theme.typography.fontWeightLight,
+    color: theme.palette.grey[700],
   },
 })
 
@@ -178,10 +208,12 @@ const findId = ({ dataset, parentNode }) => {
 }
 
 export default compose(
-  getContext({ drawer: PropTypes.object }),
-  withWidth({ withTheme: true }),
+  getContext({
+    drawer: PropTypes.object,
+  }),
   withStyles(styles),
   withI18n(),
+  // TODO: put in redux
   withStateHandlers(
     ({ page }) => ({ expand: { [page]: true } }),
     {

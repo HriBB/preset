@@ -12,30 +12,30 @@ import Button from 'material-ui/Button'
 import { getFieldType } from './utils'
 import { getField } from 'components/Form'
 
+const filter = f => f.name !== 'id'
+
 const PresetForm = props => {
   const { classes, handleSubmit, initialValues, model, button } = props
   return (
     <Fragment>
       <CardContent className={classes.content}>
         <Form onSubmit={handleSubmit}>
-          {model.fields.filter(f => f.name !== 'id').map(f => (
-            <div key={f.name}>
-              <Field
-                component={getField(getFieldType(f))}
-                className={classes.field}
-                name={f.name}
-                label={<Trans id={f.name} />}
-              />
-              {f.name === 'image' &&
-                initialValues.image && (
-                  <img
-                    className={classes.image}
-                    src={initialValues.image.url}
-                    alt={initialValues.image.filename}
-                  />
-                )}
-            </div>
-          ))}
+          {model.fields.filter(filter).map(f =>
+            <Field
+              key={f.name}
+              component={getField(getFieldType(f))}
+              className={classes.field}
+              name={f.name}
+              label={<Trans id={f.name} />}
+              after={f.name === 'image' && initialValues.image ?
+                <img
+                  className={classes.image}
+                  src={initialValues.image.url}
+                  alt={initialValues.image.filename}
+                /> : null
+              }
+            />
+          )}
         </Form>
       </CardContent>
       <CardActions className={classes.actions}>
@@ -56,10 +56,11 @@ const styles = theme => ({
   },
   field: {
     width: '100%',
-    marginBottom: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 3,
   },
   image: {
     maxWidth: '150px',
+    marginTop: theme.spacing.unit * 1,
   },
   actions: {
     justifyContent: 'flex-end',

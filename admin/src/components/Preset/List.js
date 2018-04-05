@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
@@ -8,14 +8,27 @@ import { Link } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List'
+import List, {
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+} from 'material-ui/List'
 import Avatar from 'material-ui/Avatar'
 import IconButton from 'material-ui/IconButton'
-import CloseIcon from 'material-ui-icons/Close'
 import DeleteIcon from 'material-ui-icons/Delete'
 import AddIcon from 'material-ui-icons/Add'
 import ImageIcon from 'material-ui-icons/Image'
-import { Header, Content, Error, Spinner } from 'components/ux'
+
+import {
+  Body,
+  Content,
+  Error,
+  Header,
+  IconLink,
+  LanguageSwitcher,
+  Spinner,
+  UserIcon,
+} from 'components/ux'
 
 import {
   getNameField,
@@ -27,28 +40,19 @@ import {
 const PresetList = (props: any) => {
   const { classes, model } = props
   return (
-    <Fragment>
-      <Header title={<Trans id={`${model.name}_single`} />}>
-        <IconButton
-          component={Link}
-          to={`/model/${model.name}/create`}
-          color={'inherit'}
-        >
+    <Body>
+      <Header title={<Trans id={`${model.name}_plural`} />}>
+        <IconLink to={`/model/${model.name}/create`}>
           <AddIcon />
-        </IconButton>
-        <IconButton component={Link} to={`/`} color={'inherit'}>
-          <CloseIcon />
-        </IconButton>
+        </IconLink>
+        <LanguageSwitcher />
+        <UserIcon />
       </Header>
       <Content>
         <Query query={getListQuery(model)}>
           {({ error, loading, data }) => {
-            if (error) {
-              return <Error>{error.message}</Error>
-            }
-            if (loading) {
-              return <Spinner />
-            }
+            if (error) return <Error>{error.message}</Error>
+            if (loading) return <Spinner />
             return (
               <List>
                 {data.items.map(item => (
@@ -81,7 +85,7 @@ const PresetList = (props: any) => {
           }}
         </Query>
       </Content>
-    </Fragment>
+    </Body>
   )
 }
 
@@ -103,7 +107,6 @@ const styles = theme => ({
   },
 })
 
-
 export default compose(
   getContext({
     dialog: PropTypes.object,
@@ -124,7 +127,7 @@ export default compose(
           props.snackbar.show(<Trans>Model deleted</Trans>)
         })
         .catch(error => {
-          props.dialog.show(<Trans>Error</Trans>, error)
+          props.dialog.show(<Trans>Error</Trans>, error.message)
         })
     },
   })

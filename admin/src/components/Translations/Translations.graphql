@@ -1,4 +1,4 @@
-query TranslationsForm($lang: String) {
+query TranslationsQuery($lang: String) {
   translations(lang: $lang) {
     id
     lang

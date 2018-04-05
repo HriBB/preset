@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { compose, withHandlers, withStateHandlers } from 'recompose'
-import { Field } from 'redux-form'
 import { Trans, i18nMark, withI18n } from '@lingui/react'
+import { Field } from 'redux-form'
 
 import { withStyles } from 'material-ui/styles'
 import Menu, { MenuItem } from 'material-ui/Menu'
@@ -20,10 +20,10 @@ const getEditor = (editor) => {
   }
 }
 
-const editors = [
-  i18nMark('Text'),
-  i18nMark('Textarea'),
-]
+const editors = {
+  Text: i18nMark('Text'),
+  Textarea: i18nMark('Textarea'),
+}
 
 const TranslationField = (props) => {
   const { classes, data, open } = props
@@ -48,14 +48,14 @@ const TranslationField = (props) => {
         open={Boolean(open)}
         onClose={props.closeMenu}
       >
-        {editors.map((name, index) =>
+        {Object.keys(editors).map(e =>
           <MenuItem
-            key={name}
-            className={editor === name ? classes.active : ''}
-            data-editor={name}
+            key={e}
+            className={editor === e ? classes.active : ''}
+            data-editor={e}
             onClick={props.setEditor}
           >
-            <Trans>{name}</Trans>
+            <Trans id={editors[e]} />
           </MenuItem>
         )}
       </Menu>

@@ -21,7 +21,7 @@ const Header = props => {
           className={classes.menuButton}
           color={'inherit'}
           aria-label={<Trans>Menu</Trans>}
-          onClick={drawer.toggle}
+          onClick={drawer.open}
         >
           <MenuIcon />
         </IconButton>
@@ -61,6 +61,8 @@ const styles = theme => ({
 })
 
 export default compose(
-  getContext({ drawer: PropTypes.object }),
+  getContext({
+    drawer: PropTypes.object,
+  }),
   withStyles(styles)
 )(Header)

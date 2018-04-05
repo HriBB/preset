@@ -5,12 +5,15 @@ import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { withApollo } from 'react-apollo'
 import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
 import { Trans, withI18n } from '@lingui/react'
 
-import IconButton from 'material-ui/IconButton'
-import CloseIcon from 'material-ui-icons/Close'
-import { Header, Content } from 'components/ux'
+import {
+  Body,
+  Header,
+  Content,
+  LanguageSwitcher,
+  UserIcon,
+} from 'components/ux'
 
 import Form from './Form'
 
@@ -25,7 +28,7 @@ const PresetCreate = props => {
   const { model, createItem } = props
   const initialValues = getInitialValues(model)
   return (
-    <Fragment>
+    <Body>
       <Header
         title={
           <Fragment>
@@ -33,9 +36,8 @@ const PresetCreate = props => {
           </Fragment>
         }
       >
-        <IconButton component={Link} to={`/model/${model.name}`} color={'inherit'}>
-          <CloseIcon />
-        </IconButton>
+        <LanguageSwitcher />
+        <UserIcon />
       </Header>
       <Content>
         <Form
@@ -46,7 +48,7 @@ const PresetCreate = props => {
           model={model}
         />
       </Content>
-    </Fragment>
+    </Body>
   )
 }
 
@@ -75,7 +77,7 @@ export default compose(
           )
         })
         .catch(error => {
-          props.dialog.show(<Trans>Error</Trans>, error)
+          props.dialog.show(<Trans>Error</Trans>, error.message)
         })
     },
   })

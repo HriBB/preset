@@ -1,8 +1,10 @@
-query AppQuery {
-  viewer {
+query UserList {
+  users {
     id
-    username
     email
+    username
+    first_name
+    last_name
     image {
       id
       url

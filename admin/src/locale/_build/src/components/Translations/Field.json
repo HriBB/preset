@@ -1,0 +1,18 @@
+{
+  "Text": {
+    "origin": [
+      [
+        "src/components/Translations/Field.js",
+        24
+      ]
+    ]
+  },
+  "Textarea": {
+    "origin": [
+      [
+        "src/components/Translations/Field.js",
+        25
+      ]
+    ]
+  }
+}

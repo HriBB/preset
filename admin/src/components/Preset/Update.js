@@ -4,14 +4,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { compose, withHandlers, getContext } from 'recompose'
 import { Query, withApollo } from 'react-apollo'
-import { Link } from 'react-router-dom'
 import { Trans, withI18n } from '@lingui/react'
-
-import IconButton from 'material-ui/IconButton'
-import CloseIcon from 'material-ui-icons/Close'
-import { Header, Content, Error, Spinner } from 'components/ux'
-
-import Form from './Form'
 
 import {
   getItemQuery,
@@ -20,11 +13,23 @@ import {
   getUpdateUpdateHandler,
 } from './utils'
 
+import {
+  Body,
+  Header,
+  Content,
+  Error,
+  Spinner,
+  LanguageSwitcher,
+  UserIcon,
+} from 'components/ux'
+
+import Form from './Form'
+
 const PresetUpdate = props => {
   const { match, model, updateItem } = props
   const { id } = match.params
   return (
-    <Fragment>
+    <Body>
       <Header
         title={
           <Fragment>
@@ -32,31 +37,14 @@ const PresetUpdate = props => {
           </Fragment>
         }
       >
-        <IconButton component={Link} to={`/${model.name}`} color={'inherit'}>
-          <CloseIcon />
-        </IconButton>
+        <LanguageSwitcher />
+        <UserIcon />
       </Header>
       <Query query={getItemQuery(model)} variables={{ id }}>
         {({ error, loading, data }) => {
-          if (error) {
-            return (
-              <Error>
-                {error.message}
-                <br />
-                {error.stack}
-              </Error>
-            )
-          }
-          if (loading) {
-            return <Spinner />
-          }
-          if (!data.item) {
-            return (
-              <Error>
-                <Trans>Item not found</Trans>
-              </Error>
-            )
-          }
+          if (error) return <Error>{error.message}</Error>
+          if (loading) return <Spinner />
+          if (!data.item) return <Error><Trans>Item not found</Trans></Error>
           return (
             <Content>
               <Form
@@ -70,7 +58,7 @@ const PresetUpdate = props => {
           )
         }}
       </Query>
-    </Fragment>
+    </Body>
   )
 }
 
@@ -93,7 +81,7 @@ export default compose(
           props.snackbar.show(<Trans>Model updated</Trans>)
         })
         .catch(error => {
-          props.dialog.show(<Trans>Error</Trans>, error)
+          props.dialog.show(<Trans>Error</Trans>, error.message)
         }),
   })
 )(PresetUpdate)

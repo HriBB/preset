@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import type { Node } from 'react'
 import type { FieldProps } from 'redux-form'
 import FormHelperText from 'material-ui/Form/FormHelperText'
 import FormControl from 'material-ui/Form/FormControl'
@@ -8,6 +9,7 @@ import InputLabel from 'material-ui/Input/InputLabel'
 import Input from 'material-ui/Input'
 
 type Props = {
+  after?: bool | Node,
   className?: string,
   errorClassName?: string,
   inputClassName?: string,
@@ -18,6 +20,7 @@ type Props = {
 
 const renderUploadField = (props: Props) => {
   const {
+    after,
     className,
     errorClassName,
     inputClassName,
@@ -46,6 +49,7 @@ const renderUploadField = (props: Props) => {
         error && (
           <FormHelperText className={errorClassName}>{error}</FormHelperText>
         )}
+      {after}
     </FormControl>
   )
 }

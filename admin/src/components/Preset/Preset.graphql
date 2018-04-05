@@ -1,4 +1,4 @@
-query PresetModel($name: String!) {
+query PresetQuery($name: String!) {
   schema: __schema {
     types {
       name
