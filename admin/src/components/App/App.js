@@ -13,11 +13,12 @@ import { I18nProvider, Trans } from '@lingui/react'
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import { withStyles } from 'material-ui/styles'
 
-import { Dialog, Snackbar, Error, Spinner, NotFoundView } from 'components/ux'
+import { Dialog, Snackbar, ErrorView, LoadingView, NotFoundView } from 'components/ux'
 import { Dashboard } from 'components/Dashboard'
 import { Preset } from 'components/Preset'
 import { Translations } from 'components/Translations'
 import { User } from 'components/User'
+import { Editor } from 'components/Editor'
 
 import Drawer from './Drawer'
 
@@ -49,15 +50,16 @@ const App = (props) => {
         content={props.dialog.content}
       />
       {error && 
-        <Error>{error.message}</Error>
+        <ErrorView error={error} />
       }
       {!error && loading &&
-        <Spinner />
+        <LoadingView />
       }
       {!error && !loading &&
         <Switch>
           <Route exact path={'/'} component={Dashboard} />
           <Route path={'/user'} component={User} />
+          <Route path={'/editor'} component={Editor} />
           <Route path={'/translations/:ns?'} component={Translations} />
           <Route path={'/model/:model'} component={Preset} />
           <Route component={NotFoundView} />

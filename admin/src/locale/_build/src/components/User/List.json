@@ -1,0 +1,18 @@
+{
+  "User List": {
+    "origin": [
+      [
+        "src/components/User/List.js",
+        33
+      ]
+    ]
+  },
+  "Delete": {
+    "origin": [
+      [
+        "src/components/User/List.js",
+        66
+      ]
+    ]
+  }
+}

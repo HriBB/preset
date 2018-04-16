@@ -1,0 +1,18 @@
+{
+  "Profile": {
+    "origin": [
+      [
+        "src/components/ux/UserIcon.js",
+        47
+      ]
+    ]
+  },
+  "Logout": {
+    "origin": [
+      [
+        "src/components/ux/UserIcon.js",
+        50
+      ]
+    ]
+  }
+}

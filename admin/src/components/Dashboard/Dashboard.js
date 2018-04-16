@@ -3,7 +3,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { compose, getContext} from 'recompose'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Trans } from '@lingui/react'
 
 import { withStyles } from 'material-ui/styles'
@@ -11,9 +11,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import InboxIcon from 'material-ui-icons/Inbox'
 import { CardHeader } from 'material-ui/Card'
 import Avatar from 'material-ui/Avatar'
-import IconButton from 'material-ui/IconButton'
-import UserIcon from 'material-ui-icons/Person'
-import { Body, Header, Content, LanguageSwitcher } from 'components/ux'
+import { Body, Header, Content, LanguageSwitcher, UserIcon } from 'components/ux'
 
 import { Models } from 'components/Preset'
 
@@ -27,9 +25,7 @@ const Dashboard = ({ classes, viewer }) => {
     <Body>
       <Header title={<Trans>Dashboard</Trans>}>
         <LanguageSwitcher />
-        <IconButton component={Link} to={`/user`} color={'inherit'}>
-          <UserIcon />
-        </IconButton>
+        <UserIcon />
       </Header>
       <Content>
         <CardHeader

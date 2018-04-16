@@ -150,6 +150,20 @@ const Drawer = (props) => {
           </List>
         </Collapse>
 
+        <ListItem
+          button
+          className={classes.item}
+          component={NavLink}
+          onClick={drawer.close}
+          to={'/editor'}
+        >
+          <ListItemText
+            className={classes.itemText}
+            disableTypography
+            primary={<Trans>Editor</Trans>}
+          />
+        </ListItem>
+
       </List>
     </MuiDrawer>
   )

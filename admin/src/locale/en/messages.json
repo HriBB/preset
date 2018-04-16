@@ -134,11 +134,15 @@
     "origin": [
       [
         "src/components/App/App.js",
-        47
+        43
       ],
       [
         "src/components/App.js",
         42
+      ],
+      [
+        "src/components/User/Profile.js",
+        136
       ],
       [
         "src/components/User/User.js",
@@ -155,7 +159,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        47
+        46
       ]
     ]
   },
@@ -164,7 +168,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        85
+        84
       ],
       [
         "src/components/Drawer.js",
@@ -176,7 +180,7 @@
       ],
       [
         "src/components/Translations/Translations.js",
-        36
+        62
       ]
     ]
   },
@@ -185,7 +189,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        120
+        118
       ],
       [
         "src/components/Drawer.js",
@@ -198,6 +202,32 @@
       [
         "src/components/User.js",
         31
+      ]
+    ]
+  },
+  "Profile": {
+    "translation": "Profile",
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        134
+      ],
+      [
+        "src/components/User/Profile.js",
+        34
+      ],
+      [
+        "src/components/ux/UserIcon.js",
+        47
+      ]
+    ]
+  },
+  "List": {
+    "translation": "List",
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        147
       ]
     ]
   },
@@ -214,11 +244,11 @@
       ],
       [
         "src/components/Preset/Create.js",
-        32
+        35
       ],
       [
         "src/components/Preset/Create.js",
-        42
+        44
       ]
     ]
   },
@@ -231,7 +261,7 @@
       ],
       [
         "src/components/Preset/Create.js",
-        71
+        73
       ]
     ]
   },
@@ -240,11 +270,11 @@
     "origin": [
       [
         "src/components/Dashboard/Dashboard.js",
-        27
+        26
       ],
       [
         "src/components/Dashboard/Dashboard.js",
-        34
+        32
       ],
       [
         "src/components/Dashboard.js",
@@ -261,7 +291,7 @@
     "origin": [
       [
         "src/components/Dashboard/Dashboard.js",
-        35
+        33
       ],
       [
         "src/components/Dashboard.js",
@@ -278,7 +308,11 @@
       ],
       [
         "src/components/Preset/List.js",
-        70
+        74
+      ],
+      [
+        "src/components/User/List.js",
+        66
       ]
     ]
   },
@@ -291,7 +325,7 @@
       ],
       [
         "src/components/Preset/List.js",
-        124
+        127
       ]
     ]
   },
@@ -316,11 +350,11 @@
       ],
       [
         "src/components/Preset/Create.js",
-        78
+        80
       ],
       [
         "src/components/Preset/List.js",
-        127
+        130
       ],
       [
         "src/components/Preset/Preset.js",
@@ -332,11 +366,19 @@
       ],
       [
         "src/components/Preset/Update.js",
-        96
+        84
+      ],
+      [
+        "src/components/Translations/Form.js",
+        111
       ],
       [
         "src/components/Update.js",
         92
+      ],
+      [
+        "src/components/ux/ErrorView.js",
+        10
       ]
     ]
   },
@@ -406,15 +448,15 @@
     "origin": [
       [
         "src/components/Preset/Form.js",
-        75
+        76
       ],
       [
         "src/components/Preset/Form.js",
-        80
+        81
       ],
       [
         "src/components/Preset/Form.js",
-        85
+        86
       ]
     ]
   },
@@ -423,7 +465,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        31
+        36
       ],
       [
         "src/components/Update.js",
@@ -436,7 +478,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        56
+        47
       ],
       [
         "src/components/Update.js",
@@ -449,7 +491,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        63
+        51
       ],
       [
         "src/components/Translations/Editor.js",
@@ -457,7 +499,7 @@
       ],
       [
         "src/components/Translations/Translations.js",
-        66
+        90
       ],
       [
         "src/components/Update.js",
@@ -470,7 +512,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        93
+        81
       ],
       [
         "src/components/Update.js",
@@ -501,7 +543,7 @@
     "origin": [
       [
         "src/components/Translations/Form.js",
-        92
+        107
       ]
     ]
   },
@@ -510,6 +552,10 @@
     "origin": [
       [
         "src/components/Translations/LanguageSwitch.js",
+        16
+      ],
+      [
+        "src/components/ux/LanguageSwitcher.js",
         16
       ]
     ]
@@ -520,12 +566,29 @@
       [
         "src/components/Translations/LanguageSwitch.js",
         17
+      ],
+      [
+        "src/components/ux/LanguageSwitcher.js",
+        17
+      ]
+    ]
+  },
+  "User List": {
+    "translation": "User List",
+    "origin": [
+      [
+        "src/components/User/List.js",
+        33
       ]
     ]
   },
   "Image": {
     "translation": "Image",
     "origin": [
+      [
+        "src/components/User/Profile.js",
+        56
+      ],
       [
         "src/components/User/User.js",
         53
@@ -539,6 +602,10 @@
   "Upload": {
     "translation": "Upload",
     "origin": [
+      [
+        "src/components/User/Profile.js",
+        64
+      ],
       [
         "src/components/User/User.js",
         61
@@ -558,12 +625,39 @@
       ]
     ]
   },
+  "Language": {
+    "translation": "Language",
+    "origin": [
+      [
+        "src/components/ux/LanguageSwitcher.js",
+        38
+      ]
+    ]
+  },
+  "Not found": {
+    "translation": "Not found",
+    "origin": [
+      [
+        "src/components/ux/NotFoundView.js",
+        12
+      ]
+    ]
+  },
   "Close": {
     "translation": "Close",
     "origin": [
       [
         "src/components/ux/Snackbar.js",
         37
+      ]
+    ]
+  },
+  "Logout": {
+    "translation": "Logout",
+    "origin": [
+      [
+        "src/components/ux/UserIcon.js",
+        50
       ]
     ]
   }

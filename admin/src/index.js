@@ -16,6 +16,8 @@ import { App } from 'components/App'
 
 const store = createStore()
 
+require('react-tap-event-plugin')()
+
 const {
   jss,
   generateClassName,

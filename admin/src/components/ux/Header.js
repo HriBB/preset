@@ -53,7 +53,6 @@ const styles = theme => ({
   title: {
     ...theme.typography.title,
     color: '#fff',
-    flex: '1 1 100%',
     marginLeft: theme.spacing.unit * 2,
     textDecoration: 'none',
     whiteSpace: 'nowrap',

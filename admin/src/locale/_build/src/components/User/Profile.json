@@ -1,0 +1,34 @@
+{
+  "Profile": {
+    "origin": [
+      [
+        "src/components/User/Profile.js",
+        34
+      ]
+    ]
+  },
+  "Image": {
+    "origin": [
+      [
+        "src/components/User/Profile.js",
+        56
+      ]
+    ]
+  },
+  "Upload": {
+    "origin": [
+      [
+        "src/components/User/Profile.js",
+        64
+      ]
+    ]
+  },
+  "Done": {
+    "origin": [
+      [
+        "src/components/User/Profile.js",
+        136
+      ]
+    ]
+  }
+}

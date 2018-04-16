@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/components/Translations/Translations.js",
-        36
+        62
       ]
     ]
   },
@@ -11,7 +11,7 @@
     "origin": [
       [
         "src/components/Translations/Translations.js",
-        66
+        90
       ]
     ]
   }

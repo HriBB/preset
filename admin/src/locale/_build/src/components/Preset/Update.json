@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        31
+        36
       ]
     ]
   },
@@ -11,7 +11,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        56
+        47
       ]
     ]
   },
@@ -19,7 +19,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        63
+        51
       ]
     ]
   },
@@ -27,7 +27,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        93
+        81
       ]
     ]
   },
@@ -35,7 +35,7 @@
     "origin": [
       [
         "src/components/Preset/Update.js",
-        96
+        84
       ]
     ]
   }

@@ -35,7 +35,7 @@ const LanguageSwitch = ({ classes, viewer, open, ...props }) => {
         anchorOrigin={origin}
         transformOrigin={origin}
       >
-        <MenuItem className={classes.header} button={false}>
+        <MenuItem className={classes.header}>
           <Typography className={classes.username}>
             {username}
           </Typography>
@@ -64,6 +64,11 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
     height: 'auto',
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.common.white,
+      cursor: 'default',
+    },
   },
   username: {
     fontSize: theme.typography.title.fontSize,

@@ -22,7 +22,7 @@ const origin = { vertical: 'top', horizontal: 'right' }
 const LanguageSwitch = ({ classes, i18n, open, ...props }) => {
   return (
     <Fragment>
-      <IconButton onClick={props.openMenu} color={'inherit'}>
+      <IconButton className={classes.icon} onClick={props.openMenu} color={'inherit'}>
         <Typography className={classes.lang} component={'span'} color={'inherit'}>
           {i18n.language}
         </Typography>
@@ -34,8 +34,8 @@ const LanguageSwitch = ({ classes, i18n, open, ...props }) => {
         anchorOrigin={origin}
         transformOrigin={origin}
       >
-        <MenuItem className={classes.header} button={false}>
-          <Trans>Select Language</Trans>
+        <MenuItem className={classes.header}>
+          <Trans>Language</Trans>
         </MenuItem>
         {Object.keys(languages).map(lang =>
           <MenuItem
@@ -53,13 +53,23 @@ const LanguageSwitch = ({ classes, i18n, open, ...props }) => {
 }
 
 const styles = theme => ({
-  header: {
-    height: 'auto',
-    fontSize: theme.typography.title.fontSize,
+  icon: {
+    marginRight: theme.spacing.unit,
   },
   lang: {
     fontSize: '1rem',
     textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontWeight: '500',
+  },
+  header: {
+    height: 'auto',
+    fontSize: theme.typography.title.fontSize,
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: theme.palette.common.white,
+      cursor: 'default',
+    },
   },
   active: {
     backgroundColor: theme.palette.grey[300],

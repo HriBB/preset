@@ -3,7 +3,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        47
+        46
       ]
     ]
   },
@@ -11,7 +11,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        85
+        84
       ]
     ]
   },
@@ -19,7 +19,23 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        120
+        118
+      ]
+    ]
+  },
+  "Profile": {
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        134
+      ]
+    ]
+  },
+  "List": {
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        147
       ]
     ]
   }
