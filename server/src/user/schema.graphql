@@ -1,4 +1,4 @@
-# import File from '../preset/preset.graphql'
+# import File from '../preset/schema.graphql'
 
 type AuthPayload {
   token: String!

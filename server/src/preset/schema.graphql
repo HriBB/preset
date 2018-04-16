@@ -1,4 +1,4 @@
-# import User from '../user/user.graphql'
+# import User from '../user/schema.graphql'
 
 directive @model on FIELD
 directive @field on FIELD_DEFINITION

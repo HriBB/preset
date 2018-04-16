@@ -6,7 +6,7 @@ const { readSchema } = require('utils')
 const queries = require('./queries')
 const mutations = require('./mutations')
 
-const typeDefs = readSchema(resolve(__dirname, 'translations.graphql'))
+const typeDefs = readSchema(resolve(__dirname, 'schema.graphql'))
 
 module.exports = {
   typeDefs,

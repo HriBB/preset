@@ -9,7 +9,7 @@ const mutations = require('./mutations')
 const resolvers = require('./resolvers')
 const directives = require('./directives')
 
-const baseTypeDefs = readSchema(resolve(__dirname, 'preset.graphql'))
+const baseTypeDefs = readSchema(resolve(__dirname, 'schema.graphql'))
 
 const field = ({ name, type, required }) => (
   `${name}: ${type === 'File' ? 'Upload' : type}${required ? '!' : ''}`
