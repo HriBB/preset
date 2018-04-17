@@ -1,0 +1,46 @@
+
+.ory-controls-mode-toggle-control-group {
+  top: 56px;
+  bottom: unset;
+  padding: 8px;
+}
+
+.ory-editor-bottom-toolbar-container {
+  bottom: 56px !important;
+  padding: 0px !important;
+}
+
+.ory-editor-bottom-toolbar-container > div {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.ory-controls-trash {
+  margin-left: -36px;
+}
+
+.ory-controls-trash-active {
+  bottom: 64px !important;
+}
+
+@media (min-width: 600px) {
+  .ory-controls-mode-toggle-control-group {
+    top: 64px;
+    padding: 16px;
+  }
+  .ory-editor-bottom-toolbar-container {
+    bottom: 64px !important;
+  }
+  .ory-controls-trash-active {
+    bottom: 72px !important;
+  }
+}
+
+@media (min-width: 960px) {
+  .ory-editor-bottom-toolbar-container {
+    left: 260px !important;
+  }
+  .ory-controls-trash {
+    transform: translateX(130px);
+  }
+}

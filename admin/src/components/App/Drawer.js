@@ -16,7 +16,7 @@ import { Models } from 'components/Preset'
 import { namespaces } from 'components/Translations'
 
 const Drawer = (props) => {
-  const { classes, drawer, expand, language, i18n, open, variant } = props
+  const { classes, drawer, expand, open, variant } = props
   return (
     <MuiDrawer
       className={classes.drawer}
@@ -28,7 +28,7 @@ const Drawer = (props) => {
 
       <Toolbar className={classes.toolbar}>
         <Link to={'/'} className={classes.title}>
-          Preset CMS {language} {i18n.language}
+          Preset CMS
         </Link>
       </Toolbar>
 
@@ -155,12 +155,12 @@ const Drawer = (props) => {
           className={classes.item}
           component={NavLink}
           onClick={drawer.close}
-          to={'/editor'}
+          to={'/pages'}
         >
           <ListItemText
             className={classes.itemText}
             disableTypography
-            primary={<Trans>Editor</Trans>}
+            primary={<Trans>Pages</Trans>}
           />
         </ListItem>
 

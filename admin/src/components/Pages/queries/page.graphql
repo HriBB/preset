@@ -1,0 +1,8 @@
+query page($id: ID!) {
+  page(id: $id) {
+    id
+    title
+    slug
+    content
+  }
+}

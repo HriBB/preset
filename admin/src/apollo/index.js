@@ -23,3 +23,8 @@ const client = new ApolloClient({
 })
 
 export default client
+
+export const hasQuery = (client: any, query: any) => {
+  const name = typeof query === 'string' ? query : query.definitions[0].name.value
+  return client.queryManager.queryIdsByName[name]
+}

@@ -3,20 +3,24 @@
 const { makeExecutableSchema } = require('graphql-tools')
 
 const user = require('user')
+const pages = require('pages')
 const preset = require('preset')
 const translations = require('translations')
 
 const resolvers = {
   ...user.resolvers,
+  ...pages.resolvers,
   ...preset.resolvers,
   ...translations.resolvers,
   Query: {
     ...user.queries,
+    ...pages.queries,
     ...preset.queries,
     ...translations.queries,
   },
   Mutation: {
     ...user.mutations,
+    ...pages.mutations,
     ...preset.mutations,
     ...translations.mutations,
   },
@@ -24,14 +28,16 @@ const resolvers = {
 
 const directiveResolvers = {
   ...user.directives,
+  ...pages.directives,
   ...preset.directives,
   ...translations.directives,
 }
 
 const typeDefs = `
+${user.typeDefs}
+${pages.typeDefs}
 ${preset.typeDefs}
 ${translations.typeDefs}
-${user.typeDefs}
 
 type Query {
   _: Boolean

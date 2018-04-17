@@ -88,6 +88,7 @@
     "ory-editor-plugins-slate": "^0.2.27",
     "ory-editor-plugins-spacer": "^0.2.27",
     "ory-editor-plugins-video": "^0.2.27",
+    "ory-editor-ui": "^0.2.27",
     "parse-key-value": "^1.0.0",
     "pluralize": "^7.0.0",
     "promise": "8.0.1",
@@ -107,6 +108,11 @@
     "redux-form": "7.3.0",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "2.0.3"
+  },
+  "resolutions": {
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "react-tap-event-plugin": "3.0.2"
   },
   "jest": {
     "collectCoverageFrom": [

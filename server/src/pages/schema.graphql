@@ -1,0 +1,24 @@
+type Page {
+  id: ID!
+  title: String!
+  slug: String!
+  content: JSON!
+  user: User!
+}
+
+input PageInput {
+  title: String!
+  slug: String!
+  content: JSON!
+}
+
+extend type Query {
+  pages: [Page]
+  page(id: ID!): Page
+}
+
+extend type Mutation {
+  createPage(data: PageInput!): Page
+  updatePage(id: ID! data: PageInput!): Page
+  deletePage(id: ID!): Page
+}

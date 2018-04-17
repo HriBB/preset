@@ -1,0 +1,8 @@
+mutation createPage($data: PageInput!) {
+  createPage(data: $data) {
+    id
+    title
+    slug
+    content
+  }
+}

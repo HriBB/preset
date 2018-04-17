@@ -6204,7 +6204,7 @@ ory-editor-renderer@v0.2.27:
     classnames "^2.2.5"
     ory-editor-core "^v0.2.27"
 
-ory-editor-ui@^v0.2.27, ory-editor-ui@v0.2.27:
+ory-editor-ui@^0.2.27, ory-editor-ui@^v0.2.27, ory-editor-ui@v0.2.27:
   version "0.2.27"
   resolved "https://registry.yarnpkg.com/ory-editor-ui/-/ory-editor-ui-0.2.27.tgz#136c2082b0f011ffe0a1d342f0c73cda77b1b819"
   dependencies:
@@ -7332,7 +7332,7 @@ react-swipeable-views@^0.12.13:
     react-swipeable-views-utils "^0.12.13"
     warning "^3.0.0"
 
-react-tap-event-plugin@^3.0.2:
+react-tap-event-plugin@3.0.2, react-tap-event-plugin@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-3.0.2.tgz#280371677b881c31376e0027a0b86d2c6de039ee"
   dependencies:

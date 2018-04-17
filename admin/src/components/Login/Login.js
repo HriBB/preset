@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { compose, withHandlers } from 'recompose'
-import { Field, reduxForm, SubmissionError } from 'redux-form'
+import { Form, Field, reduxForm, SubmissionError } from 'redux-form'
 import { withApollo } from 'react-apollo'
 import { mutation } from 'react-apollo/mutation-hoc'
 import { Trans } from '@lingui/react'
@@ -13,55 +13,63 @@ import Card, { CardActions, CardContent } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Typography from 'material-ui/Typography'
 
+
+import { Body, Header } from 'components/ux'
 import { Text } from 'components/Form'
 import loginMutation from './login.graphql'
 
 const Login = props => {
   const { classes, error, handleSubmit } = props
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <Typography
-        className={classes.title}
-        variant={'headline'}
-        component={'h2'}
-      >
-        Preset CMS
-      </Typography>
-      <Card className={classes.card}>
-        <CardContent className={classes.content}>
-          <Field
-            component={Text}
-            className={classes.field}
-            inputClassName={classes.input}
-            name={'username'}
-            label={<Trans>Username</Trans>}
-          />
-          <Field
-            component={Text}
-            className={classes.field}
-            inputClassName={classes.input}
-            name={'password'}
-            label={<Trans>Password</Trans>}
-            type={'password'}
-          />
-          <FormControl error className={classes.error}>
-            <FormHelperText>{error || '\u00A0'}</FormHelperText>
-          </FormControl>
-        </CardContent>
-        <CardActions className={classes.actions}>
-          <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>
-            <Trans>Login</Trans>
-          </Button>
-        </CardActions>
-      </Card>
-    </form>
+    <Body>
+      <Header title={<Trans>Preset CMS</Trans>} />
+        <Form className={classes.form} onSubmit={handleSubmit}>
+          <Typography
+            className={classes.title}
+            variant={'headline'}
+            component={'h2'}
+          >
+            <Trans>Sign In</Trans>
+          </Typography>
+          <Card className={classes.card}>
+            <CardContent className={classes.content}>
+              <Field
+                component={Text}
+                className={classes.field}
+                inputClassName={classes.input}
+                name={'username'}
+                label={<Trans>Username</Trans>}
+              />
+              <Field
+                component={Text}
+                className={classes.field}
+                inputClassName={classes.input}
+                name={'password'}
+                label={<Trans>Password</Trans>}
+                type={'password'}
+              />
+              <FormControl error className={classes.error}>
+                <FormHelperText>{error || '\u00A0'}</FormHelperText>
+              </FormControl>
+            </CardContent>
+            <CardActions className={classes.actions}>
+              <Button color={'primary'} variant={'raised'} onClick={handleSubmit}>
+                <Trans>Login</Trans>
+              </Button>
+            </CardActions>
+          </Card>
+        </Form>
+    </Body>
   )
 }
 
 const styles = theme => ({
   form: {
-    width: '100%',
-    height: '100vh',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -70,7 +78,6 @@ const styles = theme => ({
   card: {
     width: '300px',
     padding: theme.spacing.unit * 4,
-    paddingTop: theme.spacing.unit * 6,
   },
   content: {
     padding: '0',
@@ -96,6 +103,21 @@ const styles = theme => ({
   },
 })
 
+const validate = ({ username, password }) => {
+  const errors = {}
+  if (!username) {
+    errors.username = 'Required'
+  } else if (username.length < 3 || username.length > 50) {
+    errors.username = 'Must be between 3 and 50 characters'
+  }
+  if (!password) {
+    errors.password = 'Required'
+  } else if (password.length < 6) {
+    errors.password = 'Must be at least 6 characters long'
+  }
+  return errors
+}
+
 export default compose(
   withStyles(styles),
   withApollo,
@@ -108,32 +130,18 @@ export default compose(
     }),
   }),
   withHandlers({
-    onSubmit: ({ client, login }) => ({ username, password }) => {
-      return login(username, password)
+    onSubmit: ({ client, login }) => ({ username, password }) =>
+      login(username, password)
         .then(({ data: { login: { token } } }) => {
           localStorage.setItem('token', token)
           client.resetStore()
         })
         .catch(error => {
           throw new SubmissionError({ _error: error.message })
-        })
-    },
+        }),
   }),
   reduxForm({
     form: 'login',
-    validate: ({ username, password }) => {
-      const errors = {}
-      if (!username) {
-        errors.username = 'Required'
-      } else if (username.length < 3 || username.length > 50) {
-        errors.username = 'Must be between 3 and 50 characters'
-      }
-      if (!password) {
-        errors.password = 'Required'
-      } else if (password.length < 6) {
-        errors.password = 'Must be at least 6 characters long'
-      }
-      return errors
-    },
+    validate,
   })
 )(Login)

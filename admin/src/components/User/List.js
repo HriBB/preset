@@ -2,7 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { compose, withHandlers, getContext } from 'recompose'
+import { compose, getContext } from 'recompose'
 import { Query } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import { Trans } from '@lingui/react'
@@ -96,9 +96,4 @@ export default compose(
     snackbar: PropTypes.object,
   }),
   withStyles(styles),
-  withHandlers({
-    test: () => () => {
-      console.log('test123')
-    },
-  }),
 )(UserList)

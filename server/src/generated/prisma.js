@@ -26,6 +26,14 @@ type NewsPost implements Node {
   author(where: UserWhereInput): User!
 }
 
+type Page implements Node {
+  id: ID!
+  title: String!
+  slug: String!
+  content: String!
+  author(where: UserWhereInput): User!
+}
+
 type ParentTestimonial implements Node {
   id: ID!
   title: String!
@@ -73,6 +81,10 @@ type AggregateFile {
 }
 
 type AggregateNewsPost {
+  count: Int!
+}
+
+type AggregatePage {
   count: Int!
 }
 
@@ -989,6 +1001,42 @@ interface Node {
 }
 
 """
+A connection to a list of items.
+"""
+type PageConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+  """
+  A list of edges.
+  """
+  edges: [PageEdge]!
+  aggregate: AggregatePage!
+}
+
+input PageCreateInput {
+  title: String!
+  slug: String!
+  content: String!
+  author: UserCreateOneInput!
+}
+
+"""
+An edge in a connection.
+"""
+type PageEdge {
+  """
+  The item at the end of the edge.
+  """
+  node: Page!
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+}
+
+"""
 Information about pagination in a connection.
 """
 type PageInfo {
@@ -1008,6 +1056,298 @@ type PageInfo {
   When paginating forwards, the cursor to continue.
   """
   endCursor: String
+}
+
+enum PageOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  content_ASC
+  content_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PagePreviousValues {
+  id: ID!
+  title: String!
+  slug: String!
+  content: String!
+}
+
+type PageSubscriptionPayload {
+  mutation: MutationType!
+  node: Page
+  updatedFields: [String!]
+  previousValues: PagePreviousValues
+}
+
+input PageSubscriptionWhereInput {
+  """
+  Logical AND on all given filters.
+  """
+  AND: [PageSubscriptionWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [PageSubscriptionWhereInput!]
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: PageWhereInput
+}
+
+input PageUpdateInput {
+  title: String
+  slug: String
+  content: String
+  author: UserUpdateOneInput
+}
+
+input PageWhereInput {
+  """
+  Logical AND on all given filters.
+  """
+  AND: [PageWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [PageWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values less than the given value.
+  """
+  id_lt: ID
+  """
+  All values less than or equal the given value.
+  """
+  id_lte: ID
+  """
+  All values greater than the given value.
+  """
+  id_gt: ID
+  """
+  All values greater than or equal the given value.
+  """
+  id_gte: ID
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string.
+  """
+  id_not_ends_with: ID
+  title: String
+  """
+  All values that are not equal to given value.
+  """
+  title_not: String
+  """
+  All values that are contained in given list.
+  """
+  title_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  title_not_in: [String!]
+  """
+  All values less than the given value.
+  """
+  title_lt: String
+  """
+  All values less than or equal the given value.
+  """
+  title_lte: String
+  """
+  All values greater than the given value.
+  """
+  title_gt: String
+  """
+  All values greater than or equal the given value.
+  """
+  title_gte: String
+  """
+  All values containing the given string.
+  """
+  title_contains: String
+  """
+  All values not containing the given string.
+  """
+  title_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  title_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  title_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  title_ends_with: String
+  """
+  All values not ending with the given string.
+  """
+  title_not_ends_with: String
+  slug: String
+  """
+  All values that are not equal to given value.
+  """
+  slug_not: String
+  """
+  All values that are contained in given list.
+  """
+  slug_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  slug_not_in: [String!]
+  """
+  All values less than the given value.
+  """
+  slug_lt: String
+  """
+  All values less than or equal the given value.
+  """
+  slug_lte: String
+  """
+  All values greater than the given value.
+  """
+  slug_gt: String
+  """
+  All values greater than or equal the given value.
+  """
+  slug_gte: String
+  """
+  All values containing the given string.
+  """
+  slug_contains: String
+  """
+  All values not containing the given string.
+  """
+  slug_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  slug_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  slug_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  slug_ends_with: String
+  """
+  All values not ending with the given string.
+  """
+  slug_not_ends_with: String
+  content: String
+  """
+  All values that are not equal to given value.
+  """
+  content_not: String
+  """
+  All values that are contained in given list.
+  """
+  content_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
+  content_not_in: [String!]
+  """
+  All values less than the given value.
+  """
+  content_lt: String
+  """
+  All values less than or equal the given value.
+  """
+  content_lte: String
+  """
+  All values greater than the given value.
+  """
+  content_gt: String
+  """
+  All values greater than or equal the given value.
+  """
+  content_gte: String
+  """
+  All values containing the given string.
+  """
+  content_contains: String
+  """
+  All values not containing the given string.
+  """
+  content_not_contains: String
+  """
+  All values starting with the given string.
+  """
+  content_starts_with: String
+  """
+  All values not starting with the given string.
+  """
+  content_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
+  content_ends_with: String
+  """
+  All values not ending with the given string.
+  """
+  content_not_ends_with: String
+  author: UserWhereInput
+}
+
+input PageWhereUniqueInput {
+  id: ID
 }
 
 """
@@ -2499,6 +2839,7 @@ type Mutation {
   createNewsPost(data: NewsPostCreateInput!): NewsPost!
   createParentTestimonial(data: ParentTestimonialCreateInput!): ParentTestimonial!
   createArticle(data: ArticleCreateInput!): Article!
+  createPage(data: PageCreateInput!): Page!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
   updateTranslation(data: TranslationUpdateInput!, where: TranslationWhereUniqueInput!): Translation
@@ -2506,6 +2847,7 @@ type Mutation {
   updateNewsPost(data: NewsPostUpdateInput!, where: NewsPostWhereUniqueInput!): NewsPost
   updateParentTestimonial(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
   updateArticle(data: ArticleUpdateInput!, where: ArticleWhereUniqueInput!): Article
+  updatePage(data: PageUpdateInput!, where: PageWhereUniqueInput!): Page
   deleteUser(where: UserWhereUniqueInput!): User
   deleteFile(where: FileWhereUniqueInput!): File
   deleteTranslation(where: TranslationWhereUniqueInput!): Translation
@@ -2513,6 +2855,7 @@ type Mutation {
   deleteNewsPost(where: NewsPostWhereUniqueInput!): NewsPost
   deleteParentTestimonial(where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
   deleteArticle(where: ArticleWhereUniqueInput!): Article
+  deletePage(where: PageWhereUniqueInput!): Page
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
   upsertTranslation(where: TranslationWhereUniqueInput!, create: TranslationCreateInput!, update: TranslationUpdateInput!): Translation!
@@ -2520,20 +2863,23 @@ type Mutation {
   upsertNewsPost(where: NewsPostWhereUniqueInput!, create: NewsPostCreateInput!, update: NewsPostUpdateInput!): NewsPost!
   upsertParentTestimonial(where: ParentTestimonialWhereUniqueInput!, create: ParentTestimonialCreateInput!, update: ParentTestimonialUpdateInput!): ParentTestimonial!
   upsertArticle(where: ArticleWhereUniqueInput!, create: ArticleCreateInput!, update: ArticleUpdateInput!): Article!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput!): BatchPayload!
-  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput!): BatchPayload!
-  updateManyTranslations(data: TranslationUpdateInput!, where: TranslationWhereInput!): BatchPayload!
-  updateManyPosts(data: PostUpdateInput!, where: PostWhereInput!): BatchPayload!
-  updateManyNewsPosts(data: NewsPostUpdateInput!, where: NewsPostWhereInput!): BatchPayload!
-  updateManyParentTestimonials(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereInput!): BatchPayload!
-  updateManyArticles(data: ArticleUpdateInput!, where: ArticleWhereInput!): BatchPayload!
-  deleteManyUsers(where: UserWhereInput!): BatchPayload!
-  deleteManyFiles(where: FileWhereInput!): BatchPayload!
-  deleteManyTranslations(where: TranslationWhereInput!): BatchPayload!
-  deleteManyPosts(where: PostWhereInput!): BatchPayload!
-  deleteManyNewsPosts(where: NewsPostWhereInput!): BatchPayload!
-  deleteManyParentTestimonials(where: ParentTestimonialWhereInput!): BatchPayload!
-  deleteManyArticles(where: ArticleWhereInput!): BatchPayload!
+  upsertPage(where: PageWhereUniqueInput!, create: PageCreateInput!, update: PageUpdateInput!): Page!
+  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
+  updateManyTranslations(data: TranslationUpdateInput!, where: TranslationWhereInput): BatchPayload!
+  updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
+  updateManyNewsPosts(data: NewsPostUpdateInput!, where: NewsPostWhereInput): BatchPayload!
+  updateManyParentTestimonials(data: ParentTestimonialUpdateInput!, where: ParentTestimonialWhereInput): BatchPayload!
+  updateManyArticles(data: ArticleUpdateInput!, where: ArticleWhereInput): BatchPayload!
+  updateManyPages(data: PageUpdateInput!, where: PageWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyFiles(where: FileWhereInput): BatchPayload!
+  deleteManyTranslations(where: TranslationWhereInput): BatchPayload!
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
+  deleteManyNewsPosts(where: NewsPostWhereInput): BatchPayload!
+  deleteManyParentTestimonials(where: ParentTestimonialWhereInput): BatchPayload!
+  deleteManyArticles(where: ArticleWhereInput): BatchPayload!
+  deleteManyPages(where: PageWhereInput): BatchPayload!
 }
 
 type Query {
@@ -2544,6 +2890,7 @@ type Query {
   newsPosts(where: NewsPostWhereInput, orderBy: NewsPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NewsPost]!
   parentTestimonials(where: ParentTestimonialWhereInput, orderBy: ParentTestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ParentTestimonial]!
   articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article]!
+  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Page]!
   user(where: UserWhereUniqueInput!): User
   file(where: FileWhereUniqueInput!): File
   translation(where: TranslationWhereUniqueInput!): Translation
@@ -2551,6 +2898,7 @@ type Query {
   newsPost(where: NewsPostWhereUniqueInput!): NewsPost
   parentTestimonial(where: ParentTestimonialWhereUniqueInput!): ParentTestimonial
   article(where: ArticleWhereUniqueInput!): Article
+  page(where: PageWhereUniqueInput!): Page
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
   translationsConnection(where: TranslationWhereInput, orderBy: TranslationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TranslationConnection!
@@ -2558,6 +2906,7 @@ type Query {
   newsPostsConnection(where: NewsPostWhereInput, orderBy: NewsPostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NewsPostConnection!
   parentTestimonialsConnection(where: ParentTestimonialWhereInput, orderBy: ParentTestimonialOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ParentTestimonialConnection!
   articlesConnection(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArticleConnection!
+  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PageConnection!
   """
   Fetches an object given its ID
   """
@@ -2575,6 +2924,7 @@ type Subscription {
   newsPost(where: NewsPostSubscriptionWhereInput): NewsPostSubscriptionPayload
   parentTestimonial(where: ParentTestimonialSubscriptionWhereInput): ParentTestimonialSubscriptionPayload
   article(where: ArticleSubscriptionWhereInput): ArticleSubscriptionPayload
+  page(where: PageSubscriptionWhereInput): PageSubscriptionPayload
 }
 `
 
@@ -2605,6 +2955,9 @@ module.exports.Prisma = class Binding extends Prisma {
       },
       Article(where) {
         return super.existsDelegate('query', 'articles', { where }, {}, '{ id }')
+      },
+      Page(where) {
+        return super.existsDelegate('query', 'pages', { where }, {}, '{ id }')
       }
     }
 
@@ -2630,6 +2983,9 @@ module.exports.Prisma = class Binding extends Prisma {
       articles(args, info) { 
         return self.delegate('query', 'articles', args, {}, info)
       },
+      pages(args, info) { 
+        return self.delegate('query', 'pages', args, {}, info)
+      },
       user(args, info) { 
         return self.delegate('query', 'user', args, {}, info)
       },
@@ -2651,6 +3007,9 @@ module.exports.Prisma = class Binding extends Prisma {
       article(args, info) { 
         return self.delegate('query', 'article', args, {}, info)
       },
+      page(args, info) { 
+        return self.delegate('query', 'page', args, {}, info)
+      },
       usersConnection(args, info) { 
         return self.delegate('query', 'usersConnection', args, {}, info)
       },
@@ -2671,6 +3030,9 @@ module.exports.Prisma = class Binding extends Prisma {
       },
       articlesConnection(args, info) { 
         return self.delegate('query', 'articlesConnection', args, {}, info)
+      },
+      pagesConnection(args, info) { 
+        return self.delegate('query', 'pagesConnection', args, {}, info)
       },
       node(args, info) { 
         return self.delegate('query', 'node', args, {}, info)
@@ -2699,6 +3061,9 @@ module.exports.Prisma = class Binding extends Prisma {
       createArticle(args, info) { 
         return self.delegate('mutation', 'createArticle', args, {}, info)
       },
+      createPage(args, info) { 
+        return self.delegate('mutation', 'createPage', args, {}, info)
+      },
       updateUser(args, info) { 
         return self.delegate('mutation', 'updateUser', args, {}, info)
       },
@@ -2719,6 +3084,9 @@ module.exports.Prisma = class Binding extends Prisma {
       },
       updateArticle(args, info) { 
         return self.delegate('mutation', 'updateArticle', args, {}, info)
+      },
+      updatePage(args, info) { 
+        return self.delegate('mutation', 'updatePage', args, {}, info)
       },
       deleteUser(args, info) { 
         return self.delegate('mutation', 'deleteUser', args, {}, info)
@@ -2741,6 +3109,9 @@ module.exports.Prisma = class Binding extends Prisma {
       deleteArticle(args, info) { 
         return self.delegate('mutation', 'deleteArticle', args, {}, info)
       },
+      deletePage(args, info) { 
+        return self.delegate('mutation', 'deletePage', args, {}, info)
+      },
       upsertUser(args, info) { 
         return self.delegate('mutation', 'upsertUser', args, {}, info)
       },
@@ -2761,6 +3132,9 @@ module.exports.Prisma = class Binding extends Prisma {
       },
       upsertArticle(args, info) { 
         return self.delegate('mutation', 'upsertArticle', args, {}, info)
+      },
+      upsertPage(args, info) { 
+        return self.delegate('mutation', 'upsertPage', args, {}, info)
       },
       updateManyUsers(args, info) { 
         return self.delegate('mutation', 'updateManyUsers', args, {}, info)
@@ -2783,6 +3157,9 @@ module.exports.Prisma = class Binding extends Prisma {
       updateManyArticles(args, info) { 
         return self.delegate('mutation', 'updateManyArticles', args, {}, info)
       },
+      updateManyPages(args, info) { 
+        return self.delegate('mutation', 'updateManyPages', args, {}, info)
+      },
       deleteManyUsers(args, info) { 
         return self.delegate('mutation', 'deleteManyUsers', args, {}, info)
       },
@@ -2803,6 +3180,9 @@ module.exports.Prisma = class Binding extends Prisma {
       },
       deleteManyArticles(args, info) { 
         return self.delegate('mutation', 'deleteManyArticles', args, {}, info)
+      },
+      deleteManyPages(args, info) { 
+        return self.delegate('mutation', 'deleteManyPages', args, {}, info)
       }
     }
       
@@ -2827,6 +3207,9 @@ module.exports.Prisma = class Binding extends Prisma {
       },
       article(args, infoOrQuery) { 
         return self.delegateSubscription('article', args, {}, infoOrQuery)
+      },
+      page(args, infoOrQuery) { 
+        return self.delegateSubscription('page', args, {}, infoOrQuery)
       }
     }
   }

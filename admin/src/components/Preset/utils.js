@@ -3,6 +3,8 @@
 import gql from 'graphql-tag'
 import pluralize from 'pluralize'
 
+import { hasQuery } from 'apollo'
+
 const nameField = {}
 const itemQuery = {}
 const listQuery = {}
@@ -44,11 +46,6 @@ type Props = {
 
 // private helpers
 // @todo investigate introspection schema visitor
-
-const hasQuery = (client: any, query: any) => {
-  const name = typeof query === 'string' ? query : query.definitions[0].name.value
-  return client.queryManager.queryIdsByName[name]
-}
 
 const getItemQueryName = ({ name }: Model) => {
   return name.charAt(0).toLowerCase() + name.slice(1)

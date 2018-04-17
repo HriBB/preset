@@ -17,10 +17,6 @@ type Translation {
   editor: EDITOR
 }
 
-extend type Query {
-  translations(lang: String ns: [String]): [Translation]
-}
-
 input TranslationInput {
   id: ID
   lang: LOCALE!
@@ -28,6 +24,10 @@ input TranslationInput {
   key: String!
   value: String!
   editor: EDITOR
+}
+
+extend type Query {
+  translations(lang: String ns: [String]): [Translation]
 }
 
 extend type Mutation {

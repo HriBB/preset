@@ -15,4 +15,10 @@ module.exports = {
   File: {
     url: ({ filename }) => `${config.uploads.url}/${filename}`,
   },
+  Node: {
+    __resolveType: (obj) => {
+      console.log('__resolveType', obj)
+      return 'Node'
+    },
+  },
 }

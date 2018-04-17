@@ -22,3 +22,7 @@ mkdirp.sync(config.uploads.path)
 server.express.use('/uploads', express.static(config.uploads.path))
 
 server.start(config.server, () => console.log('Server is running on http://localhost:4000'))
+
+process.on('beforeExit', () => {
+  console.log('beforeExitt')
+})

@@ -18,7 +18,8 @@ import { Dashboard } from 'components/Dashboard'
 import { Preset } from 'components/Preset'
 import { Translations } from 'components/Translations'
 import { User } from 'components/User'
-import { Editor } from 'components/Editor'
+import { Pages } from 'components/Pages'
+import { Login } from 'components/Login'
 
 import Drawer from './Drawer'
 
@@ -28,16 +29,18 @@ import en from 'locale/en/messages'
 import appQuery from './App.graphql'
 
 const App = (props) => {
-  const { data: { error, loading }, theme, width } = props
+  const { data: { error, loading, viewer }, theme, width } = props
   const drawerDocked = isWidthUp(theme.drawer.breakpoint, width)
   return (
     <I18nProvider language={props.language} catalogs={{ en, si }}>
-      <Drawer
-        language={props.language}
-        page={props.match.params.page}
-        open={drawerDocked || props.drawer}
-        variant={drawerDocked ? 'permanent' : 'temporary'}
-      />
+      {viewer && 
+        <Drawer
+          language={props.language}
+          page={props.match.params.page}
+          open={drawerDocked || props.drawer}
+          variant={drawerDocked ? 'permanent' : 'temporary'}
+        />
+      }
       <Snackbar
         open={!!props.snackbar}
         onClose={props.hideSnackbar}
@@ -55,11 +58,14 @@ const App = (props) => {
       {!error && loading &&
         <LoadingView />
       }
-      {!error && !loading &&
+      {!error && !loading && !viewer &&
+        <Login />
+      }
+      {!error && !loading && viewer &&
         <Switch>
           <Route exact path={'/'} component={Dashboard} />
           <Route path={'/user'} component={User} />
-          <Route path={'/editor'} component={Editor} />
+          <Route path={'/pages'} component={Pages} />
           <Route path={'/translations/:ns?'} component={Translations} />
           <Route path={'/model/:model'} component={Preset} />
           <Route component={NotFoundView} />
