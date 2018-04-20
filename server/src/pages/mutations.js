@@ -42,6 +42,17 @@ const deletePage = async (parent, { id }, ctx, info) => {
   return ctx.db.mutation.deletePage({ where: { id } })
 }
 
+const runScript = require('npm-run-script')
+ 
+
+const runCommand = (command) => {
+  return new Promise((resolve, reject) => {
+    const child = runScript(command, { stdio: 'ignore' })
+    child.once('error', error => reject(error))
+    child.once('exit', exitCode => resolve(exitCode))
+  })
+}
+
 module.exports = {
   createPage,
   updatePage,

@@ -60,6 +60,7 @@
     "apollo-link": "1.2.1",
     "apollo-link-context": "1.0.7",
     "apollo-link-http": "1.5.3",
+    "apollo-link-ws": "^1.0.8",
     "apollo-upload-client": "8.0.0",
     "app-module-path": "^2.2.0",
     "autoprefixer": "8.1.0",
@@ -107,6 +108,7 @@
     "redux": "^3.7.2",
     "redux-form": "7.3.0",
     "redux-thunk": "^2.2.0",
+    "subscriptions-transport-ws": "^0.9.8",
     "whatwg-fetch": "2.0.3"
   },
   "resolutions": {

@@ -1,0 +1,16 @@
+type Deploy {
+  id: String!
+  data: String!
+}
+
+extend type Query {
+  deploy: [Deploy]
+}
+
+extend type Mutation {
+  deploy: JSON
+}
+
+extend type Subscription {
+  deploy: Deploy!
+}

@@ -7,7 +7,16 @@ import Card from 'material-ui/Card'
 import classnames from 'classnames'
 
 const Content = (props) => {
-  const { classes, className, children, fluid, plain, withFooter, ...other } = props
+  const {
+    classes,
+    className,
+    cardClassName,
+    children,
+    fluid,
+    plain,
+    withFooter,
+    ...other
+  } = props
   const rootClass = classnames(
     classes.root, 
     {
@@ -25,7 +34,7 @@ const Content = (props) => {
   }
   return (
     <div className={rootClass} {...other}>
-      <Card>
+      <Card className={cardClassName}>
         {children}
       </Card>
     </div>

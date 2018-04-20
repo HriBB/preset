@@ -1,9 +1,25 @@
 {
+  "Preset CMS": {
+    "origin": [
+      [
+        "src/components/Login/Login.js",
+        25
+      ]
+    ]
+  },
+  "Sign In": {
+    "origin": [
+      [
+        "src/components/Login/Login.js",
+        32
+      ]
+    ]
+  },
   "Username": {
     "origin": [
       [
         "src/components/Login/Login.js",
-        37
+        41
       ]
     ]
   },
@@ -11,7 +27,7 @@
     "origin": [
       [
         "src/components/Login/Login.js",
-        44
+        48
       ]
     ]
   },
@@ -19,7 +35,7 @@
     "origin": [
       [
         "src/components/Login/Login.js",
-        53
+        57
       ]
     ]
   }

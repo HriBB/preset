@@ -1,4 +1,134 @@
 {
+  "Pages": {
+    "translation": "Strani",
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        47
+      ]
+    ]
+  },
+  "Deploy": {
+    "translation": "Objavi",
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        177
+      ],
+      [
+        "src/components/Deploy/Deploy.js",
+        103
+      ]
+    ]
+  },
+  "Deploy started": {
+    "translation": "Objava se je začela",
+    "origin": [
+      [
+        "src/components/Deploy/Deploy.js",
+        62
+      ]
+    ]
+  },
+  "Deploy Gatsby": {
+    "translation": "Objavi Gatsby spletno stran",
+    "origin": [
+      [
+        "src/components/Deploy/Deploy.js",
+        94
+      ]
+    ]
+  },
+  "Preset CMS": {
+    "translation": "Preset CMS",
+    "origin": [
+      [
+        "src/components/Login/Login.js",
+        25
+      ]
+    ]
+  },
+  "Sign In": {
+    "translation": "Prijava",
+    "origin": [
+      [
+        "src/components/Login/Login.js",
+        32
+      ]
+    ]
+  },
+  "Create Page": {
+    "translation": "Dodaj stran",
+    "origin": [
+      [
+        "src/components/Pages/Create.js",
+        33
+      ]
+    ]
+  },
+  "Page created": {
+    "translation": "Stran dodana",
+    "origin": [
+      [
+        "src/components/Pages/Create.js",
+        103
+      ]
+    ]
+  },
+  "Title": {
+    "translation": "Naslov",
+    "origin": [
+      [
+        "src/components/Pages/Form.js",
+        18
+      ]
+    ]
+  },
+  "Slug": {
+    "translation": "Slug",
+    "origin": [
+      [
+        "src/components/Pages/Form.js",
+        24
+      ]
+    ]
+  },
+  "Page List": {
+    "translation": "Strani",
+    "origin": [
+      [
+        "src/components/Pages/List.js",
+        41
+      ]
+    ]
+  },
+  "Page deleted": {
+    "translation": "Stran odstranjena",
+    "origin": [
+      [
+        "src/components/Pages/List.js",
+        124
+      ]
+    ]
+  },
+  "Edit Page": {
+    "translation": "Uredi stran",
+    "origin": [
+      [
+        "src/components/Pages/Update.js",
+        43
+      ]
+    ]
+  },
+  "Page updated": {
+    "translation": "Stran shranjena",
+    "origin": [
+      [
+        "src/components/Pages/Update.js",
+        119
+      ]
+    ]
+  },
   "Post_single": {
     "translation": "Prispevek",
     "origin": [
@@ -134,7 +264,7 @@
     "origin": [
       [
         "src/components/App/App.js",
-        43
+        48
       ],
       [
         "src/components/App.js",
@@ -159,7 +289,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        46
+        60
       ]
     ]
   },
@@ -168,7 +298,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        84
+        98
       ],
       [
         "src/components/Drawer.js",
@@ -189,7 +319,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        118
+        132
       ],
       [
         "src/components/Drawer.js",
@@ -210,7 +340,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        134
+        148
       ],
       [
         "src/components/User/Profile.js",
@@ -227,7 +357,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        147
+        161
       ]
     ]
   },
@@ -307,6 +437,10 @@
         73
       ],
       [
+        "src/components/Pages/List.js",
+        71
+      ],
+      [
         "src/components/Preset/List.js",
         74
       ],
@@ -333,6 +467,10 @@
     "translation": "Napaka",
     "origin": [
       [
+        "src/components/Deploy/Deploy.js",
+        65
+      ],
+      [
         "src/components/List.js",
         141
       ],
@@ -347,6 +485,18 @@
       [
         "src/components/NotFound/NotFound.js",
         13
+      ],
+      [
+        "src/components/Pages/Create.js",
+        107
+      ],
+      [
+        "src/components/Pages/List.js",
+        127
+      ],
+      [
+        "src/components/Pages/Update.js",
+        123
       ],
       [
         "src/components/Preset/Create.js",
@@ -387,7 +537,7 @@
     "origin": [
       [
         "src/components/Login/Login.js",
-        37
+        41
       ],
       [
         "src/components/Login.js",
@@ -400,7 +550,7 @@
     "origin": [
       [
         "src/components/Login/Login.js",
-        44
+        48
       ],
       [
         "src/components/Login.js",
@@ -413,7 +563,7 @@
     "origin": [
       [
         "src/components/Login/Login.js",
-        53
+        57
       ],
       [
         "src/components/Login.js",
@@ -489,6 +639,14 @@
   "Save": {
     "translation": "Shrani",
     "origin": [
+      [
+        "src/components/Pages/Create.js",
+        55
+      ],
+      [
+        "src/components/Pages/Update.js",
+        65
+      ],
       [
         "src/components/Preset/Update.js",
         51

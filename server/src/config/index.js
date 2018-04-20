@@ -3,7 +3,6 @@
 const { resolve } = require('path')
 
 module.exports = {
-  root: __dirname,
   server: {
     port: 4000,
     endpoint: '/',
@@ -21,7 +20,10 @@ module.exports = {
     typeDefs: resolve(__dirname, '..', 'generated', 'prisma.graphql'),
     endpoint: process.env.PRISMA_ENDPOINT,
     secret: process.env.PRISMA_SECRET,
-    debug: true,
+    debug: false,
+  },
+  website: {
+    path: resolve(__dirname, '..', '..', '..', 'website'),
   },
   uploads: {
     url: 'http://localhost:4000/uploads',

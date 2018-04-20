@@ -1,0 +1,34 @@
+{
+  "Deploy started": {
+    "origin": [
+      [
+        "src/components/Deploy/Deploy.js",
+        62
+      ]
+    ]
+  },
+  "Error": {
+    "origin": [
+      [
+        "src/components/Deploy/Deploy.js",
+        65
+      ]
+    ]
+  },
+  "Deploy Gatsby": {
+    "origin": [
+      [
+        "src/components/Deploy/Deploy.js",
+        94
+      ]
+    ]
+  },
+  "Deploy": {
+    "origin": [
+      [
+        "src/components/Deploy/Deploy.js",
+        103
+      ]
+    ]
+  }
+}

@@ -1,9 +1,17 @@
 {
+  "Pages": {
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        47
+      ]
+    ]
+  },
   "Posts": {
     "origin": [
       [
         "src/components/App/Drawer.js",
-        46
+        60
       ]
     ]
   },
@@ -11,7 +19,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        84
+        98
       ]
     ]
   },
@@ -19,7 +27,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        118
+        132
       ]
     ]
   },
@@ -27,7 +35,7 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        134
+        148
       ]
     ]
   },
@@ -35,7 +43,15 @@
     "origin": [
       [
         "src/components/App/Drawer.js",
-        147
+        161
+      ]
+    ]
+  },
+  "Deploy": {
+    "origin": [
+      [
+        "src/components/App/Drawer.js",
+        177
       ]
     ]
   }

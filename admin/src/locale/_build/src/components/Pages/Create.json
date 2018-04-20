@@ -1,0 +1,34 @@
+{
+  "Create Page": {
+    "origin": [
+      [
+        "src/components/Pages/Create.js",
+        33
+      ]
+    ]
+  },
+  "Save": {
+    "origin": [
+      [
+        "src/components/Pages/Create.js",
+        55
+      ]
+    ]
+  },
+  "Page created": {
+    "origin": [
+      [
+        "src/components/Pages/Create.js",
+        103
+      ]
+    ]
+  },
+  "Error": {
+    "origin": [
+      [
+        "src/components/Pages/Create.js",
+        107
+      ]
+    ]
+  }
+}

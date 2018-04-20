@@ -37,6 +37,20 @@ const Drawer = (props) => {
         <ListItem
           button
           className={classes.item}
+          component={NavLink}
+          onClick={drawer.close}
+          to={'/pages'}
+        >
+          <ListItemText
+            className={classes.itemText}
+            disableTypography
+            primary={<Trans>Pages</Trans>}
+          />
+        </ListItem>
+
+        <ListItem
+          button
+          className={classes.item}
           data-id={'model'}
           onClick={props.handleClick}
         >
@@ -155,12 +169,12 @@ const Drawer = (props) => {
           className={classes.item}
           component={NavLink}
           onClick={drawer.close}
-          to={'/pages'}
+          to={'/deploy'}
         >
           <ListItemText
             className={classes.itemText}
             disableTypography
-            primary={<Trans>Pages</Trans>}
+            primary={<Trans>Deploy</Trans>}
           />
         </ListItem>
 

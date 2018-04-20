@@ -1,0 +1,6 @@
+query deployQuery {
+  deploy {
+    id
+    data
+  }
+}

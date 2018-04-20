@@ -1,7 +1,17 @@
 import { ApolloClient } from 'apollo-client'
+import { split } from 'apollo-link'
+import { WebSocketLink } from 'apollo-link-ws'
 import { setContext } from 'apollo-link-context'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { createUploadLink } from 'apollo-upload-client'
+import { getMainDefinition } from 'apollo-utilities'
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:4000/`,
+  options: {
+    reconnect: true,
+  },
+});
 
 const uploadLink = createUploadLink({
   uri: 'http://localhost:4000',
@@ -17,10 +27,21 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const client = new ApolloClient({
-  link: authLink.concat(uploadLink),
-  cache: new InMemoryCache(),
-})
+const httpLink = authLink.concat(uploadLink)
+
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === 'OperationDefinition' && operation === 'subscription'
+  },
+  wsLink,
+  httpLink,
+);
+
+const cache = new InMemoryCache()
+
+const client = new ApolloClient({ link, cache })
 
 export default client
 

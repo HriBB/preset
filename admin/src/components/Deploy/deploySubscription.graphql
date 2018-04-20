@@ -1,0 +1,6 @@
+subscription deploySubscription {
+  deploy {
+    id
+    data
+  }
+}

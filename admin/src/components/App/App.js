@@ -20,6 +20,7 @@ import { Translations } from 'components/Translations'
 import { User } from 'components/User'
 import { Pages } from 'components/Pages'
 import { Login } from 'components/Login'
+import { Deploy } from 'components/Deploy'
 
 import Drawer from './Drawer'
 
@@ -64,6 +65,7 @@ const App = (props) => {
       {!error && !loading && viewer &&
         <Switch>
           <Route exact path={'/'} component={Dashboard} />
+          <Route path={'/deploy'} component={Deploy} />
           <Route path={'/user'} component={User} />
           <Route path={'/pages'} component={Pages} />
           <Route path={'/translations/:ns?'} component={Translations} />

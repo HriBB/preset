@@ -2,18 +2,22 @@
 
 const express = require('express')
 const mkdirp = require('mkdirp')
-const { GraphQLServer } = require('graphql-yoga')
+const { GraphQLServer, PubSub } = require('graphql-yoga')
 const { Prisma } = require('prisma-binding')
 
 require('app-module-path').addPath(__dirname)
 const config = require('config')
 const schema = require('schema')
 
+const db = new Prisma(config.db)
+const pubsub = new PubSub()
+
 const server = new GraphQLServer({
   schema,
   context: req => ({
     ...req,
-    db: new Prisma(config.db),
+    db,
+    pubsub,
   }),
 })
 
