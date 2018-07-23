@@ -51,7 +51,7 @@ const getMessages = (data) => {
 }
 
 export const messages = getMessages()
-export const namespaces = Object.keys(messages)
+export const namespaces: Array<string> = Object.keys(messages)
 
 // @todo show number of missing messages (18/24)
 

@@ -44,8 +44,8 @@ const Content = (props) => {
 const styles = theme => ({
   root: {
     maxWidth: '772px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    //marginLeft: 'auto',
+    //marginRight: 'auto',
     padding: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
       padding: theme.spacing.unit * 3,
